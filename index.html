@@ -34,7 +34,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
 
         <h2 id="由于之前在做极客大挑战和补高数，所以有一段时间没有更新博客了，今天来更一次sqlmap初体验哈哈哈哈哈哈哈哈">
           <a href="#由于之前在做极客大挑战和补高数，所以有一段时间没有更新博客了，今天来更一次sqlmap初体验哈哈哈哈哈哈哈哈" class="heading-link"><i class="fas fa-link"></i></a><a href="#由于之前在做极客大挑战和补高数，所以有一段时间没有更新博客了，今天来更一次sqlmap初体验哈哈哈哈哈哈哈哈" class="headerlink" title="由于之前在做极客大挑战和补高数，所以有一段时间没有更新博客了，今天来更一次sqlmap初体验哈哈哈哈哈哈哈哈"></a>由于之前在做极客大挑战和补高数，所以有一段时间没有更新博客了，今天来更一次sqlmap初体验哈哈哈哈哈哈哈哈</h2>
-      <p>初级扫描<br>1.探测是否存在sql注入漏洞</p>
+      
+        <h2 id="初级扫描：GET方式提交">
+          <a href="#初级扫描：GET方式提交" class="heading-link"><i class="fas fa-link"></i></a><a href="#初级扫描：GET方式提交" class="headerlink" title="初级扫描：GET方式提交"></a>初级扫描：GET方式提交</h2>
+      <p>1.探测是否存在sql注入漏洞</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://localhost/sqli-labs-master/Less-3/?id=1</span><br></pre></td></tr></table></div></figure>
 <p>-u:指定url扫描，前提url必须存在可以查询的参数如?id=1<br>此时sqlmap扫描出数据库类型为mysql数据库和数据库的等级<br><img src="/2022/11/15/sqlmap/1.png"><br>接着扫描出验证存在漏洞的payload<br><img src="/2022/11/15/sqlmap/2.png"><br>当网站使用GET请求方式的时候<br>1.查看当前数据库名</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http://localhost/sqli-labs-master/Less-3/?id=1 -current-db</span><br></pre></td></tr></table></div></figure>
