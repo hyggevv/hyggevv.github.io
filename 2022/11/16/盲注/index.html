@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。       length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值                      一：对数据库的猜解       (1)">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。       length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值  思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识盲注">
 <meta property="og:url" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/index.html">
 <meta property="og:site_name" content="Roses Will Bloom All the Time">
-<meta property="og:description" content="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。       length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值                      一：对数据库的猜解       (1)">
+<meta property="og:description" content="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。       length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值  思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-16T04:10:44.000Z">
-<meta property="article:modified_time" content="2022-11-17T04:38:36.376Z">
+<meta property="article:modified_time" content="2022-11-17T06:45:47.110Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary"><title>初识盲注 | Roses Will Bloom All the Time</title><link ref="canonical" href="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
 var CONFIG = {
@@ -38,14 +38,16 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
           <a href="#布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="heading-link"><i class="fas fa-link"></i></a><a href="#布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="headerlink" title="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。"></a>布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。</h2>
       <p>length()：返回字符串的长度<br>substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符<br>ascii()：返回字符的ascii码值</p>
 <hr>
+<p>思路：数量&gt;长度&gt;具体<br>获取数据库名字的长度<br>获取数据库的名字<br>获取数据表的个数<br>获取数据表名字的长度<br>获取数据表名字<br>获取列的个数<br>获取列的长度<br>获取列的具体名字<br>获取数据的列数<br>获取数据的长度<br>获取具体的数据</p>
+<hr>
 
         <h2 id="一：对数据库的猜解">
           <a href="#一：对数据库的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
       <p>(1).<br>猜解数据库长度：</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length(database())=x</span><br></pre></td></tr></table></div></figure>
 <p>此时的x为数据库长度，此处的=可以换成&gt;来缩小检索范围。<br>(2).<br>使用ASCII猜解数据库名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),1,1)))=x</span><br></pre></td></tr></table></div></figure>
-<p>此处的x为ascii值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),m,n)))=x</span><br></pre></td></tr></table></div></figure>
+<p>m为数据库名字的第m个字符,n为从第m个字符起一共读取n个字符，此处的x为ascii值</p>
 <hr>
 
         <h2 id="二：对数据表的猜解">

@@ -36,14 +36,16 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
           <a href="#布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="heading-link"><i class="fas fa-link"></i></a><a href="#布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="headerlink" title="布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。"></a>布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。</h2>
       <p>length()：返回字符串的长度<br>substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符<br>ascii()：返回字符的ascii码值</p>
 <hr>
+<p>思路：数量&gt;长度&gt;具体<br>获取数据库名字的长度<br>获取数据库的名字<br>获取数据表的个数<br>获取数据表名字的长度<br>获取数据表名字<br>获取列的个数<br>获取列的长度<br>获取列的具体名字<br>获取数据的列数<br>获取数据的长度<br>获取具体的数据</p>
+<hr>
 
         <h2 id="一：对数据库的猜解">
           <a href="#一：对数据库的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
       <p>(1).<br>猜解数据库长度：</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length(database())=x</span><br></pre></td></tr></table></div></figure>
 <p>此时的x为数据库长度，此处的=可以换成&gt;来缩小检索范围。<br>(2).<br>使用ASCII猜解数据库名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),1,1)))=x</span><br></pre></td></tr></table></div></figure>
-<p>此处的x为ascii值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),m,n)))=x</span><br></pre></td></tr></table></div></figure>
+<p>m为数据库名字的第m个字符,n为从第m个字符起一共读取n个字符，此处的x为ascii值</p>
 <hr>
 
         <h2 id="二：对数据表的猜解">
