@@ -40,7 +40,18 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
       
         <h2 id="函数学习">
           <a href="#函数学习" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数学习" class="headerlink" title="函数学习"></a>函数学习</h2>
-      <p><img src="/2022/12/08/sqlilabs-Less38-45/1.png"><br>查看源码；此时我们又遇到了新的函数;那咱们就来解读一下把！<br>1.mysqli_connect():打开一个到 MySQL 服务器的新的连接。<br>语法：mysqli_connect(host,username,password,dbname,port,socket)；<br>host:可选；规定主机域名<br>username：可选；规定MySQL用户名<br>password：可选；规定MySQL密码<br>dbname:可选；规定默认连接的数据库<br>port：可选；规定连接MySQL服务器的端口号<br>socket:可选；规定socket或要使用的已命名pipe<br>那么socket是什么呢?我们要传送的数据就是物流中的货物，ip就是发货人和收货人的联系方式，大家想想这送货这这一流程还缺少啥？对呀，物流公司啊，对吧！物流公司就是那个Socket，他负责帮你处理送货的琐碎事情，比如你的货物该怎么打包、该怎么防止易碎物品破碎、该用什么方式运输、等等，如果是境外货物还牵涉到报关等等一系列复杂琐碎的事情，这些物流公司（Socket）帮你处理好了。<br><img src="/2022/12/08/sqlilabs-Less38-45/2.png"><br>2.mysqli_select_db():用于更改连接的默认数据库。<br>语法：mysqli_select_db(connection,dbname)<br>connection:必选；规定使用的MySQL连接<br>dbname:必选；规定要使用的默认数据库<br><img src="/2022/12/08/sqlilabs-Less38-45/3.png"><br>3.mysqli_multi_query():执行一个或多个针对数据库的查询<br>语法：mysqli_multi_query(connection,query)<br>connection:必选；规定使用的MySQL连接<br>query:必选；规定一个或者多个查询；中间用分号连接<br>4.mysql_store_result()：用于将mysqli_query()查询的结果集存储到变量中<br>5.mysqli_fetch_row()：函数从结果集中取得一行，并作为枚举数组返回。<br>语法：mysqli_fetch_row(result)<br>result  必选；规定由 mysqli_query()、mysqli_store_result() 或 mysqli_use_result()<br>返回的结果集标识符。<br>5.mysqli_more_results()：检查一个多查询是否有更多的结果。<br>语法：mysqli_more_results(connection)<br>connection：必选；规定要使用的mysql连接</p>
+      <p><img src="/2022/12/08/sqlilabs-Less38-45/1.png"><br>查看源码；此时我们又遇到了新的函数;那咱们就来解读一下把！<br>1.mysqli_connect():打开一个到 MySQL 服务器的新的连接。<br>语法：mysqli_connect(host,username,password,dbname,port,socket)；<br>host:可选；规定主机域名</p>
+<p>username：可选；规定MySQL用户名</p>
+<p>password：可选；规定MySQL密码</p>
+<p>dbname:可选；规定默认连接的数据库</p>
+<p>port：可选；规定连接MySQL服务器的端口号</p>
+<p>socket:可选；规定socket或要使用的已命名pipe</p>
+<p>那么socket是什么呢?我们要传送的数据就是物流中的货物，ip就是发货人和收货人的联系方式，大家想想这送货这这一流程还缺少啥？对呀，物流公司啊，对吧！物流公司就是那个Socket，他负责帮你处理送货的琐碎事情，比如你的货物该怎么打包、该怎么防止易碎物品破碎、该用什么方式运输、等等，如果是境外货物还牵涉到报关等等一系列复杂琐碎的事情，这些物流公司（Socket）帮你处理好了。<br><img src="/2022/12/08/sqlilabs-Less38-45/2.png"></p>
+<p>2.mysqli_select_db():用于更改连接的默认数据库。<br>语法：mysqli_select_db(connection,dbname)<br>connection:必选；规定使用的MySQL连接<br>dbname:必选；规定要使用的默认数据库<br><img src="/2022/12/08/sqlilabs-Less38-45/3.png"></p>
+<p>3.mysqli_multi_query():执行一个或多个针对数据库的查询<br>语法：mysqli_multi_query(connection,query)<br>connection:必选；规定使用的MySQL连接<br>query:必选；规定一个或者多个查询；中间用分号连接</p>
+<p>4.mysql_store_result()：用于将mysqli_query()查询的结果集存储到变量中</p>
+<p>5.mysqli_fetch_row()：函数从结果集中取得一行，并作为枚举数组返回。<br>语法：mysqli_fetch_row(result)<br>result  必选；规定由 mysqli_query()、mysqli_store_result() 或 mysqli_use_result()<br>返回的结果集标识符。</p>
+<p>6.mysqli_more_results()：检查一个多查询是否有更多的结果。<br>语法：mysqli_more_results(connection)<br>connection：必选；规定要使用的mysql连接</p>
 
         <h2 id="叠堆注入的原理：">
           <a href="#叠堆注入的原理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#叠堆注入的原理：" class="headerlink" title="叠堆注入的原理："></a>叠堆注入的原理：</h2>
