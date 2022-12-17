@@ -200,7 +200,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
 <p>(7).user.ini：<br>所有的php文件都自动包含file.jpg文件。</p>
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto_prepend_file=file.jpg的.user.ini</span><br></pre></td></tr></table></div></figure>
 <p>4.绕过白名单：<br>(1)图片马进行绕过:遇到对我们上传的文件进行十分严格的检查且规定一定是要.jpg.png.gif<br>getReailFileType()<br>getimagesize()<br>exif_imagetype()：返回值和 getimagesize() 返回的数组中的索引 2 的值是一样的<br>注意：使用图片马时必须要有文件包含；不然蚁剑是无法对图马进行解析的<br>(2)二次渲染绕过：一般使用gif<br>(3)基于时间差的条件竞争绕过：有上传到服务器进行检查和删除时出现时间差<br>(4)%00截断绕过：路径为以POST或GET方式提交时可控<br>(5).截断绕过：遇到move_uploaded_file()且前面不进行点号过滤时</p>
-<p>FINISH!<br><img src="/2022/12/10/Upload-labs/54.gif"></p>
+<p><img src="/2022/12/10/Upload-labs/54.gif"><br>                                          FINISH</p>
 <hr>
 </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2022/12/08/sqlilabs-Less38-45/">sqlilabs-Less 38~45&amp;&amp;Less 46~53</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2022-12-08</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2022-12-09</span></span></div></header><div class="post-body"><div class="post-excerpt"><hr>
 
