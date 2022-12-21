@@ -1597,8 +1597,6 @@ kbd {
 }
 .highlight pre {
   margin: 0;
-  white-space: pre-wrap;
-  counter-reset: line;
 }
 .highlight td {
   border-width: 0;
@@ -1643,7 +1641,6 @@ kbd {
   width: 2rem;
   background-color: #304148;
   border-radius: 0.25rem;
-  display: none;
 }
 .highlight td.gutter pre {
   text-align: right;
@@ -1652,21 +1649,7 @@ kbd {
   background-color: inherit;
 }
 .highlight td.code {
-  padding: 0;
-}
-.highlight .line::before {
-  content: counter(line);
-  display: inline-block;
-  margin-right: 0.5rem;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  padding: 0 0.8rem 0 0.4rem;
-  min-width: 1rem;
-  text-align: right;
-  color: #959595;
-  background-color: #304148;
-  counter-increment: line;
+  padding: 0.5rem 0.6rem;
 }
 .highlight .marked {
   background-color: #394e56;
