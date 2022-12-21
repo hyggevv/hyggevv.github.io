@@ -56,7 +56,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="一-过滤机制的绕过姿势">
           <a href="#一-过滤机制的绕过姿势" class="heading-link"><i class="fas fa-link"></i></a><a href="#一-过滤机制的绕过姿势" class="headerlink" title="一.过滤机制的绕过姿势"></a>一.过滤机制的绕过姿势</h2>
       <p>preg_replace()函数：preg_replace(要替换的东西，替换成啥东西，哪个里面的东西需要替换)<br>1.对于注释符号的过滤<br><img src="/2022/12/05/Advanced-Injections/1.png"><br>两种解决方法：使用%00截断或者让每个单引号都彼此配对<br>2.对于不区分大小写的and和or的过滤<br><img src="/2022/12/05/Advanced-Injections/2.png"><br>对于这个匹配大小写的过滤机制，我们可以使用双写绕过<br>3.对于空格的过滤<br><img src="/2022/12/05/Advanced-Injections/3.png"><br>对于空格的过滤我们一般可以使用%家族进行绕过：%家族包括但不限于%20 %09 %0a %0b %0c %0d %a0<br>或者换成报错注入或者盲注这种对空格需求不的大攻击方法<br>注：使用&amp;&amp;将逻辑和updatexml分开 </p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">?id=1&#x27;%26%26updatexml(1,concat(&#x27;~~&#x27;,database()),1)%26%26&#x27;<br></code></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;%26%26updatexml(1,concat(&#x27;~~&#x27;,database()),1)%26%26&#x27;</span><br></pre></td></tr></table></div></figure>
 
 <hr>
 
