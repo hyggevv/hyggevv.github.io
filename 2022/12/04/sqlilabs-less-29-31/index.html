@@ -32,7 +32,7 @@ var CONFIG = {
   postWidget: {"endText":true},
   nightMode: {"enable":true},
   back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"ocean","wordWrap":false},
+  codeblock: {"style":"default","highlight":"ocean","wordWrap":true},
   reward: false,
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
@@ -50,7 +50,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="Less-29-Protection-with-WAF">
           <a href="#Less-29-Protection-with-WAF" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-29-Protection-with-WAF" class="headerlink" title="Less-29 Protection with WAF"></a>Less-29 Protection with WAF</h2>
       <p>当我们老规矩添加?id=1’的时候，跳转到临外一个页面<br><img src="/2022/12/04/sqlilabs-less-29-31/5.png"><br>url栏跑出来一个hack.jsp，可以看出来是Tomcat服务器；此时猜测为双服务器<br><img src="/2022/12/04/sqlilabs-less-29-31/6.png"><br><img src="/2022/12/04/sqlilabs-less-29-31/7.png"><br>服务器端有两个部分：第一部分为tomcat为引擎的jsp型服务器，第二部分为apache为引擎的php服务器，真正提供web服务的是php服务器。工作流程为：client访问服务器，能直接访问到tomcat服务器，然后tomcat服务器再向apache服务器请求数据。数据返回路径则相反。客户端请求首先过tomcat，tomcat解析第一个参数，接下来tomcat去请求apache（php）服务器，apache解析最后一个参数。<br>详情查看此文章：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.cnblogs.com/lcamry/p/5762961.html">https://www.cnblogs.com/lcamry/p/5762961.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>老规矩查看源码：<br><img src="/2022/12/04/sqlilabs-less-29-31/1.png"><br>此时先获取url?id=的值；然后进行提取java_implimentation($qs)，接着进行whitelist($id1)<br><img src="/2022/12/04/sqlilabs-less-29-31/2.png"><br>此时对获得的id参数进行正则匹配，此时id内容必须是数字；不是的话会跳转带hacker.php的页面<br><img src="/2022/12/04/sqlilabs-less-29-31/3.jpg"><br>^表示匹配字符串的开始；$表示匹配字符串的结束；d表示匹配数字；+表示匹配多次<br><img src="/2022/12/04/sqlilabs-less-29-31/4.png"><br>explode():将字符串分割开；explode(“&amp;”,$q_s)就是将$q_s在&amp;两边内容分隔开如id=1&amp;id=2经过此函数便会被分割成id=1和id=2<br>foreach():便是将被分割的字符串一个个输出来<br>foreach (array_expression as $value):每次循环时都会将当前值赋给$value;且指针向前移一位<br>foreach (array_expression as $key =&gt; $value)：每次循环时将当前值赋给$value且指针向前移一位；并且将当前的键名赋值给$key<br>$room = [‘a’=&gt;’1’,’b’=&gt;’2’];<br>此时a和b为键名，1和2为键值。<br>此时这两个函数的意思就是从被分割的数组里面查找；并截取前两位；如果前两位时id的话便再次对该数组值进行从第四位开始共截取30进行正则匹配。<br><img src="/2022/12/04/sqlilabs-less-29-31/8.png"><br>此时是对tomcat的参数进行匹配；若是正确则交给apache进行回显<br><img src="/2022/12/04/sqlilabs-less-29-31/9.png"><br>而此时在apache里面是没有进行过滤处理的<br>此时我们便需要对此过滤进行绕过:但是结合源码我们发现，tomcat获取的是第一个数据，而处理我们想要数据的apache获取的是第二个数据。因此这题的思路就是构建payload让tomcat取得第一个数据，而我们的注入的语句从第二个语句中注入</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&amp;id=0&#x27;union select 1,database(),3 --+</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">?id=1&amp;id=0&#x27;union select 1,database(),3 --+<br></code></pre></td></tr></table></div></figure>
 <p><img src="/2022/12/04/sqlilabs-less-29-31/10.png"><br>此时便可以进行暴库了</p>
 <hr>
 

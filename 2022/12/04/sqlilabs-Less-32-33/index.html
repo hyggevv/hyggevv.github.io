@@ -32,7 +32,7 @@ var CONFIG = {
   postWidget: {"endText":true},
   nightMode: {"enable":true},
   back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"ocean","wordWrap":false},
+  codeblock: {"style":"default","highlight":"ocean","wordWrap":true},
   reward: false,
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
@@ -60,7 +60,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="原理：">
           <a href="#原理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2>
       <p>1、宽字节注入是利用mysql的一个特性<br>2、PHP发送请求到mysql，mysql在使用GBK编码（GBK是宽字节，双字节）的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，才到汉字的范围）<br>3、字符和转义的反斜杠组成了新的汉字，但是组成的新汉字又不是一个正常的汉字，就起到了注掉 \ 的作用<br>4、可以看出来是字符集不一致造成的宽字节注入</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">默认情况下：  1&#x27; --+ --&gt; 1\&#x27; --+ </span><br><span class="line">注入后：         1%df&#x27; --+  --&gt; 1運&#x27; --+</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">默认情况下：  1&#x27; --+ --&gt; 1\&#x27; --+ <br>注入后：         1%df&#x27; --+  --&gt; 1運&#x27; --+<br></code></pre></td></tr></table></div></figure>
 <p>思路：<br>1.%df吃掉 \ 具体的原因是urlencode(‘) = %5c%27，我们在%5c%27前面添加%df，形成%df%5c%27，而上面提到的mysql在GBK编码方式的时候会将两个字节当做一个汉字，此事%df%5c就是一个汉字，%27则作为一个单独的符号在外面，同时也就达到了我们的目的。<br><img src="/2022/12/04/sqlilabs-Less-32-33/4.png"><br>而到后续注入的时候还是会用到单引号的地方；此时如果还是用上述方法的时候会发现不行<br><img src="/2022/12/04/sqlilabs-Less-32-33/5.png"><br>还记得开头出现的十六进制吗？此时可以尝试对security进行十六进制编码；因为mysql支持十六进制的数值，所以我们这里直接将数据转为16进制即可（0x表示16进制）<br><img src="/2022/12/04/sqlilabs-Less-32-33/6.png"></p>
 <hr>
 

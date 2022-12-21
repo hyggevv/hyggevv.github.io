@@ -50,7 +50,7 @@ var CONFIG = {
   postWidget: {"endText":true},
   nightMode: {"enable":true},
   back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"ocean","wordWrap":false},
+  codeblock: {"style":"default","highlight":"ocean","wordWrap":true},
   reward: false,
   fancybox: false,
   zoomImage: {"gapAside":"20px"},
@@ -71,18 +71,18 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="方法一：手工注入">
           <a href="#方法一：手工注入" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法一：手工注入" class="headerlink" title="方法一：手工注入"></a>方法一：手工注入</h2>
       <p><img src="/2022/11/20/Less18/1.png"><br>遇事不决先看源码！！！<br><img src="/2022/11/20/Less18/4.png"><br>对于该函数的效果我在上一章已经进行了解读，这里就不再次解读了<br><img src="/2022/11/20/Less18/2.png"><br>此时发现其对我们输入的用户名和密码都进行了严格的保护，所以我们一般无法从用户名和密码进行入手攻击；而且要进行攻击时我们需要知道用户名和密码,此刻我们使用bp进行爆破<br><img src="/2022/11/20/Less18/3.png"><br>此时我们再来看<br><img src="/2022/11/20/Less18/5.png"><br>此时的uagent和IP与uname和passwd的差别在于uagent和IP并没有被严格的保护；所以我们便萌生了对uagent或者IP进行一个注入攻击<br><img src="/2022/11/20/Less18/6.png"></p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#x27;$uagent&#x27;, &#x27;$IP&#x27;, $uname)&quot;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">$insert=&quot;INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#x27;$uagent&#x27;, &#x27;$IP&#x27;, $uname)&quot;<br></code></pre></td></tr></table></div></figure>
 <p>接着阅读源码时发现了这个语句，还有下面的echo Your IP ADDRE…这个不就和我们刚开始登入的时候的界面回显一样,<br>又发现上面的insert语句中出现了未被严格过滤的uagents，所以现在我们更加可以确定此题的注入点就在uagent，而上面语句的意思则是向uagent表插入三个字段；所以我们可以开始构造该语句</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#x27; or updatexml(1, concat(&#x27;#&#x27;, database()), 0), 1, 1) #</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">INSERT INTO `security`.`uagents` (`uagent`, `ip_address`, `username`) VALUES (&#x27; or updatexml(1, concat(&#x27;#&#x27;, database()), 0), 1, 1) #<br></code></pre></td></tr></table></div></figure>
 <p>我们的payload就是处于第一个字段中，先用一个单引号闭合原生sql的单引号，然后通过or连接一个updatexml()函数，将payload封装到updatexml中，使得后台抛出错误返回给前端。<br>此时我在useragent中加入一个单引号，发现报错，所以我们便可以利用报错注入<br><img src="/2022/11/20/Less18/7.png"><br>此时我们开始构造语句</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; or updatexml(1, concat(&#x27;#&#x27;, database()), 0), 1, 1) #</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">&#x27; or updatexml(1, concat(&#x27;#&#x27;, database()), 0), 1, 1) #<br></code></pre></td></tr></table></div></figure>
 <p><img src="/2022/11/20/Less18/8.png"><br>发现咱们的数据库名已经出来咯，接下来便可以进行愉快的爆库之旅了，由于拼接的查询语句与先前一样，在这里我就不一一列出了</p>
 <hr>
 
         <h2 id="方法二：sqlmap测试">
           <a href="#方法二：sqlmap测试" class="heading-link"><i class="fas fa-link"></i></a><a href="#方法二：sqlmap测试" class="headerlink" title="方法二：sqlmap测试"></a>方法二：sqlmap测试</h2>
       <p>先用bp进行抓包，然后修改user-agent的值；在我们需要注入的地方加入* ；然后保存到本地<br><img src="/2022/11/20/Less18/9.png"><br>运行sqlmap</p>
-<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -r D:\桌面\a.txt -db</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">python sqlmap.py -r D:\桌面\a.txt -db<br></code></pre></td></tr></table></div></figure>
 <p><img src="/2022/11/20/Less18/10.png"><br><img src="/2022/11/20/Less18/11.png"><br>FINISH</p>
 <hr>
 
