@@ -67,7 +67,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Accept-Encoding: gzip // 由文件压缩程序 gzip 生成的编码格式</span><br><span class="line">Accept-Encoding: compress //使用Lempel-Ziv-Welch（LZW）算法的压缩格式</span><br><span class="line">Accept-Encoding: deflate //使用 zlib 结构和 deflate 压缩算法的压缩格式</span><br><span class="line">Accept-Encoding: br //使用 Brotli 算法的压缩格式</span><br><span class="line">Accept-Encoding: identity</span><br><span class="line">Accept-Encoding: * //匹配标头中未列出的任何内容编码，如果没有列出 Accept-Encoding,这个就是默认值，但并不表示</span><br><span class="line">支持所有算法</span><br><span class="line">Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5 //采用权重 q 值来表示相对优先级</span><br></pre></td></tr></table></div></figure>
 
 <p>Accept-Language:<br>表示客户端需要服务端返回的语言类型。浏览器通知服务器，浏览器支持的语言。各国语言(国际化i18n)</p>
-<p>From:<br>请求头用来告知服务器使用用户代理的电子邮件地址。例如：From: <span class="exturl"><a class="exturl__link" href="mailto:&#119;&#x65;&#98;&#x6d;&#97;&#x73;&#116;&#101;&#114;&#x40;&#x65;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#x2e;&#111;&#x72;&#x67;">&#119;&#x65;&#98;&#x6d;&#97;&#x73;&#116;&#101;&#114;&#x40;&#x65;&#120;&#x61;&#109;&#x70;&#108;&#x65;&#x2e;&#111;&#x72;&#x67;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 咱们在2022极客大挑战中就有遇到这样的题目</p>
+<p>From:<br>请求头用来告知服务器使用用户代理的电子邮件地址。例如：From: <span class="exturl"><a class="exturl__link" href="mailto:&#119;&#101;&#98;&#109;&#x61;&#115;&#116;&#x65;&#x72;&#64;&#x65;&#120;&#x61;&#109;&#x70;&#108;&#101;&#46;&#111;&#x72;&#103;">&#119;&#101;&#98;&#109;&#x61;&#115;&#116;&#x65;&#x72;&#64;&#x65;&#120;&#x61;&#109;&#x70;&#108;&#101;&#46;&#111;&#x72;&#103;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 咱们在2022极客大挑战中就有遇到这样的题目</p>
 <p>Authorization：<br>请求头用于向服务器认证用户代理的凭据，通常用在服务器以401未经授权状态和WWW-Authenticate标头响应之后；用来告知服务器，用户的认证信息，服务端只有收到认证之后才会返回给客户端 200 OK的响应；如果没有认证信息，则返回401告诉客户需<br>要认证信息。<br><img src="/2022/12/24/HTTP/5.png"></p>
 <p>Expect:<br>指示服务器要满足期望才能正确处理请求。如果服务器没有办法完成客户端的所期望完成的事且服务器存在错误的话，会返回417；如果可以满足的话会返回100</p>
 <p>Cache-Control：<br>no-cache（不要缓存的实体，要求现在从WEB服务器去取）<br>max-age：（只接受 Age 值小于 max-age 值，并且没有过期的对象）<br>max-stale：（可以接受过去的对象，但是过期时间必须小于 max-stale 值）<br>min-fresh：（接受其新鲜生命期大于其当前 Age 跟 min-fresh 值之和的缓存对象）<br>响应：public(可以用 Cached 内容回应任何用户)<br>private（只能用缓存内容回应先前请求该内容的那个用户）<br>no-cache（可以缓存，但是只有在跟WEB服务器验证了其有效后，才能返回给客户端）<br>max-age：（本响应包含的对象的过期时间）<br>ALL: no-store（不允许缓存）</p>
@@ -112,7 +112,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="后记">
           <a href="#后记" class="heading-link"><i class="fas fa-link"></i></a><a href="#后记" class="headerlink" title="后记"></a>后记</h2>
       <p>理解HTTP对于一个WEB手是基础之中的基础；它对我们在利用bp进行抓包过程中的响应消息有着非常重要的帮助，当然并不止在这个地方有用处；隔了这么久终于把这个坑给填上了，依旧记得当时在做22极客大挑战那题有关于HTTP题目的迷茫；所以了解并掌握HTTP对我们来说是十分重要的。<br>这一篇博客基本源于<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://t.csdn.cn/sg8fl">http://t.csdn.cn/sg8fl</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 感谢该位博主的分享让我对HTTP有了理解。</p>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2022/12/22/CSRF/">CSRF</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2022-12-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2022-12-23</span></span></div></header><div class="post-body"><div class="post-excerpt">
+</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2022/12/22/CSRF/">CSRF</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2022-12-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2022-12-24</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h2 id="CSRF-Cross-Site-Request-Forgery">
           <a href="#CSRF-Cross-Site-Request-Forgery" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSRF-Cross-Site-Request-Forgery" class="headerlink" title="CSRF:Cross Site Request Forgery"></a>CSRF:Cross Site Request Forgery</h2>
       
@@ -161,10 +161,24 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
         <h2 id="Impossible">
           <a href="#Impossible" class="heading-link"><i class="fas fa-link"></i></a><a href="#Impossible" class="headerlink" title="Impossible"></a>Impossible</h2>
       <p><img src="/2022/12/22/CSRF/18.png"><br>可以看到，Impossible级别的代码利用PDO技术防御SQL注入，至于防护CSRF，则要求用户输入原始密码，攻击者在不知道原始密码的情况下，无论如何都无法进行CSRF攻击。</p>
+<p>Pikachu<br><img src="/2022/12/22/CSRF/27.png"></p>
+<hr>
 
-        <h2 id="后言">
-          <a href="#后言" class="heading-link"><i class="fas fa-link"></i></a><a href="#后言" class="headerlink" title="后言"></a>后言</h2>
-      <p>因为通过DVWA第一次接触到CSRF所以感觉还是十分的陌生和不知所措；接下来会继续完善自身对于该漏洞的系统学习。<br><img src="/2022/12/22/CSRF/19.png"></p>
+        <h2 id="CSRF-GET">
+          <a href="#CSRF-GET" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSRF-GET" class="headerlink" title="CSRF(GET)"></a>CSRF(GET)</h2>
+      <p>此时登入后发现了这个界面；此时尝试对用户信息进行更改<br><img src="/2022/12/22/CSRF/20.png"><br>使用bp拦截更改消息<br><img src="/2022/12/22/CSRF/21.png"><br>然后进行咱们要修改的值，接着利用短链接进行伪造；然后我们模仿该用户点击该链接，此时会发现我们的数据已经被更改<br><img src="/2022/12/22/CSRF/22.png"></p>
+
+        <h2 id="CSRF-POST">
+          <a href="#CSRF-POST" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSRF-POST" class="headerlink" title="CSRF(POST)"></a>CSRF(POST)</h2>
+      <p>此时登入后发现了这个界面；此时尝试对用户信息进行更改<br><img src="/2022/12/22/CSRF/23.png"><br>因为此时为POST提交方式；所有还是打开bp然后进行抓包点击Engagement tools——Generate CSRF PoC进行构造<br><img src="/2022/12/22/CSRF/24.png"><br>接着模仿受害者访问攻击者传来的页面；此时发现信息已经被修改<br><img src="/2022/12/22/CSRF/25.png"></p>
+
+        <h2 id="CSRF-Token">
+          <a href="#CSRF-Token" class="heading-link"><i class="fas fa-link"></i></a><a href="#CSRF-Token" class="headerlink" title="CSRF(Token)"></a>CSRF(Token)</h2>
+      <p><img src="/2022/12/22/CSRF/26.png"><br>查看源码，发现它会验证我们每次提交的Token；CSRF的主要问题是敏感操作的连接容易被伪造，如何让这个链接不被伪造？<br>每次请求增加一个随机码，后台每次对这个随机码进行验证。</p>
+
+        <h2 id="后记">
+          <a href="#后记" class="heading-link"><i class="fas fa-link"></i></a><a href="#后记" class="headerlink" title="后记"></a>后记</h2>
+      <p>第一次接触CSRF还是有点手忙脚乱；通过DVWA进行学习CSRF后找了Pikachu进行练习了一下；巩固了一下基础知识。通过DVWA也是对CSRF有了点感觉；理论学习偏多；实战经历还是偏少。<br><img src="/2022/12/22/CSRF/19.png"></p>
 </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2022/12/21/DVWA/">DVWA</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2022-12-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2022-12-22</span></span></div></header><div class="post-body"><div class="post-excerpt">
         <h2 id="Brute-Force">
           <a href="#Brute-Force" class="heading-link"><i class="fas fa-link"></i></a><a href="#Brute-Force" class="headerlink" title="Brute Force"></a>Brute Force</h2>
