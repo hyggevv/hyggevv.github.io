@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="Sqlilabs-Less-32~37&amp;初探宽字节注入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sqlilabs-Less-32~37&amp;初探宽字节注入">
+<meta property="og:url" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="Sqlilabs-Less-32~37&amp;初探宽字节注入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/1.jpg">
+<meta property="og:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/11.png">
+<meta property="article:published_time" content="2022-12-04T10:19:20.000Z">
+<meta property="article:modified_time" content="2023-04-25T12:16:33.715Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/1.png"><title>Sqlilabs-Less-32~37&amp;初探宽字节注入 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copiar","copySuccess":"Éxito en copia","copyError":"Error en copia"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Inicio</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archivos</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categorías</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Etiquetas</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">Sobre Nosotros</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Sqlilabs-Less-32~37&amp;初探宽字节注入</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Creado</span><span class="post-meta-item__value">2022-12-04</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Actualizado</span><span class="post-meta-item__value">2023-04-25</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visitado</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><hr>
+
+        <h2 id="Less-32-Bypass-addslashes">
+          <a href="#Less-32-Bypass-addslashes" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-32-Bypass-addslashes" class="headerlink" title="Less-32 Bypass addslashes()"></a>Less-32 <strong>Bypass addslashes()</strong></h2>
+      <p><img src="/2022/12/04/sqlilabs-Less-32-33/1.png"><br>此时我们知道我们输入的id&#x3D;1’被转义成1&#39;;在十六进制中变成315c27；在一般情况下，此处是不存在SQL注入漏洞的，不过有一个特例，就是当数据库的编码为GBK时，可以使用宽字节注入。<br>查看源码：<br><img src="/2022/12/04/sqlilabs-Less-32-33/2.png"><br>这里也介绍一下preg_quote()函数，这个函数的功能为向其中每个正则表达式语法中的字符前增加一个反斜线<br>原来又是熟悉的preg_replace()函数；preg_replace(要替换的东西，替换成啥东西，哪个里面的东西需要替换)<br><img src="/2022/12/04/sqlilabs-Less-32-33/3.png"><br>果然发现了GBK编码；</p>
+<hr>
+
+        <h2 id="概念：">
+          <a href="#概念：" class="heading-link"><i class="fas fa-link"></i></a><a href="#概念：" class="headerlink" title="概念："></a>概念：</h2>
+      <p>单字节字符集： 所有的字符都使用一个字节来表示（ASCII 编码0-127）<br>多字节字符集： 在多字节字符集中，用多个字节来表示（也有可能一部分用一个字节表示）<br>宽字符：用多个字节来代表的字符称之为宽字符<br>字符、字符集 字符(character)是组成字符集(character set)的基本单位。对字符赋予一个数值(encoding)来确定这个字符在该字符集中的位置。<br>UTF8 由于ASCII表示的字符只有128个，因此网络世界的规范是使用UNICODE编码，但是用ASCII表示的字符使用UNICODE并不高效。因此出现了中间格式字符集，被称为通用转换格式，及UTF(Universal Transformation Format)。<br>宽字节:GB2312、GBK、GB18030、BIG5、ShiftJIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是吃ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。</p>
+<hr>
+
+        <h2 id="原理：">
+          <a href="#原理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2>
+      <p>1、宽字节注入是利用mysql的一个特性<br>2、PHP发送请求到mysql，mysql在使用GBK编码（GBK是宽字节，双字节）的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，才到汉字的范围）<br>3、字符和转义的反斜杠组成了新的汉字，但是组成的新汉字又不是一个正常的汉字，就起到了注掉 \ 的作用<br>4、可以看出来是字符集不一致造成的宽字节注入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">默认情况下：  1&#x27; --+ --&gt; 1\&#x27; --+ </span><br><span class="line">注入后：         1%df&#x27; --+  --&gt; 1運&#x27; --+</span><br></pre></td></tr></table></div></figure>
+<p>思路：<br>1.%df吃掉 \ 具体的原因是urlencode(‘) &#x3D; %5c%27，我们在%5c%27前面添加%df，形成%df%5c%27，而上面提到的mysql在GBK编码方式的时候会将两个字节当做一个汉字，此事%df%5c就是一个汉字，%27则作为一个单独的符号在外面，同时也就达到了我们的目的。<br><img src="/2022/12/04/sqlilabs-Less-32-33/4.png"><br>而到后续注入的时候还是会用到单引号的地方；此时如果还是用上述方法的时候会发现不行<br><img src="/2022/12/04/sqlilabs-Less-32-33/5.png"><br>还记得开头出现的十六进制吗？此时可以尝试对security进行十六进制编码；因为mysql支持十六进制的数值，所以我们这里直接将数据转为16进制即可（0x表示16进制）<br><img src="/2022/12/04/sqlilabs-Less-32-33/6.png"></p>
+<hr>
+
+        <h2 id="Less-32-Bypass-addslashes-1">
+          <a href="#Less-32-Bypass-addslashes-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-32-Bypass-addslashes-1" class="headerlink" title="Less-32 Bypass addslashes()"></a>Less-32 <strong>Bypass addslashes()</strong></h2>
+      <p><img src="/2022/12/04/sqlilabs-Less-32-33/7.png"><br>又遇到了之前的addslashes()函数：addslashes(string)函数返回在预定义字符之前添加反斜杠\的字符串<br>绕过方法和上一关一样。</p>
+<hr>
+
+        <h2 id="Less-36-Bypass-MySQL-Real-Escape-String">
+          <a href="#Less-36-Bypass-MySQL-Real-Escape-String" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-36-Bypass-MySQL-Real-Escape-String" class="headerlink" title="Less-36 Bypass MySQL Real Escape String"></a>Less-36 <strong>Bypass MySQL Real Escape String</strong></h2>
+      <p><img src="/2022/12/04/sqlilabs-Less-32-33/8.png"><br>mysql_real_escape_string(string):string为需要转义的字符；该函数用于转义SQL语句中的特殊字符串，导致闭合失败等问题，防止SQL注入<br>绕过方法和上一关一样。</p>
+<hr>
+
+        <h2 id="Less-34-POST-Bypass-Add-SLASHES">
+          <a href="#Less-34-POST-Bypass-Add-SLASHES" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-34-POST-Bypass-Add-SLASHES" class="headerlink" title="Less-34- POST-Bypass Add SLASHES"></a>Less-34- POST-Bypass Add SLASHES</h2>
+      <p>这关为POST型注入；我们可以使用bp进行注入攻击；绕过方法与上面相同；不在细讲。<br><img src="/2022/12/04/sqlilabs-Less-32-33/9.png"></p>
+<hr>
+
+        <h2 id="Less-37-POST-MySQL-real-escape-string">
+          <a href="#Less-37-POST-MySQL-real-escape-string" class="heading-link"><i class="fas fa-link"></i></a><a href="#Less-37-POST-MySQL-real-escape-string" class="headerlink" title="Less-37- POST-MySQL_real_escape_string"></a>Less-37- POST-MySQL_real_escape_string</h2>
+      <p>这关为POST型注入；我们可以使用bp进行注入攻击；绕过方法与上面相同；不在细讲。<br><img src="/2022/12/04/sqlilabs-Less-32-33/10.png"></p>
+
+        <h2 id="初探宽字节注入">
+          <a href="#初探宽字节注入" class="heading-link"><i class="fas fa-link"></i></a><a href="#初探宽字节注入" class="headerlink" title="初探宽字节注入"></a>初探宽字节注入</h2>
+      
+        <h2 id="字符和字符集的概念：">
+          <a href="#字符和字符集的概念：" class="heading-link"><i class="fas fa-link"></i></a><a href="#字符和字符集的概念：" class="headerlink" title="字符和字符集的概念："></a>字符和字符集的概念：</h2>
+      <p>在了解宽字节注入的时候我们先来了解一下字符集；字符集：字符是各种文字和符号的统称，包括各个国家文字、标点符号、表情、数字等等。字符集就是一系列字符的集合。<br>计算机只能存储二进制的数据那英文、汉字、表情等字符应该如何存储呢？我们要将这些字符和二级制的数据一一对应起来比如说字符“a”对应“01100001”反之“01100001”对应“a”。我们将字符对应二进制数据的过程称为”字符编码”反之，二进制数据解析成字符的过程称为“字符解码”。<br>常见的字符集分类：ASCII和latin1为单字节编码；gbk为双字节编码；UTF-8为一至四字节编码。<br>宽字节就是两个以上的字节，宽字节注入产生的原因就是各种字符编码的不当操作，使得攻击者可以通过宽字节编码绕过SQL注入防御。通常来说，一个gbk编码汉字，占用2个字节。一个utf-8编码的汉字，占用3个字节。</p>
+<hr>
+
+        <h2 id="宽字节注入过程原理：">
+          <a href="#宽字节注入过程原理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#宽字节注入过程原理：" class="headerlink" title="宽字节注入过程原理："></a>宽字节注入过程原理：</h2>
+      <p>1.id&#x3D;%df%27，，先进行addslashes()；浏览器执行时会自动url解码一次；%df%5c%27 –&gt; �&#39;<br>2.转十六进制：�&#39; –&gt;  0xdf0x5c0x27<br>3.将16进制数转为url编码: 0xdf0x5c0x27 –&gt; %df%5c%27<br>4.这里以GBK（内部操作字符集）进行url解码，执行sql语句:%df%5c%27 –&gt; 運’</p>
+<hr>
+
+        <h2 id="php与mysql的交互流程：">
+          <a href="#php与mysql的交互流程：" class="heading-link"><i class="fas fa-link"></i></a><a href="#php与mysql的交互流程：" class="headerlink" title="php与mysql的交互流程："></a>php与mysql的交互流程：</h2>
+      <p>将php的sql语句以character_set_client进行编码(也就是转十六进制)；在将16进制数以character_set_connection进行编码(也就是转为url编码)，然后在以内部字符集进行url解码；最后以character_set_results编码进行输出。</p>
+<hr>
+
+        <h2 id="剖析：">
+          <a href="#剖析：" class="heading-link"><i class="fas fa-link"></i></a><a href="#剖析：" class="headerlink" title="剖析："></a>剖析：</h2>
+      <p>就是因为在通过内部字符集进行url解码时；因为内部字符集的问题，如GBK字符集，在以GBK为编码的mysql中<br>%df和%5c才可以结合为汉字；这也就导致了宽字节的注入；可以使用%df去吃掉用于防止注入攻击而添加上去的<br><img src="/2022/12/04/sqlilabs-Less-32-33/1.jpg"><br><img src="/2022/12/04/sqlilabs-Less-32-33/11.png"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ FIN ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Autor: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Enlace: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/">https://hyggevv.github.io/2022/12/04/sqlilabs-Less-32-33/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">Todos los artículos de este blog están bajo licencia  de <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> a menos que se indique lo contrario</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/12/05/Advanced-Injections/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Advanced Injections</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/12/04/sqlilabs-less-29-31/"><span class="paginator-prev__text">Sqlilabs-Less-29~31</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Contenido</span><span class="sidebar-nav-ov">Reseña</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Less-32-Bypass-addslashes"><span class="toc-number">1.</span> <span class="toc-text">
+          Less-32 Bypass addslashes()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">
+          概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">
+          原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Less-32-Bypass-addslashes-1"><span class="toc-number">4.</span> <span class="toc-text">
+          Less-32 Bypass addslashes()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Less-36-Bypass-MySQL-Real-Escape-String"><span class="toc-number">5.</span> <span class="toc-text">
+          Less-36 Bypass MySQL Real Escape String</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Less-34-POST-Bypass-Add-SLASHES"><span class="toc-number">6.</span> <span class="toc-text">
+          Less-34- POST-Bypass Add SLASHES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Less-37-POST-MySQL-real-escape-string"><span class="toc-number">7.</span> <span class="toc-text">
+          Less-37- POST-MySQL_real_escape_string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E6%8E%A2%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5"><span class="toc-number">8.</span> <span class="toc-text">
+          初探宽字节注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%92%8C%E5%AD%97%E7%AC%A6%E9%9B%86%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">
+          字符和字符集的概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5%E8%BF%87%E7%A8%8B%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">
+          宽字节注入过程原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#php%E4%B8%8Emysql%E7%9A%84%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">11.</span> <span class="toc-text">
+          php与mysql的交互流程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%96%E6%9E%90%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">
+          剖析：</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">101</div><div class="sidebar-ov-state-item__name">Archivo</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categorías</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Etiquetas</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">Has leído </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Potenciado por <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Tema - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Vistas</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

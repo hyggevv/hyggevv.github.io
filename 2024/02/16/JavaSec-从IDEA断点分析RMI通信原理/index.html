@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="RMI作为后续漏洞中最为基本的利用手段之一，学习的必要性非常之大。在上文中了解RMI之后，本文侧重于使用IDEA断点的方式调试分析RMI的通信原理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaSec-从IDEA断点分析RMI通信原理">
+<meta property="og:url" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="RMI作为后续漏洞中最为基本的利用手段之一，学习的必要性非常之大。在上文中了解RMI之后，本文侧重于使用IDEA断点的方式调试分析RMI的通信原理。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/17.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/18.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/23.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/25.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/26.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/27.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/28.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/29.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/30.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/31.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/32.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/33.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/34.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/35.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/36.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/37.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/38.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/39.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/40.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/41.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/42.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/43.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/44.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/45.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/46.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/47.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/48.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/49.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/50.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/51.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/52.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/53.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/54.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/55.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/56.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/57.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/58.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/59.png">
+<meta property="article:published_time" content="2024-02-16T12:26:54.000Z">
+<meta property="article:modified_time" content="2024-02-27T11:05:58.538Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/16.png"><title>JavaSec-从IDEA断点分析RMI通信原理 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copiar","copySuccess":"Éxito en copia","copyError":"Error en copia"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Inicio</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archivos</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categorías</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Etiquetas</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">Sobre Nosotros</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">JavaSec-从IDEA断点分析RMI通信原理</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Creado</span><span class="post-meta-item__value">2024-02-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Actualizado</span><span class="post-meta-item__value">2024-02-27</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visitado</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="从IDEA断点分析RMI通信原理">
+          <a href="#从IDEA断点分析RMI通信原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#从IDEA断点分析RMI通信原理" class="headerlink" title="从IDEA断点分析RMI通信原理"></a>从IDEA断点分析RMI通信原理</h1>
+      
+        <h2 id="服务注册">
+          <a href="#服务注册" class="heading-link"><i class="fas fa-link"></i></a><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h2>
+      <p>此时我们将断点打在<code>RMIServer</code>的创建远程对象这里</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/16.png"></p>
+
+        <h3 id="①远程对象的发布">
+          <a href="#①远程对象的发布" class="heading-link"><i class="fas fa-link"></i></a><a href="#①远程对象的发布" class="headerlink" title="①远程对象的发布"></a>①远程对象的发布</h3>
+      <p>开始调试，首先到达的是远程对象的构造函数<code>RemoteObjImpl</code>；此时我们要将这个对象其发布到网络上去，此时我们需要分析的是<strong>它是如何被发布到网络上去的</strong></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/17.png"></p>
+<p>又因为<code>RemoteObjImpl</code>这个类是继承<code>UnicastRemoteObject</code>的，所以接着会到达父类的构造函数；此时的参数<code>port</code>传入了<code>0</code>；此时的过程实际上是把你的远程对象发布到一个随机的端口（传入0相当于一个默认值）；需要注意的是此过程不同于注册中心的<code>1099	</code>端口；这个是远程服务的。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/18.png"></p>
+<p>此时继续往下看可以看到调用了一个静态函数<code>exportObject()</code>（导出对象）</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/19.png"></p>
+<p>它就是主要负责<strong>将远程服务发布到网络上</strong>，如何更好理解 <code>exportObject()</code> 的作用呢？我们可以看到 <code>RemoteObjImpl</code> 这个实现类的构造函数里面，我注销了一句代码</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">RemoteObjImpl</span><span class="params">()</span> <span class="keyword">throws</span> RemoteException &#123;  </span><br><span class="line"><span class="comment">//     UnicastRemoteObject.exportObject(this, 0); // 如果不能继承 UnicastRemoteObject 就需要手工导出  </span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>如果不继承 <code>UnicastRemoteObject</code> 这个类的话，我们就需要手动调用这个函数。</p>
+<p>我们来看这个静态函数，第一个参数是 obj 对象，第二个参数是 <code>new UnicastServerRef(port)</code>，第二个参数是用来处理网络请求的。继续往下面跟，去到了 <code>UnicastServerRef</code> 的构造函数。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/20.png"></p>
+<p>跟进去之后<code>UnicastServerRef</code>的构造函数，我们看到它<code>new</code>了一个<code>LiveRef(port)</code>，这个非常重要，它算是一个网络引用的类，跟进看一看。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/21.png"></p>
+<p>跟进去之后，先是一个构造函数，先跳进<code>this</code>看一看</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/22.png"></p>
+<p>此时这个构造函数有三个参数分别是<code>objID, TCPEndpoint.getLocalEndpoint(port), true</code>；而这个<code>TCPEndpoint.getLocalEndpoint(port)</code>又是什么东西呢，我们可以进去看看</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/23.png"></p>
+<p>此时可以看到其返回值是一个<code>TCPEndpoint</code>；此时我们可以得知<code>TCPEndpoint</code>是一个网络请求的类；这个时候我们可以看一下它的构造函数</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/24.png"></p>
+<p>此时我们可以看到有两个参数分别是<code>host、port</code>；此时正好对应一个ip一个端口；也就是这个类是一个处理网络请求的类，只要给它一个ip一个端口，它就可以处理网络请求；而此时我们需要注意的是网络引用类<code>LiveRef</code>里面放的就是它。</p>
+<p>此时我们继续跟进到<code>LiveRef</code>的构造函数<code>this</code>里面，此时我们会发现一些赋值引用；就是我们刚才说的<code>tcpendpoint、id、islocal</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/25.png"></p>
+<p>此时我们可以看到<code>tcpendpoint</code>里面传入了ip和端口；此时需要注意的是后面的<code>tcpTransport</code>这个东西，它是真正处理网络请求的部分。所以记住数据是在<code>LiveRef</code>里面即可，并且这一<code>LiveRef</code>至始至终只会存在一个。</p>
+<p>回到上文那个地方，继续 f7 进入 super 看一看它的父类 <code>UnicastRef</code>，这里就证明整个<strong>创建远程服务</strong>的过程只会存在一个<code>LiveRef</code>。一路 f7 到一个静态函数 <code>exportObject()</code>，我们后续的操作过程都与 <code>exportObject()</code> 有关，基本都是在调用它，这一段不是很重要，一路 f7 就好了。直到此处出现<code>Stub</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/26.png"></p>
+<p>此时可能会有一个疑问，<code>stub</code>不是在客户端吗，为什么此时会出现在服务端呢。因为此时是服务端创建了<code>stub</code>，然后将其放到了注册中心去，然后客户端再从注册中心拿到<code>stub</code>。</p>
+<p>此时我们来看一看<code>stub</code>的创建，此时继续调试</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/27.png"></p>
+<p>此时我们直接跟进到<code>createProxy</code>；此时我们来看一下几个参数<code>impClass</code>即为远程对象的类；而下面的<code>clientRef</code>即为被封装的<code>LiveRef</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/28.png"></p>
+<p>接下来跟进到一个判断语句，此时我们先不管它；紧接着我们就可以看到一个动态代理创建的标准流程；此时的参数<code>loader、interfaces、handler</code>分别对应加载器、远程接口、调用处理器；这个调用处理器里面只有一个值依旧还是一个封装的<code>LiveRef</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/29.png"></p>
+<p>继续跟进我们就可以发现动态代理已经创建好了</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/30.png"></p>
+<p>此时继续跟进；到<code>Target</code>这里，<code>Target</code>这里相当于一个总的封装，将所有用的东西放到<code> Target</code> 里面，我们可以进去看一看<code>Target</code>里面都放了什么。此时可以观察到存放了<code>id、weakImpl（引用，里面存放远程对象）、disp（前面创建的服务端引用）、stub</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/31.png"></p>
+<p> 此时有个细节，<strong>服务端引用中（UnicastServerRef）的Liveref和客户端（UnicastRef）的LiveRef都是一样的</strong>；他们两中存放的是同一个处理网络请求的引用；也就是说服务端和客户端需要通信，所以存放的是同一个东西。总而言之，<code>target</code>相当于一个总的封装，它把我们之前创建的所有东西都放了进去。</p>
+<p>继续向下调试可以发现<code>ref.exportObject(target);</code>；此时它把封装好的<code>target</code>都发布了出去</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/32.png"></p>
+<p>此时我们继续跟进看看他的发布逻辑；此时一路跟进到这里</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/33.png"></p>
+<p>接下来就是真正的网络请求部分；先获取 TCPEndpoint，然后我们继续 f8 往后看，直到 <code>server = ep.newServerSocket();</code> 这里</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/34.png"></p>
+<p>它创建了一个新的 socket，已经准备好了，等别人来连接，所以之后就开始定义连接之后要做什么</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/35.png"></p>
+<p>此时我们可以进入<code>AcceptLoop</code>看看；此时如果客户端连接后便会走<code>run</code>的逻辑即为如果连接就执行<code>executeAcceptLoop()</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/36.png"></p>
+<p>此时我们继续跟进到<code>executeAcceptLoop()</code>；此时里面基本都是一些进行网络请求的操作</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/37.png"></p>
+<p>此时的</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">executeAcceptLoop</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (tcpLog.isLoggable(Log.BRIEF)) &#123;</span><br><span class="line">        tcpLog.log(Log.BRIEF, <span class="string">&quot;listening on port &quot;</span> +</span><br><span class="line">                   getEndpoint().getPort());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>代码起到的是一个连接处理的效果。</p>
+<p>继续向下跟进发现下面的操作是开启线程等待客户端的连接</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/38.png"></p>
+<p>然后回到 listen 去，一路 f8，观察一下整个流程结束之后<code>Target</code>里面是增加了<code>port</code>。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/39.png"></p>
+
+        <h4 id="远程对象发布完成之后的记录">
+          <a href="#远程对象发布完成之后的记录" class="heading-link"><i class="fas fa-link"></i></a><a href="#远程对象发布完成之后的记录" class="headerlink" title="远程对象发布完成之后的记录"></a>远程对象发布完成之后的记录</h4>
+      <p>第一个语句 <code>target.setExportedTransport(this);</code> 是一个简单的赋值，我们就不看了，看下面的 <code>ObjectTable.putTarget(target);</code>，跟进去，一路 f8，因为都是一些赋值的语句，直到此处。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/40.png"></p>
+<p><code>RMI</code>这里会把所有的信息保存到<strong>两个 table</strong>里面</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/41.png"></p>
+<p>此时就是就是将我们创建的远程对象都保存在系统的一个静态的表里面，也就是说你这个远程对象创建好了之后开了一个端口；但是我服务端需要知道你这些信息的；所以我将其保存在一个静态的表里面。个人理解这个有点像日志。</p>
+
+        <h3 id="②注册中心的创建-绑定">
+          <a href="#②注册中心的创建-绑定" class="heading-link"><i class="fas fa-link"></i></a><a href="#②注册中心的创建-绑定" class="headerlink" title="②注册中心的创建+绑定"></a>②注册中心的创建+绑定</h3>
+      <p>创建注册中心和创建远程服务是独立的，所以谁先谁后无所谓；此时我们将断点打在<code>Registry r = LocateRegistry.createRegistry(1099);</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/42.png"></p>
+
+        <h4 id="创建注册中心">
+          <a href="#创建注册中心" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建注册中心" class="headerlink" title="创建注册中心"></a>创建注册中心</h4>
+      <p>首先会经过一个静态方法<code>creatrRegistry</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/43.png"></p>
+<p>继续往下走会走到了<code>RegistryImpl</code>这个对象；f8 进去，会发现新建了一个 <code>RegistryImpl</code> 对象。这里 122 行，判断 port 是否为注册中心的 port，以及是否开启了 SecurityManager，也就是一系列的安全检查，这部分不是很重要，继续 f8。此时可以发现新创建了一个<code>RegistryImpl</code>对象。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/44.png"></p>
+<p>再继续往下，它创建了一个<code>LiveRef</code>，以及创建了一个新的<code>UnicastServerRef</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/45.png"></p>
+<p>此时这个过程与创建远程对象很类似；我们可以跟进<code>setup</code>看看究竟</p>
+<p>跟进去之后依旧是和之前一样先行进行赋值，然后进行<code>exportObject()</code>的调用</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/46.png"></p>
+<p>此时和发布远程对象的不同的点在于第三个参数的不同；名为 <code>permanent</code>，第一张是 <code>false</code>，第二张是 <code>true</code>，这代表我们创建注册中心这个对象，是一个永久对象，而之前远程对象是一个临时对象。</p>
+<p>继续往下到<code>exportObject</code>，此时依旧和发布远程对象一样到了创建<code>stub</code>的阶段。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/47.png"></p>
+<p>但是此时的创建<code>stub</code>和发布远程对象那里变有不同之处了。此时我们继续跟进<code>creatProxy()</code>；首先会做一个判断</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/48.png"></p>
+<p>可以跟进 <code>stubClassExists</code> 进行判断，我们看到这个地方，是判断是否能获取到 <code>RegistryImpl_Stub</code> 这个类，换句话说，也就是若 <code>RegistryImpl_Stub</code> 这个类存在，则返回 True，反之 False。我们可以找到 <code>RegistryImpl_Stub</code> 这个类是存在的。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/49.png"></p>
+<ul>
+<li>对比<strong>发布远程对象</strong>那个步骤，创建注册中心是走进到 <code>createStub(remoteClass, clientRef);</code> 进去的，而<strong>发布远程对象</strong>则是直接创建动态代理的。</li>
+</ul>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/50.png"></p>
+<p>此时执行这个方法也很简单，直接通过反射创建这个对象，里面放的就是<code>ref</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/51.png"></p>
+<p>相比较于发布远程对象中的<code>stub</code>，是一个动态代理，里面存放了<code>ref</code>；现在创建注册中心中的<code>stub</code>是通过<code>foeName</code>反射来创建的，里面依旧存放了<code>ref</code>。两者是一致的</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/52.png"></p>
+<p>此时继续往下，再服务端定义好之后，就调用<code>setSkeleton()</code>方法，此时我们继续跟进此时发现这里有一个<code>creatSkeleton()</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/53.png"></p>
+<p>此时的<code>Skeleton</code>是通过反射方法<code>forName()</code>进行创造的</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/54.png"></p>
+<p>继续往下走，到了<code>Target</code>的地方，此时<code>Target</code>就和远程对象发布中的<code>Target</code>一样了，用于封装之前的数据，但是比发布远程对象多了一个<code>Skeleton</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/55.png"></p>
+<p>所以此时这段就和之前发布远程对象一样了，此时继续往下走走到了<code>exportObject</code>这里</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/56.png"></p>
+<p>继续走，直到 <code>super.exportObject(target);</code> 这里，f7 跟进，到里面有一个 <code>putTarget()</code> 方法，它会把封装的数据放进去。</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/57.png"></p>
+<p>继续往下调试看看放了什么东西进去</p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/58.png"></p>
+
+        <h4 id="绑定">
+          <a href="#绑定" class="heading-link"><i class="fas fa-link"></i></a><a href="#绑定" class="headerlink" title="绑定"></a>绑定</h4>
+      <p>绑定也就是最后一步，bind操作；我们将断点下在<code>r.bind(&quot;remoteObj&quot;,remoteObj);</code></p>
+<p><img src="/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/59.png"></p>
+<p>一句话形容一下就是 <code>hashTable.put(IP, port)</code></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ FIN ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Autor: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Enlace: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">https://hyggevv.github.io/2024/02/16/JavaSec-%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">Todos los artículos de este blog están bajo licencia  de <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> a menos que se indique lo contrario</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2024/02/27/JavaSec-Java%E7%9A%84%E5%90%84%E7%A7%8DIOStream/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">JavaSec-IOStream</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2024/01/31/JavaSec-RMI/"><span class="paginator-prev__text">JavaSec-Remote Method Invocation</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Contenido</span><span class="sidebar-nav-ov">Reseña</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8EIDEA%E6%96%AD%E7%82%B9%E5%88%86%E6%9E%90RMI%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">
+          从IDEA断点分析RMI通信原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">1.1.</span> <span class="toc-text">
+          服务注册</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8F%91%E5%B8%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          ①远程对象的发布</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E5%AF%B9%E8%B1%A1%E5%8F%91%E5%B8%83%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">
+          远程对象发布完成之后的记录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E7%9A%84%E5%88%9B%E5%BB%BA-%E7%BB%91%E5%AE%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          ②注册中心的创建+绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">
+          创建注册中心</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">
+          绑定</span></a></li></ol></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">101</div><div class="sidebar-ov-state-item__name">Archivo</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categorías</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Etiquetas</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">Has leído </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Potenciado por <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Tema - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Vistas</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
