@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="有条件框架题题梭哈，没条件题题苦苦手撸。为啥会没有pj版的取证大师、盘古石、火眼哇!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022蓝帽杯初赛">
+<meta property="og:url" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="有条件框架题题梭哈，没条件题题苦苦手撸。为啥会没有pj版的取证大师、盘古石、火眼哇!">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/11.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/12.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/13.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/14.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/15.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/17.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/18.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/23.png">
+<meta property="article:published_time" content="2023-08-01T06:11:50.000Z">
+<meta property="article:modified_time" content="2023-08-02T13:09:45.825Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/1.png"><title>2022蓝帽杯初赛 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">2022蓝帽杯初赛</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2023-08-01</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2023-08-02</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="网站取证">
+          <a href="#网站取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#网站取证" class="headerlink" title="网站取证"></a>网站取证</h1>
+      
+        <h2 id="网站取证1">
+          <a href="#网站取证1" class="heading-link"><i class="fas fa-link"></i></a><a href="#网站取证1" class="headerlink" title="网站取证1"></a>网站取证1</h2>
+      
+        <h3 id="请从网站源码中找出木马文件，并提交木马连接的密码">
+          <a href="#请从网站源码中找出木马文件，并提交木马连接的密码" class="heading-link"><i class="fas fa-link"></i></a><a href="#请从网站源码中找出木马文件，并提交木马连接的密码" class="headerlink" title="请从网站源码中找出木马文件，并提交木马连接的密码"></a>请从网站源码中找出木马文件，并提交木马连接的密码</h3>
+      <p>此时场景是网站被不法分子上传了木马让我们找出木马文件，刚好和国护的面试题一样，我们直接掏出D盾开扫就行了<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/1.png"><br>flag{lanmaobei666}</p>
+
+        <h2 id="网站取证2">
+          <a href="#网站取证2" class="heading-link"><i class="fas fa-link"></i></a><a href="#网站取证2" class="headerlink" title="网站取证2"></a>网站取证2</h2>
+      
+        <h3 id="请提交数据库连接的明文密码">
+          <a href="#请提交数据库连接的明文密码" class="heading-link"><i class="fas fa-link"></i></a><a href="#请提交数据库连接的明文密码" class="headerlink" title="请提交数据库连接的明文密码"></a>请提交数据库连接的明文密码</h3>
+      <p>此时直接在源码里面找到解密函数<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/2.png"><br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/3.png"><br>此时我们直接将该代码丢给chatgpt进行解释<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/5.png"><br>所有此时我们知道了是AES模式下的CBC加密方式；此时的key和iv还有密文我们都有了直接进行解密即可<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/4.png"><br>flag{KBLT123} </p>
+
+        <h2 id="网站取证3">
+          <a href="#网站取证3" class="heading-link"><i class="fas fa-link"></i></a><a href="#网站取证3" class="headerlink" title="网站取证3"></a>网站取证3</h2>
+      
+        <h3 id="请提交数据库金额加密混淆使用的盐值">
+          <a href="#请提交数据库金额加密混淆使用的盐值" class="heading-link"><i class="fas fa-link"></i></a><a href="#请提交数据库金额加密混淆使用的盐值" class="headerlink" title="请提交数据库金额加密混淆使用的盐值"></a>请提交数据库金额加密混淆使用的盐值</h3>
+      <p>此时因为题目说是数据库，所以此时我们直接在sql文件中搜索money，此时发现大量与tab_channel_order_list的数据表<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/6.png"><br>此时搜索key或者salt字段发现没有出现值，所以转头去源码处寻找；发现了有一个channel有关的php文件里面包含了key；此时我们对该段代码进行一个验证发现这个是一个简单的加密方法；此时将key带入后发现确实是flag<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/7.png"></p>
+
+        <h4 id="ps">
+          <a href="#ps" class="heading-link"><i class="fas fa-link"></i></a><a href="#ps" class="headerlink" title="ps"></a>ps</h4>
+      <p>我上面那个应该算是非预期解，此时网上的师傅们是将该网站部署之后对这个金额进行一个追踪，最后确认了就是这个key<br>师傅的文章链接： <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.ctfer.vip/note/set/326">https://www.ctfer.vip/note/set/326</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>flag{jyzg123456}</p>
+
+        <h1 id="手机取证">
+          <a href="#手机取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1>
+      
+        <h2 id="手机取证1">
+          <a href="#手机取证1" class="heading-link"><i class="fas fa-link"></i></a><a href="#手机取证1" class="headerlink" title="手机取证1"></a>手机取证1</h2>
+      
+        <h3 id="627604C2-C586-48C1-AA16-FF33C3022159-PNG图片的分辨率是？">
+          <a href="#627604C2-C586-48C1-AA16-FF33C3022159-PNG图片的分辨率是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#627604C2-C586-48C1-AA16-FF33C3022159-PNG图片的分辨率是？" class="headerlink" title="627604C2-C586-48C1-AA16-FF33C3022159.PNG图片的分辨率是？"></a>627604C2-C586-48C1-AA16-FF33C3022159.PNG图片的分辨率是？</h3>
+      <p><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/8.png"><br>flag{360x360}</p>
+
+        <h2 id="手机取证2">
+          <a href="#手机取证2" class="heading-link"><i class="fas fa-link"></i></a><a href="#手机取证2" class="headerlink" title="手机取证2"></a>手机取证2</h2>
+      
+        <h3 id="姜总的快递单号是多少？">
+          <a href="#姜总的快递单号是多少？" class="heading-link"><i class="fas fa-link"></i></a><a href="#姜总的快递单号是多少？" class="headerlink" title="姜总的快递单号是多少？"></a>姜总的快递单号是多少？</h3>
+      <p><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/9.png"><br>flag{SF1142358694796}</p>
+
+        <h1 id="计算机取证">
+          <a href="#计算机取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算机取证" class="headerlink" title="计算机取证"></a>计算机取证</h1>
+      
+        <h2 id="计算机取证1">
+          <a href="#计算机取证1" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算机取证1" class="headerlink" title="计算机取证1"></a>计算机取证1</h2>
+      
+        <h3 id="从内存镜像中获得taqi7的开机密码是多少">
+          <a href="#从内存镜像中获得taqi7的开机密码是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#从内存镜像中获得taqi7的开机密码是多少" class="headerlink" title="从内存镜像中获得taqi7的开机密码是多少"></a>从内存镜像中获得taqi7的开机密码是多少</h3>
+      <p>此时要求我们获得taqi7用户的开机密码，此时我们直接把这个丢尽KIT里面进行一把梭<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/10.png"><br>flag{anxinqi}</p>
+
+        <h2 id="计算机取证2">
+          <a href="#计算机取证2" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算机取证2" class="headerlink" title="计算机取证2"></a>计算机取证2</h2>
+      
+        <h3 id="制作该内存镜像的进程Pid号是多少？">
+          <a href="#制作该内存镜像的进程Pid号是多少？" class="heading-link"><i class="fas fa-link"></i></a><a href="#制作该内存镜像的进程Pid号是多少？" class="headerlink" title="制作该内存镜像的进程Pid号是多少？"></a>制作该内存镜像的进程Pid号是多少？</h3>
+      <p>此时直接使用命令pslist列出进程表，然后看到比较陌的进程可以直接去百度查找是什么进程最后也是找到了一个MagnetRAMCaptu<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/11.png"><br>百度之后发现是一个制作内存镜像的软件刚好和题意相符合<br>flag{2192}</p>
+
+        <h2 id="计算机取证3">
+          <a href="#计算机取证3" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算机取证3" class="headerlink" title="计算机取证3"></a>计算机取证3</h2>
+      
+        <h3 id="bitlokcer分区某office文件中存在的flag值为？">
+          <a href="#bitlokcer分区某office文件中存在的flag值为？" class="heading-link"><i class="fas fa-link"></i></a><a href="#bitlokcer分区某office文件中存在的flag值为？" class="headerlink" title="bitlokcer分区某office文件中存在的flag值为？"></a>bitlokcer分区某office文件中存在的flag值为？</h3>
+      <p>此时我们先使用Arsenal-Image-Mounter工具进行挂载E01镜像；此时发现有bitlocker进行保护<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/12.png"><br>此时我们依旧选择使用KIT进行一把梭<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/13.png"><br>key:368346-029557-428142-651420-492261-552431-515438-338239<br>此时进去这个磁盘后发现ppt和word文档都存在保护，但是这个磁盘又给我们提供了一个密码本<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/14.png"><br>此时我们可以考虑进行一个爆破;使用PowerPoint Password Recovery对PPT进行爆破得到密码为password:287fuweiuhfiute<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/15.png"><br>此时也是直接拿到了flag<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/16.png"><br>flag{b27867b66866866686866883bb43536}</p>
+
+        <h4 id="ps-1">
+          <a href="#ps-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#ps-1" class="headerlink" title="ps"></a>ps</h4>
+      <p>因为我在使用KIT进行爆破时发现时间过于长，所以此时找到了另外一位师傅的做法</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">◆通过BitLocker加密的过程，我们可以知道在加密设置时会产生恢复密钥，通常大家会以“保存到文件”的方式存放恢复密钥（一般不会选择注册Microsoft账户，而打印又容易丢失，所以更多时候选择保存到文件），这种方式恢复密钥会以TXT文件的方式存放到存储介质中；</span><br><span class="line"></span><br><span class="line">◆TXT文本数据在介质中存放时，底层是以明文的方式存放的，就算是TXT被删除，只要底层数据没有被覆盖，我们就可以通过底层关键字查找、正则匹配的方式找到恢复密钥进行解密。</span><br></pre></td></tr></table></div></figure>
+<p>所以此时我们直接使用010将bmp打开；然后搜索”恢复密钥：”即可出现密钥<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/24.png"><br>bitlocker的解密：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/437950204">https://zhuanlan.zhihu.com/p/437950204</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h1 id="程序分析">
+          <a href="#程序分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#程序分析" class="headerlink" title="程序分析"></a>程序分析</h1>
+      
+        <h2 id="程序分析1">
+          <a href="#程序分析1" class="heading-link"><i class="fas fa-link"></i></a><a href="#程序分析1" class="headerlink" title="程序分析1"></a>程序分析1</h2>
+      
+        <h3 id="本程序包名是？">
+          <a href="#本程序包名是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#本程序包名是？" class="headerlink" title="本程序包名是？"></a>本程序包名是？</h3>
+      <p>此时直接使用apkeazytools一把梭得到包名<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/17.png"><br>flag{exec.azj.kny.d.c}</p>
+
+        <h2 id="程序分析2">
+          <a href="#程序分析2" class="heading-link"><i class="fas fa-link"></i></a><a href="#程序分析2" class="headerlink" title="程序分析2"></a>程序分析2</h2>
+      
+        <h3 id="本程序的入口是？">
+          <a href="#本程序的入口是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#本程序的入口是？" class="headerlink" title="本程序的入口是？"></a>本程序的入口是？</h3>
+      <p>Android程序的入口就是Main Activity函数;还是使用apkeazytool一把梭<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/18.png"><br>当然因为我们知道这个入口函数是Main Activity;所以可以对这个apk进行反编译<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/19.png"><br>flag{minmtta.hemjcbm.ahibyws.MainActivity}</p>
+
+        <h2 id="程序分析3">
+          <a href="#程序分析3" class="heading-link"><i class="fas fa-link"></i></a><a href="#程序分析3" class="headerlink" title="程序分析3"></a>程序分析3</h2>
+      
+        <h3 id="本程序的服务器地址的密文是？">
+          <a href="#本程序的服务器地址的密文是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#本程序的服务器地址的密文是？" class="headerlink" title="本程序的服务器地址的密文是？"></a>本程序的服务器地址的密文是？</h3>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> minmtta.hemjcbm.ahibyws;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.util.Base64;</span><br><span class="line"><span class="keyword">import</span> com.tencent.smtt.sdk.BuildConfig;</span><br><span class="line"><span class="keyword">import</span> d.a.a.h;</span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* loaded from: classes.dex */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainActivity</span> <span class="keyword">extends</span> <span class="title class_">h</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// d.a.a.h</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">l</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;exec.azj.kny.d.c&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// d.a.a.h</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">r</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;开&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// d.a.a.h</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">t</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">String</span>(Base64.decode(<span class="string">&quot;aHR0cHM6Ly9hbnNqay5lY3hlaW8ueHl6&quot;</span>, <span class="number">0</span>), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e2) &#123;</span><br><span class="line">            e2.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> BuildConfig.FLAVOR;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>此时将这个MainActivity函数丢尽chatgpt进行解析发现这个是一个它重写了一些继承自h类的方法，其中一个方法用于获取一个URL地址；所以此时可以猜测aHR0cHM6Ly9hbnNqay5lY3hlaW8ueHl6即为服务器地址密文<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/20.png"><br>flag{aHR0cHM6Ly9hbnNqay5lY3hlaW8ueHl6}</p>
+
+        <h2 id="程序分析4">
+          <a href="#程序分析4" class="heading-link"><i class="fas fa-link"></i></a><a href="#程序分析4" class="headerlink" title="程序分析4"></a>程序分析4</h2>
+      
+        <h3 id="本程序实现安全检测的类的名称是？">
+          <a href="#本程序实现安全检测的类的名称是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#本程序实现安全检测的类的名称是？" class="headerlink" title="本程序实现安全检测的类的名称是？"></a>本程序实现安全检测的类的名称是？</h3>
+      <p>此时我们在对apk进行反编译之后直接全文搜索“安全”此时发现了一段文字<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/21.png"><br>此时我们转到此段代码进行查看后发现，他会使用<code>if (d.a.a.c.a.b() / 1048576 &lt; 200)</code>进行检测空间是否足够；此时利用到了d.a.a.c.a.b()这个<br>函数<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/22.png"><br>此时我们再次转到这个函数进行查看<br><img src="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/23.png"><br>所以此时的类为a<br>flag{a}</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/">https://hyggevv.github.io/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/08/03/VulnHub-DC-1/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">VulnHub:DC-1~3</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/31/XCTF%E5%9B%BD%E9%99%85%E8%81%94%E8%B5%9B-CTF2023/"><span class="paginator-prev__text">XCTF国际联赛*CTF2023</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%8F%96%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">
+          网站取证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%8F%96%E8%AF%811"><span class="toc-number">1.1.</span> <span class="toc-text">
+          网站取证1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E4%BB%8E%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%E4%B8%AD%E6%89%BE%E5%87%BA%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B9%B6%E6%8F%90%E4%BA%A4%E6%9C%A8%E9%A9%AC%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          请从网站源码中找出木马文件，并提交木马连接的密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%8F%96%E8%AF%812"><span class="toc-number">1.2.</span> <span class="toc-text">
+          网站取证2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          请提交数据库连接的明文密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E5%8F%96%E8%AF%813"><span class="toc-number">1.3.</span> <span class="toc-text">
+          网站取证3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E9%87%91%E9%A2%9D%E5%8A%A0%E5%AF%86%E6%B7%B7%E6%B7%86%E4%BD%BF%E7%94%A8%E7%9A%84%E7%9B%90%E5%80%BC"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          请提交数据库金额加密混淆使用的盐值</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ps"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">
+          ps</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="toc-number">2.</span> <span class="toc-text">
+          手机取证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%811"><span class="toc-number">2.1.</span> <span class="toc-text">
+          手机取证1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#627604C2-C586-48C1-AA16-FF33C3022159-PNG%E5%9B%BE%E7%89%87%E7%9A%84%E5%88%86%E8%BE%A8%E7%8E%87%E6%98%AF%EF%BC%9F"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          627604C2-C586-48C1-AA16-FF33C3022159.PNG图片的分辨率是？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%812"><span class="toc-number">2.2.</span> <span class="toc-text">
+          手机取证2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A7%9C%E6%80%BB%E7%9A%84%E5%BF%AB%E9%80%92%E5%8D%95%E5%8F%B7%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          姜总的快递单号是多少？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">
+          计算机取证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%811"><span class="toc-number">3.1.</span> <span class="toc-text">
+          计算机取证1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%E4%B8%AD%E8%8E%B7%E5%BE%97taqi7%E7%9A%84%E5%BC%80%E6%9C%BA%E5%AF%86%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          从内存镜像中获得taqi7的开机密码是多少</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%812"><span class="toc-number">3.2.</span> <span class="toc-text">
+          计算机取证2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E8%AF%A5%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%E7%9A%84%E8%BF%9B%E7%A8%8BPid%E5%8F%B7%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          制作该内存镜像的进程Pid号是多少？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%813"><span class="toc-number">3.3.</span> <span class="toc-text">
+          计算机取证3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bitlokcer%E5%88%86%E5%8C%BA%E6%9F%90office%E6%96%87%E4%BB%B6%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84flag%E5%80%BC%E4%B8%BA%EF%BC%9F"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          bitlokcer分区某office文件中存在的flag值为？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ps-1"><span class="toc-number">3.3.1.1.</span> <span class="toc-text">
+          ps</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">
+          程序分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%901"><span class="toc-number">4.1.</span> <span class="toc-text">
+          程序分析1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%A8%8B%E5%BA%8F%E5%8C%85%E5%90%8D%E6%98%AF%EF%BC%9F"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          本程序包名是？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%902"><span class="toc-number">4.2.</span> <span class="toc-text">
+          程序分析2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%85%A5%E5%8F%A3%E6%98%AF%EF%BC%9F"><span class="toc-number">4.2.1.</span> <span class="toc-text">
+          本程序的入口是？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%903"><span class="toc-number">4.3.</span> <span class="toc-text">
+          程序分析3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AF%86%E6%96%87%E6%98%AF%EF%BC%9F"><span class="toc-number">4.3.1.</span> <span class="toc-text">
+          本程序的服务器地址的密文是？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%904"><span class="toc-number">4.4.</span> <span class="toc-text">
+          程序分析4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E5%AE%89%E5%85%A8%E6%A3%80%E6%B5%8B%E7%9A%84%E7%B1%BB%E7%9A%84%E5%90%8D%E7%A7%B0%E6%98%AF%EF%BC%9F"><span class="toc-number">4.4.1.</span> <span class="toc-text">
+          本程序实现安全检测的类的名称是？</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

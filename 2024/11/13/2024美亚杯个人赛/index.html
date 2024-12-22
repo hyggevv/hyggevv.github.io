@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="2024年8月某日，香港警方接获一名本地女子Emma报案，指她的姐姐Clara失联多天，希望报告一宗失踪人口的案件。现在你被委派处理这宗案件。在处理该案件期间，你在Emma的同意下提取了她手机的资料，并且协助警方对Clara及其丈夫David的电子装备进行取证工作。请分析以下的资料，还原事件经过。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="美亚杯第十届中国电子数据取证大赛资格赛暨数智安全新技术研讨会个人资格赛">
+<meta property="og:url" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="2024年8月某日，香港警方接获一名本地女子Emma报案，指她的姐姐Clara失联多天，希望报告一宗失踪人口的案件。现在你被委派处理这宗案件。在处理该案件期间，你在Emma的同意下提取了她手机的资料，并且协助警方对Clara及其丈夫David的电子装备进行取证工作。请分析以下的资料，还原事件经过。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/1.jpg">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/108.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/109.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/110.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/11.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/12.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/11.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/13.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/14.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/15.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/17.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/18.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/23.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/25.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/26.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/27.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/28.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/29.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/30.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/31.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/33.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/34.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/35.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/37.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/38.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/39.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/40.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/41.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/42.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/43.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/44.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/45.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/46.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/47.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/48.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/49.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/50.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/51.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/52.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/53.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/54.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/55.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/56.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/57.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/58.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/59.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/60.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/61.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/62.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/63.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/65.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/66.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/64.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/67.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/68.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/69.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/70.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/71.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/72.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/73.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/74.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/73.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/75.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/76.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/77.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/78.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/79.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/80.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/81.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/82.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/83.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/85.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/86.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/85.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/88.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/89.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/90.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/91.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/92.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/96.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/93.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/94.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/94.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/95.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/97.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/98.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/99.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/103.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/104.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/105.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/106.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/107.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/101.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/102.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/2.jpg">
+<meta property="article:published_time" content="2024-11-13T07:58:15.000Z">
+<meta property="article:modified_time" content="2024-12-22T06:31:34.759Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/1.jpg"><title>美亚杯第十届中国电子数据取证大赛资格赛暨数智安全新技术研讨会个人资格赛 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">美亚杯第十届中国电子数据取证大赛资格赛暨数智安全新技术研讨会个人资格赛</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2024-11-13</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2024-12-22</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/1.jpg"></p>
+
+        <h1 id="案情简介">
+          <a href="#案情简介" class="heading-link"><i class="fas fa-link"></i></a><a href="#案情简介" class="headerlink" title="案情简介"></a>案情简介</h1>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2024年8月某日，香港警方接获一名本地女子Emma报案，指她的姐姐Clara失联多天，希望报告一宗失踪人口的案件。现在你被委派处理这宗案件。在处理该案件期间，你在Emma的同意下提取了她手机的资料，并且协助警方对Clara及其丈夫David的电子装备进行取证工作。请分析以下的资料，还原事件经过。</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="赛前准备">
+          <a href="#赛前准备" class="heading-link"><i class="fas fa-link"></i></a><a href="#赛前准备" class="headerlink" title="赛前准备"></a>赛前准备</h1>
+      
+        <h2 id="人物关系分析">
+          <a href="#人物关系分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#人物关系分析" class="headerlink" title="人物关系分析"></a>人物关系分析</h2>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/108.png"></p>
+
+        <h2 id="检材列表">
+          <a href="#检材列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#检材列表" class="headerlink" title="检材列表"></a>检材列表</h2>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/1.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">涉及检材</span><br><span class="line">Emma（ios手机）</span><br><span class="line">	ios手机镜像档案：Emma_Mobile_Image.zip</span><br><span class="line">	</span><br><span class="line">Clare（安卓手机）</span><br><span class="line">	安卓手机档案：Clare_SmartPhone.bin</span><br><span class="line">	</span><br><span class="line">David（windows计算机镜像、U盘镜像、安卓手机、Windows内存）</span><br><span class="line">	David的windows计算机系统镜像：David_Laptop_64GB.e01</span><br><span class="line">	David的8GB U盘镜像档案：David_USB_8GB.e01</span><br><span class="line">	David的安卓手机镜像档案：David_SmarePhone_1.zip</span><br><span class="line">	David的windows系统计算机内存档案：RAM_Capture_David_Laptop.raw</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="题型分析">
+          <a href="#题型分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#题型分析" class="headerlink" title="题型分析"></a>题型分析</h2>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/109.png"></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/110.png"></p>
+
+        <h1 id="2024美亚杯个人资格赛赛题解析">
+          <a href="#2024美亚杯个人资格赛赛题解析" class="heading-link"><i class="fas fa-link"></i></a><a href="#2024美亚杯个人资格赛赛题解析" class="headerlink" title="2024美亚杯个人资格赛赛题解析"></a>2024美亚杯个人资格赛赛题解析</h1>
+      
+        <h2 id="Emma-Mobile-zip">
+          <a href="#Emma-Mobile-zip" class="heading-link"><i class="fas fa-link"></i></a><a href="#Emma-Mobile-zip" class="headerlink" title="Emma_Mobile.zip"></a>Emma_Mobile.zip</h2>
+      
+        <h4 id="1-Emma-已经几天没有收到她姐姐-Clara的消息了，报警失踪-她焦虑地将手机提交给警察-希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡-请根据取证结果回答以下问题｡根据Emma-Mobile-zip-Emma和Clara的微信聊天记录-Emma最后到警署报案并拍摄写有报案编号的卡片-拍摄时的经纬度是多少">
+          <a href="#1-Emma-已经几天没有收到她姐姐-Clara的消息了，报警失踪-她焦虑地将手机提交给警察-希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡-请根据取证结果回答以下问题｡根据Emma-Mobile-zip-Emma和Clara的微信聊天记录-Emma最后到警署报案并拍摄写有报案编号的卡片-拍摄时的经纬度是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-Emma-已经几天没有收到她姐姐-Clara的消息了，报警失踪-她焦虑地将手机提交给警察-希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡-请根据取证结果回答以下问题｡根据Emma-Mobile-zip-Emma和Clara的微信聊天记录-Emma最后到警署报案并拍摄写有报案编号的卡片-拍摄时的经纬度是多少" class="headerlink" title="1. Emma 已经几天没有收到她姐姐 Clara的消息了，报警失踪, 她焦虑地将手机提交给警察,希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡ 请根据取证结果回答以下问题｡根据Emma_Mobile.zip, Emma和Clara的微信聊天记录,Emma最后到警署报案并拍摄写有报案编号的卡片,拍摄时的经纬度是多少?"></a><strong>1. Emma 已经几天没有收到她姐姐 Clara的消息了，报警失踪, 她焦虑地将手机提交给警察,希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡ 请根据取证结果回答以下问题｡根据Emma_Mobile.zip, Emma和Clara的微信聊天记录,Emma最后到警署报案并拍摄写有报案编号的卡片,拍摄时的经纬度是多少?</strong></h4>
+      <p>A) 22.451721666667, 114.171853333333</p>
+<p>B) 22.451553333333, 114.172845</p>
+<p>C) 22.451928333333, 114.170503333333</p>
+<p>D) 22.451638333333, 114.16993</p>
+<p><strong>答案：A 22.451721666667, 114.171853333333</strong></p>
+<p>这个时候因为Emma的手机不好解析，我们另辟蹊径；先从Clara的手机看起：</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/2.png"></p>
+<p>定位到这种图片的上下文消息之后我们在对Emma的数据库进行分析；在<code>message_2.sqlite</code>中发现该图片的具体信息</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/3.png"></p>
+<p>其中的CDATA部分指向了一个UUID（通用唯一识别码）：<code>F58B98FE-8010-44B7-8BF7-F23AF15DCFCA</code>；接下来继续分析该手机的数据库文件，这个时候的<code>Photos.sqlite</code>就很明显了；存储了有关于图片的信息，直接对其进行查找</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/5.png"></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/4.png"></p>
+
+        <h4 id="2-根据Emma-Mobile-zip-2024年8月30日下午两点后Emma共致电Clara多少次">
+          <a href="#2-根据Emma-Mobile-zip-2024年8月30日下午两点后Emma共致电Clara多少次" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-根据Emma-Mobile-zip-2024年8月30日下午两点后Emma共致电Clara多少次" class="headerlink" title="2. 根据Emma_Mobile.zip, 2024年8月30日下午两点后Emma共致电Clara多少次?"></a><strong>2. 根据Emma_Mobile.zip, 2024年8月30日下午两点后Emma共致电Clara多少次?</strong></h4>
+      <p>A) 85</p>
+<p>B) 86 </p>
+<p>C) 87</p>
+<p>D) 88</p>
+<p><strong>答案：A) 85</strong></p>
+<p>依旧还是从Clara的手机镜像进行查看；对时间和姓名进行过滤得到致电85次</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/6.png"></p>
+
+        <h4 id="3-根据Emma和Clara的微信聊天记录-Clara失踪前曾告诉Emma会到哪里">
+          <a href="#3-根据Emma和Clara的微信聊天记录-Clara失踪前曾告诉Emma会到哪里" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-根据Emma和Clara的微信聊天记录-Clara失踪前曾告诉Emma会到哪里" class="headerlink" title="3. 根据Emma和Clara的微信聊天记录,Clara失踪前曾告诉Emma会到哪里?"></a><strong>3. 根据Emma和Clara的微信聊天记录,Clara失踪前曾告诉Emma会到哪里?</strong></h4>
+      <p>A) 到酒店和丈夫David庆祝结婚周年</p>
+<p>B) 吃自助餐</p>
+<p>C) 约了朋友见面</p>
+<p>D) 去旅行</p>
+<p><strong>答案：A) 到酒店和丈夫David庆祝结婚周年</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/7.png"></p>
+
+        <h4 id="4-参考Emma-Mobile-zip-Emma的iPhone-XR内微信应用程序的版本是多少">
+          <a href="#4-参考Emma-Mobile-zip-Emma的iPhone-XR内微信应用程序的版本是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-参考Emma-Mobile-zip-Emma的iPhone-XR内微信应用程序的版本是多少" class="headerlink" title="4. 参考Emma_Mobile.zip, Emma的iPhone XR内微信应用程序的版本是多少?"></a><strong>4. 参考Emma_Mobile.zip, Emma的iPhone XR内微信应用程序的版本是多少?</strong></h4>
+      <p><strong>答案：8.0.50</strong></p>
+<p> 在Manifest.plist中会记录安装应用的版本</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/8.png"></p>
+
+        <h4 id="5-参考Emma-Mobile-zip-Emma手机中下列哪个选项是正确的">
+          <a href="#5-参考Emma-Mobile-zip-Emma手机中下列哪个选项是正确的" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-参考Emma-Mobile-zip-Emma手机中下列哪个选项是正确的" class="headerlink" title="5. 参考Emma_Mobile.zip, Emma手机中下列哪个选项是正确的?"></a><strong>5. 参考Emma_Mobile.zip, Emma手机中下列哪个选项是正确的?</strong></h4>
+      <p>A) iOS 版本为 17.6.1</p>
+<p>B) IMEI 为 356414106484705</p>
+<p>C) Apple ID 为 <span class="exturl"><a class="exturl__link" href="mailto:&#x45;&#x6d;&#x6d;&#x61;&#x31;&#55;&#x36;&#x31;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;">&#x45;&#x6d;&#x6d;&#x61;&#x31;&#55;&#x36;&#x31;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#109;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>  </p>
+<p>D) 手机曾经安装Metamask 应用程式</p>
+<p><strong>答案：D) 手机曾经安装Metamask 应用程式</strong></p>
+<p> iOS 版本为 17.5.1<img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/9.png"></p>
+<p>IMEI：356414106484705</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/10.png"></p>
+<p>apple id：<span class="exturl"><a class="exturl__link" href="mailto:&#x65;&#x6d;&#x6d;&#x61;&#x65;&#109;&#109;&#x61;&#x2e;&#56;&#53;&#x31;&#x32;&#x33;&#49;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x65;&#x6d;&#x6d;&#x61;&#x65;&#109;&#109;&#x61;&#x2e;&#56;&#53;&#x31;&#x32;&#x33;&#49;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/11.png"></p>
+<p>手机曾经安装Metamask 应用程式</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/12.png"></p>
+
+        <h4 id="6-参考Emma-Mobile-zip-Emma-手机中-Apple-ID-的注册电子邮箱是多少">
+          <a href="#6-参考Emma-Mobile-zip-Emma-手机中-Apple-ID-的注册电子邮箱是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-参考Emma-Mobile-zip-Emma-手机中-Apple-ID-的注册电子邮箱是多少" class="headerlink" title="6. 参考Emma_Mobile.zip,Emma 手机中 Apple ID 的注册电子邮箱是多少?"></a><strong>6. 参考Emma_Mobile.zip,Emma 手机中 Apple ID 的注册电子邮箱是多少?</strong></h4>
+      <p><strong>答案：<span class="exturl"><a class="exturl__link" href="mailto:&#101;&#x6d;&#x6d;&#x61;&#101;&#x6d;&#x6d;&#97;&#46;&#56;&#53;&#49;&#50;&#51;&#x31;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#101;&#x6d;&#x6d;&#x61;&#101;&#x6d;&#x6d;&#97;&#46;&#56;&#53;&#49;&#50;&#51;&#x31;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/11.png"></p>
+
+        <h4 id="7-参考Emma-Mobile-zip-在2024年-Emma-手机上曾记录的电话卡集成电路卡标识符-ICCID-是多少-答案格式-只需使用阿拉伯数字回答">
+          <a href="#7-参考Emma-Mobile-zip-在2024年-Emma-手机上曾记录的电话卡集成电路卡标识符-ICCID-是多少-答案格式-只需使用阿拉伯数字回答" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-参考Emma-Mobile-zip-在2024年-Emma-手机上曾记录的电话卡集成电路卡标识符-ICCID-是多少-答案格式-只需使用阿拉伯数字回答" class="headerlink" title="7. 参考Emma_Mobile.zip,在2024年,Emma 手机上曾记录的电话卡集成电路卡标识符 (ICCID) 是多少?(答案格式:只需使用阿拉伯数字回答)"></a><strong>7. 参考Emma_Mobile.zip,在2024年,Emma 手机上曾记录的电话卡集成电路卡标识符 (ICCID) 是多少?(答案格式:只需使用阿拉伯数字回答)</strong></h4>
+      <p> <strong>答案：8985200000826445829</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/13.png"></p>
+
+        <h4 id="8-参考Emma-Mobile-zip-Emma-手机的蓝牙设备名称-“ELK-BLEDOM”-的通用唯一标识符-UUID-是什么">
+          <a href="#8-参考Emma-Mobile-zip-Emma-手机的蓝牙设备名称-“ELK-BLEDOM”-的通用唯一标识符-UUID-是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-参考Emma-Mobile-zip-Emma-手机的蓝牙设备名称-“ELK-BLEDOM”-的通用唯一标识符-UUID-是什么" class="headerlink" title="8. 参考Emma_Mobile.zip,Emma 手机的蓝牙设备名称 “ELK-BLEDOM” 的通用唯一标识符 (UUID) 是什么?"></a><strong>8. 参考Emma_Mobile.zip,Emma 手机的蓝牙设备名称 “ELK-BLEDOM” 的通用唯一标识符 (UUID) 是什么?</strong></h4>
+      <p><strong>答案：8D13F23C-E73C-6A98-AA4F-16C8D7A5F826</strong></p>
+<p>在<code>com.apple.MobileBluetooth.ledevices.other.db</code>这个数据库中</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/14.png"></p>
+
+        <h4 id="9-你发现了一些线索-Emma-看起来也很可疑-她似乎背负了大量债务｡参考Emma-Mobile-zip-Emma-手机内Safari浏览记录中网页”https-racing-hkjc-com-quot-的网站标题是什么">
+          <a href="#9-你发现了一些线索-Emma-看起来也很可疑-她似乎背负了大量债务｡参考Emma-Mobile-zip-Emma-手机内Safari浏览记录中网页”https-racing-hkjc-com-quot-的网站标题是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#9-你发现了一些线索-Emma-看起来也很可疑-她似乎背负了大量债务｡参考Emma-Mobile-zip-Emma-手机内Safari浏览记录中网页”https-racing-hkjc-com-quot-的网站标题是什么" class="headerlink" title="9. 你发现了一些线索,Emma 看起来也很可疑,她似乎背负了大量债务｡参考Emma_Mobile.zip,Emma 手机内Safari浏览记录中网页”https://racing.hkjc.com/&quot;的网站标题是什么?"></a><strong>9. 你发现了一些线索,Emma 看起来也很可疑,她似乎背负了大量债务｡参考Emma_Mobile.zip,Emma 手机内Safari浏览记录中网页”<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://racing.hkjc.com/%22%E7%9A%84%E7%BD%91%E7%AB%99%E6%A0%87%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88">https://racing.hkjc.com/&quot;的网站标题是什么</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>?</strong></h4>
+      <p>A) 香港马会奖券有限公司</p>
+<p>B) 六合彩 - Google 搜索</p>
+<p>C) 快易钱:网上贷款财务公司 | 足不出户现金即日到手</p>
+<p>D) 赛马信息 - 香港赛马会</p>
+<p><strong>答案：D) 赛马信息 - 香港赛马会</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/15.png"></p>
+
+        <h4 id="10-参考Emma-Mobile-zip-Emma向Clara透露什么原因令Emma欠下巨债">
+          <a href="#10-参考Emma-Mobile-zip-Emma向Clara透露什么原因令Emma欠下巨债" class="heading-link"><i class="fas fa-link"></i></a><a href="#10-参考Emma-Mobile-zip-Emma向Clara透露什么原因令Emma欠下巨债" class="headerlink" title="10. 参考Emma_Mobile.zip,Emma向Clara透露什么原因令Emma欠下巨债?"></a><strong>10. 参考Emma_Mobile.zip,Emma向Clara透露什么原因令Emma欠下巨债?</strong></h4>
+      <p>A) 投资孖展</p>
+<p>B) 虚拟货币失利</p>
+<p>C) 网上赌博</p>
+<p>D) 以上皆是</p>
+<p><strong>答案：D) 以上皆是</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/16.png"></p>
+
+        <h4 id="11-参考Emma-Mobile-zip-收债人要求Emma还款数量">
+          <a href="#11-参考Emma-Mobile-zip-收债人要求Emma还款数量" class="heading-link"><i class="fas fa-link"></i></a><a href="#11-参考Emma-Mobile-zip-收债人要求Emma还款数量" class="headerlink" title="11. 参考Emma_Mobile.zip,收债人要求Emma还款数量?"></a><strong>11. 参考Emma_Mobile.zip,收债人要求Emma还款数量?</strong></h4>
+      <p>A) 港币$786,990</p>
+<p>B) 港币$878,990</p>
+<p>C) 港币$786,980</p>
+<p>D) 港币$745,330</p>
+<p><strong>答案：C) 港币$786,980</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/17.png"></p>
+<p><strong>12. 参考Emma_Mobile.zip,Emma发送了多少张.PNG图片给Clara,证明自己正被人追债?</strong></p>
+<p>A) 6</p>
+<p>B) 7</p>
+<p>C) 8 </p>
+<p>D) 9</p>
+<p><strong>答案：B) 7</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/18.png"></p>
+
+        <h4 id="13-参考Emma-Mobile-zip-Emma用来浏览虚拟货币的网址">
+          <a href="#13-参考Emma-Mobile-zip-Emma用来浏览虚拟货币的网址" class="heading-link"><i class="fas fa-link"></i></a><a href="#13-参考Emma-Mobile-zip-Emma用来浏览虚拟货币的网址" class="headerlink" title="13. 参考Emma_Mobile.zip,Emma用来浏览虚拟货币的网址?"></a><strong>13. 参考Emma_Mobile.zip,Emma用来浏览虚拟货币的网址?</strong></h4>
+      <p>A) Google.com</p>
+<p>B) Facebook.com</p>
+<p>C) IntellaX.io</p>
+<p>D) Yahoo.com</p>
+<p><strong>答案：C) IntellaX.io</strong></p>
+<p>比赛的时候我是通过<code>wallet</code>钱包来进行判断</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/19.png"></p>
+
+        <h4 id="14-参考Emma-Mobile-zip的浏览器记录-有多少网址与bet365有关">
+          <a href="#14-参考Emma-Mobile-zip的浏览器记录-有多少网址与bet365有关" class="heading-link"><i class="fas fa-link"></i></a><a href="#14-参考Emma-Mobile-zip的浏览器记录-有多少网址与bet365有关" class="headerlink" title="14. 参考Emma_Mobile.zip的浏览器记录,有多少网址与bet365有关?"></a><strong>14. 参考Emma_Mobile.zip的浏览器记录,有多少网址与bet365有关?</strong></h4>
+      <p>A) 3</p>
+<p>B) 13</p>
+<p>C) 9</p>
+<p>D) 12</p>
+<p><strong>答案：A) 3</strong></p>
+<p>浏览器记录在History.db、SafariTabs.db、Bookmarks.db这三个数据库中；但是在比赛中我没有去翻数据库，我直接在历史标签页进行搜素关键词<code>bet</code>；出现了四条记录，直接选一个最相近的</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/20.png"></p>
+<p>正规做法是直接在那三个数据库中进行搜素</p>
+
+        <h4 id="15-你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma-Mobile-zip-Emma用了哪些恢复短语-Recovery-Phrase-进入David的虚拟货币账户">
+          <a href="#15-你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma-Mobile-zip-Emma用了哪些恢复短语-Recovery-Phrase-进入David的虚拟货币账户" class="heading-link"><i class="fas fa-link"></i></a><a href="#15-你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma-Mobile-zip-Emma用了哪些恢复短语-Recovery-Phrase-进入David的虚拟货币账户" class="headerlink" title="15. 你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma_Mobile.zip,Emma用了哪些恢复短语(Recovery Phrase)进入David的虚拟货币账户?"></a><strong>15. 你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma_Mobile.zip,Emma用了哪些恢复短语(Recovery Phrase)进入David的虚拟货币账户?</strong></h4>
+      <p>A) stock,avocado,grab,clay</p>
+<p>B) light,sadness,segment,ancient</p>
+<p>C) toe,talk,elder,oil</p>
+<p>D) 以上皆是</p>
+<p><strong>答案：D) 以上皆是</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/21.png"></p>
+
+        <h4 id="16-参考Emma-Mobile-zip-Emma从David处窃取的虚拟货币的名称是什么？">
+          <a href="#16-参考Emma-Mobile-zip-Emma从David处窃取的虚拟货币的名称是什么？" class="heading-link"><i class="fas fa-link"></i></a><a href="#16-参考Emma-Mobile-zip-Emma从David处窃取的虚拟货币的名称是什么？" class="headerlink" title="16. 参考Emma_Mobile.zip,Emma从David处窃取的虚拟货币的名称是什么？"></a><strong>16. 参考Emma_Mobile.zip,Emma从David处窃取的虚拟货币的名称是什么？</strong></h4>
+      <p>A) IDFC</p>
+<p>B) ICAC</p>
+<p>C) INIC</p>
+<p>D) IFCC</p>
+<p><strong>答案：A) IDFC</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/22.png"></p>
+
+        <h4 id="17-参考Emma-Mobile-zip-Clara偷拍的照片中-David的虚拟货币余额是多少">
+          <a href="#17-参考Emma-Mobile-zip-Clara偷拍的照片中-David的虚拟货币余额是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#17-参考Emma-Mobile-zip-Clara偷拍的照片中-David的虚拟货币余额是多少" class="headerlink" title="17. 参考Emma_Mobile.zip,Clara偷拍的照片中,David的虚拟货币余额是多少?"></a><strong>17. 参考Emma_Mobile.zip,Clara偷拍的照片中,David的虚拟货币余额是多少?</strong></h4>
+      <p>A) 3266378.99</p>
+<p>B) 1044749.22</p>
+<p>C) 5022915.66</p>
+<p>D) 7822468.44</p>
+<p><strong>答案：C) 5022915.66</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/22.png"></p>
+
+        <h4 id="18-参考Emma-Mobile-zip-Emma在偷窃David的虚拟货币前-Emma曾向Clara透露有什么事发生在Emma身上">
+          <a href="#18-参考Emma-Mobile-zip-Emma在偷窃David的虚拟货币前-Emma曾向Clara透露有什么事发生在Emma身上" class="heading-link"><i class="fas fa-link"></i></a><a href="#18-参考Emma-Mobile-zip-Emma在偷窃David的虚拟货币前-Emma曾向Clara透露有什么事发生在Emma身上" class="headerlink" title="18. 参考Emma_Mobile.zip,Emma在偷窃David的虚拟货币前,Emma曾向Clara透露有什么事发生在Emma身上?"></a><strong>18. 参考Emma_Mobile.zip,Emma在偷窃David的虚拟货币前,Emma曾向Clara透露有什么事发生在Emma身上?</strong></h4>
+      <p>A) 中彩票</p>
+<p>B) 欠债</p>
+<p>C) 升职</p>
+<p>D) 失业</p>
+<p> <strong>答案：B) 欠债</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/16.png"></p>
+
+        <h4 id="19-（你查看了Emma手机中的一些照片数字信息-以获取更多与失踪案件的信息）Emma的iPhone-XR中-“IMG-0008-HEIC”-的图像与相片名字为的”5005-JPG”-看似为同一张相片-在数码法理鉴证分析下-以下哪样描述是正确">
+          <a href="#19-（你查看了Emma手机中的一些照片数字信息-以获取更多与失踪案件的信息）Emma的iPhone-XR中-“IMG-0008-HEIC”-的图像与相片名字为的”5005-JPG”-看似为同一张相片-在数码法理鉴证分析下-以下哪样描述是正确" class="heading-link"><i class="fas fa-link"></i></a><a href="#19-（你查看了Emma手机中的一些照片数字信息-以获取更多与失踪案件的信息）Emma的iPhone-XR中-“IMG-0008-HEIC”-的图像与相片名字为的”5005-JPG”-看似为同一张相片-在数码法理鉴证分析下-以下哪样描述是正确" class="headerlink" title="19. （你查看了Emma手机中的一些照片数字信息,以获取更多与失踪案件的信息）Emma的iPhone XR中 “IMG_0008.HEIC” 的图像与相片名字为的”5005.JPG” 看似为同一张相片,在数码法理鉴证分析下,以下哪样描述是正确?"></a><strong>19. （你查看了Emma手机中的一些照片数字信息,以获取更多与失踪案件的信息）Emma的iPhone XR中 “IMG_0008.HEIC” 的图像与相片名字为的”5005.JPG” 看似为同一张相片,在数码法理鉴证分析下,以下哪样描述是正确?</strong></h4>
+      <p>A) 储存在不同的.db 檔案里</p>
+<p>B) 有不同哈希值</p>
+<p>C) IMG_0008.HEIC 为原图, “5005.JPG”为并非原图</p>
+<p>D) IMG_0008.HEIC 和名字” 5005.JPG”是同一张相片</p>
+<p><strong>答案：C) IMG_0008.HEIC 为原图, “5005.JPG”为并非原图</strong></p>
+<p>ios设置里可以选择默认拍摄heic格式的照片，heic传到qq微信wps之类的软件后会被转换为jpg格式，photos.sqlite里存储的是相册中的照片信息jpg格式是第三方软件转换的，存储在应用程序私有目录当中。HEIC为iOS和macOS的专有格式，一般苹果设备拍摄的照片原图是HEIC格式的，JPG格式可能为缩略图，它们的哈希值可能不同。</p>
+
+        <h4 id="20-参考Emma-Mobile-zip-Emma的iPhone-XR中”IMG-0009-HEIC”-的图像显示拍摄参数怎样">
+          <a href="#20-参考Emma-Mobile-zip-Emma的iPhone-XR中”IMG-0009-HEIC”-的图像显示拍摄参数怎样" class="heading-link"><i class="fas fa-link"></i></a><a href="#20-参考Emma-Mobile-zip-Emma的iPhone-XR中”IMG-0009-HEIC”-的图像显示拍摄参数怎样" class="headerlink" title="20. 参考Emma_Mobile.zip, Emma的iPhone XR中”IMG_0009.HEIC” 的图像显示拍摄参数怎样?"></a><strong>20. 参考Emma_Mobile.zip, Emma的iPhone XR中”IMG_0009.HEIC” 的图像显示拍摄参数怎样?</strong></h4>
+      <p>A) iPhone XR back camera 4.25mm f&#x2F;1.8</p>
+<p>B) iPhone XR back camera 4.25mm f&#x2F;2.8</p>
+<p>C) iPhone XR back camera 4.25mm f&#x2F;2</p>
+<p>D) iPhone XR back camera 4.25mm f&#x2F;1.6</p>
+<p><strong>答案：A) iPhone XR back camera 4.25mm f&#x2F;1.8</strong></p>
+<p>我们先在<code>Photos.sqlite</code>对<code>IMG_0009.HEIC</code>进行检索；发现没有出现拍摄参数的字段值</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/24.png"></p>
+<p>我们先记录下经纬度；然后再次对选项进行检索：<code>iPhone XR back camera 4.25mm f/1.8</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/23.png"></p>
+<p>发现经纬度对得上。</p>
+
+        <h4 id="21-参考Emma-Mobile-zip-Emma的iPhone-XR中相片文件IMG-0009-HEIC提供了什么电子证据信息">
+          <a href="#21-参考Emma-Mobile-zip-Emma的iPhone-XR中相片文件IMG-0009-HEIC提供了什么电子证据信息" class="heading-link"><i class="fas fa-link"></i></a><a href="#21-参考Emma-Mobile-zip-Emma的iPhone-XR中相片文件IMG-0009-HEIC提供了什么电子证据信息" class="headerlink" title="21. 参考Emma_Mobile.zip, Emma的iPhone XR中相片文件IMG_0009.HEIC提供了什么电子证据信息?"></a><strong>21. 参考Emma_Mobile.zip, Emma的iPhone XR中相片文件IMG_0009.HEIC提供了什么电子证据信息?</strong></h4>
+      <p>A) 此相片是由隔空投送 (Airdrop)得来</p>
+<p>B) 此相片由iPhone XR拍摄</p>
+<p>C) 此相片的拍摄时间为2024-08-05 13:38:15(UTC+8)</p>
+<p>D) 此相片的拍摄时间为2024-08-06 08:30:52(UTC+8)</p>
+<p><strong>答案：BC</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/25.png"></p>
+
+        <h4 id="22-参考Emma-Mobile-zip-Emma的iPhone-XR内以下哪张照片是实况照片-Live-Photos">
+          <a href="#22-参考Emma-Mobile-zip-Emma的iPhone-XR内以下哪张照片是实况照片-Live-Photos" class="heading-link"><i class="fas fa-link"></i></a><a href="#22-参考Emma-Mobile-zip-Emma的iPhone-XR内以下哪张照片是实况照片-Live-Photos" class="headerlink" title="22. 参考Emma_Mobile.zip, Emma的iPhone XR内以下哪张照片是实况照片(Live Photos)?"></a><strong>22. 参考Emma_Mobile.zip, Emma的iPhone XR内以下哪张照片是实况照片(Live Photos)?</strong></h4>
+      <p>A) IMG_0002.HEIC</p>
+<p>B) IMG_0005.HEIC</p>
+<p>C) IMG_0004.HEIC</p>
+<p>D) IMG_0006.HEIC</p>
+<p>在 iPhone XR 中，实况照片的格式主要是由一张 HEIC 格式的静态图像和一段 MOV 格式的短视频组成。</p>
+
+        <h4 id="23-参考Emma-Mobile-zip-手机里有多少张照片是用手机后置摄像镜头拍摄的">
+          <a href="#23-参考Emma-Mobile-zip-手机里有多少张照片是用手机后置摄像镜头拍摄的" class="heading-link"><i class="fas fa-link"></i></a><a href="#23-参考Emma-Mobile-zip-手机里有多少张照片是用手机后置摄像镜头拍摄的" class="headerlink" title="23. 参考Emma_Mobile.zip,手机里有多少张照片是用手机后置摄像镜头拍摄的?"></a><strong>23. 参考Emma_Mobile.zip,手机里有多少张照片是用手机后置摄像镜头拍摄的?</strong></h4>
+      <p>A) 5</p>
+<p>B) 6</p>
+<p>C) 7</p>
+<p>D) 8</p>
+<p><strong>答案：D) 8</strong></p>
+<p>直接在数据库中检索：<code>back camera</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/26.png"></p>
+
+        <h4 id="24-参考Emma-Mobile-zip的通讯记录-MesLocalID-224是什么类的文件">
+          <a href="#24-参考Emma-Mobile-zip的通讯记录-MesLocalID-224是什么类的文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#24-参考Emma-Mobile-zip的通讯记录-MesLocalID-224是什么类的文件" class="headerlink" title="24. 参考Emma_Mobile.zip的通讯记录,MesLocalID 224是什么类的文件?"></a><strong>24. 参考Emma_Mobile.zip的通讯记录,MesLocalID 224是什么类的文件?</strong></h4>
+      <p>A) 相片</p>
+<p>B) 影片</p>
+<p>C) 文件</p>
+<p>D) 报表</p>
+<p><strong>答案：A) 相片</strong></p>
+<p>在messages_2数据库进行检索<code>MesLocalID</code>；找到224条：</p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/27.png"></p>
+
+        <h2 id="Clara-Smartphone-bin">
+          <a href="#Clara-Smartphone-bin" class="heading-link"><i class="fas fa-link"></i></a><a href="#Clara-Smartphone-bin" class="headerlink" title="Clara_Smartphone.bin"></a>Clara_Smartphone.bin</h2>
+      
+        <h4 id="25-依据你在Emma的手机上找到的照片-你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息-调查员发现Clara在酒店去世-Clara的手机在她的附近-你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara-Smartphone-bin-Clara手机的Android操作系统版本是">
+          <a href="#25-依据你在Emma的手机上找到的照片-你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息-调查员发现Clara在酒店去世-Clara的手机在她的附近-你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara-Smartphone-bin-Clara手机的Android操作系统版本是" class="heading-link"><i class="fas fa-link"></i></a><a href="#25-依据你在Emma的手机上找到的照片-你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息-调查员发现Clara在酒店去世-Clara的手机在她的附近-你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara-Smartphone-bin-Clara手机的Android操作系统版本是" class="headerlink" title="25. 依据你在Emma的手机上找到的照片,你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息,调查员发现Clara在酒店去世,Clara的手机在她的附近, 你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara_Smartphone.bin,Clara手机的Android操作系统版本是?"></a><strong>25. 依据你在Emma的手机上找到的照片,你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息,调查员发现Clara在酒店去世,Clara的手机在她的附近, 你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara_Smartphone.bin,Clara手机的Android操作系统版本是?</strong></h4>
+      <p>A) 8.0.0</p>
+<p>B) 9.0.0</p>
+<p>C) 8.1.0</p>
+<p>D) 7.0.0</p>
+<p><strong>答案：A) 8.0.0</strong></p>
+<p><code>build.prop</code>是 Android 系统中一个重要的文本格式的属性文件，位于<code>/system</code>目录下，该文件存储了大量与系统、设备相关的属性信息，这些信息对于系统的正常运行、应用程序的兼容性以及设备的识别等方面都起着关键作用。</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/28.png"></p>
+
+        <h4 id="26-参考Clara-Smartphone-bin-Clara手机的版本号-Build-Number-是什么">
+          <a href="#26-参考Clara-Smartphone-bin-Clara手机的版本号-Build-Number-是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#26-参考Clara-Smartphone-bin-Clara手机的版本号-Build-Number-是什么" class="headerlink" title="26. 参考Clara_Smartphone.bin,Clara手机的版本号(Build Number)是什么?"></a><strong>26. 参考Clara_Smartphone.bin,Clara手机的版本号(Build Number)是什么?</strong></h4>
+      <p><strong>答案：OPR1.170623.026</strong></p>
+<p> 在<code>build.prop</code>中的<code>ro.build.id</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/29.png"></p>
+
+        <h4 id="27-参考Clara-Smartphone-bin-Clara手机的IMEI号码是多少-答案格式-只填写阿拉伯数字部分">
+          <a href="#27-参考Clara-Smartphone-bin-Clara手机的IMEI号码是多少-答案格式-只填写阿拉伯数字部分" class="heading-link"><i class="fas fa-link"></i></a><a href="#27-参考Clara-Smartphone-bin-Clara手机的IMEI号码是多少-答案格式-只填写阿拉伯数字部分" class="headerlink" title="27. 参考Clara_Smartphone.bin,Clara手机的IMEI号码是多少?答案格式:只填写阿拉伯数字部分)"></a><strong>27. 参考Clara_Smartphone.bin,Clara手机的IMEI号码是多少?答案格式:只填写阿拉伯数字部分)</strong></h4>
+      <p><strong>答案：351537092934716</strong></p>
+<p>使用某些软件的时候会记录当前设备的信息，在data分区的data目录中全局搜索imei关键词，在淘宝的数据目录中找到了设备的IMEI。直接全局检索<code>IMEI</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/30.png"></p>
+
+        <h4 id="28-参考Clara-Smartphone-bin-Emma的微信账号是">
+          <a href="#28-参考Clara-Smartphone-bin-Emma的微信账号是" class="heading-link"><i class="fas fa-link"></i></a><a href="#28-参考Clara-Smartphone-bin-Emma的微信账号是" class="headerlink" title="28. 参考Clara_Smartphone.bin,Emma的微信账号是?"></a><strong>28. 参考Clara_Smartphone.bin,Emma的微信账号是?</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/31.png"></p>
+<p><code>wxid_t7zgo57j9m0j22</code></p>
+
+        <h4 id="29-参考Clara-Smartphone-bin-Clara的第一封电子邮件记录的日期">
+          <a href="#29-参考Clara-Smartphone-bin-Clara的第一封电子邮件记录的日期" class="heading-link"><i class="fas fa-link"></i></a><a href="#29-参考Clara-Smartphone-bin-Clara的第一封电子邮件记录的日期" class="headerlink" title="29. 参考Clara_Smartphone.bin,Clara的第一封电子邮件记录的日期?"></a><strong>29. 参考Clara_Smartphone.bin,Clara的第一封电子邮件记录的日期?</strong></h4>
+      <p>A) 2024-07-10</p>
+<p>B) 2024-07-18</p>
+<p>C) 2024-07-23</p>
+<p>D) 2024-07-30</p>
+<p><strong>答案：A) 2024-07-10</strong></p>
+<p>此时只识别到了谷歌账户，没有识别到邮箱内的信息。进入到谷歌邮箱的数据库内依旧没有发现；直接做全局检索邮箱账户</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/33.png"></p>
+
+        <h4 id="30-参考Clara-Smartphone-bin-在通讯录中”David”的联系人信息还包括什么">
+          <a href="#30-参考Clara-Smartphone-bin-在通讯录中”David”的联系人信息还包括什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#30-参考Clara-Smartphone-bin-在通讯录中”David”的联系人信息还包括什么" class="headerlink" title="30. 参考Clara_Smartphone.bin,在通讯录中”David”的联系人信息还包括什么?"></a><strong>30. 参考Clara_Smartphone.bin,在通讯录中”David”的联系人信息还包括什么?</strong></h4>
+      <p>A) 出生日期</p>
+<p>B) LinkedIn</p>
+<p>C) 电子邮件</p>
+<p>D) 地址</p>
+<p><strong>答案：B) LinkedIn</strong></p>
+<p>此时定位到联系人的数据库文件：<code>/data/com.android.providers.contacts/databases/contacts2.db</code></p>
+<p>导出后进行检索关键词：<code>David</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/34.png"></p>
+<p>此时发现LinkedIn。</p>
+
+        <h4 id="31-参考Clara-Smartphone-bin-David和Clara之间通话次数">
+          <a href="#31-参考Clara-Smartphone-bin-David和Clara之间通话次数" class="heading-link"><i class="fas fa-link"></i></a><a href="#31-参考Clara-Smartphone-bin-David和Clara之间通话次数" class="headerlink" title="31. 参考Clara_Smartphone.bin,David和Clara之间通话次数?"></a><strong>31. 参考Clara_Smartphone.bin,David和Clara之间通话次数?</strong></h4>
+      <p>A) 0</p>
+<p>B) 8</p>
+<p>C) 10</p>
+<p>D) 24</p>
+<p><strong>答案：B) 8</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/35.png"></p>
+
+        <h4 id="32-参考Clara-Smartphone-bin-Clara在Chrome浏览器搜索中哪天使用了关键词”popmart-炒价”">
+          <a href="#32-参考Clara-Smartphone-bin-Clara在Chrome浏览器搜索中哪天使用了关键词”popmart-炒价”" class="heading-link"><i class="fas fa-link"></i></a><a href="#32-参考Clara-Smartphone-bin-Clara在Chrome浏览器搜索中哪天使用了关键词”popmart-炒价”" class="headerlink" title="32. 参考Clara_Smartphone.bin,Clara在Chrome浏览器搜索中哪天使用了关键词”popmart 炒价”?"></a><strong>32. 参考Clara_Smartphone.bin,Clara在Chrome浏览器搜索中哪天使用了关键词”popmart 炒价”?</strong></h4>
+      <p>A) 2024-08-10</p>
+<p>B) 2024-08-15 </p>
+<p>C) 2024-08-20</p>
+<p>D) 2024-08-25</p>
+<p><strong>答案：B) 2024-08-15</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/37.png"></p>
+
+        <h4 id="33-参考Clara-Smartphone-bin-2024年7月30日共收到多少封电子邮件">
+          <a href="#33-参考Clara-Smartphone-bin-2024年7月30日共收到多少封电子邮件" class="heading-link"><i class="fas fa-link"></i></a><a href="#33-参考Clara-Smartphone-bin-2024年7月30日共收到多少封电子邮件" class="headerlink" title="33. 参考Clara_Smartphone.bin,2024年7月30日共收到多少封电子邮件?"></a><strong>33. 参考Clara_Smartphone.bin,2024年7月30日共收到多少封电子邮件?</strong></h4>
+      <p>A) 2</p>
+<p>B) 3</p>
+<p>C) 4</p>
+<p>D) 5</p>
+
+        <h4 id="34-参考Clara-Smartphone-bin-Clara的Gmail账号是">
+          <a href="#34-参考Clara-Smartphone-bin-Clara的Gmail账号是" class="heading-link"><i class="fas fa-link"></i></a><a href="#34-参考Clara-Smartphone-bin-Clara的Gmail账号是" class="headerlink" title="34. 参考Clara_Smartphone.bin,Clara的Gmail账号是?"></a><strong>34. 参考Clara_Smartphone.bin,Clara的Gmail账号是?</strong></h4>
+      <p><strong>答案：<span class="exturl"><a class="exturl__link" href="mailto:&#99;&#x6c;&#97;&#x72;&#97;&#46;&#x63;&#99;&#x63;&#x30;&#56;&#x30;&#55;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#99;&#x6c;&#97;&#x72;&#97;&#46;&#x63;&#99;&#x63;&#x30;&#56;&#x30;&#55;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#111;&#109;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/38.png"></p>
+
+        <h4 id="35-参考Clara-Smartphone-bin-Clara的手机安装了哪个版本的WhatsApp">
+          <a href="#35-参考Clara-Smartphone-bin-Clara的手机安装了哪个版本的WhatsApp" class="heading-link"><i class="fas fa-link"></i></a><a href="#35-参考Clara-Smartphone-bin-Clara的手机安装了哪个版本的WhatsApp" class="headerlink" title="35. 参考Clara_Smartphone.bin,Clara的手机安装了哪个版本的WhatsApp?"></a><strong>35. 参考Clara_Smartphone.bin,Clara的手机安装了哪个版本的WhatsApp?</strong></h4>
+      <p>A) 241676000</p>
+<p>B) 241676001</p>
+<p>C) 241676004</p>
+<p>D) 241676007</p>
+<p><strong>答案：C) 241676004</strong></p>
+<p>在<code>\system\packages.xml</code>下面储存了</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/39.png"></p>
+
+        <h4 id="36-参考Clara-Smartphone-bin-Clara的WhatsApp账号-答案格式-只需填写11位阿拉伯数字">
+          <a href="#36-参考Clara-Smartphone-bin-Clara的WhatsApp账号-答案格式-只需填写11位阿拉伯数字" class="heading-link"><i class="fas fa-link"></i></a><a href="#36-参考Clara-Smartphone-bin-Clara的WhatsApp账号-答案格式-只需填写11位阿拉伯数字" class="headerlink" title="36. 参考Clara_Smartphone.bin,Clara的WhatsApp账号?答案格式:只需填写11位阿拉伯数字)"></a><strong>36. 参考Clara_Smartphone.bin,Clara的WhatsApp账号?答案格式:只需填写11位阿拉伯数字)</strong></h4>
+      <p><strong>答案：85263791704</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/40.png"></p>
+
+        <h4 id="37-参考Clara-Smartphone-bin-Clara的手机在什么时候安装了小红书APP">
+          <a href="#37-参考Clara-Smartphone-bin-Clara的手机在什么时候安装了小红书APP" class="heading-link"><i class="fas fa-link"></i></a><a href="#37-参考Clara-Smartphone-bin-Clara的手机在什么时候安装了小红书APP" class="headerlink" title="37. 参考Clara_Smartphone.bin,Clara的手机在什么时候安装了小红书APP?"></a><strong>37. 参考Clara_Smartphone.bin,Clara的手机在什么时候安装了小红书APP?</strong></h4>
+      <p>A) 2024-07-10</p>
+<p>B) 2024-07-16</p>
+<p>C) 2024-07-20</p>
+<p>D) 2024-07-30</p>
+<p><strong>答案：B) 2024-07-16</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/41.png"></p>
+<p>又或者可以直接在<code>packages.xml</code>里面查看</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs&quot;</span> <span class="attr">codePath</span>=<span class="string">&quot;/data/app/com.xingin.xhs-SjserGxL_Ho0rEG56tHXdQ==&quot;</span> <span class="attr">nativeLibraryPath</span>=<span class="string">&quot;/data/app/com.xingin.xhs-SjserGxL_Ho0rEG56tHXdQ==/lib&quot;</span> <span class="attr">primaryCpuAbi</span>=<span class="string">&quot;arm64-v8a&quot;</span> <span class="attr">publicFlags</span>=<span class="string">&quot;945307204&quot;</span> <span class="attr">privateFlags</span>=<span class="string">&quot;0&quot;</span> <span class="attr">ft</span>=<span class="string">&quot;19176504610&quot;</span> <span class="attr">it</span>=<span class="string">&quot;190babc5545&quot;</span> <span class="attr">ut</span>=<span class="string">&quot;1917650af59&quot;</span> <span class="attr">version</span>=<span class="string">&quot;8110300&quot;</span> <span class="attr">userId</span>=<span class="string">&quot;10242&quot;</span> <span class="attr">installer</span>=<span class="string">&quot;com.android.vending&quot;</span> <span class="attr">categoryHint</span>=<span class="string">&quot;4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sigs</span> <span class="attr">count</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">cert</span> <span class="attr">index</span>=<span class="string">&quot;12&quot;</span> <span class="attr">key</span>=<span class="string">&quot;3082036d30820255a00302010202045b24cb82300d06092a864886f70d01010b05003067310b300906035504061302434e3110300e06035504081307556e6b6e6f776e3110300e06035504071307556e6b6e6f776e3110300e060355040a1307556e6b6e6f776e3110300e060355040b1307556e6b6e6f776e3110300e06035504031307556e6b6e6f776e301e170d3233303430333033343031395a170d3338303333303033343031395a3067310b300906035504061302434e3110300e06035504081307556e6b6e6f776e3110300e06035504071307556e6b6e6f776e3110300e060355040a1307556e6b6e6f776e3110300e060355040b1307556e6b6e6f776e3110300e06035504031307556e6b6e6f776e30820122300d06092a864886f70d01010105000382010f003082010a0282010100b1c667f6e52babb7d9fe5083bb44bedff7b03a30f27b55ee63f666f83bcc8ce70f0b69c836bdcc284b6c214f86790b4da4d3b6bc63ab55a19fd2687cc4c7effb3b0f9081f01cf350e2b56cf72f7cc98de91970fb2fecda17515cb19396ed73a79701a74dade5d33f2bd8966838b834e0775899aadde555162417394dc9d3fa23c05feee8be8670feb72654e7800e62160af92d561dca1306fe0e274518a30f95b5318577e96f0d00c8c7e900397b2a03175e2fc5b424f89014e0dc7ff83a1ac4d873fc18e34626047cd2443838f1379acfdd177d5c8a9702a3bca2fb24798da62b786a248c3465c42bab7f10c60294662bff5148dba5498e77a2f95c39401ffd0203010001a321301f301d0603551d0e04160414edf38b5a73c37aeb07d569ced459a2540635c45a300d06092a864886f70d01010b050003820101006c969e2f52de0f4fc6a368512676f013d11341ec3d7a9a0764e39aebde31377c806fe74df4c974e6522ce4c81c38b19bd585d6b0efc2345cdb8c5036c8d6a93ce52c8afb5bf2c06e3e750c2f20a5cf2e3196c65b0375ceb211ebd771ece7d162545f450d397a4935dfb8a64221ef58bb0f71e496471541dd1fded1462aabec6bd1f2f3c6a2f776384b90325e375eb373584531843c32f2a6aade28f2a25f36b23dd4999ec074703dedf91ba81305fba99d587095dff224200348771f49137be91677f94fbce8e359d7e7b6a4587926ef24225045e34d44f5f919fc2cf6b7ce43cb537408bc23f3976c0874458f2296989b7004089ffc38889057c931f0b0c479&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sigs</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">perms</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.google.android.c2dm.permission.RECEIVE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.MODIFY_AUDIO_SETTINGS&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs.permission.JPUSH_MESSAGE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.CHANGE_NETWORK_STATE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.EXPAND_STATUS_BAR&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.BLUETOOTH&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.android.vending.BILLING&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.BLUETOOTH_ADMIN&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.CHANGE_WIFI_STATE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.FLASHLIGHT&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs.permission.C2D_MESSAGE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs.push.permission.MESSAGE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs.permission.MIPUSH_RECEIVE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.VIBRATE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.ACCESS_WIFI_STATE&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.android.launcher.permission.INSTALL_SHORTCUT&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.google.android.gms.permission.AD_ID&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;com.xingin.xhs.permission.GYRECEIVER&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;android.permission.WAKE_LOCK&quot;</span> <span class="attr">granted</span>=<span class="string">&quot;true&quot;</span> <span class="attr">flags</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">perms</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">proper-signing-keyset</span> <span class="attr">identifier</span>=<span class="string">&quot;32&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">domain-verification</span> <span class="attr">packageName</span>=<span class="string">&quot;com.xingin.xhs&quot;</span> <span class="attr">status</span>=<span class="string">&quot;1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">domain</span> <span class="attr">name</span>=<span class="string">&quot;*.xiaohongshu.com&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">domain-verification</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>此时包含的信息如下：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">Package 信息:</span><br><span class="line">name=&quot;com.xingin.xhs&quot;</span><br><span class="line">表示应用程序的包名，通常用于标识该应用程序。</span><br><span class="line"></span><br><span class="line">codePath=&quot;/data/app/com.xingin.xhs-SjserGxL_Ho0rEG56tHXdQ==&quot;</span><br><span class="line">应用程序的安装路径。</span><br><span class="line"></span><br><span class="line">nativeLibraryPath=&quot;/data/app/com.xingin.xhs-SjserGxL_Ho0rEG56tHXdQ==/lib&quot;</span><br><span class="line">原生库的存储路径。</span><br><span class="line"></span><br><span class="line">primaryCpuAbi=&quot;arm64-v8a&quot;</span><br><span class="line">该应用程序支持的主要 CPU 架构。</span><br><span class="line"></span><br><span class="line">publicFlags=&quot;945307204&quot; / privateFlags=&quot;0&quot;</span><br><span class="line">应用的公共和私有标志，定义系统属性（例如是否系统应用等）。</span><br><span class="line"></span><br><span class="line">ft / it / ut</span><br><span class="line"></span><br><span class="line">ft=&quot;19176504610&quot;：首次安装时间（文件时间戳）。</span><br><span class="line">it=&quot;190babc5545&quot;：安装时间（标识符）。</span><br><span class="line">ut=&quot;1917650af59&quot;：最后更新时间（文件时间戳）。</span><br><span class="line">version=&quot;8110300&quot;</span><br><span class="line">应用版本号，对应应用 versionCode。</span><br><span class="line"></span><br><span class="line">userId=&quot;10242&quot;</span><br><span class="line">系统分配给该应用的用户 ID。</span><br><span class="line"></span><br><span class="line">installer=&quot;com.android.vending&quot;</span><br><span class="line">安装来源（此处为 Google Play 商店）。</span><br><span class="line"></span><br><span class="line">categoryHint=&quot;4&quot;</span><br><span class="line">应用类别提示（系统标识分类）。</span><br><span class="line"></span><br><span class="line">签名信息</span><br><span class="line">&lt;sigs&gt;</span><br><span class="line">表示签名信息，用于验证应用的完整性。</span><br><span class="line">&lt;cert&gt;</span><br><span class="line">包含证书的详细内容，例如 key 是公钥，验证来源。</span><br><span class="line">权限信息</span><br><span class="line">&lt;perms&gt;</span><br><span class="line">包含应用请求的权限及状态：</span><br><span class="line">name：权限名称（如 android.permission.INTERNET）。</span><br><span class="line">granted：是否授予权限（true 为已授予）。</span><br><span class="line">flags：权限标志位，提供额外信息（0 表示无特殊标志）。</span><br><span class="line">密钥集</span><br><span class="line">&lt;proper-signing-keyset&gt;</span><br><span class="line">标识用于签署该应用的密钥集。</span><br><span class="line">域名验证</span><br><span class="line">&lt;domain-verification&gt;</span><br><span class="line">验证应用与指定域名的绑定关系：</span><br><span class="line">packageName：关联的包名。</span><br><span class="line">status：状态（1 表示验证通过）。</span><br><span class="line">domain name：支持的域名（如 *.xiaohongshu.com）。</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="38-参考Clara-Smartphone-bin-2024年8月21日David的虚拟貨幣钱包里有多少IDFC">
+          <a href="#38-参考Clara-Smartphone-bin-2024年8月21日David的虚拟貨幣钱包里有多少IDFC" class="heading-link"><i class="fas fa-link"></i></a><a href="#38-参考Clara-Smartphone-bin-2024年8月21日David的虚拟貨幣钱包里有多少IDFC" class="headerlink" title="38. 参考Clara_Smartphone.bin,2024年8月21日David的虚拟貨幣钱包里有多少IDFC?"></a><strong>38. 参考Clara_Smartphone.bin,2024年8月21日David的虚拟貨幣钱包里有多少IDFC?</strong></h4>
+      <p>A) 5022915.66</p>
+<p>B) 3212695.22</p>
+<p>C) 210355633.91</p>
+<p>D) 以上皆不是</p>
+<p><strong>答案：D) 以上皆不是</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/42.png"></p>
+
+        <h4 id="39-参考Clara-Smartphone-bin-Clara注册的微信账号验证码是多少">
+          <a href="#39-参考Clara-Smartphone-bin-Clara注册的微信账号验证码是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#39-参考Clara-Smartphone-bin-Clara注册的微信账号验证码是多少" class="headerlink" title="39. 参考Clara_Smartphone.bin,Clara注册的微信账号验证码是多少?"></a><strong>39. 参考Clara_Smartphone.bin,Clara注册的微信账号验证码是多少?</strong></h4>
+      <p><strong>答案：945025</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/43.png"></p>
+
+        <h4 id="40-参考Clara-Smartphone-bin-David为庆祝结婚周年纪念预订了哪家酒店-提示-请使用大写英文字母作答-例如-HONG-KONG-HOTEL">
+          <a href="#40-参考Clara-Smartphone-bin-David为庆祝结婚周年纪念预订了哪家酒店-提示-请使用大写英文字母作答-例如-HONG-KONG-HOTEL" class="heading-link"><i class="fas fa-link"></i></a><a href="#40-参考Clara-Smartphone-bin-David为庆祝结婚周年纪念预订了哪家酒店-提示-请使用大写英文字母作答-例如-HONG-KONG-HOTEL" class="headerlink" title="40. 参考Clara_Smartphone.bin,David为庆祝结婚周年纪念预订了哪家酒店?提示:请使用大写英文字母作答, 例如:HONG KONG HOTEL)"></a><strong>40. 参考Clara_Smartphone.bin,David为庆祝结婚周年纪念预订了哪家酒店?提示:请使用大写英文字母作答, 例如:HONG KONG HOTEL)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/44.png"></p>
+
+        <h4 id="41-参考Clara-Smartphone-bin-哪个数据库文件存储了微信消息-答案格式-只需使用全部大写回答-例如-ABC-DB">
+          <a href="#41-参考Clara-Smartphone-bin-哪个数据库文件存储了微信消息-答案格式-只需使用全部大写回答-例如-ABC-DB" class="heading-link"><i class="fas fa-link"></i></a><a href="#41-参考Clara-Smartphone-bin-哪个数据库文件存储了微信消息-答案格式-只需使用全部大写回答-例如-ABC-DB" class="headerlink" title="41. 参考Clara_Smartphone.bin,哪个数据库文件存储了微信消息?答案格式:只需使用全部大写回答, 例如:ABC.DB)"></a><strong>41. 参考Clara_Smartphone.bin,哪个数据库文件存储了微信消息?答案格式:只需使用全部大写回答, 例如:ABC.DB)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/45.png"></p>
+
+        <h4 id="42-参考Clara-Smartphone-bin-哪个数据库文件-db-存储了WhatsApp訊息">
+          <a href="#42-参考Clara-Smartphone-bin-哪个数据库文件-db-存储了WhatsApp訊息" class="heading-link"><i class="fas fa-link"></i></a><a href="#42-参考Clara-Smartphone-bin-哪个数据库文件-db-存储了WhatsApp訊息" class="headerlink" title="42. 参考Clara_Smartphone.bin,哪个数据库文件(.db)存储了WhatsApp訊息?"></a><strong>42. 参考Clara_Smartphone.bin,哪个数据库文件(.db)存储了WhatsApp訊息?</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/46.png"></p>
+
+        <h4 id="43-参考Clara-Smartphone-bin-Clara在2024年8月29日拍了多少张照片">
+          <a href="#43-参考Clara-Smartphone-bin-Clara在2024年8月29日拍了多少张照片" class="heading-link"><i class="fas fa-link"></i></a><a href="#43-参考Clara-Smartphone-bin-Clara在2024年8月29日拍了多少张照片" class="headerlink" title="43. 参考Clara_Smartphone.bin,Clara在2024年8月29日拍了多少张照片?"></a><strong>43. 参考Clara_Smartphone.bin,Clara在2024年8月29日拍了多少张照片?</strong></h4>
+      <p>A) 0</p>
+<p>B) 3</p>
+<p>C) 4</p>
+<p>D) 5</p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/47.png"></p>
+
+        <h4 id="44-参考Clara-Smartphone-bin-Emma在2024年8月6日通过微信发送了多少张照片给Clara">
+          <a href="#44-参考Clara-Smartphone-bin-Emma在2024年8月6日通过微信发送了多少张照片给Clara" class="heading-link"><i class="fas fa-link"></i></a><a href="#44-参考Clara-Smartphone-bin-Emma在2024年8月6日通过微信发送了多少张照片给Clara" class="headerlink" title="44. 参考Clara_Smartphone.bin,Emma在2024年8月6日通过微信发送了多少张照片给Clara?"></a><strong>44. 参考Clara_Smartphone.bin,Emma在2024年8月6日通过微信发送了多少张照片给Clara?</strong></h4>
+      <p>A) 0</p>
+<p>B) 1</p>
+<p>C) 5</p>
+<p>D) 12</p>
+<p><strong>答案：0</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/48.png"></p>
+
+        <h4 id="45-参考Clara-Smartphone-bin-照片20240829-144717-jpg的拍摄相机型号是什么">
+          <a href="#45-参考Clara-Smartphone-bin-照片20240829-144717-jpg的拍摄相机型号是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#45-参考Clara-Smartphone-bin-照片20240829-144717-jpg的拍摄相机型号是什么" class="headerlink" title="45. 参考Clara_Smartphone.bin,照片20240829_144717.jpg的拍摄相机型号是什么?"></a><strong>45. 参考Clara_Smartphone.bin,照片20240829_144717.jpg的拍摄相机型号是什么?</strong></h4>
+      <p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/49.png"></p>
+
+        <h4 id="46-参考Clara-Smartphone-bin-20240821-121435-jpg的储存路径是什么">
+          <a href="#46-参考Clara-Smartphone-bin-20240821-121435-jpg的储存路径是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#46-参考Clara-Smartphone-bin-20240821-121435-jpg的储存路径是什么" class="headerlink" title="46. 参考Clara_Smartphone.bin,20240821_121435.jpg的储存路径是什么?"></a><strong>46. 参考Clara_Smartphone.bin,20240821_121435.jpg的储存路径是什么?</strong></h4>
+      <p>A) &#x2F;media&#x2F;0&#x2F;DCIM&#x2F;Camera</p>
+<p>B) &#x2F;media&#x2F;1&#x2F;DCIM&#x2F;Camera</p>
+<p>C) &#x2F;media&#x2F;00&#x2F;DCIM&#x2F;Camera</p>
+<p>D) &#x2F;media&#x2F;11&#x2F;DCIM&#x2F;Camera</p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/50.png"></p>
+
+        <h4 id="47-参考Clara-Smartphone-bin-2024年8月20日有多少张截图">
+          <a href="#47-参考Clara-Smartphone-bin-2024年8月20日有多少张截图" class="heading-link"><i class="fas fa-link"></i></a><a href="#47-参考Clara-Smartphone-bin-2024年8月20日有多少张截图" class="headerlink" title="47. 参考Clara_Smartphone.bin,2024年8月20日有多少张截图?"></a><strong>47. 参考Clara_Smartphone.bin,2024年8月20日有多少张截图?</strong></h4>
+      <p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/51.png"></p>
+
+        <h4 id="48-参考Clara-Smartphone-bin-2024年8月22日被删除微信消息的类型是">
+          <a href="#48-参考Clara-Smartphone-bin-2024年8月22日被删除微信消息的类型是" class="heading-link"><i class="fas fa-link"></i></a><a href="#48-参考Clara-Smartphone-bin-2024年8月22日被删除微信消息的类型是" class="headerlink" title="48. 参考Clara_Smartphone.bin,2024年8月22日被删除微信消息的类型是?"></a><strong>48. 参考Clara_Smartphone.bin,2024年8月22日被删除微信消息的类型是?</strong></h4>
+      <p>A) 照片</p>
+<p>B) 视频</p>
+<p>C) 文本</p>
+<p>D) 以上都不是</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/52.png"></p>
+<p>此时根据判断应该为Recovery seed的照片。</p>
+
+        <h2 id="David-Smartphone-1-zip">
+          <a href="#David-Smartphone-1-zip" class="heading-link"><i class="fas fa-link"></i></a><a href="#David-Smartphone-1-zip" class="headerlink" title="David_Smartphone_1.zip"></a>David_Smartphone_1.zip</h2>
+      
+        <h4 id="49-你在查看Clara的手机镜像后-确定Clara是David的妻子-调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所-以进行进一步调查｡-你首先分析David的手机｡参考David-Smartphone-1-zip-根据Contents-db-David-手机接收了通讯软件”Telegram”的验证短信-该验证码是多少">
+          <a href="#49-你在查看Clara的手机镜像后-确定Clara是David的妻子-调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所-以进行进一步调查｡-你首先分析David的手机｡参考David-Smartphone-1-zip-根据Contents-db-David-手机接收了通讯软件”Telegram”的验证短信-该验证码是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#49-你在查看Clara的手机镜像后-确定Clara是David的妻子-调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所-以进行进一步调查｡-你首先分析David的手机｡参考David-Smartphone-1-zip-根据Contents-db-David-手机接收了通讯软件”Telegram”的验证短信-该验证码是多少" class="headerlink" title="49. 你在查看Clara的手机镜像后,确定Clara是David的妻子,调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所,以进行进一步调查｡ 你首先分析David的手机｡参考David_Smartphone_1.zip, 根据Contents.db,David 手机接收了通讯软件”Telegram”的验证短信,该验证码是多少?"></a><strong>49. 你在查看Clara的手机镜像后,确定Clara是David的妻子,调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所,以进行进一步调查｡ 你首先分析David的手机｡参考David_Smartphone_1.zip, 根据Contents.db,David 手机接收了通讯软件”Telegram”的验证短信,该验证码是多少?</strong></h4>
+      <p><code>\Active\data_backup\ABR\MESSAGE\databases_backup\mmssms.db</code></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/53.png"></p>
+
+        <h4 id="50-参考David-Smartphone-1-zip-David-把手机设置为个人热点-请找出个人热点的密码｡">
+          <a href="#50-参考David-Smartphone-1-zip-David-把手机设置为个人热点-请找出个人热点的密码｡" class="heading-link"><i class="fas fa-link"></i></a><a href="#50-参考David-Smartphone-1-zip-David-把手机设置为个人热点-请找出个人热点的密码｡" class="headerlink" title="50. 参考David_Smartphone_1.zip, David 把手机设置为个人热点,请找出个人热点的密码｡"></a><strong>50. 参考David_Smartphone_1.zip, David 把手机设置为个人热点,请找出个人热点的密码｡</strong></h4>
+      <p> <code>\Active\data_backup\ABR\HOTSPOTSETTING\softap.conf</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/54.png"></p>
+
+        <h4 id="51-参考David-Smartphone-1-zip-David-手机曾连接名为”MTR-Free-Wi-Fi”-的Wi-Fi-｡">
+          <a href="#51-参考David-Smartphone-1-zip-David-手机曾连接名为”MTR-Free-Wi-Fi”-的Wi-Fi-｡" class="heading-link"><i class="fas fa-link"></i></a><a href="#51-参考David-Smartphone-1-zip-David-手机曾连接名为”MTR-Free-Wi-Fi”-的Wi-Fi-｡" class="headerlink" title="51. 参考David_Smartphone_1.zip, David 手机曾连接名为”MTR Free Wi-Fi” 的Wi-Fi ｡"></a><strong>51. 参考David_Smartphone_1.zip, David 手机曾连接名为”MTR Free Wi-Fi” 的Wi-Fi ｡</strong></h4>
+      <p><code>Active\data_backup\ABR\WIFICONFIG\WifiConfigStore.xml</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/55.png"></p>
+
+        <h4 id="52-参考David-Smartphone-1-zip-根据com-tencent-mm-preferences-xml-David-的手机最后登录微信的微信-ID-是">
+          <a href="#52-参考David-Smartphone-1-zip-根据com-tencent-mm-preferences-xml-David-的手机最后登录微信的微信-ID-是" class="heading-link"><i class="fas fa-link"></i></a><a href="#52-参考David-Smartphone-1-zip-根据com-tencent-mm-preferences-xml-David-的手机最后登录微信的微信-ID-是" class="headerlink" title="52. 参考David_Smartphone_1.zip, 根据com.tencent.mm_preferences.xml,David 的手机最后登录微信的微信 ID 是?"></a><strong>52. 参考David_Smartphone_1.zip, 根据com.tencent.mm_preferences.xml,David 的手机最后登录微信的微信 ID 是?</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/56.png"></p>
+
+        <h4 id="53-参考David-Smartphone-1-zip-请指出哪一张图片是于2024年8月28日利用屏幕截取的｡-答案格式-ABC-123-jpg">
+          <a href="#53-参考David-Smartphone-1-zip-请指出哪一张图片是于2024年8月28日利用屏幕截取的｡-答案格式-ABC-123-jpg" class="heading-link"><i class="fas fa-link"></i></a><a href="#53-参考David-Smartphone-1-zip-请指出哪一张图片是于2024年8月28日利用屏幕截取的｡-答案格式-ABC-123-jpg" class="headerlink" title="53. 参考David_Smartphone_1.zip, 请指出哪一张图片是于2024年8月28日利用屏幕截取的｡(答案格式:ABC_123.jpg)"></a><strong>53. 参考David_Smartphone_1.zip, 请指出哪一张图片是于2024年8月28日利用屏幕截取的｡(答案格式:ABC_123.jpg)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/57.png"></p>
+
+        <h4 id="54-参考-David-Smartphone-1-zip-根据Contents-db-David-手机的型号-Model-答案格式-大写英文字母和符号’-‘-混合组成">
+          <a href="#54-参考-David-Smartphone-1-zip-根据Contents-db-David-手机的型号-Model-答案格式-大写英文字母和符号’-‘-混合组成" class="heading-link"><i class="fas fa-link"></i></a><a href="#54-参考-David-Smartphone-1-zip-根据Contents-db-David-手机的型号-Model-答案格式-大写英文字母和符号’-‘-混合组成" class="headerlink" title="54. 参考 David_Smartphone_1.zip,根据Contents.db,David 手机的型号(Model)?(答案格式:大写英文字母和符号’-‘ 混合组成)"></a><strong>54. 参考 David_Smartphone_1.zip,根据Contents.db,David 手机的型号(Model)?(答案格式:大写英文字母和符号’-‘ 混合组成)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/58.png"></p>
+
+        <h4 id="55-参考-David-Smartphone-1-zip的Contents-db-David所使用的手机SIM-卡的序号-答案格式-只需要用阿拉伯数目字回答">
+          <a href="#55-参考-David-Smartphone-1-zip的Contents-db-David所使用的手机SIM-卡的序号-答案格式-只需要用阿拉伯数目字回答" class="heading-link"><i class="fas fa-link"></i></a><a href="#55-参考-David-Smartphone-1-zip的Contents-db-David所使用的手机SIM-卡的序号-答案格式-只需要用阿拉伯数目字回答" class="headerlink" title="55. 参考 David_Smartphone_1.zip的Contents.db,David所使用的手机SIM 卡的序号?(答案格式:只需要用阿拉伯数目字回答)"></a><strong>55. 参考 David_Smartphone_1.zip的Contents.db,David所使用的手机SIM 卡的序号?(答案格式:只需要用阿拉伯数目字回答)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/59.png"></p>
+
+        <h4 id="56-参考-David-Smartphone-1-zip-David-手机安装了应用程序”MetaMask”｡根据persist-root中-”MetaMask”钱包内有多少个账号">
+          <a href="#56-参考-David-Smartphone-1-zip-David-手机安装了应用程序”MetaMask”｡根据persist-root中-”MetaMask”钱包内有多少个账号" class="heading-link"><i class="fas fa-link"></i></a><a href="#56-参考-David-Smartphone-1-zip-David-手机安装了应用程序”MetaMask”｡根据persist-root中-”MetaMask”钱包内有多少个账号" class="headerlink" title="56. 参考 David_Smartphone_1.zip,David 手机安装了应用程序”MetaMask”｡根据persist-root中,”MetaMask”钱包内有多少个账号?"></a><strong>56. 参考 David_Smartphone_1.zip,David 手机安装了应用程序”MetaMask”｡根据persist-root中,”MetaMask”钱包内有多少个账号?</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/60.png"></p>
+
+        <h4 id="57-参考-David-Smartphone-1-zip-根据persist-root中-何时从应用程序”MetaMask”发送虚拟货币至以下地址-0X10A4F01B80203591CCEE76081A4489AE1CD1281C">
+          <a href="#57-参考-David-Smartphone-1-zip-根据persist-root中-何时从应用程序”MetaMask”发送虚拟货币至以下地址-0X10A4F01B80203591CCEE76081A4489AE1CD1281C" class="heading-link"><i class="fas fa-link"></i></a><a href="#57-参考-David-Smartphone-1-zip-根据persist-root中-何时从应用程序”MetaMask”发送虚拟货币至以下地址-0X10A4F01B80203591CCEE76081A4489AE1CD1281C" class="headerlink" title="57. 参考 David_Smartphone_1.zip,根据persist-root中,何时从应用程序”MetaMask”发送虚拟货币至以下地址: 0X10A4F01B80203591CCEE76081A4489AE1CD1281C"></a><strong>57. 参考 David_Smartphone_1.zip,根据persist-root中,何时从应用程序”MetaMask”发送虚拟货币至以下地址: 0X10A4F01B80203591CCEE76081A4489AE1CD1281C</strong></h4>
+      <p>A) 2024-08-11 1249(GMT+8)</p>
+<p>B) 2024-08-14 1658 (GMT+8) </p>
+<p>C) 2024-08-14 1659 (GMT+8)</p>
+<p>D) 2024-08-16 1724 (GMT+8)</p>
+<p><strong>答案：B) 2024-08-14 1658 (GMT+8)</strong><br><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/61.png"></p>
+
+        <h4 id="58-参考-David-Smartphone-1-zip-David-曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root-发送虚拟货币失败的原因是什麼">
+          <a href="#58-参考-David-Smartphone-1-zip-David-曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root-发送虚拟货币失败的原因是什麼" class="heading-link"><i class="fas fa-link"></i></a><a href="#58-参考-David-Smartphone-1-zip-David-曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root-发送虚拟货币失败的原因是什麼" class="headerlink" title="58. 参考 David_Smartphone_1.zip,David 曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root,发送虚拟货币失败的原因是什麼?"></a><strong>58. 参考 David_Smartphone_1.zip,David 曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root,发送虚拟货币失败的原因是什麼?</strong></h4>
+      <p>A) 网络连接问题</p>
+<p>B) 应用程序权限被拒</p>
+<p>C) 接收地址错误</p>
+<p>D) 手续费不足</p>
+<p><strong>答案：D) 手续费不足</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/62.png"></p>
+
+        <h2 id="RAM-Capture-David-Laptop-RAW">
+          <a href="#RAM-Capture-David-Laptop-RAW" class="heading-link"><i class="fas fa-link"></i></a><a href="#RAM-Capture-David-Laptop-RAW" class="headerlink" title="RAM_Capture_David_Laptop.RAW"></a>RAM_Capture_David_Laptop.RAW</h2>
+      
+        <h4 id="59-你根据易失性-Volatility-Level-优先次序-进行内存取证分析David的笔记本电脑｡参考RAM-Capture-David-Laptop-RAW-以下哪一个不是程序”firefox-exe”的PID">
+          <a href="#59-你根据易失性-Volatility-Level-优先次序-进行内存取证分析David的笔记本电脑｡参考RAM-Capture-David-Laptop-RAW-以下哪一个不是程序”firefox-exe”的PID" class="heading-link"><i class="fas fa-link"></i></a><a href="#59-你根据易失性-Volatility-Level-优先次序-进行内存取证分析David的笔记本电脑｡参考RAM-Capture-David-Laptop-RAW-以下哪一个不是程序”firefox-exe”的PID" class="headerlink" title="59. 你根据易失性(Volatility Level)优先次序,进行内存取证分析David的笔记本电脑｡参考RAM_Capture_David_Laptop.RAW,以下哪一个不是程序”firefox.exe”的PID?"></a><strong>59. 你根据易失性(Volatility Level)优先次序,进行内存取证分析David的笔记本电脑｡参考RAM_Capture_David_Laptop.RAW,以下哪一个不是程序”firefox.exe”的PID?</strong></h4>
+      <p>A) 9240</p>
+<p>B) 8732</p>
+<p>C) 5260</p>
+<p>D) 3108</p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/63.png"></p>
+
+        <h4 id="60-参考RAM-Capture-David-Laptop-RAW-汇出PID-724的程序-其哈希值-SHA-256-是">
+          <a href="#60-参考RAM-Capture-David-Laptop-RAW-汇出PID-724的程序-其哈希值-SHA-256-是" class="heading-link"><i class="fas fa-link"></i></a><a href="#60-参考RAM-Capture-David-Laptop-RAW-汇出PID-724的程序-其哈希值-SHA-256-是" class="headerlink" title="60. 参考RAM_Capture_David_Laptop.RAW,汇出PID:724的程序,其哈希值 (SHA-256) 是?"></a><strong>60. 参考RAM_Capture_David_Laptop.RAW,汇出PID:724的程序,其哈希值 (SHA-256) 是?</strong></h4>
+      <p>使用lovelymem加载会自动用MemProcFS挂载，直接去挂载的M:\name目录下找到</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/65.png"></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/66.png"></p>
+
+        <h4 id="61-参考RAM-Capture-David-Laptop-RAW-哪一个是执行PID-724程序的SID">
+          <a href="#61-参考RAM-Capture-David-Laptop-RAW-哪一个是执行PID-724程序的SID" class="heading-link"><i class="fas fa-link"></i></a><a href="#61-参考RAM-Capture-David-Laptop-RAW-哪一个是执行PID-724程序的SID" class="headerlink" title="61. 参考RAM_Capture_David_Laptop.RAW,哪一个是执行PID:724程序的SID?"></a><strong>61. 参考RAM_Capture_David_Laptop.RAW,哪一个是执行PID:724程序的SID?</strong></h4>
+      <p>A) S-1-1-0</p>
+<p>B) S-1-2-0</p>
+<p>C) S-1-5-21-1103701427-1706751984-2965915307-1001</p>
+<p>D) S-1-5-21-1103701427-1706751984-2965915307-513</p>
+<p><strong>答案：A) S-1-1-0</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/64.png"></p>
+
+        <h4 id="62-参考RAM-Capture-David-Laptop-RAW-账户David-Tenth的NT-LAN-Manager的哈希值-NTLM-Hash-n-答案格式-只需使用全部小写及阿拉伯数字回答">
+          <a href="#62-参考RAM-Capture-David-Laptop-RAW-账户David-Tenth的NT-LAN-Manager的哈希值-NTLM-Hash-n-答案格式-只需使用全部小写及阿拉伯数字回答" class="heading-link"><i class="fas fa-link"></i></a><a href="#62-参考RAM-Capture-David-Laptop-RAW-账户David-Tenth的NT-LAN-Manager的哈希值-NTLM-Hash-n-答案格式-只需使用全部小写及阿拉伯数字回答" class="headerlink" title="62. 参考RAM_Capture_David_Laptop.RAW,账户David Tenth的NT LAN Manager的哈希值(NTLM Hash) ?\n(答案格式:只需使用全部小写及阿拉伯数字回答)"></a><strong>62. 参考RAM_Capture_David_Laptop.RAW,账户David Tenth的NT LAN Manager的哈希值(NTLM Hash) ?\n(答案格式:只需使用全部小写及阿拉伯数字回答)</strong></h4>
+      <p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/67.png"></p>
+
+        <h2 id="David-USB-8GB-e01">
+          <a href="#David-USB-8GB-e01" class="heading-link"><i class="fas fa-link"></i></a><a href="#David-USB-8GB-e01" class="headerlink" title="David_USB_8GB.e01"></a>David_USB_8GB.e01</h2>
+      
+        <h4 id="63-在取证中-你发现D盘被BitLocker-加密｡U盘上可能有一些线索-你对U盘进行了取证｡参考David-USB-8GB-e01-David-的U盘文件系统的格式">
+          <a href="#63-在取证中-你发现D盘被BitLocker-加密｡U盘上可能有一些线索-你对U盘进行了取证｡参考David-USB-8GB-e01-David-的U盘文件系统的格式" class="heading-link"><i class="fas fa-link"></i></a><a href="#63-在取证中-你发现D盘被BitLocker-加密｡U盘上可能有一些线索-你对U盘进行了取证｡参考David-USB-8GB-e01-David-的U盘文件系统的格式" class="headerlink" title="63. 在取证中,你发现D盘被BitLocker 加密｡U盘上可能有一些线索,你对U盘进行了取证｡参考David_USB_8GB.e01,David 的U盘文件系统的格式?"></a><strong>63. 在取证中,你发现D盘被BitLocker 加密｡U盘上可能有一些线索,你对U盘进行了取证｡参考David_USB_8GB.e01,David 的U盘文件系统的格式?</strong></h4>
+      <p>A) NTFS</p>
+<p>B) FAT32</p>
+<p>C) exFAT</p>
+<p>D) ReFS</p>
+<p><strong>答案：A) NTFS</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/68.png"></p>
+
+        <h4 id="64-参考David-USB-8GB-e01-David-的U盘文件系统中-每簇-Cluster-定义了多少字节-Byte">
+          <a href="#64-参考David-USB-8GB-e01-David-的U盘文件系统中-每簇-Cluster-定义了多少字节-Byte" class="heading-link"><i class="fas fa-link"></i></a><a href="#64-参考David-USB-8GB-e01-David-的U盘文件系统中-每簇-Cluster-定义了多少字节-Byte" class="headerlink" title="64. 参考David_USB_8GB.e01,David 的U盘文件系统中,每簇(Cluster)定义了多少字节(Byte)?"></a><strong>64. 参考David_USB_8GB.e01,David 的U盘文件系统中,每簇(Cluster)定义了多少字节(Byte)?</strong></h4>
+      <p><strong>答案：C) 512</strong></p>
+<p>A) 128</p>
+<p>B) 256</p>
+<p>C) 512</p>
+<p>D) 1024</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/69.png"></p>
+
+        <h4 id="65-参考David-USB-8GB-e01-David-的U盘中有多少个已删除的文件">
+          <a href="#65-参考David-USB-8GB-e01-David-的U盘中有多少个已删除的文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#65-参考David-USB-8GB-e01-David-的U盘中有多少个已删除的文件" class="headerlink" title="65. 参考David_USB_8GB.e01,David 的U盘中有多少个已删除的文件?"></a><strong>65. 参考David_USB_8GB.e01,David 的U盘中有多少个已删除的文件?</strong></h4>
+      <p><strong>答案：A) 1</strong></p>
+<p>A) 1</p>
+<p>B) 2</p>
+<p>C) 3</p>
+<p>D) 4  </p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/70.png"></p>
+
+        <h4 id="66-承上题-参考David-USB-8GB-e01-已删除的文件的运行列表-Run-List-的运行偏移量-Run-Offset-数量是多少">
+          <a href="#66-承上题-参考David-USB-8GB-e01-已删除的文件的运行列表-Run-List-的运行偏移量-Run-Offset-数量是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#66-承上题-参考David-USB-8GB-e01-已删除的文件的运行列表-Run-List-的运行偏移量-Run-Offset-数量是多少" class="headerlink" title="66. 承上题,参考David_USB_8GB.e01,已删除的文件的运行列表(Run List)的运行偏移量(Run Offset)数量是多少?"></a><strong>66. 承上题,参考David_USB_8GB.e01,已删除的文件的运行列表(Run List)的运行偏移量(Run Offset)数量是多少?</strong></h4>
+      <p>A) 16</p>
+<p>B) 32</p>
+<p>C) 64</p>
+<p>D) 128</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/71.png"></p>
+<p>跳转至文件记录</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/72.png"></p>
+
+        <h4 id="67-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行的十六进制值-低端字节序-Little-Endian-是多少">
+          <a href="#67-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行的十六进制值-低端字节序-Little-Endian-是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#67-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行的十六进制值-低端字节序-Little-Endian-是多少" class="headerlink" title="67. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行的十六进制值(低端字节序 Little-Endian)是多少?"></a><strong>67. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行的十六进制值(低端字节序 Little-Endian)是多少?</strong></h4>
+      <p>A) 0x4C3F0DB522</p>
+<p>B) 0x4C3F0D22B5</p>
+<p>C) 0x224C3F0DB5</p>
+<p>D) 0x3F4C0DB522</p>
+<p><strong>答案：A) 0x4C3F0DB522</strong></p>
+<p>逆序问题；将后面的反着读即可</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/73.png"></p>
+
+        <h4 id="68-承上题-参考David-USB-8GB-e01-已删除的文件的实际大小-单位-字节-Byte-是多少-答案格式-只需使用阿拉伯数字回答">
+          <a href="#68-承上题-参考David-USB-8GB-e01-已删除的文件的实际大小-单位-字节-Byte-是多少-答案格式-只需使用阿拉伯数字回答" class="heading-link"><i class="fas fa-link"></i></a><a href="#68-承上题-参考David-USB-8GB-e01-已删除的文件的实际大小-单位-字节-Byte-是多少-答案格式-只需使用阿拉伯数字回答" class="headerlink" title="68. 承上题,参考David_USB_8GB.e01,已删除的文件的实际大小(单位:字节 Byte)是多少?答案格式:只需使用阿拉伯数字回答"></a><strong>68. 承上题,参考David_USB_8GB.e01,已删除的文件的实际大小(单位:字节 Byte)是多少?答案格式:只需使用阿拉伯数字回答</strong></h4>
+      <p> <strong>答案：1,796,178byte</strong><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/74.png"></p>
+
+        <h4 id="69-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行偏移量-Run-Offset-是多少-答案格式-只需使用阿拉伯数字回答">
+          <a href="#69-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行偏移量-Run-Offset-是多少-答案格式-只需使用阿拉伯数字回答" class="heading-link"><i class="fas fa-link"></i></a><a href="#69-承上题-参考David-USB-8GB-e01-已删除文件的第一个运行偏移量-Run-Offset-是多少-答案格式-只需使用阿拉伯数字回答" class="headerlink" title="69. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行偏移量(Run Offset)是多少?(答案格式:只需使用阿拉伯数字回答)"></a><strong>69. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行偏移量(Run Offset)是多少?(答案格式:只需使用阿拉伯数字回答)</strong></h4>
+      <p><strong>答案：19519</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/73.png"></p>
+<p>运行偏移量是由NTFS系统下的DateRun格式决定的，第一个运行偏移量0x4C3F</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/75.png"></p>
+<p><strong>70. 承上题,参考David_USB_8GB.e01,已删除的文件的第一个运行的簇运行长度(Run Length)是多少?</strong></p>
+<p>A) 2408</p>
+<p>B) 3509</p>
+<p>C) 3128</p>
+<p>D) 4021</p>
+
+        <h4 id="71-承上题-参考David-USB-8GB-e01-已删除文件的图像文件像素值-Pixel-是多少">
+          <a href="#71-承上题-参考David-USB-8GB-e01-已删除文件的图像文件像素值-Pixel-是多少" class="heading-link"><i class="fas fa-link"></i></a><a href="#71-承上题-参考David-USB-8GB-e01-已删除文件的图像文件像素值-Pixel-是多少" class="headerlink" title="71. 承上题,参考David_USB_8GB.e01,已删除文件的图像文件像素值(Pixel)是多少?"></a><strong>71. 承上题,参考David_USB_8GB.e01,已删除文件的图像文件像素值(Pixel)是多少?</strong></h4>
+      <p>A) 1000 x 2000</p>
+<p>B) 2000 x 3000</p>
+<p>C) 3000 x 4000</p>
+<p>D) 4000 x 5000</p>
+<p><strong>答案：C) 3000 x 4000</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/76.png"></p>
+
+        <h4 id="72-承上题-参考David-USB-8GB-e01-已删除图像文件是用哪个品牌和型号的手机拍摄">
+          <a href="#72-承上题-参考David-USB-8GB-e01-已删除图像文件是用哪个品牌和型号的手机拍摄" class="heading-link"><i class="fas fa-link"></i></a><a href="#72-承上题-参考David-USB-8GB-e01-已删除图像文件是用哪个品牌和型号的手机拍摄" class="headerlink" title="72. 承上题,参考David_USB_8GB.e01,已删除图像文件是用哪个品牌和型号的手机拍摄?"></a><strong>72. 承上题,参考David_USB_8GB.e01,已删除图像文件是用哪个品牌和型号的手机拍摄?</strong></h4>
+      <p>A) SAMSUNG SM-A425</p>
+<p>B) SAMSUNG SM-A4580</p>
+<p>C) SAMSUNG SM-A4260</p>
+<p>D) SAMSUNG SM-A5G</p>
+<p><strong>答案：C) SAMSUNG SM-A4260</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/77.png"></p>
+
+        <h4 id="73-在-U盘中-你还发现了一个exe文件-但它被锁定-可能需要进行反编译以便进一步检查｡参考David-USB-8GB-e01-使用x64dbg的字符串搜索-String-Search-功能-在Bitlocker-exe中查找哪个字符串最有可能与显示的登录状态有关">
+          <a href="#73-在-U盘中-你还发现了一个exe文件-但它被锁定-可能需要进行反编译以便进一步检查｡参考David-USB-8GB-e01-使用x64dbg的字符串搜索-String-Search-功能-在Bitlocker-exe中查找哪个字符串最有可能与显示的登录状态有关" class="heading-link"><i class="fas fa-link"></i></a><a href="#73-在-U盘中-你还发现了一个exe文件-但它被锁定-可能需要进行反编译以便进一步检查｡参考David-USB-8GB-e01-使用x64dbg的字符串搜索-String-Search-功能-在Bitlocker-exe中查找哪个字符串最有可能与显示的登录状态有关" class="headerlink" title="73. 在 U盘中,你还发现了一个exe文件,但它被锁定,可能需要进行反编译以便进一步检查｡参考David_USB_8GB.e01,使用x64dbg的字符串搜索(String Search)功能,在Bitlocker.exe中查找哪个字符串最有可能与显示的登录状态有关?"></a><strong>73. 在 U盘中,你还发现了一个exe文件,但它被锁定,可能需要进行反编译以便进一步检查｡参考David_USB_8GB.e01,使用x64dbg的字符串搜索(String Search)功能,在Bitlocker.exe中查找哪个字符串最有可能与显示的登录状态有关?</strong></h4>
+      <p>A) Welcome</p>
+<p>B) Invalid input</p>
+<p>C) Login Successful!</p>
+<p>D) Access Denied</p>
+<p><strong>答案：C) Login Successful!</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/78.png"></p>
+
+        <h4 id="74-承上題-当找到控制登录成功的逻辑代码时-如何修改汇编代码-Assembly-Code-来绕过检查-达到任意输入，都成功登录的效果">
+          <a href="#74-承上題-当找到控制登录成功的逻辑代码时-如何修改汇编代码-Assembly-Code-来绕过检查-达到任意输入，都成功登录的效果" class="heading-link"><i class="fas fa-link"></i></a><a href="#74-承上題-当找到控制登录成功的逻辑代码时-如何修改汇编代码-Assembly-Code-来绕过检查-达到任意输入，都成功登录的效果" class="headerlink" title="74. 承上題,当找到控制登录成功的逻辑代码时,如何修改汇编代码(Assembly Code)来绕过检查,达到任意输入，都成功登录的效果?"></a><strong>74. 承上題,当找到控制登录成功的逻辑代码时,如何修改汇编代码(Assembly Code)来绕过检查,达到任意输入，都成功登录的效果?</strong></h4>
+      <p>A) 修改CMP指令,使其总是比较相等</p>
+<p>B) 修改CMP 指令後的跳转指令JNE 為nop,使跳转指令失效</p>
+<p>C) 修改MOV指令,使其移动错误的数据</p>
+<p>D) 修改TEST 指令後的跳转指令JNE 為nop,使跳转指令失效</p>
+<p>感觉B和D都可以。。。</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/79.png"></p>
+
+        <h4 id="75-参考David-USB-8GB-e01-Bitlocker-exe的正确用户登录名称是">
+          <a href="#75-参考David-USB-8GB-e01-Bitlocker-exe的正确用户登录名称是" class="heading-link"><i class="fas fa-link"></i></a><a href="#75-参考David-USB-8GB-e01-Bitlocker-exe的正确用户登录名称是" class="headerlink" title="75. 参考David_USB_8GB.e01,Bitlocker.exe的正确用户登录名称是?"></a><strong>75. 参考David_USB_8GB.e01,Bitlocker.exe的正确用户登录名称是?</strong></h4>
+      <p><strong>答案：david1337</strong></p>
+<p>通过String窗口定位到这一部分代码</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/80.png"></p>
+<p>其中有一个验证的逻辑：</p>
+<figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">v2 = String;</span><br><span class="line">  v3 = <span class="string">&quot;david1337&quot;</span> - String;</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v4 = *v2;</span><br><span class="line">    <span class="keyword">if</span> ( *v2 != v2[v3] )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    ++v2;</span><br><span class="line">    <span class="keyword">if</span> ( !v4 )</span><br><span class="line">    &#123;</span><br><span class="line">      v5 = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_6;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  v5 = v4 &lt; (<span class="type">unsigned</span> __int8)v2[v3] ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">LABEL_6:</span><br><span class="line">  <span class="keyword">if</span> ( v5 )</span><br><span class="line">    <span class="keyword">goto</span> LABEL_18;</span><br></pre></td></tr></table></div></figure>
+
+<ol>
+<li><p><strong>初始化变量：</strong></p>
+<ul>
+<li><code>v2 = String</code>：指向用户输入的字符串 <code>String</code>。</li>
+<li><code>v3 = &quot;david1337&quot; - String</code>：计算常量字符串 <code>&quot;david1337&quot;</code> 和 <code>String</code> 在内存中的偏移值。</li>
+</ul>
+<p><strong>循环逐字符比较：</strong></p>
+<ul>
+<li>每次从 <code>String</code> 和 <code>&quot;david1337&quot;</code> 中取出对应字符，比较两者是否相等。</li>
+<li>如果字符不相等，退出循环，<code>v5</code> 的值表示比较结果。</li>
+</ul>
+<p><strong>结束条件：</strong></p>
+<ul>
+<li>如果两字符串完全匹配，<code>v5 = 0</code>。</li>
+<li>如果某字符不匹配，<code>v5</code> 根据大小关系被赋值为 <code>-1</code> 或 <code>1</code>。</li>
+</ul>
+<p><strong>验证结果：</strong></p>
+<ul>
+<li>如果 <code>v5 != 0</code>，跳转到 <code>LABEL_18</code>，处理验证失败逻辑。</li>
+</ul>
+</li>
+</ol>
+<p>此时猜测这个为用户名。</p>
+
+        <h4 id="76-参考David-USB-8GB-e01-Bitlocker-exe的正确登录密码是">
+          <a href="#76-参考David-USB-8GB-e01-Bitlocker-exe的正确登录密码是" class="heading-link"><i class="fas fa-link"></i></a><a href="#76-参考David-USB-8GB-e01-Bitlocker-exe的正确登录密码是" class="headerlink" title="76. 参考David_USB_8GB.e01,Bitlocker.exe的正确登录密码是?"></a><strong>76. 参考David_USB_8GB.e01,Bitlocker.exe的正确登录密码是?</strong></h4>
+      <p><strong>答案：1337david</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/81.png"></p>
+<p>此时的逻辑判断如下</p>
+<figure class="highlight c"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> v6 = v27;</span><br><span class="line">  v7 = <span class="string">&quot;1337david&quot;</span> - v27;</span><br><span class="line">  <span class="keyword">while</span> ( <span class="number">1</span> )</span><br><span class="line">  &#123;</span><br><span class="line">    v8 = *v6;</span><br><span class="line">    <span class="keyword">if</span> ( *v6 != v6[v7] )</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    ++v6;</span><br><span class="line">    <span class="keyword">if</span> ( !v8 )</span><br><span class="line">    &#123;</span><br><span class="line">      v9 = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">goto</span> LABEL_12;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  v9 = v8 &lt; (<span class="type">unsigned</span> __int8)v6[v7] ? <span class="number">-1</span> : <span class="number">1</span>;</span><br><span class="line">LABEL_12:</span><br><span class="line">  <span class="keyword">if</span> ( v9 )</span><br><span class="line">  &#123;</span><br><span class="line">LABEL_18:</span><br></pre></td></tr></table></div></figure>
+
+<p><strong>初始化变量：</strong></p>
+<ul>
+<li><code>v6 = v27</code>：指向用户输入的字符串 <code>v27</code>。</li>
+<li><code>v7 = &quot;1337david&quot; - v27</code>：计算常量字符串 <code>&quot;1337david&quot;</code> 和 <code>v27</code> 在内存中的偏移值。</li>
+</ul>
+<p><strong>循环逐字符比较：</strong></p>
+<ul>
+<li>从 <code>v27</code> 和 <code>&quot;1337david&quot;</code> 中取出对应字符，比较两者是否相等。</li>
+<li>如果字符不相等，退出循环。</li>
+</ul>
+<p><strong>结束条件：</strong></p>
+<ul>
+<li>如果匹配，<code>v9 = 0</code>。</li>
+<li>如果不匹配，<code>v9</code> 根据大小关系被赋值为 <code>-1</code> 或 <code>1</code>。</li>
+</ul>
+<p><strong>验证结果：</strong></p>
+<ul>
+<li>如果 <code>v9 != 0</code>，则跳转到失败处理逻辑（弹窗提示等）。</li>
+</ul>
+<p>此时可以猜测为密码。</p>
+
+        <h4 id="77-参考David-USB-8GB-e01-当Bitlocker-exe程序尝试显示登录结果（成功或失败）时-使用了哪一种途径来决定显示的消息">
+          <a href="#77-参考David-USB-8GB-e01-当Bitlocker-exe程序尝试显示登录结果（成功或失败）时-使用了哪一种途径来决定显示的消息" class="heading-link"><i class="fas fa-link"></i></a><a href="#77-参考David-USB-8GB-e01-当Bitlocker-exe程序尝试显示登录结果（成功或失败）时-使用了哪一种途径来决定显示的消息" class="headerlink" title="77. 参考David_USB_8GB.e01,当Bitlocker.exe程序尝试显示登录结果（成功或失败）时,使用了哪一种途径来决定显示的消息?"></a><strong>77. 参考David_USB_8GB.e01,当Bitlocker.exe程序尝试显示登录结果（成功或失败）时,使用了哪一种途径来决定显示的消息?</strong></h4>
+      <p>A) 通过检查某个寄存器的值来决定跳转到不同的汇编代码区段</p>
+<p>B) 通过调用硬编码的内存地址来显示特定的消息框</p>
+<p>C) 通过堆栈中的返回地址来确定要显示的消息</p>
+<p>D) 通过逐位操作来修改显示消息的字符串内容</p>
+<p><strong>答案：A) 通过检查某个寄存器的值来决定跳转到不同的汇编代码区段</strong></p>
+<p>通过寄存器v5、v9的值来判断：</p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/82.png"></p>
+
+        <h4 id="78-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的字节的内存偏移量-Memory-Offset-（相对于基址”bitlocker-exe”）是什么">
+          <a href="#78-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的字节的内存偏移量-Memory-Offset-（相对于基址”bitlocker-exe”）是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#78-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的字节的内存偏移量-Memory-Offset-（相对于基址”bitlocker-exe”）是什么" class="headerlink" title="78. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的字节的内存偏移量(Memory Offset)（相对于基址”bitlocker.exe”）是什么?"></a><strong>78. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的字节的内存偏移量(Memory Offset)（相对于基址”bitlocker.exe”）是什么?</strong></h4>
+      <p>A) 0xA0B2</p>
+<p>B) 0x808C</p>
+<p>C) 0xA0C8</p>
+<p>D) 0xA0E0</p>
+<p><strong>答案：B) 0x808C</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/83.png"></p>
+
+        <h4 id="79-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的内存偏移量-Memory-Offset-后-应该如何利用它来进行解密">
+          <a href="#79-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的内存偏移量-Memory-Offset-后-应该如何利用它来进行解密" class="heading-link"><i class="fas fa-link"></i></a><a href="#79-参考David-USB-8GB-e01-决定能否解密-Bitlocker-Key-的内存偏移量-Memory-Offset-后-应该如何利用它来进行解密" class="headerlink" title="79. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的内存偏移量(Memory Offset)后,应该如何利用它来进行解密?"></a><strong>79. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的内存偏移量(Memory Offset)后,应该如何利用它来进行解密?</strong></h4>
+      <p>A) 将该偏移量处的值改为 1 (true),以启用解密过程</p>
+<p>B) 将该偏移量处的值改为 0 (false),以重新初始化加密过程</p>
+<p>C) 将该偏移量的内容保存到档中以作解密过程中的key</p>
+<p>D) 清空该偏移量的内存并强制退出程序</p>
+<p>此时先进行尝试先将寄存器的值改为非0</p>
+<p><strong>答案：A) 将该偏移量处的值改为 1 (true),以启用解密过程</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/85.png"></p>
+
+        <h4 id="80-参考David-USB-8GB-e01-解密后的-Bitlocker-Key-是">
+          <a href="#80-参考David-USB-8GB-e01-解密后的-Bitlocker-Key-是" class="heading-link"><i class="fas fa-link"></i></a><a href="#80-参考David-USB-8GB-e01-解密后的-Bitlocker-Key-是" class="headerlink" title="80. 参考David_USB_8GB.e01,解密后的 Bitlocker Key 是?"></a><strong>80. 参考David_USB_8GB.e01,解密后的 Bitlocker Key 是?</strong></h4>
+      <p>A) 299255-418649-198198-616891-099682-482306-642609-483527</p>
+<p>B) 745823-918273-564738-290183-475920-182736-594827-162839</p>
+<p>C) 539823-847291-094857-194756-382910-472918-482937-120984</p>
+<p>D) 829384-192837-475910-298374-019283-847362-564738-293847</p>
+<p><strong>答案：A) 299255-418649-198198-616891-099682-482306-642609-483527</strong></p>
+<p>这个时候将断点下在进行判断前：</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/86.png"></p>
+<p>根据上一题得选项进行动调后发现可以得到密钥</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/85.png"></p>
+
+        <h2 id="David-Laptop-64GB-e01">
+          <a href="#David-Laptop-64GB-e01" class="heading-link"><i class="fas fa-link"></i></a><a href="#David-Laptop-64GB-e01" class="headerlink" title="David_Laptop_64GB.e01"></a>David_Laptop_64GB.e01</h2>
+      
+        <h4 id="81-到目前为止-你已经获得了-BitLocker-密钥以解密-D盤-通过对David-笔记本电脑D盤的分析-并发现了一些重要信息｡你现在将继续调查未加密的-C盤｡-参考David-Laptop-64GB-e01-分区格式-Partition-是">
+          <a href="#81-到目前为止-你已经获得了-BitLocker-密钥以解密-D盤-通过对David-笔记本电脑D盤的分析-并发现了一些重要信息｡你现在将继续调查未加密的-C盤｡-参考David-Laptop-64GB-e01-分区格式-Partition-是" class="heading-link"><i class="fas fa-link"></i></a><a href="#81-到目前为止-你已经获得了-BitLocker-密钥以解密-D盤-通过对David-笔记本电脑D盤的分析-并发现了一些重要信息｡你现在将继续调查未加密的-C盤｡-参考David-Laptop-64GB-e01-分区格式-Partition-是" class="headerlink" title="81. 到目前为止,你已经获得了 BitLocker 密钥以解密 D盤,通过对David 笔记本电脑D盤的分析,并发现了一些重要信息｡你现在将继续调查未加密的 C盤｡ 参考David_Laptop_64GB.e01,分区格式(Partition)是?"></a><strong>81. 到目前为止,你已经获得了 BitLocker 密钥以解密 D盤,通过对David 笔记本电脑D盤的分析,并发现了一些重要信息｡你现在将继续调查未加密的 C盤｡ 参考David_Laptop_64GB.e01,分区格式(Partition)是?</strong></h4>
+      <p>A) MBR</p>
+<p>B) GPT</p>
+<p>C) RAW</p>
+<p><strong>答案：B) GPT</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/88.png"></p>
+
+        <h4 id="82-参考David-Laptop-64GB-e01-该e01-成功提取的日期和时间是">
+          <a href="#82-参考David-Laptop-64GB-e01-该e01-成功提取的日期和时间是" class="heading-link"><i class="fas fa-link"></i></a><a href="#82-参考David-Laptop-64GB-e01-该e01-成功提取的日期和时间是" class="headerlink" title="82. 参考David_Laptop_64GB.e01,该e01 成功提取的日期和时间是?"></a><strong>82. 参考David_Laptop_64GB.e01,该e01 成功提取的日期和时间是?</strong></h4>
+      <p>A) 2024-09-05 15:55:28</p>
+<p>B) 2024-09-02 11:52:31</p>
+<p>C) 2024-09-03 14:37:28</p>
+<p>D) 2024-09-03 12:16:49</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/89.png"></p>
+
+        <h4 id="83-参考David-Laptop-64GB-e01-最后登录的用户是谁-答案格式-大写英文字母-小写英文字母和空格混合组成-例如-Tom-Hanks">
+          <a href="#83-参考David-Laptop-64GB-e01-最后登录的用户是谁-答案格式-大写英文字母-小写英文字母和空格混合组成-例如-Tom-Hanks" class="heading-link"><i class="fas fa-link"></i></a><a href="#83-参考David-Laptop-64GB-e01-最后登录的用户是谁-答案格式-大写英文字母-小写英文字母和空格混合组成-例如-Tom-Hanks" class="headerlink" title="83. 参考David_Laptop_64GB.e01,最后登录的用户是谁?(答案格式:大写英文字母,小写英文字母和空格混合组成,例如:Tom Hanks)"></a><strong>83. 参考David_Laptop_64GB.e01,最后登录的用户是谁?(答案格式:大写英文字母,小写英文字母和空格混合组成,例如:Tom Hanks)</strong></h4>
+      <p> <strong>答案：David Tenth</strong><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/90.png"></p>
+
+        <h4 id="84-参考David-Laptop-64GB-e01-用户配置的时区是">
+          <a href="#84-参考David-Laptop-64GB-e01-用户配置的时区是" class="heading-link"><i class="fas fa-link"></i></a><a href="#84-参考David-Laptop-64GB-e01-用户配置的时区是" class="headerlink" title="84. 参考David_Laptop_64GB.e01,用户配置的时区是?"></a><strong>84. 参考David_Laptop_64GB.e01,用户配置的时区是?</strong></h4>
+      <p>A) Australian Central Time</p>
+<p>B) China Standard Time</p>
+<p>C) New Zealand Standard Time</p>
+<p>D) Nepal Time</p>
+<p><strong>答案：B) China Standard Time</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/91.png"></p>
+
+        <h4 id="85-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个设备">
+          <a href="#85-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个设备" class="heading-link"><i class="fas fa-link"></i></a><a href="#85-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个设备" class="headerlink" title="85. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个设备?"></a><strong>85. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个设备?</strong></h4>
+      <p>A) 1</p>
+<p>B) 2</p>
+<p>C) 3</p>
+<p>D) 4</p>
+<p><strong>答案：C) 3</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/92.png"></p>
+
+        <h4 id="86-参考David-Laptop-64GB-e01-David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具-答案格式-请以大寫英文字母作答，无须留空白位">
+          <a href="#86-参考David-Laptop-64GB-e01-David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具-答案格式-请以大寫英文字母作答，无须留空白位" class="heading-link"><i class="fas fa-link"></i></a><a href="#86-参考David-Laptop-64GB-e01-David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具-答案格式-请以大寫英文字母作答，无须留空白位" class="headerlink" title="86. 参考David_Laptop_64GB.e01,David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具?答案格式:请以大寫英文字母作答，无须留空白位)"></a><strong>86. 参考David_Laptop_64GB.e01,David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具?答案格式:请以大寫英文字母作答，无须留空白位)</strong></h4>
+      <p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/96.png"></p>
+
+        <h4 id="87-参考David-Laptop-64GB-e01-根据用户配置文件中的-lnk文件-最后访问的文件名称是">
+          <a href="#87-参考David-Laptop-64GB-e01-根据用户配置文件中的-lnk文件-最后访问的文件名称是" class="heading-link"><i class="fas fa-link"></i></a><a href="#87-参考David-Laptop-64GB-e01-根据用户配置文件中的-lnk文件-最后访问的文件名称是" class="headerlink" title="87. 参考David_Laptop_64GB.e01,根据用户配置文件中的.lnk文件,最后访问的文件名称是?"></a><strong>87. 参考David_Laptop_64GB.e01,根据用户配置文件中的.lnk文件,最后访问的文件名称是?</strong></h4>
+      <p>A) 下載</p>
+<p>B) export-token</p>
+<p>C) RAM_Capture_DaviD</p>
+<p>D) 本機磁碟(E) (2)</p>
+<p><strong>答案：A) 下載</strong></p>
+<p>在这个目录下查看：<code>\Users\David Tenth\AppData\Roaming\Microsoft\Windows\Recent</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/93.png"></p>
+
+        <h4 id="88-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个不同的Wi-Fi">
+          <a href="#88-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个不同的Wi-Fi" class="heading-link"><i class="fas fa-link"></i></a><a href="#88-参考David-Laptop-64GB-e01-David的笔记本电脑曾經连接了多少个不同的Wi-Fi" class="headerlink" title="88. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个不同的Wi-Fi?"></a><strong>88. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个不同的Wi-Fi?</strong></h4>
+      <p>A) 1</p>
+<p>B) 2</p>
+<p>C) 3</p>
+<p>D) 4</p>
+<p><strong>答案：A) 1</strong></p>
+<p>在这个目录下查看：<code>\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces\&#123;7723ACF1-D79C-419D-8BB3-4880B8A279C5&#125;</code></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/94.png"></p>
+
+        <h4 id="89-承上题-参考David-Laptop-64GB-e01-该Wi-Fi网络的名称-SSID-是-答案格式-大写英文字母和小写英文字母混合组成">
+          <a href="#89-承上题-参考David-Laptop-64GB-e01-该Wi-Fi网络的名称-SSID-是-答案格式-大写英文字母和小写英文字母混合组成" class="heading-link"><i class="fas fa-link"></i></a><a href="#89-承上题-参考David-Laptop-64GB-e01-该Wi-Fi网络的名称-SSID-是-答案格式-大写英文字母和小写英文字母混合组成" class="headerlink" title="89. 承上题,参考David_Laptop_64GB.e01,该Wi-Fi网络的名称(SSID)是?答案格式:大写英文字母和小写英文字母混合组成)"></a><strong>89. 承上题,参考David_Laptop_64GB.e01,该Wi-Fi网络的名称(SSID)是?答案格式:大写英文字母和小写英文字母混合组成)</strong></h4>
+      <p><strong>答案：ErrorError5G</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/94.png"></p>
+
+        <h4 id="90-参考David-Laptop-64GB-e01-该电脑的Windows操作系统的安装日期是什么">
+          <a href="#90-参考David-Laptop-64GB-e01-该电脑的Windows操作系统的安装日期是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#90-参考David-Laptop-64GB-e01-该电脑的Windows操作系统的安装日期是什么" class="headerlink" title="90. 参考David_Laptop_64GB.e01,该电脑的Windows操作系统的安装日期是什么?"></a><strong>90. 参考David_Laptop_64GB.e01,该电脑的Windows操作系统的安装日期是什么?</strong></h4>
+      <p>A) 2024-07-31 09:55:37 UTC+8</p>
+<p>B) 2024-08-01 13:10:15 UTC+8</p>
+<p>C) 2024-07-31 10:18:26 UTC+8</p>
+<p>D) 2024-08-01 14:43:55 UTC+8</p>
+<p><strong>答案：C) 2024-07-31 10:18:26 UTC+8</strong></p>
+<p>可以去看注册表</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/95.png"></p>
+
+        <h2 id="虚拟货币取证">
+          <a href="#虚拟货币取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#虚拟货币取证" class="headerlink" title="虚拟货币取证"></a>虚拟货币取证</h2>
+      
+        <h4 id="91-通过对David-笔记本电脑的电子数据取证和痕迹分析-你了解到David是一名-cryptocurrency-专家｡假設虚拟貨幣International-Digital-Forensics-Coin-IDFC-面值是每1個IDFC等如1-HKDIDFC-Token-Address-0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈-Binance-Smart-Chain-n下列那个网站能够找到区块链-Binance-Smart-Chain的交易记录">
+          <a href="#91-通过对David-笔记本电脑的电子数据取证和痕迹分析-你了解到David是一名-cryptocurrency-专家｡假設虚拟貨幣International-Digital-Forensics-Coin-IDFC-面值是每1個IDFC等如1-HKDIDFC-Token-Address-0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈-Binance-Smart-Chain-n下列那个网站能够找到区块链-Binance-Smart-Chain的交易记录" class="heading-link"><i class="fas fa-link"></i></a><a href="#91-通过对David-笔记本电脑的电子数据取证和痕迹分析-你了解到David是一名-cryptocurrency-专家｡假設虚拟貨幣International-Digital-Forensics-Coin-IDFC-面值是每1個IDFC等如1-HKDIDFC-Token-Address-0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈-Binance-Smart-Chain-n下列那个网站能够找到区块链-Binance-Smart-Chain的交易记录" class="headerlink" title="91. 通过对David 笔记本电脑的电子数据取证和痕迹分析,你了解到David是一名 cryptocurrency 专家｡假設虚拟貨幣International Digital Forensics Coin (IDFC)面值是每1個IDFC等如1-HKDIDFC Token Address: 0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈: Binance Smart Chain)\n下列那个网站能够找到区块链:Binance Smart Chain的交易记录?"></a><strong>91. 通过对David 笔记本电脑的电子数据取证和痕迹分析,你了解到David是一名 cryptocurrency 专家｡假設虚拟貨幣International Digital Forensics Coin (IDFC)面值是每1個IDFC等如1-HKDIDFC Token Address: 0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈: Binance Smart Chain)\n下列那个网站能够找到区块链:Binance Smart Chain的交易记录?</strong></h4>
+      <p>A) binance.com</p>
+<p>B) bscscan.com</p>
+<p>C) etherscan.io</p>
+<p>D) blockchain.com</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/97.png"></p>
+<p>去看数据库也行</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/98.png"></p>
+
+        <h4 id="92-参考Emma-Mobile-zip中的微信聊天记录分析-Emma用什么方法盜取David的IDFC">
+          <a href="#92-参考Emma-Mobile-zip中的微信聊天记录分析-Emma用什么方法盜取David的IDFC" class="heading-link"><i class="fas fa-link"></i></a><a href="#92-参考Emma-Mobile-zip中的微信聊天记录分析-Emma用什么方法盜取David的IDFC" class="headerlink" title="92. 参考Emma_Mobile.zip中的微信聊天记录分析,Emma用什么方法盜取David的IDFC?"></a><strong>92. 参考Emma_Mobile.zip中的微信聊天记录分析,Emma用什么方法盜取David的IDFC?</strong></h4>
+      <p>A) Emma经Clara盗取了David虚拟货币钱包的私匙(Private Key)</p>
+<p>B) Emma经Clara盗取了David虚拟货币钱包的公匙(Public Key)</p>
+<p>C) Emma经Clara盗取了David虚拟货币钱包的回复匙(Recovery seed)</p>
+<p>D) Emma盗取了David电话</p>
+<p><strong>答案：C) Emma经Clara盗取了David虚拟货币钱包的回复匙(Recovery seed)</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/21.png"></p>
+
+        <h4 id="93-根据David-Emma及Clara的微信对话-David在什么日期时间发现IDFC被盗">
+          <a href="#93-根据David-Emma及Clara的微信对话-David在什么日期时间发现IDFC被盗" class="heading-link"><i class="fas fa-link"></i></a><a href="#93-根据David-Emma及Clara的微信对话-David在什么日期时间发现IDFC被盗" class="headerlink" title="93. 根据David,Emma及Clara的微信对话,David在什么日期时间发现IDFC被盗?"></a><strong>93. 根据David,Emma及Clara的微信对话,David在什么日期时间发现IDFC被盗?</strong></h4>
+      <p>A) 2024-8-22 18:06</p>
+<p>B) 2024-8-28 09:14</p>
+<p>C) 2024-8-28 09:57 </p>
+<p>D) 2024-8-29 15:52</p>
+<p><strong>答案：C) 2024-8-28 09:57</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/99.png"></p>
+
+        <h4 id="94-参考Emma-Mobile-zip中的微信对话分析-Emma为什么盜取David的IDFC">
+          <a href="#94-参考Emma-Mobile-zip中的微信对话分析-Emma为什么盜取David的IDFC" class="heading-link"><i class="fas fa-link"></i></a><a href="#94-参考Emma-Mobile-zip中的微信对话分析-Emma为什么盜取David的IDFC" class="headerlink" title="94. 参考Emma_Mobile.zip中的微信对话分析,Emma为什么盜取David的IDFC?"></a><strong>94. 参考Emma_Mobile.zip中的微信对话分析,Emma为什么盜取David的IDFC?</strong></h4>
+      <p>A) Emma为了买名贵手表</p>
+<p>B) Emma为了赌钱</p>
+<p>C) Emma为了炒卖虚拟货币</p>
+<p>D) Emma为了还财务公司的欠债</p>
+<p><strong>答案：D) Emma为了还财务公司的欠债</strong></p>
+
+        <h4 id="95-参考David-Laptop-64GB-e01及David-Emma及Clara的微信对话-分析IDFC的交易记录-Emma盜取了David虚拟货币钱包内哪个地址的IDFC">
+          <a href="#95-参考David-Laptop-64GB-e01及David-Emma及Clara的微信对话-分析IDFC的交易记录-Emma盜取了David虚拟货币钱包内哪个地址的IDFC" class="heading-link"><i class="fas fa-link"></i></a><a href="#95-参考David-Laptop-64GB-e01及David-Emma及Clara的微信对话-分析IDFC的交易记录-Emma盜取了David虚拟货币钱包内哪个地址的IDFC" class="headerlink" title="95. 参考David_Laptop_64GB.e01及David,Emma及Clara的微信对话,分析IDFC的交易记录,Emma盜取了David虚拟货币钱包内哪个地址的IDFC?"></a><strong>95. 参考David_Laptop_64GB.e01及David,Emma及Clara的微信对话,分析IDFC的交易记录,Emma盜取了David虚拟货币钱包内哪个地址的IDFC?</strong></h4>
+      <p>A) 0x10a4f01b80203591ccee76081a4489ae1cd1281c</p>
+<p>B) 0x152c90200be61a540875f2a752c328bd19dbfb87</p>
+<p>C) 0x59eb2c55eefdd4d8af2886c9fd8fc6f465c3e220</p>
+<p>D) 0x70544880875fe907cee383873ca58da23378caa5</p>
+<p><strong>答案：A) 0x10a4f01b80203591ccee76081a4489ae1cd1281c</strong></p>
+<p>Emma在26日14点半得知了回复种子，David在28日9点左右发现失窃；注意 导出表的时间为UTC要+8。经过筛选只有</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2024-8-27 2:25	0x726b6be688bd62bedb25a739f6eb1f2e15681d63	0x1f22f7cae7bbe6d79995fbe165b15d4e7232184c</span><br><span class="line">2024-8-27 4:45	0x10a4f01b80203591ccee76081a4489ae1cd1281c	0xb2e3dbea311511ec5bda3e85e061f15366f888a6</span><br></pre></td></tr></table></div></figure>
+
+<p>在时间范围之内，又因为地址<code>0x726b6be688bd62bedb25a739f6eb1f2e15681d63</code>在被发现之后依旧存在转账操作，所以只有<code>0x10a4f01b80203591ccee76081a4489ae1cd1281c</code>更加的可疑。</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/103.png"></p>
+
+        <h4 id="96-根据David-Emma及Clara的微信对话及IDFC的交易记录作分析-Emma总共盗取了David多少IDFC">
+          <a href="#96-根据David-Emma及Clara的微信对话及IDFC的交易记录作分析-Emma总共盗取了David多少IDFC" class="heading-link"><i class="fas fa-link"></i></a><a href="#96-根据David-Emma及Clara的微信对话及IDFC的交易记录作分析-Emma总共盗取了David多少IDFC" class="headerlink" title="96. 根据David,Emma及Clara的微信对话及IDFC的交易记录作分析,Emma总共盗取了David多少IDFC?"></a><strong>96. 根据David,Emma及Clara的微信对话及IDFC的交易记录作分析,Emma总共盗取了David多少IDFC?</strong></h4>
+      <p>A) 90,000 IDFC</p>
+<p>B) 170,000 IDFC</p>
+<p>C) 9,300,000 IDFC</p>
+<p>D) 9,390,000 IDFC</p>
+<p><strong>答案：A) 90,000 IDFC</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/104.png"></p>
+
+        <h4 id="97-根据Emma及Clara的微信对话-下列哪些地址是由相同的恢复短语-Recovery-Seed-所生成">
+          <a href="#97-根据Emma及Clara的微信对话-下列哪些地址是由相同的恢复短语-Recovery-Seed-所生成" class="heading-link"><i class="fas fa-link"></i></a><a href="#97-根据Emma及Clara的微信对话-下列哪些地址是由相同的恢复短语-Recovery-Seed-所生成" class="headerlink" title="97. 根据Emma及Clara的微信对话,下列哪些地址是由相同的恢复短语(Recovery Seed)所生成?"></a><strong>97. 根据Emma及Clara的微信对话,下列哪些地址是由相同的恢复短语(Recovery Seed)所生成?</strong></h4>
+      <p>A) 0x10a4f01b80203591ccee76081a4489ae1cd1281c</p>
+<p>B) 0x152c90200be61a540875f2a752c328bd19dbfb87</p>
+<p>C) 0x59eb2c55eefdd4d8af2886c9fd8fc6f465c3e220</p>
+<p>D) 0x63a8ba1df0404ee41f7c6af8efd2f54006f32042</p>
+<p><strong>答案：0x10a4f01b80203591ccee76081a4489ae1cd1281c、0x152c90200be61a540875f2a752c328bd19dbfb870x59eb2c55eefdd4d8af2886c9fd8fc6f465c3e220</strong></p>
+<p>使用种子恢复工具：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://iancoleman.io/bip39/#chinese_simplified">https://iancoleman.io/bip39/#chinese_simplified</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/105.png"></p>
+<p>查看</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/106.png"></p>
+
+        <h4 id="98-根据IDFC的交易记录作分析-总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c">
+          <a href="#98-根据IDFC的交易记录作分析-总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c" class="heading-link"><i class="fas fa-link"></i></a><a href="#98-根据IDFC的交易记录作分析-总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c" class="headerlink" title="98. 根据IDFC的交易记录作分析,总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c?"></a><strong>98. 根据IDFC的交易记录作分析,总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c?</strong></h4>
+      <p>A) 0</p>
+<p>B) 1</p>
+<p>C) 2</p>
+<p>D) 3</p>
+<p><strong>答案：B) 1</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/107.png"></p>
+
+        <h4 id="99-参考David-Laptop-64GB-e01-在David计算机的D盘内有一张图片-根据图片上的信息-找出David另一个虚拟货币钱包的恢复短语-2-Recovery-Seed-下列哪一个单词是在此恢复短语-2-Recovery-Seed-内">
+          <a href="#99-参考David-Laptop-64GB-e01-在David计算机的D盘内有一张图片-根据图片上的信息-找出David另一个虚拟货币钱包的恢复短语-2-Recovery-Seed-下列哪一个单词是在此恢复短语-2-Recovery-Seed-内" class="heading-link"><i class="fas fa-link"></i></a><a href="#99-参考David-Laptop-64GB-e01-在David计算机的D盘内有一张图片-根据图片上的信息-找出David另一个虚拟货币钱包的恢复短语-2-Recovery-Seed-下列哪一个单词是在此恢复短语-2-Recovery-Seed-内" class="headerlink" title="99. 参考David_Laptop_64GB.e01,在David计算机的D盘内有一张图片,根据图片上的信息,找出David另一个虚拟货币钱包的恢复短语(2)(Recovery Seed),下列哪一个单词是在此恢复短语(2)(Recovery Seed)内?"></a><strong>99. 参考David_Laptop_64GB.e01,在David计算机的D盘内有一张图片,根据图片上的信息,找出David另一个虚拟货币钱包的恢复短语(2)(Recovery Seed),下列哪一个单词是在此恢复短语(2)(Recovery Seed)内?</strong></h4>
+      <p>A) fall</p>
+<p>B) bread</p>
+<p>C) brain</p>
+<p>D) dove</p>
+<p><strong>答案：D) dove</strong></p>
+<p> <img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/101.png"></p>
+<p>此时只出现了两个恢复词，我们将目光转到David电脑的内存镜像；对关键词进行检索</p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/102.png"></p>
+<p>结果为<code>infant fragile garlic bracket stove blade stick dove aerobic spin term educate</code></p>
+
+        <h4 id="100-承上题-参考David-Laptop-64GB-e01-在IDFC的交易记录中-下列哪些地址由上述恢复短语-2-Recovery-Seed-所生成">
+          <a href="#100-承上题-参考David-Laptop-64GB-e01-在IDFC的交易记录中-下列哪些地址由上述恢复短语-2-Recovery-Seed-所生成" class="heading-link"><i class="fas fa-link"></i></a><a href="#100-承上题-参考David-Laptop-64GB-e01-在IDFC的交易记录中-下列哪些地址由上述恢复短语-2-Recovery-Seed-所生成" class="headerlink" title="100. 承上题,参考David_Laptop_64GB.e01,在IDFC的交易记录中,下列哪些地址由上述恢复短语(2)(Recovery Seed)所生成?"></a><strong>100. 承上题,参考David_Laptop_64GB.e01,在IDFC的交易记录中,下列哪些地址由上述恢复短语(2)(Recovery Seed)所生成?</strong></h4>
+      <p>选择项:</p>
+<p>A) 0xb2e3dbea311511ec5bda3e85e061f15366f888a6<br>B) 0xe90ad3f80e39e83b533eef3ed23c641ec51089c6<br>C) 0x90f73497E4446f6Cf9881213C32D6af66d799fE5<br>D) 0x63a8ba1df0404ee41f7c6af8efd2f54006f32042</p>
+<p><strong>答案：0x90f73497E4446f6Cf9881213C32D6af66d799fE5、0x63a8ba1df0404ee41f7c6af8efd2f54006f32042</strong></p>
+<p><img src="/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/2.jpg"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/">https://hyggevv.github.io/2024/11/13/2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%9B/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2024/12/21/2024ciscnccb/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">第十八届全国大学生信息安全竞赛(创新实践能力赛)暨第二届“长城杯”铁人三项赛(防护赛)竞赛初赛</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2024/11/04/2024%E7%8D%AC%E8%B1%B8%E6%9D%AF/"><span class="paginator-prev__text">2024獬豸杯</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%88%E6%83%85%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">
+          案情简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%9B%E5%89%8D%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">
+          赛前准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E7%89%A9%E5%85%B3%E7%B3%BB%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">
+          人物关系分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9D%90%E5%88%97%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">
+          检材列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E5%9E%8B%E5%88%86%E6%9E%90"><span class="toc-number">2.3.</span> <span class="toc-text">
+          题型分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2024%E7%BE%8E%E4%BA%9A%E6%9D%AF%E4%B8%AA%E4%BA%BA%E8%B5%84%E6%A0%BC%E8%B5%9B%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">
+          2024美亚杯个人资格赛赛题解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Emma-Mobile-zip"><span class="toc-number">3.1.</span> <span class="toc-text">
+          Emma_Mobile.zip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Emma-%E5%B7%B2%E7%BB%8F%E5%87%A0%E5%A4%A9%E6%B2%A1%E6%9C%89%E6%94%B6%E5%88%B0%E5%A5%B9%E5%A7%90%E5%A7%90-Clara%E7%9A%84%E6%B6%88%E6%81%AF%E4%BA%86%EF%BC%8C%E6%8A%A5%E8%AD%A6%E5%A4%B1%E8%B8%AA-%E5%A5%B9%E7%84%A6%E8%99%91%E5%9C%B0%E5%B0%86%E6%89%8B%E6%9C%BA%E6%8F%90%E4%BA%A4%E7%BB%99%E8%AD%A6%E5%AF%9F-%E5%B8%8C%E6%9C%9B%E8%83%BD%E6%89%BE%E5%88%B0%E7%BA%BF%E7%B4%A2%EF%BD%A1%E8%AD%A6%E5%AF%9F%E5%B0%86%E6%89%8B%E6%9C%BA%E4%BA%A4%E7%BB%99%E4%BD%A0%E8%BF%9B%E8%A1%8C%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%EF%BD%A1%E4%BD%A0%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E4%BA%86Emma%E6%89%8B%E6%9C%BA%E7%9A%84%E9%95%9C%E5%83%8F%EF%BD%A1-%E8%AF%B7%E6%A0%B9%E6%8D%AE%E5%8F%96%E8%AF%81%E7%BB%93%E6%9E%9C%E5%9B%9E%E7%AD%94%E4%BB%A5%E4%B8%8B%E9%97%AE%E9%A2%98%EF%BD%A1%E6%A0%B9%E6%8D%AEEmma-Mobile-zip-Emma%E5%92%8CClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95-Emma%E6%9C%80%E5%90%8E%E5%88%B0%E8%AD%A6%E7%BD%B2%E6%8A%A5%E6%A1%88%E5%B9%B6%E6%8B%8D%E6%91%84%E5%86%99%E6%9C%89%E6%8A%A5%E6%A1%88%E7%BC%96%E5%8F%B7%E7%9A%84%E5%8D%A1%E7%89%87-%E6%8B%8D%E6%91%84%E6%97%B6%E7%9A%84%E7%BB%8F%E7%BA%AC%E5%BA%A6%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.1.0.1.</span> <span class="toc-text">
+          1. Emma 已经几天没有收到她姐姐 Clara的消息了，报警失踪, 她焦虑地将手机提交给警察,希望能找到线索｡警察将手机交给你进行电子数据取证｡你成功提取了Emma手机的镜像｡ 请根据取证结果回答以下问题｡根据Emma_Mobile.zip, Emma和Clara的微信聊天记录,Emma最后到警署报案并拍摄写有报案编号的卡片,拍摄时的经纬度是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A0%B9%E6%8D%AEEmma-Mobile-zip-2024%E5%B9%B48%E6%9C%8830%E6%97%A5%E4%B8%8B%E5%8D%88%E4%B8%A4%E7%82%B9%E5%90%8EEmma%E5%85%B1%E8%87%B4%E7%94%B5Clara%E5%A4%9A%E5%B0%91%E6%AC%A1"><span class="toc-number">3.1.0.2.</span> <span class="toc-text">
+          2. 根据Emma_Mobile.zip, 2024年8月30日下午两点后Emma共致电Clara多少次?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%A0%B9%E6%8D%AEEmma%E5%92%8CClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95-Clara%E5%A4%B1%E8%B8%AA%E5%89%8D%E6%9B%BE%E5%91%8A%E8%AF%89Emma%E4%BC%9A%E5%88%B0%E5%93%AA%E9%87%8C"><span class="toc-number">3.1.0.3.</span> <span class="toc-text">
+          3. 根据Emma和Clara的微信聊天记录,Clara失踪前曾告诉Emma会到哪里?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%9A%84iPhone-XR%E5%86%85%E5%BE%AE%E4%BF%A1%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%89%88%E6%9C%AC%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.1.0.4.</span> <span class="toc-text">
+          4. 参考Emma_Mobile.zip, Emma的iPhone XR内微信应用程序的版本是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E6%89%8B%E6%9C%BA%E4%B8%AD%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%AA%E9%80%89%E9%A1%B9%E6%98%AF%E6%AD%A3%E7%A1%AE%E7%9A%84"><span class="toc-number">3.1.0.5.</span> <span class="toc-text">
+          5. 参考Emma_Mobile.zip, Emma手机中下列哪个选项是正确的?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma-%E6%89%8B%E6%9C%BA%E4%B8%AD-Apple-ID-%E7%9A%84%E6%B3%A8%E5%86%8C%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.1.0.6.</span> <span class="toc-text">
+          6. 参考Emma_Mobile.zip,Emma 手机中 Apple ID 的注册电子邮箱是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%8F%82%E8%80%83Emma-Mobile-zip-%E5%9C%A82024%E5%B9%B4-Emma-%E6%89%8B%E6%9C%BA%E4%B8%8A%E6%9B%BE%E8%AE%B0%E5%BD%95%E7%9A%84%E7%94%B5%E8%AF%9D%E5%8D%A1%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E5%8D%A1%E6%A0%87%E8%AF%86%E7%AC%A6-ICCID-%E6%98%AF%E5%A4%9A%E5%B0%91-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E4%BD%BF%E7%94%A8%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E5%9B%9E%E7%AD%94"><span class="toc-number">3.1.0.7.</span> <span class="toc-text">
+          7. 参考Emma_Mobile.zip,在2024年,Emma 手机上曾记录的电话卡集成电路卡标识符 (ICCID) 是多少?(答案格式:只需使用阿拉伯数字回答)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma-%E6%89%8B%E6%9C%BA%E7%9A%84%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0-%E2%80%9CELK-BLEDOM%E2%80%9D-%E7%9A%84%E9%80%9A%E7%94%A8%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%E7%AC%A6-UUID-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.1.0.8.</span> <span class="toc-text">
+          8. 参考Emma_Mobile.zip,Emma 手机的蓝牙设备名称 “ELK-BLEDOM” 的通用唯一标识符 (UUID) 是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E4%BD%A0%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%BA%9B%E7%BA%BF%E7%B4%A2-Emma-%E7%9C%8B%E8%B5%B7%E6%9D%A5%E4%B9%9F%E5%BE%88%E5%8F%AF%E7%96%91-%E5%A5%B9%E4%BC%BC%E4%B9%8E%E8%83%8C%E8%B4%9F%E4%BA%86%E5%A4%A7%E9%87%8F%E5%80%BA%E5%8A%A1%EF%BD%A1%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma-%E6%89%8B%E6%9C%BA%E5%86%85Safari%E6%B5%8F%E8%A7%88%E8%AE%B0%E5%BD%95%E4%B8%AD%E7%BD%91%E9%A1%B5%E2%80%9Dhttps-racing-hkjc-com-quot-%E7%9A%84%E7%BD%91%E7%AB%99%E6%A0%87%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.1.0.9.</span> <span class="toc-text">
+          9. 你发现了一些线索,Emma 看起来也很可疑,她似乎背负了大量债务｡参考Emma_Mobile.zip,Emma 手机内Safari浏览记录中网页”https:&#x2F;&#x2F;racing.hkjc.com&#x2F;&quot;的网站标题是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E5%90%91Clara%E9%80%8F%E9%9C%B2%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0%E4%BB%A4Emma%E6%AC%A0%E4%B8%8B%E5%B7%A8%E5%80%BA"><span class="toc-number">3.1.0.10.</span> <span class="toc-text">
+          10. 参考Emma_Mobile.zip,Emma向Clara透露什么原因令Emma欠下巨债?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E5%8F%82%E8%80%83Emma-Mobile-zip-%E6%94%B6%E5%80%BA%E4%BA%BA%E8%A6%81%E6%B1%82Emma%E8%BF%98%E6%AC%BE%E6%95%B0%E9%87%8F"><span class="toc-number">3.1.0.11.</span> <span class="toc-text">
+          11. 参考Emma_Mobile.zip,收债人要求Emma还款数量?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%94%A8%E6%9D%A5%E6%B5%8F%E8%A7%88%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E7%9A%84%E7%BD%91%E5%9D%80"><span class="toc-number">3.1.0.12.</span> <span class="toc-text">
+          13. 参考Emma_Mobile.zip,Emma用来浏览虚拟货币的网址?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E5%8F%82%E8%80%83Emma-Mobile-zip%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%B0%E5%BD%95-%E6%9C%89%E5%A4%9A%E5%B0%91%E7%BD%91%E5%9D%80%E4%B8%8Ebet365%E6%9C%89%E5%85%B3"><span class="toc-number">3.1.0.13.</span> <span class="toc-text">
+          14. 参考Emma_Mobile.zip的浏览器记录,有多少网址与bet365有关?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E4%BD%A0%E8%BF%98%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%BA%9B%E4%B8%8E%E4%B8%8D%E5%BD%93%E4%BD%BF%E7%94%A8%E4%BB%96%E4%BA%BA%E5%8A%A0%E5%AF%86%E9%92%B1%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9A%84%E7%97%95%E8%BF%B9%EF%BD%A1%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%94%A8%E4%BA%86%E5%93%AA%E4%BA%9B%E6%81%A2%E5%A4%8D%E7%9F%AD%E8%AF%AD-Recovery-Phrase-%E8%BF%9B%E5%85%A5David%E7%9A%84%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E8%B4%A6%E6%88%B7"><span class="toc-number">3.1.0.14.</span> <span class="toc-text">
+          15. 你还发现了一些与不当使用他人加密钱包相关的痕迹｡参考Emma_Mobile.zip,Emma用了哪些恢复短语(Recovery Phrase)进入David的虚拟货币账户?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E4%BB%8EDavid%E5%A4%84%E7%AA%83%E5%8F%96%E7%9A%84%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E7%9A%84%E5%90%8D%E7%A7%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">3.1.0.15.</span> <span class="toc-text">
+          16. 参考Emma_Mobile.zip,Emma从David处窃取的虚拟货币的名称是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-%E5%8F%82%E8%80%83Emma-Mobile-zip-Clara%E5%81%B7%E6%8B%8D%E7%9A%84%E7%85%A7%E7%89%87%E4%B8%AD-David%E7%9A%84%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E4%BD%99%E9%A2%9D%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.1.0.16.</span> <span class="toc-text">
+          17. 参考Emma_Mobile.zip,Clara偷拍的照片中,David的虚拟货币余额是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E5%9C%A8%E5%81%B7%E7%AA%83David%E7%9A%84%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E5%89%8D-Emma%E6%9B%BE%E5%90%91Clara%E9%80%8F%E9%9C%B2%E6%9C%89%E4%BB%80%E4%B9%88%E4%BA%8B%E5%8F%91%E7%94%9F%E5%9C%A8Emma%E8%BA%AB%E4%B8%8A"><span class="toc-number">3.1.0.17.</span> <span class="toc-text">
+          18. 参考Emma_Mobile.zip,Emma在偷窃David的虚拟货币前,Emma曾向Clara透露有什么事发生在Emma身上?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-%EF%BC%88%E4%BD%A0%E6%9F%A5%E7%9C%8B%E4%BA%86Emma%E6%89%8B%E6%9C%BA%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%85%A7%E7%89%87%E6%95%B0%E5%AD%97%E4%BF%A1%E6%81%AF-%E4%BB%A5%E8%8E%B7%E5%8F%96%E6%9B%B4%E5%A4%9A%E4%B8%8E%E5%A4%B1%E8%B8%AA%E6%A1%88%E4%BB%B6%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%89Emma%E7%9A%84iPhone-XR%E4%B8%AD-%E2%80%9CIMG-0008-HEIC%E2%80%9D-%E7%9A%84%E5%9B%BE%E5%83%8F%E4%B8%8E%E7%9B%B8%E7%89%87%E5%90%8D%E5%AD%97%E4%B8%BA%E7%9A%84%E2%80%9D5005-JPG%E2%80%9D-%E7%9C%8B%E4%BC%BC%E4%B8%BA%E5%90%8C%E4%B8%80%E5%BC%A0%E7%9B%B8%E7%89%87-%E5%9C%A8%E6%95%B0%E7%A0%81%E6%B3%95%E7%90%86%E9%89%B4%E8%AF%81%E5%88%86%E6%9E%90%E4%B8%8B-%E4%BB%A5%E4%B8%8B%E5%93%AA%E6%A0%B7%E6%8F%8F%E8%BF%B0%E6%98%AF%E6%AD%A3%E7%A1%AE"><span class="toc-number">3.1.0.18.</span> <span class="toc-text">
+          19. （你查看了Emma手机中的一些照片数字信息,以获取更多与失踪案件的信息）Emma的iPhone XR中 “IMG_0008.HEIC” 的图像与相片名字为的”5005.JPG” 看似为同一张相片,在数码法理鉴证分析下,以下哪样描述是正确?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#20-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%9A%84iPhone-XR%E4%B8%AD%E2%80%9DIMG-0009-HEIC%E2%80%9D-%E7%9A%84%E5%9B%BE%E5%83%8F%E6%98%BE%E7%A4%BA%E6%8B%8D%E6%91%84%E5%8F%82%E6%95%B0%E6%80%8E%E6%A0%B7"><span class="toc-number">3.1.0.19.</span> <span class="toc-text">
+          20. 参考Emma_Mobile.zip, Emma的iPhone XR中”IMG_0009.HEIC” 的图像显示拍摄参数怎样?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#21-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%9A%84iPhone-XR%E4%B8%AD%E7%9B%B8%E7%89%87%E6%96%87%E4%BB%B6IMG-0009-HEIC%E6%8F%90%E4%BE%9B%E4%BA%86%E4%BB%80%E4%B9%88%E7%94%B5%E5%AD%90%E8%AF%81%E6%8D%AE%E4%BF%A1%E6%81%AF"><span class="toc-number">3.1.0.20.</span> <span class="toc-text">
+          21. 参考Emma_Mobile.zip, Emma的iPhone XR中相片文件IMG_0009.HEIC提供了什么电子证据信息?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#22-%E5%8F%82%E8%80%83Emma-Mobile-zip-Emma%E7%9A%84iPhone-XR%E5%86%85%E4%BB%A5%E4%B8%8B%E5%93%AA%E5%BC%A0%E7%85%A7%E7%89%87%E6%98%AF%E5%AE%9E%E5%86%B5%E7%85%A7%E7%89%87-Live-Photos"><span class="toc-number">3.1.0.21.</span> <span class="toc-text">
+          22. 参考Emma_Mobile.zip, Emma的iPhone XR内以下哪张照片是实况照片(Live Photos)?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#23-%E5%8F%82%E8%80%83Emma-Mobile-zip-%E6%89%8B%E6%9C%BA%E9%87%8C%E6%9C%89%E5%A4%9A%E5%B0%91%E5%BC%A0%E7%85%A7%E7%89%87%E6%98%AF%E7%94%A8%E6%89%8B%E6%9C%BA%E5%90%8E%E7%BD%AE%E6%91%84%E5%83%8F%E9%95%9C%E5%A4%B4%E6%8B%8D%E6%91%84%E7%9A%84"><span class="toc-number">3.1.0.22.</span> <span class="toc-text">
+          23. 参考Emma_Mobile.zip,手机里有多少张照片是用手机后置摄像镜头拍摄的?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#24-%E5%8F%82%E8%80%83Emma-Mobile-zip%E7%9A%84%E9%80%9A%E8%AE%AF%E8%AE%B0%E5%BD%95-MesLocalID-224%E6%98%AF%E4%BB%80%E4%B9%88%E7%B1%BB%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.0.23.</span> <span class="toc-text">
+          24. 参考Emma_Mobile.zip的通讯记录,MesLocalID 224是什么类的文件?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clara-Smartphone-bin"><span class="toc-number">3.2.</span> <span class="toc-text">
+          Clara_Smartphone.bin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#25-%E4%BE%9D%E6%8D%AE%E4%BD%A0%E5%9C%A8Emma%E7%9A%84%E6%89%8B%E6%9C%BA%E4%B8%8A%E6%89%BE%E5%88%B0%E7%9A%84%E7%85%A7%E7%89%87-%E4%BD%A0%E5%91%8A%E8%AF%89%E8%B0%83%E6%9F%A5%E5%91%98Clara%E6%9C%80%E5%90%8E%E7%9A%84%E4%BD%8D%E7%BD%AE%E6%98%AF%E5%9C%A8%E6%B9%BE%E4%BB%94%E7%9A%84%E4%B8%80%E5%AE%B6%E9%85%92%E5%BA%97%EF%BD%A1%E6%A0%B9%E6%8D%AE%E4%BD%A0%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BF%A1%E6%81%AF-%E8%B0%83%E6%9F%A5%E5%91%98%E5%8F%91%E7%8E%B0Clara%E5%9C%A8%E9%85%92%E5%BA%97%E5%8E%BB%E4%B8%96-Clara%E7%9A%84%E6%89%8B%E6%9C%BA%E5%9C%A8%E5%A5%B9%E7%9A%84%E9%99%84%E8%BF%91-%E4%BD%A0%E5%AF%B9Clara%E7%9A%84%E6%89%8B%E6%9C%BA%E8%BF%9B%E8%A1%8C%E5%8F%96%E8%AF%81%EF%BD%A1%E8%AF%B7%E6%A0%B9%E6%8D%AE%E5%8F%96%E8%AF%81%E7%BB%93%E6%9E%9C%E5%9B%9E%E7%AD%94%E4%BB%A5%E4%B8%8B%E9%97%AE%E9%A2%98%EF%BD%A1%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E6%89%8B%E6%9C%BA%E7%9A%84Android%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E6%98%AF"><span class="toc-number">3.2.0.1.</span> <span class="toc-text">
+          25. 依据你在Emma的手机上找到的照片,你告诉调查员Clara最后的位置是在湾仔的一家酒店｡根据你提供的信息,调查员发现Clara在酒店去世,Clara的手机在她的附近, 你对Clara的手机进行取证｡请根据取证结果回答以下问题｡参考Clara_Smartphone.bin,Clara手机的Android操作系统版本是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#26-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E6%89%8B%E6%9C%BA%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7-Build-Number-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.2.0.2.</span> <span class="toc-text">
+          26. 参考Clara_Smartphone.bin,Clara手机的版本号(Build Number)是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#27-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E6%89%8B%E6%9C%BA%E7%9A%84IMEI%E5%8F%B7%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E5%A1%AB%E5%86%99%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E9%83%A8%E5%88%86"><span class="toc-number">3.2.0.3.</span> <span class="toc-text">
+          27. 参考Clara_Smartphone.bin,Clara手机的IMEI号码是多少?答案格式:只填写阿拉伯数字部分)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#28-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Emma%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7%E6%98%AF"><span class="toc-number">3.2.0.4.</span> <span class="toc-text">
+          28. 参考Clara_Smartphone.bin,Emma的微信账号是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#29-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B0%81%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E8%AE%B0%E5%BD%95%E7%9A%84%E6%97%A5%E6%9C%9F"><span class="toc-number">3.2.0.5.</span> <span class="toc-text">
+          29. 参考Clara_Smartphone.bin,Clara的第一封电子邮件记录的日期?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#30-%E5%8F%82%E8%80%83Clara-Smartphone-bin-%E5%9C%A8%E9%80%9A%E8%AE%AF%E5%BD%95%E4%B8%AD%E2%80%9DDavid%E2%80%9D%E7%9A%84%E8%81%94%E7%B3%BB%E4%BA%BA%E4%BF%A1%E6%81%AF%E8%BF%98%E5%8C%85%E6%8B%AC%E4%BB%80%E4%B9%88"><span class="toc-number">3.2.0.6.</span> <span class="toc-text">
+          30. 参考Clara_Smartphone.bin,在通讯录中”David”的联系人信息还包括什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#31-%E5%8F%82%E8%80%83Clara-Smartphone-bin-David%E5%92%8CClara%E4%B9%8B%E9%97%B4%E9%80%9A%E8%AF%9D%E6%AC%A1%E6%95%B0"><span class="toc-number">3.2.0.7.</span> <span class="toc-text">
+          31. 参考Clara_Smartphone.bin,David和Clara之间通话次数?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#32-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E5%9C%A8Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%90%9C%E7%B4%A2%E4%B8%AD%E5%93%AA%E5%A4%A9%E4%BD%BF%E7%94%A8%E4%BA%86%E5%85%B3%E9%94%AE%E8%AF%8D%E2%80%9Dpopmart-%E7%82%92%E4%BB%B7%E2%80%9D"><span class="toc-number">3.2.0.8.</span> <span class="toc-text">
+          32. 参考Clara_Smartphone.bin,Clara在Chrome浏览器搜索中哪天使用了关键词”popmart 炒价”?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#33-%E5%8F%82%E8%80%83Clara-Smartphone-bin-2024%E5%B9%B47%E6%9C%8830%E6%97%A5%E5%85%B1%E6%94%B6%E5%88%B0%E5%A4%9A%E5%B0%91%E5%B0%81%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-number">3.2.0.9.</span> <span class="toc-text">
+          33. 参考Clara_Smartphone.bin,2024年7月30日共收到多少封电子邮件?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#34-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E7%9A%84Gmail%E8%B4%A6%E5%8F%B7%E6%98%AF"><span class="toc-number">3.2.0.10.</span> <span class="toc-text">
+          34. 参考Clara_Smartphone.bin,Clara的Gmail账号是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#35-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E7%9A%84%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E4%BA%86%E5%93%AA%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84WhatsApp"><span class="toc-number">3.2.0.11.</span> <span class="toc-text">
+          35. 参考Clara_Smartphone.bin,Clara的手机安装了哪个版本的WhatsApp?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#36-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E7%9A%84WhatsApp%E8%B4%A6%E5%8F%B7-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E5%A1%AB%E5%86%9911%E4%BD%8D%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97"><span class="toc-number">3.2.0.12.</span> <span class="toc-text">
+          36. 参考Clara_Smartphone.bin,Clara的WhatsApp账号?答案格式:只需填写11位阿拉伯数字)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#37-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E7%9A%84%E6%89%8B%E6%9C%BA%E5%9C%A8%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%AE%89%E8%A3%85%E4%BA%86%E5%B0%8F%E7%BA%A2%E4%B9%A6APP"><span class="toc-number">3.2.0.13.</span> <span class="toc-text">
+          37. 参考Clara_Smartphone.bin,Clara的手机在什么时候安装了小红书APP?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#38-%E5%8F%82%E8%80%83Clara-Smartphone-bin-2024%E5%B9%B48%E6%9C%8821%E6%97%A5David%E7%9A%84%E8%99%9A%E6%8B%9F%E8%B2%A8%E5%B9%A3%E9%92%B1%E5%8C%85%E9%87%8C%E6%9C%89%E5%A4%9A%E5%B0%91IDFC"><span class="toc-number">3.2.0.14.</span> <span class="toc-text">
+          38. 参考Clara_Smartphone.bin,2024年8月21日David的虚拟貨幣钱包里有多少IDFC?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#39-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E6%B3%A8%E5%86%8C%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7%E9%AA%8C%E8%AF%81%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.2.0.15.</span> <span class="toc-text">
+          39. 参考Clara_Smartphone.bin,Clara注册的微信账号验证码是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#40-%E5%8F%82%E8%80%83Clara-Smartphone-bin-David%E4%B8%BA%E5%BA%86%E7%A5%9D%E7%BB%93%E5%A9%9A%E5%91%A8%E5%B9%B4%E7%BA%AA%E5%BF%B5%E9%A2%84%E8%AE%A2%E4%BA%86%E5%93%AA%E5%AE%B6%E9%85%92%E5%BA%97-%E6%8F%90%E7%A4%BA-%E8%AF%B7%E4%BD%BF%E7%94%A8%E5%A4%A7%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E4%BD%9C%E7%AD%94-%E4%BE%8B%E5%A6%82-HONG-KONG-HOTEL"><span class="toc-number">3.2.0.16.</span> <span class="toc-text">
+          40. 参考Clara_Smartphone.bin,David为庆祝结婚周年纪念预订了哪家酒店?提示:请使用大写英文字母作答, 例如:HONG KONG HOTEL)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#41-%E5%8F%82%E8%80%83Clara-Smartphone-bin-%E5%93%AA%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%E4%BA%86%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E4%BD%BF%E7%94%A8%E5%85%A8%E9%83%A8%E5%A4%A7%E5%86%99%E5%9B%9E%E7%AD%94-%E4%BE%8B%E5%A6%82-ABC-DB"><span class="toc-number">3.2.0.17.</span> <span class="toc-text">
+          41. 参考Clara_Smartphone.bin,哪个数据库文件存储了微信消息?答案格式:只需使用全部大写回答, 例如:ABC.DB)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#42-%E5%8F%82%E8%80%83Clara-Smartphone-bin-%E5%93%AA%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6-db-%E5%AD%98%E5%82%A8%E4%BA%86WhatsApp%E8%A8%8A%E6%81%AF"><span class="toc-number">3.2.0.18.</span> <span class="toc-text">
+          42. 参考Clara_Smartphone.bin,哪个数据库文件(.db)存储了WhatsApp訊息?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#43-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Clara%E5%9C%A82024%E5%B9%B48%E6%9C%8829%E6%97%A5%E6%8B%8D%E4%BA%86%E5%A4%9A%E5%B0%91%E5%BC%A0%E7%85%A7%E7%89%87"><span class="toc-number">3.2.0.19.</span> <span class="toc-text">
+          43. 参考Clara_Smartphone.bin,Clara在2024年8月29日拍了多少张照片?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#44-%E5%8F%82%E8%80%83Clara-Smartphone-bin-Emma%E5%9C%A82024%E5%B9%B48%E6%9C%886%E6%97%A5%E9%80%9A%E8%BF%87%E5%BE%AE%E4%BF%A1%E5%8F%91%E9%80%81%E4%BA%86%E5%A4%9A%E5%B0%91%E5%BC%A0%E7%85%A7%E7%89%87%E7%BB%99Clara"><span class="toc-number">3.2.0.20.</span> <span class="toc-text">
+          44. 参考Clara_Smartphone.bin,Emma在2024年8月6日通过微信发送了多少张照片给Clara?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#45-%E5%8F%82%E8%80%83Clara-Smartphone-bin-%E7%85%A7%E7%89%8720240829-144717-jpg%E7%9A%84%E6%8B%8D%E6%91%84%E7%9B%B8%E6%9C%BA%E5%9E%8B%E5%8F%B7%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.2.0.21.</span> <span class="toc-text">
+          45. 参考Clara_Smartphone.bin,照片20240829_144717.jpg的拍摄相机型号是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#46-%E5%8F%82%E8%80%83Clara-Smartphone-bin-20240821-121435-jpg%E7%9A%84%E5%82%A8%E5%AD%98%E8%B7%AF%E5%BE%84%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.2.0.22.</span> <span class="toc-text">
+          46. 参考Clara_Smartphone.bin,20240821_121435.jpg的储存路径是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#47-%E5%8F%82%E8%80%83Clara-Smartphone-bin-2024%E5%B9%B48%E6%9C%8820%E6%97%A5%E6%9C%89%E5%A4%9A%E5%B0%91%E5%BC%A0%E6%88%AA%E5%9B%BE"><span class="toc-number">3.2.0.23.</span> <span class="toc-text">
+          47. 参考Clara_Smartphone.bin,2024年8月20日有多少张截图?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#48-%E5%8F%82%E8%80%83Clara-Smartphone-bin-2024%E5%B9%B48%E6%9C%8822%E6%97%A5%E8%A2%AB%E5%88%A0%E9%99%A4%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%98%AF"><span class="toc-number">3.2.0.24.</span> <span class="toc-text">
+          48. 参考Clara_Smartphone.bin,2024年8月22日被删除微信消息的类型是?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#David-Smartphone-1-zip"><span class="toc-number">3.3.</span> <span class="toc-text">
+          David_Smartphone_1.zip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#49-%E4%BD%A0%E5%9C%A8%E6%9F%A5%E7%9C%8BClara%E7%9A%84%E6%89%8B%E6%9C%BA%E9%95%9C%E5%83%8F%E5%90%8E-%E7%A1%AE%E5%AE%9AClara%E6%98%AFDavid%E7%9A%84%E5%A6%BB%E5%AD%90-%E8%B0%83%E6%9F%A5%E5%91%98%E9%80%9A%E8%BF%87%E6%9F%A5%E8%AF%A2%E9%85%92%E5%BA%97%E9%A2%84%E8%AE%A2%E8%AE%B0%E5%BD%95%E7%A1%AE%E8%AE%A4%E4%BA%86%E8%BF%99%E4%B8%80%E7%82%B9%EF%BD%A1%E4%BB%96%E4%BB%AC%E7%8E%B0%E5%9C%A8%E5%AE%9A%E4%BD%8DDavid%E7%9A%84%E4%BD%8F%E6%89%80-%E4%BB%A5%E8%BF%9B%E8%A1%8C%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%B0%83%E6%9F%A5%EF%BD%A1-%E4%BD%A0%E9%A6%96%E5%85%88%E5%88%86%E6%9E%90David%E7%9A%84%E6%89%8B%E6%9C%BA%EF%BD%A1%E5%8F%82%E8%80%83David-Smartphone-1-zip-%E6%A0%B9%E6%8D%AEContents-db-David-%E6%89%8B%E6%9C%BA%E6%8E%A5%E6%94%B6%E4%BA%86%E9%80%9A%E8%AE%AF%E8%BD%AF%E4%BB%B6%E2%80%9DTelegram%E2%80%9D%E7%9A%84%E9%AA%8C%E8%AF%81%E7%9F%AD%E4%BF%A1-%E8%AF%A5%E9%AA%8C%E8%AF%81%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">
+          49. 你在查看Clara的手机镜像后,确定Clara是David的妻子,调查员通过查询酒店预订记录确认了这一点｡他们现在定位David的住所,以进行进一步调查｡ 你首先分析David的手机｡参考David_Smartphone_1.zip, 根据Contents.db,David 手机接收了通讯软件”Telegram”的验证短信,该验证码是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#50-%E5%8F%82%E8%80%83David-Smartphone-1-zip-David-%E6%8A%8A%E6%89%8B%E6%9C%BA%E8%AE%BE%E7%BD%AE%E4%B8%BA%E4%B8%AA%E4%BA%BA%E7%83%AD%E7%82%B9-%E8%AF%B7%E6%89%BE%E5%87%BA%E4%B8%AA%E4%BA%BA%E7%83%AD%E7%82%B9%E7%9A%84%E5%AF%86%E7%A0%81%EF%BD%A1"><span class="toc-number">3.3.0.2.</span> <span class="toc-text">
+          50. 参考David_Smartphone_1.zip, David 把手机设置为个人热点,请找出个人热点的密码｡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#51-%E5%8F%82%E8%80%83David-Smartphone-1-zip-David-%E6%89%8B%E6%9C%BA%E6%9B%BE%E8%BF%9E%E6%8E%A5%E5%90%8D%E4%B8%BA%E2%80%9DMTR-Free-Wi-Fi%E2%80%9D-%E7%9A%84Wi-Fi-%EF%BD%A1"><span class="toc-number">3.3.0.3.</span> <span class="toc-text">
+          51. 参考David_Smartphone_1.zip, David 手机曾连接名为”MTR Free Wi-Fi” 的Wi-Fi ｡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#52-%E5%8F%82%E8%80%83David-Smartphone-1-zip-%E6%A0%B9%E6%8D%AEcom-tencent-mm-preferences-xml-David-%E7%9A%84%E6%89%8B%E6%9C%BA%E6%9C%80%E5%90%8E%E7%99%BB%E5%BD%95%E5%BE%AE%E4%BF%A1%E7%9A%84%E5%BE%AE%E4%BF%A1-ID-%E6%98%AF"><span class="toc-number">3.3.0.4.</span> <span class="toc-text">
+          52. 参考David_Smartphone_1.zip, 根据com.tencent.mm_preferences.xml,David 的手机最后登录微信的微信 ID 是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#53-%E5%8F%82%E8%80%83David-Smartphone-1-zip-%E8%AF%B7%E6%8C%87%E5%87%BA%E5%93%AA%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E6%98%AF%E4%BA%8E2024%E5%B9%B48%E6%9C%8828%E6%97%A5%E5%88%A9%E7%94%A8%E5%B1%8F%E5%B9%95%E6%88%AA%E5%8F%96%E7%9A%84%EF%BD%A1-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-ABC-123-jpg"><span class="toc-number">3.3.0.5.</span> <span class="toc-text">
+          53. 参考David_Smartphone_1.zip, 请指出哪一张图片是于2024年8月28日利用屏幕截取的｡(答案格式:ABC_123.jpg)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#54-%E5%8F%82%E8%80%83-David-Smartphone-1-zip-%E6%A0%B9%E6%8D%AEContents-db-David-%E6%89%8B%E6%9C%BA%E7%9A%84%E5%9E%8B%E5%8F%B7-Model-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%A4%A7%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E5%92%8C%E7%AC%A6%E5%8F%B7%E2%80%99-%E2%80%98-%E6%B7%B7%E5%90%88%E7%BB%84%E6%88%90"><span class="toc-number">3.3.0.6.</span> <span class="toc-text">
+          54. 参考 David_Smartphone_1.zip,根据Contents.db,David 手机的型号(Model)?(答案格式:大写英文字母和符号’-‘ 混合组成)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#55-%E5%8F%82%E8%80%83-David-Smartphone-1-zip%E7%9A%84Contents-db-David%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E6%89%8B%E6%9C%BASIM-%E5%8D%A1%E7%9A%84%E5%BA%8F%E5%8F%B7-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E8%A6%81%E7%94%A8%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E7%9B%AE%E5%AD%97%E5%9B%9E%E7%AD%94"><span class="toc-number">3.3.0.7.</span> <span class="toc-text">
+          55. 参考 David_Smartphone_1.zip的Contents.db,David所使用的手机SIM 卡的序号?(答案格式:只需要用阿拉伯数目字回答)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#56-%E5%8F%82%E8%80%83-David-Smartphone-1-zip-David-%E6%89%8B%E6%9C%BA%E5%AE%89%E8%A3%85%E4%BA%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9DMetaMask%E2%80%9D%EF%BD%A1%E6%A0%B9%E6%8D%AEpersist-root%E4%B8%AD-%E2%80%9DMetaMask%E2%80%9D%E9%92%B1%E5%8C%85%E5%86%85%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.3.0.8.</span> <span class="toc-text">
+          56. 参考 David_Smartphone_1.zip,David 手机安装了应用程序”MetaMask”｡根据persist-root中,”MetaMask”钱包内有多少个账号?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#57-%E5%8F%82%E8%80%83-David-Smartphone-1-zip-%E6%A0%B9%E6%8D%AEpersist-root%E4%B8%AD-%E4%BD%95%E6%97%B6%E4%BB%8E%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9DMetaMask%E2%80%9D%E5%8F%91%E9%80%81%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E8%87%B3%E4%BB%A5%E4%B8%8B%E5%9C%B0%E5%9D%80-0X10A4F01B80203591CCEE76081A4489AE1CD1281C"><span class="toc-number">3.3.0.9.</span> <span class="toc-text">
+          57. 参考 David_Smartphone_1.zip,根据persist-root中,何时从应用程序”MetaMask”发送虚拟货币至以下地址: 0X10A4F01B80203591CCEE76081A4489AE1CD1281C</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#58-%E5%8F%82%E8%80%83-David-Smartphone-1-zip-David-%E6%9B%BE%E5%88%A9%E7%94%A8%E6%89%8B%E6%9C%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9DMetaMask%E2%80%9D%E4%B8%89%E6%AC%A1%E5%8F%91%E9%80%81%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E5%A4%B1%E8%B4%A5%EF%BD%A1%E6%A0%B9%E6%8D%AEpersist-root-%E5%8F%91%E9%80%81%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E4%BB%80%E9%BA%BC"><span class="toc-number">3.3.0.10.</span> <span class="toc-text">
+          58. 参考 David_Smartphone_1.zip,David 曾利用手机应用程序”MetaMask”三次发送虚拟货币失败｡根据persist-root,发送虚拟货币失败的原因是什麼?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RAM-Capture-David-Laptop-RAW"><span class="toc-number">3.4.</span> <span class="toc-text">
+          RAM_Capture_David_Laptop.RAW</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#59-%E4%BD%A0%E6%A0%B9%E6%8D%AE%E6%98%93%E5%A4%B1%E6%80%A7-Volatility-Level-%E4%BC%98%E5%85%88%E6%AC%A1%E5%BA%8F-%E8%BF%9B%E8%A1%8C%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81%E5%88%86%E6%9E%90David%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%EF%BD%A1%E5%8F%82%E8%80%83RAM-Capture-David-Laptop-RAW-%E4%BB%A5%E4%B8%8B%E5%93%AA%E4%B8%80%E4%B8%AA%E4%B8%8D%E6%98%AF%E7%A8%8B%E5%BA%8F%E2%80%9Dfirefox-exe%E2%80%9D%E7%9A%84PID"><span class="toc-number">3.4.0.1.</span> <span class="toc-text">
+          59. 你根据易失性(Volatility Level)优先次序,进行内存取证分析David的笔记本电脑｡参考RAM_Capture_David_Laptop.RAW,以下哪一个不是程序”firefox.exe”的PID?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#60-%E5%8F%82%E8%80%83RAM-Capture-David-Laptop-RAW-%E6%B1%87%E5%87%BAPID-724%E7%9A%84%E7%A8%8B%E5%BA%8F-%E5%85%B6%E5%93%88%E5%B8%8C%E5%80%BC-SHA-256-%E6%98%AF"><span class="toc-number">3.4.0.2.</span> <span class="toc-text">
+          60. 参考RAM_Capture_David_Laptop.RAW,汇出PID:724的程序,其哈希值 (SHA-256) 是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#61-%E5%8F%82%E8%80%83RAM-Capture-David-Laptop-RAW-%E5%93%AA%E4%B8%80%E4%B8%AA%E6%98%AF%E6%89%A7%E8%A1%8CPID-724%E7%A8%8B%E5%BA%8F%E7%9A%84SID"><span class="toc-number">3.4.0.3.</span> <span class="toc-text">
+          61. 参考RAM_Capture_David_Laptop.RAW,哪一个是执行PID:724程序的SID?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#62-%E5%8F%82%E8%80%83RAM-Capture-David-Laptop-RAW-%E8%B4%A6%E6%88%B7David-Tenth%E7%9A%84NT-LAN-Manager%E7%9A%84%E5%93%88%E5%B8%8C%E5%80%BC-NTLM-Hash-n-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E4%BD%BF%E7%94%A8%E5%85%A8%E9%83%A8%E5%B0%8F%E5%86%99%E5%8F%8A%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E5%9B%9E%E7%AD%94"><span class="toc-number">3.4.0.4.</span> <span class="toc-text">
+          62. 参考RAM_Capture_David_Laptop.RAW,账户David Tenth的NT LAN Manager的哈希值(NTLM Hash) ?\n(答案格式:只需使用全部小写及阿拉伯数字回答)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#David-USB-8GB-e01"><span class="toc-number">3.5.</span> <span class="toc-text">
+          David_USB_8GB.e01</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#63-%E5%9C%A8%E5%8F%96%E8%AF%81%E4%B8%AD-%E4%BD%A0%E5%8F%91%E7%8E%B0D%E7%9B%98%E8%A2%ABBitLocker-%E5%8A%A0%E5%AF%86%EF%BD%A1U%E7%9B%98%E4%B8%8A%E5%8F%AF%E8%83%BD%E6%9C%89%E4%B8%80%E4%BA%9B%E7%BA%BF%E7%B4%A2-%E4%BD%A0%E5%AF%B9U%E7%9B%98%E8%BF%9B%E8%A1%8C%E4%BA%86%E5%8F%96%E8%AF%81%EF%BD%A1%E5%8F%82%E8%80%83David-USB-8GB-e01-David-%E7%9A%84U%E7%9B%98%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.5.0.1.</span> <span class="toc-text">
+          63. 在取证中,你发现D盘被BitLocker 加密｡U盘上可能有一些线索,你对U盘进行了取证｡参考David_USB_8GB.e01,David 的U盘文件系统的格式?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#64-%E5%8F%82%E8%80%83David-USB-8GB-e01-David-%E7%9A%84U%E7%9B%98%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD-%E6%AF%8F%E7%B0%87-Cluster-%E5%AE%9A%E4%B9%89%E4%BA%86%E5%A4%9A%E5%B0%91%E5%AD%97%E8%8A%82-Byte"><span class="toc-number">3.5.0.2.</span> <span class="toc-text">
+          64. 参考David_USB_8GB.e01,David 的U盘文件系统中,每簇(Cluster)定义了多少字节(Byte)?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#65-%E5%8F%82%E8%80%83David-USB-8GB-e01-David-%E7%9A%84U%E7%9B%98%E4%B8%AD%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E5%B7%B2%E5%88%A0%E9%99%A4%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">3.5.0.3.</span> <span class="toc-text">
+          65. 参考David_USB_8GB.e01,David 的U盘中有多少个已删除的文件?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#66-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%E8%BF%90%E8%A1%8C%E5%88%97%E8%A1%A8-Run-List-%E7%9A%84%E8%BF%90%E8%A1%8C%E5%81%8F%E7%A7%BB%E9%87%8F-Run-Offset-%E6%95%B0%E9%87%8F%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.5.0.4.</span> <span class="toc-text">
+          66. 承上题,参考David_USB_8GB.e01,已删除的文件的运行列表(Run List)的运行偏移量(Run Offset)数量是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#67-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%BF%90%E8%A1%8C%E7%9A%84%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E5%80%BC-%E4%BD%8E%E7%AB%AF%E5%AD%97%E8%8A%82%E5%BA%8F-Little-Endian-%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.5.0.5.</span> <span class="toc-text">
+          67. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行的十六进制值(低端字节序 Little-Endian)是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#68-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%9E%E9%99%85%E5%A4%A7%E5%B0%8F-%E5%8D%95%E4%BD%8D-%E5%AD%97%E8%8A%82-Byte-%E6%98%AF%E5%A4%9A%E5%B0%91-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E4%BD%BF%E7%94%A8%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E5%9B%9E%E7%AD%94"><span class="toc-number">3.5.0.6.</span> <span class="toc-text">
+          68. 承上题,参考David_USB_8GB.e01,已删除的文件的实际大小(单位:字节 Byte)是多少?答案格式:只需使用阿拉伯数字回答</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#69-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E8%BF%90%E8%A1%8C%E5%81%8F%E7%A7%BB%E9%87%8F-Run-Offset-%E6%98%AF%E5%A4%9A%E5%B0%91-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%8F%AA%E9%9C%80%E4%BD%BF%E7%94%A8%E9%98%BF%E6%8B%89%E4%BC%AF%E6%95%B0%E5%AD%97%E5%9B%9E%E7%AD%94"><span class="toc-number">3.5.0.7.</span> <span class="toc-text">
+          69. 承上题,参考David_USB_8GB.e01,已删除文件的第一个运行偏移量(Run Offset)是多少?(答案格式:只需使用阿拉伯数字回答)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#71-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E5%83%8F%E7%B4%A0%E5%80%BC-Pixel-%E6%98%AF%E5%A4%9A%E5%B0%91"><span class="toc-number">3.5.0.8.</span> <span class="toc-text">
+          71. 承上题,参考David_USB_8GB.e01,已删除文件的图像文件像素值(Pixel)是多少?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#72-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%B7%B2%E5%88%A0%E9%99%A4%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E6%98%AF%E7%94%A8%E5%93%AA%E4%B8%AA%E5%93%81%E7%89%8C%E5%92%8C%E5%9E%8B%E5%8F%B7%E7%9A%84%E6%89%8B%E6%9C%BA%E6%8B%8D%E6%91%84"><span class="toc-number">3.5.0.9.</span> <span class="toc-text">
+          72. 承上题,参考David_USB_8GB.e01,已删除图像文件是用哪个品牌和型号的手机拍摄?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#73-%E5%9C%A8-U%E7%9B%98%E4%B8%AD-%E4%BD%A0%E8%BF%98%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%B8%AAexe%E6%96%87%E4%BB%B6-%E4%BD%86%E5%AE%83%E8%A2%AB%E9%94%81%E5%AE%9A-%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BB%A5%E4%BE%BF%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%A3%80%E6%9F%A5%EF%BD%A1%E5%8F%82%E8%80%83David-USB-8GB-e01-%E4%BD%BF%E7%94%A8x64dbg%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%90%9C%E7%B4%A2-String-Search-%E5%8A%9F%E8%83%BD-%E5%9C%A8Bitlocker-exe%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%93%AA%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E6%9C%89%E5%8F%AF%E8%83%BD%E4%B8%8E%E6%98%BE%E7%A4%BA%E7%9A%84%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81%E6%9C%89%E5%85%B3"><span class="toc-number">3.5.0.10.</span> <span class="toc-text">
+          73. 在 U盘中,你还发现了一个exe文件,但它被锁定,可能需要进行反编译以便进一步检查｡参考David_USB_8GB.e01,使用x64dbg的字符串搜索(String Search)功能,在Bitlocker.exe中查找哪个字符串最有可能与显示的登录状态有关?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#74-%E6%89%BF%E4%B8%8A%E9%A1%8C-%E5%BD%93%E6%89%BE%E5%88%B0%E6%8E%A7%E5%88%B6%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F%E7%9A%84%E9%80%BB%E8%BE%91%E4%BB%A3%E7%A0%81%E6%97%B6-%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81-Assembly-Code-%E6%9D%A5%E7%BB%95%E8%BF%87%E6%A3%80%E6%9F%A5-%E8%BE%BE%E5%88%B0%E4%BB%BB%E6%84%8F%E8%BE%93%E5%85%A5%EF%BC%8C%E9%83%BD%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">3.5.0.11.</span> <span class="toc-text">
+          74. 承上題,当找到控制登录成功的逻辑代码时,如何修改汇编代码(Assembly Code)来绕过检查,达到任意输入，都成功登录的效果?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#75-%E5%8F%82%E8%80%83David-USB-8GB-e01-Bitlocker-exe%E7%9A%84%E6%AD%A3%E7%A1%AE%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E5%90%8D%E7%A7%B0%E6%98%AF"><span class="toc-number">3.5.0.12.</span> <span class="toc-text">
+          75. 参考David_USB_8GB.e01,Bitlocker.exe的正确用户登录名称是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#76-%E5%8F%82%E8%80%83David-USB-8GB-e01-Bitlocker-exe%E7%9A%84%E6%AD%A3%E7%A1%AE%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81%E6%98%AF"><span class="toc-number">3.5.0.13.</span> <span class="toc-text">
+          76. 参考David_USB_8GB.e01,Bitlocker.exe的正确登录密码是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#77-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%BD%93Bitlocker-exe%E7%A8%8B%E5%BA%8F%E5%B0%9D%E8%AF%95%E6%98%BE%E7%A4%BA%E7%99%BB%E5%BD%95%E7%BB%93%E6%9E%9C%EF%BC%88%E6%88%90%E5%8A%9F%E6%88%96%E5%A4%B1%E8%B4%A5%EF%BC%89%E6%97%B6-%E4%BD%BF%E7%94%A8%E4%BA%86%E5%93%AA%E4%B8%80%E7%A7%8D%E9%80%94%E5%BE%84%E6%9D%A5%E5%86%B3%E5%AE%9A%E6%98%BE%E7%A4%BA%E7%9A%84%E6%B6%88%E6%81%AF"><span class="toc-number">3.5.0.14.</span> <span class="toc-text">
+          77. 参考David_USB_8GB.e01,当Bitlocker.exe程序尝试显示登录结果（成功或失败）时,使用了哪一种途径来决定显示的消息?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#78-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%86%B3%E5%AE%9A%E8%83%BD%E5%90%A6%E8%A7%A3%E5%AF%86-Bitlocker-Key-%E7%9A%84%E5%AD%97%E8%8A%82%E7%9A%84%E5%86%85%E5%AD%98%E5%81%8F%E7%A7%BB%E9%87%8F-Memory-Offset-%EF%BC%88%E7%9B%B8%E5%AF%B9%E4%BA%8E%E5%9F%BA%E5%9D%80%E2%80%9Dbitlocker-exe%E2%80%9D%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.5.0.15.</span> <span class="toc-text">
+          78. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的字节的内存偏移量(Memory Offset)（相对于基址”bitlocker.exe”）是什么?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#79-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E5%86%B3%E5%AE%9A%E8%83%BD%E5%90%A6%E8%A7%A3%E5%AF%86-Bitlocker-Key-%E7%9A%84%E5%86%85%E5%AD%98%E5%81%8F%E7%A7%BB%E9%87%8F-Memory-Offset-%E5%90%8E-%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E5%AE%83%E6%9D%A5%E8%BF%9B%E8%A1%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">3.5.0.16.</span> <span class="toc-text">
+          79. 参考David_USB_8GB.e01,决定能否解密 Bitlocker Key 的内存偏移量(Memory Offset)后,应该如何利用它来进行解密?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#80-%E5%8F%82%E8%80%83David-USB-8GB-e01-%E8%A7%A3%E5%AF%86%E5%90%8E%E7%9A%84-Bitlocker-Key-%E6%98%AF"><span class="toc-number">3.5.0.17.</span> <span class="toc-text">
+          80. 参考David_USB_8GB.e01,解密后的 Bitlocker Key 是?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#David-Laptop-64GB-e01"><span class="toc-number">3.6.</span> <span class="toc-text">
+          David_Laptop_64GB.e01</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#81-%E5%88%B0%E7%9B%AE%E5%89%8D%E4%B8%BA%E6%AD%A2-%E4%BD%A0%E5%B7%B2%E7%BB%8F%E8%8E%B7%E5%BE%97%E4%BA%86-BitLocker-%E5%AF%86%E9%92%A5%E4%BB%A5%E8%A7%A3%E5%AF%86-D%E7%9B%A4-%E9%80%9A%E8%BF%87%E5%AF%B9David-%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91D%E7%9B%A4%E7%9A%84%E5%88%86%E6%9E%90-%E5%B9%B6%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%BA%9B%E9%87%8D%E8%A6%81%E4%BF%A1%E6%81%AF%EF%BD%A1%E4%BD%A0%E7%8E%B0%E5%9C%A8%E5%B0%86%E7%BB%A7%E7%BB%AD%E8%B0%83%E6%9F%A5%E6%9C%AA%E5%8A%A0%E5%AF%86%E7%9A%84-C%E7%9B%A4%EF%BD%A1-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E5%88%86%E5%8C%BA%E6%A0%BC%E5%BC%8F-Partition-%E6%98%AF"><span class="toc-number">3.6.0.1.</span> <span class="toc-text">
+          81. 到目前为止,你已经获得了 BitLocker 密钥以解密 D盤,通过对David 笔记本电脑D盤的分析,并发现了一些重要信息｡你现在将继续调查未加密的 C盤｡ 参考David_Laptop_64GB.e01,分区格式(Partition)是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#82-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E8%AF%A5e01-%E6%88%90%E5%8A%9F%E6%8F%90%E5%8F%96%E7%9A%84%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E6%98%AF"><span class="toc-number">3.6.0.2.</span> <span class="toc-text">
+          82. 参考David_Laptop_64GB.e01,该e01 成功提取的日期和时间是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#83-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E6%9C%80%E5%90%8E%E7%99%BB%E5%BD%95%E7%9A%84%E7%94%A8%E6%88%B7%E6%98%AF%E8%B0%81-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%A4%A7%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D-%E5%B0%8F%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E5%92%8C%E7%A9%BA%E6%A0%BC%E6%B7%B7%E5%90%88%E7%BB%84%E6%88%90-%E4%BE%8B%E5%A6%82-Tom-Hanks"><span class="toc-number">3.6.0.3.</span> <span class="toc-text">
+          83. 参考David_Laptop_64GB.e01,最后登录的用户是谁?(答案格式:大写英文字母,小写英文字母和空格混合组成,例如:Tom Hanks)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#84-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E7%9A%84%E6%97%B6%E5%8C%BA%E6%98%AF"><span class="toc-number">3.6.0.4.</span> <span class="toc-text">
+          84. 参考David_Laptop_64GB.e01,用户配置的时区是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#85-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-David%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%E6%9B%BE%E7%B6%93%E8%BF%9E%E6%8E%A5%E4%BA%86%E5%A4%9A%E5%B0%91%E4%B8%AA%E8%AE%BE%E5%A4%87"><span class="toc-number">3.6.0.5.</span> <span class="toc-text">
+          85. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个设备?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#86-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-David%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%E4%B8%8A%E7%9A%84Firefox%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E8%A3%85%E4%BA%86%E5%93%AA%E4%BA%9B%E6%89%A9%E5%B1%95%E5%B7%A5%E5%85%B7-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E8%AF%B7%E4%BB%A5%E5%A4%A7%E5%AF%AB%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E4%BD%9C%E7%AD%94%EF%BC%8C%E6%97%A0%E9%A1%BB%E7%95%99%E7%A9%BA%E7%99%BD%E4%BD%8D"><span class="toc-number">3.6.0.6.</span> <span class="toc-text">
+          86. 参考David_Laptop_64GB.e01,David的笔记本电脑上的Firefox浏览器安装了哪些扩展工具?答案格式:请以大寫英文字母作答，无须留空白位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#87-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E6%A0%B9%E6%8D%AE%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84-lnk%E6%96%87%E4%BB%B6-%E6%9C%80%E5%90%8E%E8%AE%BF%E9%97%AE%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%E6%98%AF"><span class="toc-number">3.6.0.7.</span> <span class="toc-text">
+          87. 参考David_Laptop_64GB.e01,根据用户配置文件中的.lnk文件,最后访问的文件名称是?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#88-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-David%E7%9A%84%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%E6%9B%BE%E7%B6%93%E8%BF%9E%E6%8E%A5%E4%BA%86%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%B8%8D%E5%90%8C%E7%9A%84Wi-Fi"><span class="toc-number">3.6.0.8.</span> <span class="toc-text">
+          88. 参考David_Laptop_64GB.e01,David的笔记本电脑曾經连接了多少个不同的Wi-Fi?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#89-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E8%AF%A5Wi-Fi%E7%BD%91%E7%BB%9C%E7%9A%84%E5%90%8D%E7%A7%B0-SSID-%E6%98%AF-%E7%AD%94%E6%A1%88%E6%A0%BC%E5%BC%8F-%E5%A4%A7%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E5%92%8C%E5%B0%8F%E5%86%99%E8%8B%B1%E6%96%87%E5%AD%97%E6%AF%8D%E6%B7%B7%E5%90%88%E7%BB%84%E6%88%90"><span class="toc-number">3.6.0.9.</span> <span class="toc-text">
+          89. 承上题,参考David_Laptop_64GB.e01,该Wi-Fi网络的名称(SSID)是?答案格式:大写英文字母和小写英文字母混合组成)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#90-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E8%AF%A5%E7%94%B5%E8%84%91%E7%9A%84Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85%E6%97%A5%E6%9C%9F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">3.6.0.10.</span> <span class="toc-text">
+          90. 参考David_Laptop_64GB.e01,该电脑的Windows操作系统的安装日期是什么?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E5%8F%96%E8%AF%81"><span class="toc-number">3.7.</span> <span class="toc-text">
+          虚拟货币取证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#91-%E9%80%9A%E8%BF%87%E5%AF%B9David-%E7%AC%94%E8%AE%B0%E6%9C%AC%E7%94%B5%E8%84%91%E7%9A%84%E7%94%B5%E5%AD%90%E6%95%B0%E6%8D%AE%E5%8F%96%E8%AF%81%E5%92%8C%E7%97%95%E8%BF%B9%E5%88%86%E6%9E%90-%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%88%B0David%E6%98%AF%E4%B8%80%E5%90%8D-cryptocurrency-%E4%B8%93%E5%AE%B6%EF%BD%A1%E5%81%87%E8%A8%AD%E8%99%9A%E6%8B%9F%E8%B2%A8%E5%B9%A3International-Digital-Forensics-Coin-IDFC-%E9%9D%A2%E5%80%BC%E6%98%AF%E6%AF%8F1%E5%80%8BIDFC%E7%AD%89%E5%A6%821-HKDIDFC-Token-Address-0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b%E5%8D%80%E5%A1%8A%E9%8F%88-Binance-Smart-Chain-n%E4%B8%8B%E5%88%97%E9%82%A3%E4%B8%AA%E7%BD%91%E7%AB%99%E8%83%BD%E5%A4%9F%E6%89%BE%E5%88%B0%E5%8C%BA%E5%9D%97%E9%93%BE-Binance-Smart-Chain%E7%9A%84%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95"><span class="toc-number">3.7.0.1.</span> <span class="toc-text">
+          91. 通过对David 笔记本电脑的电子数据取证和痕迹分析,你了解到David是一名 cryptocurrency 专家｡假設虚拟貨幣International Digital Forensics Coin (IDFC)面值是每1個IDFC等如1-HKDIDFC Token Address: 0x56E7A6dd8aA1c78ba77944C94c43054978E89b7b區塊鏈: Binance Smart Chain)\n下列那个网站能够找到区块链:Binance Smart Chain的交易记录?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#92-%E5%8F%82%E8%80%83Emma-Mobile-zip%E4%B8%AD%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%E5%88%86%E6%9E%90-Emma%E7%94%A8%E4%BB%80%E4%B9%88%E6%96%B9%E6%B3%95%E7%9B%9C%E5%8F%96David%E7%9A%84IDFC"><span class="toc-number">3.7.0.2.</span> <span class="toc-text">
+          92. 参考Emma_Mobile.zip中的微信聊天记录分析,Emma用什么方法盜取David的IDFC?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#93-%E6%A0%B9%E6%8D%AEDavid-Emma%E5%8F%8AClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AF%B9%E8%AF%9D-David%E5%9C%A8%E4%BB%80%E4%B9%88%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%8F%91%E7%8E%B0IDFC%E8%A2%AB%E7%9B%97"><span class="toc-number">3.7.0.3.</span> <span class="toc-text">
+          93. 根据David,Emma及Clara的微信对话,David在什么日期时间发现IDFC被盗?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#94-%E5%8F%82%E8%80%83Emma-Mobile-zip%E4%B8%AD%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AF%B9%E8%AF%9D%E5%88%86%E6%9E%90-Emma%E4%B8%BA%E4%BB%80%E4%B9%88%E7%9B%9C%E5%8F%96David%E7%9A%84IDFC"><span class="toc-number">3.7.0.4.</span> <span class="toc-text">
+          94. 参考Emma_Mobile.zip中的微信对话分析,Emma为什么盜取David的IDFC?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#95-%E5%8F%82%E8%80%83David-Laptop-64GB-e01%E5%8F%8ADavid-Emma%E5%8F%8AClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AF%B9%E8%AF%9D-%E5%88%86%E6%9E%90IDFC%E7%9A%84%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95-Emma%E7%9B%9C%E5%8F%96%E4%BA%86David%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E9%92%B1%E5%8C%85%E5%86%85%E5%93%AA%E4%B8%AA%E5%9C%B0%E5%9D%80%E7%9A%84IDFC"><span class="toc-number">3.7.0.5.</span> <span class="toc-text">
+          95. 参考David_Laptop_64GB.e01及David,Emma及Clara的微信对话,分析IDFC的交易记录,Emma盜取了David虚拟货币钱包内哪个地址的IDFC?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#96-%E6%A0%B9%E6%8D%AEDavid-Emma%E5%8F%8AClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AF%B9%E8%AF%9D%E5%8F%8AIDFC%E7%9A%84%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95%E4%BD%9C%E5%88%86%E6%9E%90-Emma%E6%80%BB%E5%85%B1%E7%9B%97%E5%8F%96%E4%BA%86David%E5%A4%9A%E5%B0%91IDFC"><span class="toc-number">3.7.0.6.</span> <span class="toc-text">
+          96. 根据David,Emma及Clara的微信对话及IDFC的交易记录作分析,Emma总共盗取了David多少IDFC?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#97-%E6%A0%B9%E6%8D%AEEmma%E5%8F%8AClara%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%AF%B9%E8%AF%9D-%E4%B8%8B%E5%88%97%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%E6%98%AF%E7%94%B1%E7%9B%B8%E5%90%8C%E7%9A%84%E6%81%A2%E5%A4%8D%E7%9F%AD%E8%AF%AD-Recovery-Seed-%E6%89%80%E7%94%9F%E6%88%90"><span class="toc-number">3.7.0.7.</span> <span class="toc-text">
+          97. 根据Emma及Clara的微信对话,下列哪些地址是由相同的恢复短语(Recovery Seed)所生成?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#98-%E6%A0%B9%E6%8D%AEIDFC%E7%9A%84%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95%E4%BD%9C%E5%88%86%E6%9E%90-%E6%80%BB%E5%85%B1%E6%9C%89%E5%A4%9A%E5%B0%91%E6%AC%A1IDFC%E4%BA%A4%E6%98%93%E6%B5%81%E5%85%A5%E5%9C%B0%E5%9D%800x10a4f01b80203591ccee76081a4489ae1cd1281c"><span class="toc-number">3.7.0.8.</span> <span class="toc-text">
+          98. 根据IDFC的交易记录作分析,总共有多少次IDFC交易流入地址0x10a4f01b80203591ccee76081a4489ae1cd1281c?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#99-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E5%9C%A8David%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84D%E7%9B%98%E5%86%85%E6%9C%89%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87-%E6%A0%B9%E6%8D%AE%E5%9B%BE%E7%89%87%E4%B8%8A%E7%9A%84%E4%BF%A1%E6%81%AF-%E6%89%BE%E5%87%BADavid%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%99%9A%E6%8B%9F%E8%B4%A7%E5%B8%81%E9%92%B1%E5%8C%85%E7%9A%84%E6%81%A2%E5%A4%8D%E7%9F%AD%E8%AF%AD-2-Recovery-Seed-%E4%B8%8B%E5%88%97%E5%93%AA%E4%B8%80%E4%B8%AA%E5%8D%95%E8%AF%8D%E6%98%AF%E5%9C%A8%E6%AD%A4%E6%81%A2%E5%A4%8D%E7%9F%AD%E8%AF%AD-2-Recovery-Seed-%E5%86%85"><span class="toc-number">3.7.0.9.</span> <span class="toc-text">
+          99. 参考David_Laptop_64GB.e01,在David计算机的D盘内有一张图片,根据图片上的信息,找出David另一个虚拟货币钱包的恢复短语(2)(Recovery Seed),下列哪一个单词是在此恢复短语(2)(Recovery Seed)内?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#100-%E6%89%BF%E4%B8%8A%E9%A2%98-%E5%8F%82%E8%80%83David-Laptop-64GB-e01-%E5%9C%A8IDFC%E7%9A%84%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95%E4%B8%AD-%E4%B8%8B%E5%88%97%E5%93%AA%E4%BA%9B%E5%9C%B0%E5%9D%80%E7%94%B1%E4%B8%8A%E8%BF%B0%E6%81%A2%E5%A4%8D%E7%9F%AD%E8%AF%AD-2-Recovery-Seed-%E6%89%80%E7%94%9F%E6%88%90"><span class="toc-number">3.7.0.10.</span> <span class="toc-text">
+          100. 承上题,参考David_Laptop_64GB.e01,在IDFC的交易记录中,下列哪些地址由上述恢复短语(2)(Recovery Seed)所生成?</span></a></li></ol></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

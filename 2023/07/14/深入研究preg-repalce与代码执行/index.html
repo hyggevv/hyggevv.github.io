@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="因为在做题过程中一直遇到preg_replace(),所以本文将深入研究preg_replace()中在e修饰符模式下的代码执行问题,其中包括preg_replace()函数的执行过程分析、正则表达式分析、漏洞触发分析.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入研究preg_repalce()的e修饰符模式下造成的RCE">
+<meta property="og:url" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="因为在做题过程中一直遇到preg_replace(),所以本文将深入研究preg_replace()中在e修饰符模式下的代码执行问题,其中包括preg_replace()函数的执行过程分析、正则表达式分析、漏洞触发分析.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/9.png">
+<meta property="article:published_time" content="2023-07-14T07:16:43.000Z">
+<meta property="article:modified_time" content="2023-07-14T15:31:19.716Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/1.png"><title>深入研究preg_repalce()的e修饰符模式下造成的RCE | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">深入研究preg_repalce()的e修饰符模式下造成的RCE</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2023-07-14</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2023-07-14</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="preg-replace-的语法">
+          <a href="#preg-replace-的语法" class="heading-link"><i class="fas fa-link"></i></a><a href="#preg-replace-的语法" class="headerlink" title="preg_replace()的语法"></a>preg_replace()的语法</h1>
+      
+        <h2 id="说明">
+          <a href="#说明" class="heading-link"><i class="fas fa-link"></i></a><a href="#说明" class="headerlink" title="说明"></a>说明</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">preg_repalce(</span><br><span class="line">  string|array $pattern,</span><br><span class="line">  string|array $repalcement,</span><br><span class="line">  string|array $subject,</span><br><span class="line">  int $limit = -1,</span><br><span class="line">  int &amp;$count = null</span><br><span class="line">  ):string|array</span><br></pre></td></tr></table></div></figure>
+<p>作用：搜索$subject中匹配$pattern的部分,并以$replacement进行替换<br>好文推荐：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.w3cschool.cn/zhengzebiaodashi/regexp-syntax.html">https://www.w3cschool.cn/zhengzebiaodashi/regexp-syntax.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="参数">
+          <a href="#参数" class="heading-link"><i class="fas fa-link"></i></a><a href="#参数" class="headerlink" title="参数"></a>参数</h2>
+      
+        <h3 id="pattern">
+          <a href="#pattern" class="heading-link"><i class="fas fa-link"></i></a><a href="#pattern" class="headerlink" title="pattern"></a>pattern</h3>
+      <p>要搜索的模式。可以是一个字符串或者字符串数组；并且此时可以使用一些PCRE修饰符<br>PCRE修饰符</p>
+
+        <h4 id="i">
+          <a href="#i" class="heading-link"><i class="fas fa-link"></i></a><a href="#i" class="headerlink" title="i"></a>i</h4>
+      <p>如果设置了该修饰符，则此时模式中的字母会进行大小写不敏感匹配。说简单一点就是你无法使用大小写进行绕过</p>
+
+        <h4 id="m">
+          <a href="#m" class="heading-link"><i class="fas fa-link"></i></a><a href="#m" class="headerlink" title="m"></a>m</h4>
+      <p>当使用 &#x2F;m 修饰符时，^会匹配输入字符串中每一行的开始位置，$会匹配输入字符串中每一行的结束位置。请注意，在没有使用m修饰符的情况下，^只会匹配整个输入字符串的开头<br><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/1.png"></p>
+
+        <h4 id="s">
+          <a href="#s" class="heading-link"><i class="fas fa-link"></i></a><a href="#s" class="headerlink" title="s"></a>s</h4>
+      <p>s模式修饰符是一个常用的修饰符，它影响到正则表达式中的特殊字符.的行为.总结来说，&#x2F;s模式修饰符在preg_replace函数中用于控制.特殊字符的行为。<br>它使.匹配包括换行符在内的任意字符。这对于处理包含换行符的文本或进行跨行匹配和替换操作非常有用。<br><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/2.png"></p>
+
+        <h4 id="x">
+          <a href="#x" class="heading-link"><i class="fas fa-link"></i></a><a href="#x" class="headerlink" title="x"></a>x</h4>
+      <p>x模式修饰符在preg_replace函数中用于控制正则表达式中的空白字符和注释的处理方式。需要注意的是，使用&#x2F;x修饰符时，如果你需要匹配空白字符本身<br>，可以在模式中使用\s、\t等特殊字符<br><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/3.png"></p>
+
+        <h4 id="A">
+          <a href="#A" class="heading-link"><i class="fas fa-link"></i></a><a href="#A" class="headerlink" title="A"></a>A</h4>
+      <p>锚定模式用于指定匹配发生的位置。在preg_replace()函数中，常用的锚定模式有两个：^：表示匹配目标字符串的开头位置。例如，^A匹配以”A”开头字符<br>串。$：表示匹配目标字符串的结尾位置。例如，&#x2F;fruit$&#x2F;匹配以”fruit”结尾的字符串。</p>
+
+        <h4 id="D">
+          <a href="#D" class="heading-link"><i class="fas fa-link"></i></a><a href="#D" class="headerlink" title="D"></a>D</h4>
+      <p>在正则表达式中，”$”通常用于匹配输入字符串的结尾位置。然而，有时候我们可能希望在字符串中包含换行符时，”$”只匹配整个输入的最后一行的结尾位置，而不是整个字符串的结尾位置。设置了D标志后，”$”仅匹配输入的最后一行的结尾位置，而不是整个字符串的结尾位置。</p>
+
+        <h4 id="e">
+          <a href="#e" class="heading-link"><i class="fas fa-link"></i></a><a href="#e" class="headerlink" title="e"></a>e</h4>
+      <p>使用 e 模式修饰符可以执行替换字符串时进行代码评估。它允许你在替换字符串的过程中执行 PHP 代码，并将其结果用作替换的一部分。要在 preg_replace 中使用 e 模式修饰符，需要在 replacement 参数中使用一个回调函数或者一个字符串。<br>ps:<br>&#x2F;e 修正符使 preg_replace() 将 replacement 参数当作 PHP 代码（在适当的逆向引用替换完之后）。提示：要确保 replacement 构成一个合法的 PHP 代码字符串，否则 PHP 会在报告在包含 preg_replace() 的行中出现语法解析错误</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mixed preg_replace ( mixed pattern, mixed replacement, mixed subject [, int limit])</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/4.png"></p>
+
+        <h1 id="preg-replace-函数的RCE">
+          <a href="#preg-replace-函数的RCE" class="heading-link"><i class="fas fa-link"></i></a><a href="#preg-replace-函数的RCE" class="headerlink" title="preg_replace()函数的RCE"></a>preg_replace()函数的RCE</h1>
+      
+        <h2 id="案例">
+          <a href="#案例" class="heading-link"><i class="fas fa-link"></i></a><a href="#案例" class="headerlink" title="案例"></a>案例</h2>
+      <p>此时咱们先来看看一个preg_replace使用的&#x2F;e模式<br><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/5.png"></p>
+
+        <h3 id="代码审计">
+          <a href="#代码审计" class="heading-link"><i class="fas fa-link"></i></a><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h3>
+      <p>此时我们注意</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return preg_replace(&#x27;/(&#x27;.$regex.&#x27;)/ei&#x27;, &#x27;strtolower(&quot;\\1&quot;)&#x27;, $value);</span><br></pre></td></tr></table></div></figure>
+<p>此时利用preg_replace()进行字符串的替换，正则表达式’&#x2F;(‘.$regex.’)&#x2F;ei’用于匹配$value中$regex的部分，&#x2F;(‘.$regex.’)&#x2F;：这是正则表达式的<br>模式，将匹配 $value 中括号内的正则表达式 $regex;&#x2F;e 模式修饰符：该修饰符已经在 PHP 5.5 中弃用，它允许在替换过程中执行代码。在这里，使用 strtower(“\1”) 将匹配到的内容转换为小写并作为替换字符串;’\1’：表示正则表达式中第一个捕获组的匹配结果，即括号内的内容。<br>这个案例实际上很简单，就是 preg_replace 使用了&#x2F;e模式，导致可以代码执行，而且该函数的第一个和第三个参数都是我们可以控制的。我们都知道， preg_replace函数在匹配到符号正则的字符串时，会将替换字符串（也就是上图pregreplace函数的第二个参数）当做代码来执行，然而这里的第二个参数却固定为 ‘strtolower(“\1”)’ 字符串，那这样要如何执行代码呢？</p>
+
+        <h2 id="0x01">
+          <a href="#0x01" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x01" class="headerlink" title="0x01"></a>0x01</h2>
+      <p>上面的命令执行就相当于执行eval(‘strtolower(“\1”);’);而其中的\1其实等于\1;而\1在正则表达式中有自己的含义</p>
+
+        <h3 id="反向引用">
+          <a href="#反向引用" class="heading-link"><i class="fas fa-link"></i></a><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h3>
+      <p>对一个正则表达式模式或部分模式两边添加圆括号将导致相关匹配存储到一个临时缓冲区中，所捕获的每个子匹配都按照在正则表达式模式中从左到右出现的顺序存储。缓冲区编号从1开始，最多可存储99个捕获的子表达式。每个缓冲区都可以使用‘\n’访问，其中n为一个标识特定缓冲区的一位或两位十进制数。<br>所以此时的\1便是表示第一个子匹配项<br>此时假设原先的语句是</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_replace(&#x27;/(&#x27; . $regex . &#x27;)/ei&#x27;, &#x27;strtolower(&quot;\\1&quot;)&#x27;, $value);</span><br></pre></td></tr></table></div></figure>
+<p>然后咱们传入的$regex&#x3D;.* $value&#x3D;{${phpinfo()}} 此时原本的语句就会变成</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_replace(&#x27;/(&#x27;.*&#x27;)/ei&#x27;, &#x27;strtolower(&quot;\\1&quot;)&#x27;, &#123;$&#123;phpinfo()&#125;&#125;);</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/6.png"><br>所以此时表示匹配{${phpinfo()}}的任意字符，然后将其存储到一个临时缓冲区，并且规定咱们可以使用\1进行访问，又因为使用e模式，允许咱们在替换过程中执行php代码，所以导致phpinfo()在替换成\1后执行命令<br>ps:<br>这里要注意\1实际上就是\1，而\1有特殊的含义，\1实际上指的就是第一个子匹配项;\1其实就是我们传进去的{${phpinfo()}}，即’strtolower(“\1”)’其实就是’strtolower(“{${phpinfo()}}”)’</p>
+
+        <h2 id="0x02">
+          <a href="#0x02" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x02" class="headerlink" title="0x02"></a>0x02</h2>
+      <p>上面的 preg_replace 语句如果直接写在程序里面，当然可以成功执行phpinfo() ，然而我们的 .* 是通过 GET 方式传入，你会发现无法执行phpinfo 函数，如下图：<br><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/7.png"><br>此时是因为我们传上去的.* 变成了_*；这是由于在php中对于传入的非法的$GET数组参数名，会将其转换成下划线，这就导致我们正则匹配失效。当非法字符为首字母时，只有点号会被替换成下划线。所以我们要做的就是换一个正则表达式，让其匹配到 {${phpinfo()}} 即可执行 phpinfo 函数。<br>payload:</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?\S*=$&#123;phpinfo()&#125;</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/8.png"></p>
+
+        <h2 id="0x03">
+          <a href="#0x03" class="heading-link"><i class="fas fa-link"></i></a><a href="#0x03" class="headerlink" title="0x03"></a>0x03</h2>
+      <p>下面再说说我们为什么要匹配到</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$&#123;phpinfo()&#125;&#125;或者$&#123;phpinfo()&#125;</span><br></pre></td></tr></table></div></figure>
+<p>才能执行phpinfo函数，这是一个小坑。这实际上是PHP可变变量的原因。在PHP中双引号包裹的字符串中可以解析变量，而单引号则不行。 </p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;phpinfo()&#125;中的phpinfo()</span><br></pre></td></tr></table></div></figure>
+<p>会被当做变量先执行，执行后，即变成</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;1&#125;</span><br></pre></td></tr></table></div></figure>
+<p>ps:phpinfo()成功执行返回true</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var_dump(phpinfo()); // 结果：布尔 true</span><br><span class="line">var_dump(strtolower(phpinfo()));// 结果：字符串 &#x27;1&#x27;</span><br><span class="line">var_dump(preg_replace(&#x27;/(.*)/ie&#x27;,&#x27;1&#x27;,&#x27;&#123;$&#123;phpinfo()&#125;&#125;&#x27;));// 结果：字符串&#x27;11&#x27;</span><br><span class="line"></span><br><span class="line">var_dump(preg_replace(&#x27;/(.*)/ie&#x27;,&#x27;strtolower(&quot;\\1&quot;)&#x27;,&#x27;&#123;$&#123;phpinfo()&#125;&#125;&#x27;));// 结果：空字符串&#x27;&#x27;</span><br><span class="line">var_dump(preg_replace(&#x27;/(.*)/ie&#x27;,&#x27;strtolower(&quot;&#123;$&#123;phpinfo()&#125;&#125;&quot;)&#x27;,&#x27;&#123;$&#123;phpinfo()&#125;&#125;&#x27;));// 结果：空字符串&#x27;&#x27;</span><br><span class="line">这里的&#x27;strtolower(&quot;&#123;$&#123;phpinfo()&#125;&#125;&quot;)&#x27;执行后相当于 strtolower(&quot;&#123;$&#123;1&#125;&#125;&quot;) 又相当于 strtolower(&quot;&#123;null&#125;&quot;) 又相当于 &#x27;&#x27; 空字符串</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="自己的理解">
+          <a href="#自己的理解" class="heading-link"><i class="fas fa-link"></i></a><a href="#自己的理解" class="headerlink" title="自己的理解"></a>自己的理解</h2>
+      
+        <h3 id="demo1">
+          <a href="#demo1" class="heading-link"><i class="fas fa-link"></i></a><a href="#demo1" class="headerlink" title="demo1"></a>demo1</h3>
+      <p>此时是没有&#x2F;e模式下的preg_replace()的替换</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&#x27;t&#x27;])) &#123;</span><br><span class="line">    echo preg_replace(&#x27;/wann/&#x27;, $_GET[&#x27;t&#x27;], &#x27;Just wann&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/9.png"></p>
+
+        <h3 id="demo2">
+          <a href="#demo2" class="heading-link"><i class="fas fa-link"></i></a><a href="#demo2" class="headerlink" title="demo2"></a>demo2</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">if (isset($_GET[&#x27;t&#x27;])) &#123;</span><br><span class="line">    echo preg_replace(&#x27;/wann/e&#x27;, $_GET[&#x27;t&#x27;], &#x27;Just wann&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>此时传入?t&#x3D;system(‘whoami’);此时就可以执行代码</p>
+
+        <h3 id="demo3">
+          <a href="#demo3" class="heading-link"><i class="fas fa-link"></i></a><a href="#demo3" class="headerlink" title="demo3"></a>demo3</h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function complex($re, $str) &#123;</span><br><span class="line">    return preg_replace(</span><br><span class="line">        &#x27;/(&#x27; . $re . &#x27;)/ei&#x27;,</span><br><span class="line">        &#x27;strtolower(&quot;\\1&quot;)&#x27;,</span><br><span class="line">        $str</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<p>此时不难发现它把replacement参数固定了，此时\1表示取出正则匹配后第一个子配项的第一线，所以此时我们需要保证在strtolower()函数中取到的数据是我们想要的；那么此时我们就要同时控制到$re和$str参数;此时正则的参数我们就应该填写.* 或者、S+</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.匹配除换行符之外的任意字符；</span><br><span class="line">\S匹配任何非空白字符。等价于 [^ \f\n\r\t\v]；</span><br><span class="line">+匹配一次或多次,即&#123;1,&#125;。</span><br></pre></td></tr></table></div></figure>
+<p>然后我们在利用一个循环帮助我们把参数值传递进去</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foreach($_GET as $re =&gt; $str) &#123;</span><br><span class="line">    echo complex($re, $str). &quot;\n&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+        <h3 id="tips">
+          <a href="#tips" class="heading-link"><i class="fas fa-link"></i></a><a href="#tips" class="headerlink" title="tips"></a>tips</h3>
+      <ol>
+<li>preg_replace()中当使用&#x2F;e修饰第一个参数时就会导致第二个参数变成代码进行执行，而因为我们又使用了.* 导致我们可以匹配所以的表达式，结合前<br>面的反向引用；就可以使得在执行的时候进入到缓存里面，此时就可以使用\1读取内容；而我们使用<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;</span><br></pre></td></tr></table></div></figure>
+的原因是因为对于php来说只有双引号可以解析到变量，而单引号是不行的，比如$a &#x3D;1;echo “$a”;此时打印的是1，而不是$a;所以此时加上<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;</span><br></pre></td></tr></table></div></figure>
+是用来解析变量的</li>
+<li>这里要注意\1实际上就是\1，而\1有特殊的含义，\1实际上指的就是第一个子匹配项;\1其实就是我们传进去的<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;$&#123;phpinfo()&#125;&#125;</span><br></pre></td></tr></table></div></figure>
+即’strtolower(“\1”)’其实就是<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;strtolower(&quot;&#123;$&#123;phpinfo()&#125;&#125;&quot;)&#x27;</span><br></pre></td></tr></table></div></figure></li>
+<li><figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此时的&#x27;strtolower(&quot;&#123;$&#123;phpinfo()&#125;&#125;&quot;)&#x27; -&gt; &#x27;strtolower(&quot;&#123;$&#123;1&#125;&#125;&quot;)&#x27; -&gt; &#x27;strtolower(&quot;&#123;null&#125;&quot;)&#x27; -&gt; &#x27;&#x27;空字符串</span><br></pre></td></tr></table></div></figure></li>
+<li>参考文章：<br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://mochazz.github.io/2018/08/13/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg_replace%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C">https://mochazz.github.io/2018/08/13/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg_replace%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/">https://hyggevv.github.io/2023/07/14/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6preg-repalce%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/07/16/XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">初探XML External Entity Injection(XXE)</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/07/13/PHP%E7%9A%84Smarty%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/"><span class="paginator-prev__text">PHP的Smarty服务器端模板注入</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#preg-replace-%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">
+          preg_replace()的语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text">
+          说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">
+          参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pattern"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#i"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">
+          i</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#m"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">
+          m</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#s"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">
+          s</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#x"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">
+          x</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">
+          A</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">
+          D</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#e"><span class="toc-number">1.2.1.7.</span> <span class="toc-text">
+          e</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#preg-replace-%E5%87%BD%E6%95%B0%E7%9A%84RCE"><span class="toc-number">2.</span> <span class="toc-text">
+          preg_replace()函数的RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-number">2.1.</span> <span class="toc-text">
+          案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          代码审计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x01"><span class="toc-number">2.2.</span> <span class="toc-text">
+          0x01</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E5%BC%95%E7%94%A8"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          反向引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x02"><span class="toc-number">2.3.</span> <span class="toc-text">
+          0x02</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0x03"><span class="toc-number">2.4.</span> <span class="toc-text">
+          0x03</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">2.5.</span> <span class="toc-text">
+          自己的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#demo1"><span class="toc-number">2.5.1.</span> <span class="toc-text">
+          demo1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo2"><span class="toc-number">2.5.2.</span> <span class="toc-text">
+          demo2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo3"><span class="toc-number">2.5.3.</span> <span class="toc-text">
+          demo3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tips"><span class="toc-number">2.5.4.</span> <span class="toc-text">
+          tips</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

