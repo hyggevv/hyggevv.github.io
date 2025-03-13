@@ -169,7 +169,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
           <a href="#第一步：找出可以利用的计算机" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一步：找出可以利用的计算机" class="headerlink" title="第一步：找出可以利用的计算机"></a><strong>第一步：找出可以利用的计算机</strong></h5>
       <p>MSSQLSERVER.XIAORANG.LAB是一个关键节点，因为它：</p>
 <ol>
-<li>被多个高权限组管理（如 <span class="exturl"><a class="exturl__link" href="mailto:&#65;&#x44;&#77;&#x49;&#78;&#73;&#83;&#x54;&#x52;&#x41;&#84;&#79;&#82;&#x53;&#64;&#x58;&#73;&#65;&#x4f;&#x52;&#x41;&#x4e;&#x47;&#46;&#x4c;&#65;&#66;">&#65;&#x44;&#77;&#x49;&#78;&#73;&#83;&#x54;&#x52;&#x41;&#84;&#79;&#82;&#x53;&#64;&#x58;&#73;&#65;&#x4f;&#x52;&#x41;&#x4e;&#x47;&#46;&#x4c;&#65;&#66;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>）。</li>
+<li>被多个高权限组管理（如 <span class="exturl"><a class="exturl__link" href="mailto:&#x41;&#68;&#77;&#73;&#78;&#73;&#x53;&#84;&#x52;&#65;&#84;&#x4f;&#x52;&#83;&#64;&#88;&#x49;&#65;&#79;&#x52;&#x41;&#x4e;&#71;&#x2e;&#x4c;&#65;&#x42;">&#x41;&#68;&#77;&#73;&#78;&#73;&#x53;&#84;&#x52;&#65;&#84;&#x4f;&#x52;&#83;&#64;&#88;&#x49;&#65;&#79;&#x52;&#x41;&#x4e;&#71;&#x2e;&#x4c;&#65;&#x42;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>）。</li>
 <li>能被远程桌面访问（CanRDP）。</li>
 <li>它可能有“无约束委派”功能，这意味着如果某个高权限用户登录到这台机器，他们的 Kerberos 票据会被存储。</li>
 </ol>
@@ -178,7 +178,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></he
           <a href="#第二步：劫持高权限票据" class="heading-link"><i class="fas fa-link"></i></a><a href="#第二步：劫持高权限票据" class="headerlink" title="第二步：劫持高权限票据"></a><strong>第二步：劫持高权限票据</strong></h5>
       <p>假设攻击者控制了 MSSQLSERVER.XIAORANG.LAB：</p>
 <ol>
-<li>等待高权限用户（如域管）登录：如果 <strong>DOMAIN <span class="exturl"><a class="exturl__link" href="mailto:&#x41;&#x44;&#77;&#x49;&#x4e;&#x53;&#x40;&#x58;&#73;&#x41;&#x4f;&#x52;&#65;&#78;&#x47;&#46;&#x4c;&#x41;&#66;">&#x41;&#x44;&#77;&#x49;&#x4e;&#x53;&#x40;&#x58;&#73;&#x41;&#x4f;&#x52;&#65;&#78;&#x47;&#46;&#x4c;&#x41;&#66;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong> 或 <strong>ENTERPRISE <span class="exturl"><a class="exturl__link" href="mailto:&#x41;&#x44;&#77;&#73;&#x4e;&#83;&#x40;&#x58;&#73;&#x41;&#x4f;&#x52;&#65;&#x4e;&#x47;&#46;&#x4c;&#65;&#66;">&#x41;&#x44;&#77;&#73;&#x4e;&#83;&#x40;&#x58;&#73;&#x41;&#x4f;&#x52;&#65;&#x4e;&#x47;&#46;&#x4c;&#65;&#66;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong> 登录到 MSSQL 服务器，他们的 Kerberos 票据会自动存储在该机器上。</li>
+<li>等待高权限用户（如域管）登录：如果 <strong>DOMAIN <span class="exturl"><a class="exturl__link" href="mailto:&#65;&#68;&#77;&#x49;&#78;&#83;&#64;&#x58;&#x49;&#x41;&#79;&#x52;&#x41;&#x4e;&#x47;&#x2e;&#76;&#65;&#x42;">&#65;&#68;&#77;&#x49;&#78;&#83;&#64;&#x58;&#x49;&#x41;&#79;&#x52;&#x41;&#x4e;&#x47;&#x2e;&#76;&#65;&#x42;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong> 或 <strong>ENTERPRISE <span class="exturl"><a class="exturl__link" href="mailto:&#x41;&#x44;&#77;&#73;&#78;&#x53;&#x40;&#x58;&#x49;&#65;&#79;&#82;&#x41;&#78;&#x47;&#46;&#x4c;&#65;&#66;">&#x41;&#x44;&#77;&#73;&#78;&#x53;&#x40;&#x58;&#x49;&#65;&#79;&#82;&#x41;&#78;&#x47;&#46;&#x4c;&#65;&#66;</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></strong> 登录到 MSSQL 服务器，他们的 Kerberos 票据会自动存储在该机器上。</li>
 <li>利用 Kerberos 票据伪造攻击（Pass-the-Ticket）：通过工具（如 Mimikatz）提取高权限用户的票据，然后伪装成该用户访问域控 DC.XIAORANG.LAB。</li>
 </ol>
 
