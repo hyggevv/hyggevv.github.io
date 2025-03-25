@@ -1,0 +1,410 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.7.0" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.7.0" type="image/png" sizes="32x32"><meta name="description" content="想了想后面应该也不怎么打比赛了，那么就给后面的学弟们留下一份Web安全和取证的指南吧。笔者这里也想对后续接触Ctf的学弟们说：初期遇见的东西绝大多数都是没听说过的，只有不停的搜索，不停的学习，有智慧和礼貌的提问才能成长。也请各位学弟保持那一份热爱，奔赴下一场山海；祝愿你们日后的每一场比赛都可以顺顺利利。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web and Forensics Guide">
+<meta property="og:url" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="hey&#39;s blog">
+<meta property="og:description" content="想了想后面应该也不怎么打比赛了，那么就给后面的学弟们留下一份Web安全和取证的指南吧。笔者这里也想对后续接触Ctf的学弟们说：初期遇见的东西绝大多数都是没听说过的，只有不停的搜索，不停的学习，有智慧和礼貌的提问才能成长。也请各位学弟保持那一份热爱，奔赴下一场山海；祝愿你们日后的每一场比赛都可以顺顺利利。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/2.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/1.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/3.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/4.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/5.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/6.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/7.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/8.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/9.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/10.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/12.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/14.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/13.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/15.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/16.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/17.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/18.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/19.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/20.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/21.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/22.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/24.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/25.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/30.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/27.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/28.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/33.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/34.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/26.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/29.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/31.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/32.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/36.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/35.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/37.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/38.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/39.png">
+<meta property="og:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/40.png">
+<meta property="article:published_time" content="2025-03-22T06:51:05.000Z">
+<meta property="article:modified_time" content="2025-03-25T09:05:04.768Z">
+<meta property="article:author" content="hey">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/2.png"><title>Web and Forensics Guide | hey's blog</title><link ref="canonical" href="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.7.0"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: true,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">Tags</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">About</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/read/"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">menu.read</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">hey's blog</div><div class="header-banner-info__subtitle">天气转晴太阳崭新我在前进</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Web and Forensics Guide</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2025-03-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2025-03-25</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="Guide">
+          <a href="#Guide" class="heading-link"><i class="fas fa-link"></i></a><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h1>
+      
+        <h1 id="flag-Welcome-to-Cybersecurity">
+          <a href="#flag-Welcome-to-Cybersecurity" class="heading-link"><i class="fas fa-link"></i></a><a href="#flag-Welcome-to-Cybersecurity" class="headerlink" title="flag{Welcome_to_Cybersecurity}"></a>flag{Welcome_to_Cybersecurity}</h1>
+      
+        <h2 id="What-is-Cyberspace">
+          <a href="#What-is-Cyberspace" class="heading-link"><i class="fas fa-link"></i></a><a href="#What-is-Cyberspace" class="headerlink" title="What is Cyberspace"></a>What is Cyberspace</h2>
+      <p>​	在写下这一份web入门手册之前，我想先和大家聊一聊什么是网络空间安全（What is Cybersecurity）。要谈Cybersecurity就要提到什么是网络空间（What is Cyberspace），Cybersecurity这个名词是最早是在William Gibson在《Burning Chrome》中创造的；在这一个故事中的Cyberspace指的是mass consensual hallucination in computer networks（计算机网络中的群体共识幻觉）。</p>
+<p>​	接下来我们来一起看一份小布什政府时期的国家安全总统指令（NSPD-54） 和 国土安全总统指令（HSPD-23） ，这两份文件共同构成了《国家网络安全综合倡议》（CNCI），其中对网络空间的定义是：**the interdependent network of information technology infrastructures, including the Internet, telecommunications networks, computer systems, and embedded processors and controllers.**（网络空间是信息环境中一个整体域，它由独立且相互依存的信息基础设施和网络组成。包括了互联网、电信网、计算机系统、嵌入式处理器和控制器系统）</p>
+<p>这是来自2008年NSPD-54&#x2F;HSPD-23对Cyberspace定义：</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/2.png"></p>
+<p>​	其中网络空间中包含了IT设备（Internet of Things）、工业设备系统（Operation Technology）、物联网设备系统（Internet of Things）。专业上通常把遵循ISO&#x2F;OSI7层协议框架（有时用TCP&#x2F;IP协议框架）的设备统称为IT（Information Technology）设备或系统，其中可以按照类型进行划分：<strong>网络基础设施设备</strong>：路由器、交换机、防火墙、负载均衡器等，<strong>计算与存储设备</strong>：物理服务器、虚拟服务器、网络附加存储（NAS）、云存储（OSS、AWS S3），<strong>终端与外围设备</strong>：智能终端（iPhone）、输入输出设备（打印机、扫描仪）、数据采集设备（条码扫描器），<strong>软件与虚拟化系统</strong>：操作系统、数据库管理系统（Oracle、Mysql、MongoDB）、虚拟化与容器平台（VMware vSphere、Docker、Kubernetes）、企业应用软件（SAP S&#x2F;4HANA、Microsoft Teams、钉钉），<strong>云计算基础设施</strong>：物理层设备（Google TPU Pod）、laaS（AWS EC2、Azure Virtual Network）、Paas（Google App Engine、阿里云函数计算）。</p>
+<p>​	如果把整个范围扩大到所有可以连接到网络上的非IT设备系统：包括工业设备系统（Operation Technology，简称OT设备）如西门子S7-1500、思科Cyber Vision；物联网设备系统（Internet of Things，简称IoT设备）如蓝牙音箱、自动驾驶汽车。这就是网络空间的范围：海量+万物。</p>
+<p>​	亦或是因为网络空间的范围如此之广，随之而来的就是安全问题！</p>
+
+        <h2 id="What-is-Cybersecurity">
+          <a href="#What-is-Cybersecurity" class="heading-link"><i class="fas fa-link"></i></a><a href="#What-is-Cybersecurity" class="headerlink" title="What is Cybersecurity"></a>What is Cybersecurity</h2>
+      <p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/1.png"></p>
+<p>​	网络空间安全包含了：信息安全、网络安全、数据安全。网络安全指的是：保护网络基础设施（路由器、服务器）和通信链路（WiFi、光纤）的安全，确保数据在传输过程中不被截胡或破坏。信息安全指的是：确保信息在存储、处理、传输全生命周期的保密性、完整性、可用性（CIA三原则），信息安全多在企业中被提及。数据安全就很好理解了：小到个人的敏感信息大到企业的一些核心敏感数据。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/3.png"></p>
+
+        <h1 id="flag-Welcome-to-Ctf">
+          <a href="#flag-Welcome-to-Ctf" class="heading-link"><i class="fas fa-link"></i></a><a href="#flag-Welcome-to-Ctf" class="headerlink" title="flag{Welcome_to_Ctf}"></a>flag{Welcome_to_Ctf}</h1>
+      <p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/4.png"></p>
+<p>​	中文一般译作夺旗赛，在网络安全领域中指的是网络安全技术人员之间进行技术竞技的一种比赛形式。CTF 起源于 1996 年 DEFCON 全球黑客大会，以代替之前黑客们通过相发起真实攻击进行技术比拼的方式；其将安全相关的知识点抽象出来并加入到题目中，我们通过对知识点的理解认知，具体地进行实践来攻克题目。</p>
+
+        <h2 id="Competition-format">
+          <a href="#Competition-format" class="heading-link"><i class="fas fa-link"></i></a><a href="#Competition-format" class="headerlink" title="Competition format"></a>Competition format</h2>
+      <p><strong>解题模式（Jeopardy）：</strong>目前大多数国内外 CTF 比赛的主流形式，选手自由组队参赛。题目通常在比赛过程中陆续放出。解出一道题目后，提交题目对应的 flag 即可得分，比赛结束时分高者获胜。</p>
+<p><strong>攻防模式AWD (Attack With Defense）：</strong>通常为现场比赛，多数 CTF 决赛的比赛形式，选手自由组队参赛。每个队伍都有自己的一台服务器，其上运行着一些带有漏洞的服务。参赛战队需要找到漏洞对其他队伍的服务器发起攻击，也需要加固自己的服务器。相比于解题模式，时间更短，比赛中更注重临场反应和解题速度，需要能够快速攻击目标主机的权限，考察团队多方面的综合安全能力。</p>
+<p><strong>静态攻防 AWDP (Attack With Defence Plus)：</strong> 解题 + 加固赛，相比 AWD 赛制取消了攻击他人的服务器，主办方会根据出题人设置的脚本判断提交的攻击是否有效（攻击则和解题模式类似），参赛队伍无法直接攻击其他队伍。每个回合，参赛队伍都会根据自己攻击和加固成功的题目（以及相应题目的解题队伍数）来得分，以累积得分作为排行依据。</p>
+<p><strong>综合渗透赛 ISW：</strong>渗透+溯源，主办方给出一个模拟真实网络攻击的实战靶场，在渗透赛中选手需要对各个节点进行渗透，获取权限或者数据；其中分为单节点和多节点，多节点的可能会涉及到内网的横向和域内的攻击。在溯源赛中主办方会给出一个遭受了恶意攻击的机器，可能是给镜像或者流量包或者ssh机器。此时你需要对其进行取证和溯源，复盘出整个攻击路径。</p>
+
+        <h1 id="CTF-Web入门">
+          <a href="#CTF-Web入门" class="heading-link"><i class="fas fa-link"></i></a><a href="#CTF-Web入门" class="headerlink" title="CTF Web入门"></a>CTF Web入门</h1>
+      <p>​	基于 WEB 环境的互联网应用越来越广泛，企业信息化的过程中各种应用都架设在 WEB 平台上，WEB 业务的迅速发展也引起黑客们的强烈关注，接踵而至的就是 WEB 安全威胁的凸显，黑客利用网站操作系统的漏洞和 WEB 服务程序的漏洞得到 WEB 服务器的控制权限，轻则篡改网页内容，重则窃取重要内部数据，更为严重的则是在网页中植入恶意代码，使得网站访问者受到侵害。</p>
+<p>​	在 CTF 竞赛中，WEB 也是占比重很大的一个方向之一，WEB 类的题目种类繁多，知识点细碎，时效性强，能紧跟时下热点漏洞，贴近实战。WEB 类的题目包括但不限于：sql注入、文件上传、php’s tricks、XSS 跨站脚本、CSRF 跨站请求伪造、php反序列化、Rce任意命令执行、ssti模板注入、pickle反序列化、java反序列化、框架安全、代码审计等等。</p>
+<p>​	其实从大类来分就会简单明了很多，在计算机的世界里存在着700余种编程语言；其中比较流行的有50余种，而我们web中现如今更加关注于php、python、java、golang、rust这5大类语言；那么你现在所看到的一些网页系统，他们的后端就是通过编程语言进行编写。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/5.png"></p>
+<p>​	在程序员进行编写代码时可能会出现参数过滤不当、接口未做鉴权、函数引用不严谨亦或是使用了某些存在历史漏洞的框架等一些列的问题，那我们Web手就是要抓住这一些存在问题的代码进行进一步漏洞的利用，比如参数过滤不全我们就可以进行注入等；接口没有做鉴权我们就可以实现越权；函数引用不严谨就可能会出现一些可能存在命令执行的点。</p>
+
+        <h2 id="一、首先">
+          <a href="#一、首先" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、首先" class="headerlink" title="一、首先"></a>一、首先</h2>
+      
+        <h3 id="1-学会使用搜索引擎">
+          <a href="#1-学会使用搜索引擎" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-学会使用搜索引擎" class="headerlink" title="1.学会使用搜索引擎"></a>1.学会使用搜索引擎</h3>
+      <p>​	既然选择了竞赛这一个方向，那么你一定要先知道你所学习到的知识基本都是通过网络资源来获取的，我们也不会像学校老师一样对你进行授课又或者是留作业；全靠你自身对竞赛的兴趣和热爱。那么学会<strong>使用搜索引擎</strong>来查找相关的文章并自学，这是你绝大多数学习资料的来源。比如遇到某个你不理解的知识点时你就可以利用搜索引擎：Google&#x2F;Baidu&#x2F;Bing进行知识点的查询。既然聊到了搜素引擎那么就不得不提到Google语法，善用Google语法可以让你更加快速更加精准的定位到你想要查找的知识点：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038432191%EF%BC%9B%E4%BE%8B%E5%A6%82%E6%88%91%E5%AF%B9sql%E7%9B%B2%E6%B3%A8%E8%BF%99%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9%E4%B8%8D%E6%98%AF%E5%BE%88%E6%B8%85%E6%A5%9A%EF%BC%8C%E9%82%A3%E4%B9%88%E6%88%91%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8Google%E8%AF%AD%E6%B3%95%E5%AF%B9%E5%85%B6%E8%BF%9B%E8%A1%8C%E7%B2%BE%E5%87%86%E7%9A%84%E6%A3%80%E7%B4%A2%EF%BC%88%E5%9C%A8%E5%85%88%E7%9F%A5%E7%A4%BE%E5%8C%BA%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%B3%E4%BA%8E%E7%9B%B2%E6%B3%A8%E7%9A%84%E6%96%87%E7%AB%A0%E7%9A%84Google%E8%AF%AD%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%89%E3%80%82">https://segmentfault.com/a/1190000038432191；例如我对sql盲注这个知识点不是很清楚，那么我就可以使用Google语法对其进行精准的检索（在先知社区中查找关于盲注的文章的Google语法如下）。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/6.png"></p>
+<p>​	再提一嘴，我希望大家可以熟练掌握Google语法，因为其对于Baidu&#x2F;Bing都是适用的；而且在后续的ctf中你往往可以通过Google语法中的精准匹配来找到某一道题目的原题；并且在后续攻防演习中的信息收集也有着出其不意的效果。下面推荐一些安全相关的网站，个人觉得其内容质量都很高：先知社区： <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xz.aliyun.com/%E3%80%81%E8%B7%B3%E8%B7%B3%E7%B3%96%E7%A4%BE%E5%8C%BA%EF%BC%9A">https://xz.aliyun.com/、跳跳糖社区：</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://tttang.com/FreeBuf">https://tttang.com/FreeBuf</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>: <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.freebuf.com/%E3%80%81%E5%AE%89%E5%85%A8%E5%AE%A2%EF%BC%9A">https://www.freebuf.com/、安全客：</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.anquanke.com/%E3%80%81%E5%A5%87%E5%AE%89%E4%BF%A1%E6%94%BB%E9%98%B2%E7%A4%BE%E5%8C%BA%EF%BC%9Ahttps://forum.butian.net/%E3%80%81%E5%AE%89%E5%85%A8%E8%84%89%E6%90%8F%EF%BC%9A">https://www.anquanke.com/、奇安信攻防社区：https://forum.butian.net/、安全脉搏：</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.secpulse.com/%E3%80%82">https://www.secpulse.com/。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="2-提问的智慧">
+          <a href="#2-提问的智慧" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-提问的智慧" class="headerlink" title="2.提问的智慧"></a>2.提问的智慧</h3>
+      <p>​	在充满代码的世界里，你所提技术问题的解答很大程度上取决于你提问的方式与解决此问题的难度，个人极其的不喜欢被提问的方式就是：为什么这个报错了…（一张截图也没有，你做了什么操作导致了这样子也没有表明，你之前为了解决这个问题你还做了什么尝试）；在我看来你正确的提问方式应该包含：你做了什么操作导致了这样、截图、报错代码、你之前为了解决这个问题还做了哪一些尝试、你自己打算如何去继续解决这个问题。我毫无歉意地敌视那些提问前不愿思考的人。这种人就像时间无底洞，他们只知道索取，不愿意付出，他们浪费了时间，这些时间本可用于其它更有趣的问题或更值得回答的人。我们（大多数）是自愿者， 从自己繁忙的生活中抽时间来回答问题，有时会力不从心。因此，我们会毫不留情地滤除问题，特别是那些看起来像是没有经过思考之后进行的提问，以便更有效地把回答问题的时间留给那些经过自身思考的同学。</p>
+<p>所以我真的建议入门者可以看一看《How To Ask Questions The Smart Way》：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.catb.org/~esr/faqs/smart-questions.html">http://www.catb.org/~esr/faqs/smart-questions.html</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/7.png"></p>
+
+        <h3 id="3-准备相关的工具和环境">
+          <a href="#3-准备相关的工具和环境" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-准备相关的工具和环境" class="headerlink" title="3.准备相关的工具和环境"></a>3.准备相关的工具和环境</h3>
+      
+        <h4 id="环境">
+          <a href="#环境" class="heading-link"><i class="fas fa-link"></i></a><a href="#环境" class="headerlink" title="环境"></a>环境</h4>
+      <p>Python&#x2F;Java的环境配置</p>
+
+        <h4 id="基础工具">
+          <a href="#基础工具" class="heading-link"><i class="fas fa-link"></i></a><a href="#基础工具" class="headerlink" title="基础工具"></a>基础工具</h4>
+      <p>VMware Workstation Pro（虚拟机软件，我们可以用它来安装kali）、PhpStudy（你需要它来进行搭建一些基础的漏洞靶场）、Phpstorm、Pycharm（均为集成开发环境）、Vscode（代码编辑器）、Typora（Markdown 编辑器, 用来写一些你的学习笔记）、Navicat Premium（数据库管理工具）、MobaXterm（ssh&#x2F;sftp管理工具）</p>
+
+        <h4 id="安全工具">
+          <a href="#安全工具" class="heading-link"><i class="fas fa-link"></i></a><a href="#安全工具" class="headerlink" title="安全工具"></a>安全工具</h4>
+      <p>Burpsuite（Web 安全必备⼯具, 需要安装 Java 环境）、hackerbar（浏览器代理，你需要这个插件来代理流量让Burpsuite可以抓到你的请求包）、AntSword（Webshell管理工具）、dirsearch（目录扫描）</p>
+<p>因为Ctf不像攻防演习那样需要你具备大量的工具，在前期的Ctf的Web学习中其实你只要熟练掌握Burpsuite的使用便可以应对大部分的入门题目。在工具安装和环境配置这里我希望大家可以通过前面的<strong>学会使用搜索引擎</strong>中进行独立的安装（上述工具可能有一些需要付费，这个时候你就需要发挥你的搜索功能去搜索引擎中检索如何对其进行一个免费的使用）。</p>
+
+        <h3 id="4-学习一些编程语言">
+          <a href="#4-学习一些编程语言" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-学习一些编程语言" class="headerlink" title="4.学习一些编程语言"></a>4.学习一些编程语言</h3>
+      <p>​	前面也说过了，Web一般会涉及到Php、Python、Javascript、Java、Golang、Rust；但是我们一般还是先从Php开始，然后学习一些Sql语句。这两年来一直在迎新被问到的问题就是：我对编程语言的学习应该到哪在开始进行漏洞的学习？</p>
+<p>​	对于php来说：基本语法、数据类型、函数、文件&#x2F;目录读写、Json格式转换、<strong>正则表达式</strong>、超全局变量、文件包含、连接 MySQL 数据库并执行 SQL 语句。当你可以看懂下面的代码时我觉得就可以了。</p>
+<figure class="highlight php"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="comment">//flag在根目录哦</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FilterInput</span>(<span class="params"><span class="variable">$input</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$filtered</span>=<span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[^0-9\s]/&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="variable">$input</span>);</span><br><span class="line">    <span class="variable">$filtered</span>=<span class="title function_ invoke__">ltrim</span>(<span class="variable">$filtered</span>,<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$filtered</span>))&#123;</span><br><span class="line">        <span class="variable">$filtered</span>=<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$filtered</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;number&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$num</span>=<span class="title function_ invoke__">FilterInput</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;number&#x27;</span>]);</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$num</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$num</span>===<span class="string">&quot;20230923&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;welcome to kpctf_cup,enjoy&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">intval</span>(<span class="variable">$num</span>,<span class="number">0</span>)===<span class="number">20230923</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;next level&quot;</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;flower&#x27;</span>]))&#123;</span><br><span class="line">            <span class="variable">$flower</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;flower&#x27;</span>];</span><br><span class="line">            <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/.+?shianer/i&#x27;</span>,<span class="variable">$flower</span>))&#123;</span><br><span class="line">                <span class="keyword">print</span>(<span class="string">&#x27;???Are you kidding&#x27;</span>);</span><br><span class="line">                <span class="keyword">exit</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(<span class="title function_ invoke__">stripos</span>(<span class="variable">$flower</span>,<span class="string">&#x27;hhhshianer&#x27;</span>)===<span class="literal">FALSE</span>||<span class="title function_ invoke__">stripos</span>(<span class="variable">$flower</span>,<span class="string">&#x27;hhhshianer&#x27;</span>)===<span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&#x27;nonono,again&#x27;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;easy bypass&quot;</span>;</span><br><span class="line"></span><br><span class="line">                <span class="variable">$len</span> = <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cat_cat&#x27;</span>])?<span class="variable">$_POST</span>[<span class="string">&#x27;cat_cat&#x27;</span>]=&amp;<span class="variable">$_GET</span>[<span class="string">&#x27;cat_cat&#x27;</span>]:<span class="string">&#x27;cat_cat&#x27;</span>;</span><br><span class="line">                <span class="keyword">if</span> (<span class="title function_ invoke__">strpos</span>(<span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>], <span class="string">&#x27;cat_cat&#x27;</span>) !==<span class="literal">false</span>) &#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&#x27;mouse is defficult&#x27;</span>;</span><br><span class="line">                    <span class="keyword">exit</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">elseif</span> ((<span class="keyword">string</span>)<span class="variable">$len</span>&gt;<span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&#x27;nononono,to big&#x27;</span>;</span><br><span class="line">                    <span class="keyword">exit</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">elseif</span> (<span class="variable">$len</span>&lt;<span class="number">1000000000000000000000</span>) &#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&#x27;nononono,too small&#x27;</span>;</span><br><span class="line">                    <span class="keyword">exit</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;Nice. Come to catch the mouse&quot;</span>;</span><br><span class="line">                    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;flag&quot;</span>])) &#123;</span><br><span class="line">                        <span class="variable">$flag</span> = <span class="variable">$_GET</span>[<span class="string">&quot;flag&quot;</span>];</span><br><span class="line">                        <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/f|a|cat|tac|g|more|shell_exec|assert|eval|popen|exec|system|\&#x27;|\*|ls|passthru|file_get_contents|readfile|show_source|include|include_once|require|require_once|highlight_file/i&quot;</span>, <span class="variable">$flag</span>)) &#123;</span><br><span class="line">                            <span class="keyword">eval</span>(<span class="variable">$flag</span>);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            <span class="keyword">echo</span> <span class="string">&quot;nonononono`~&quot;</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">            </span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>并且你可以借助php的官方手册：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.php.net/manual/zh/%E8%BF%9B%E8%A1%8C%E5%87%BD%E6%95%B0%E7%9A%84%E6%9F%A5%E6%89%BE%EF%BC%8C%E4%BA%A6%E6%88%96%E8%80%85%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%80%9F%E5%8A%A9Ai%E6%9D%A5%E5%AF%B9%E4%BB%A3%E7%A0%81%E8%BF%9B%E8%A1%8C%E8%A7%A3%E9%87%8A%E3%80%82%E6%80%BB%E8%80%8C%E8%A8%80%E4%B9%8B%EF%BC%8C%E5%B7%AE%E4%B8%8D%E5%A4%9A%E5%9C%A83%E5%A4%A9%E5%B7%A6%E5%8F%B3%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8Bphp%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%8D%B3%E5%8F%AF%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%80%9F%E5%8A%A9%EF%BC%9Ahttps://www.runoob.com/php/php-tutorial.html%E6%9D%A5%E8%BF%9B%E8%A1%8C%E5%BF%AB%E9%80%9F%E7%9A%84%E5%85%A5%E9%97%A8%EF%BC%88%E7%9C%9F%E7%9A%84%E6%98%AF3%E5%A4%A9%E5%B7%A6%E5%8F%B3%EF%BC%89%E3%80%82">https://www.php.net/manual/zh/进行函数的查找，亦或者你可以借助Ai来对代码进行解释。总而言之，差不多在3天左右了解一下php的基本语法即可，可以借助：https://www.runoob.com/php/php-tutorial.html来进行快速的入门（真的是3天左右）。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>接下来你还需要花个2天左右的时间来对sql语法进行一个学习，主要是在：<strong>SELECT&#x2F;INSERT&#x2F;UPDATE&#x2F;DELETE这四大语句</strong>、表&#x2F;数据库的创建&#x2F;修改&#x2F;删除、<strong>常见的函数 (version(), database(), user(), group_concat(), hex(), md5() …)</strong></p>
+<p>看得懂下面的sql语句时即可</p>
+<figure class="highlight sql"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username <span class="keyword">as</span> u, password <span class="keyword">as</span> p <span class="keyword">from</span> users <span class="keyword">where</span> username <span class="keyword">like</span> <span class="string">&#x27;%admin%&#x27;</span>;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> users(id, username, password) <span class="keyword">values</span> (<span class="number">1</span>, <span class="string">&#x27;admin&#x27;</span>, <span class="string">&#x27;admin&#x27;</span>), (<span class="number">2</span>, <span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line"><span class="keyword">update</span> users <span class="keyword">set</span> password <span class="operator">=</span> md5(<span class="string">&#x27;123456&#x27;</span>) <span class="keyword">where</span> username <span class="operator">=</span> <span class="string">&#x27;admin&#x27;</span> <span class="keyword">or</span> username <span class="operator">=</span><span class="string">&#x27;test&#x27;</span>;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> users <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> users(id <span class="type">int</span>, username <span class="type">varchar</span>(<span class="number">255</span>), password <span class="type">varchar</span>(<span class="number">255</span>));</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> users;</span><br><span class="line"><span class="keyword">create</span> database learn;</span><br><span class="line"><span class="keyword">drop</span> database learn;</span><br></pre></td></tr></table></div></figure>
+
+<p>个人不建议在入门的时候就开始深研这些语言，你只需要对其的大致语法有一定的了解即可。</p>
+
+        <h2 id="二、你该从哪些漏洞开始？">
+          <a href="#二、你该从哪些漏洞开始？" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、你该从哪些漏洞开始？" class="headerlink" title="二、你该从哪些漏洞开始？"></a>二、你该从哪些漏洞开始？</h2>
+      
+        <h3 id="Sqli-labs">
+          <a href="#Sqli-labs" class="heading-link"><i class="fas fa-link"></i></a><a href="#Sqli-labs" class="headerlink" title="Sqli labs"></a>Sqli labs</h3>
+      <p>项目地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/Audi-1/sqli-labs%EF%BC%9B%E9%85%8D%E5%90%88phpstudy%E5%B0%86%E5%85%B6%E6%90%AD%E5%BB%BA%E5%9C%A8%E6%9C%AC%E5%9C%B0%E3%80%82">https://github.com/Audi-1/sqli-labs；配合phpstudy将其搭建在本地。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/8.png"></p>
+<p><strong>要求：</strong></p>
+<ol>
+<li>在学习该靶场时可以直接看通过手册（Google&#x2F;Baidu搜索：sqlilabs wp）再结合源码进行学习</li>
+<li>理解每一个payload中每一个符号的含义；并掌握基础的绕过原理：大小写绕过、编码绕过等</li>
+<li>掌握多种注入手法如：联合注入、报错注入、盲注（必须要达到可以自行编写盲注脚本的程度）、二次注入、宽字节注入、叠堆注入、Order By注入（Sqlilabs差不多做到37关即可，不需要全部完成）</li>
+<li><strong>记笔记记笔记记笔记！！！</strong>（可以用前面推荐的Typora进行记录，推荐文章：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7169%EF%BC%89">https://xz.aliyun.com/t/7169）</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+</ol>
+
+        <h3 id="Upload-Labs">
+          <a href="#Upload-Labs" class="heading-link"><i class="fas fa-link"></i></a><a href="#Upload-Labs" class="headerlink" title="Upload Labs"></a>Upload Labs</h3>
+      <p>项目地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/c0ny1/upload-labs%EF%BC%9B%E9%85%8D%E5%90%88phpstudy%E5%B0%86%E5%85%B6%E6%90%AD%E5%BB%BA%E8%87%B3%E6%9C%AC%E5%9C%B0">https://github.com/c0ny1/upload-labs；配合phpstudy将其搭建至本地</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/9.png"></p>
+<p><strong>要求：</strong></p>
+<ol>
+<li>在学习该靶场时可以直接看通过手册（Google&#x2F;Baidu搜索：upload-labs wp）再结合源码进行学习，理解白名单和黑名单</li>
+<li>熟练掌握靶场中的一些攻击手法例如：前后端验证的绕过、分配式文件攻击（.htaccess&#x2F;.ini）、一些绕过手法（大小写、空格、点号、双写、截断、::$DATA等）、图片马、二次渲染、条件竞争攻击</li>
+<li><strong>记笔记记笔记记笔记！！！</strong>（可以用前面推荐的Typora进行记录）</li>
+</ol>
+
+        <h3 id="DVWA">
+          <a href="#DVWA" class="heading-link"><i class="fas fa-link"></i></a><a href="#DVWA" class="headerlink" title="DVWA"></a>DVWA</h3>
+      <p>项目地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/digininja/DVWA%EF%BC%9B%E9%85%8D%E5%90%88phpstudy%E5%B0%86%E5%85%B6%E6%90%AD%E5%BB%BA%E8%87%B3%E6%9C%AC%E5%9C%B0">https://github.com/digininja/DVWA；配合phpstudy将其搭建至本地</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/10.png"></p>
+<p><strong>要求：</strong></p>
+<ol>
+<li>在学习该靶场时可以直接看通过手册（Google&#x2F;Baidu搜索：Dvwa wp）,要理解各个漏洞的原理和基础的攻击手法。</li>
+<li>着重关注文件包含、Rce、CSRF、SSRF、XSS、Nodejs这几个漏洞点</li>
+<li><strong>记笔记记笔记记笔记！！！</strong>（可以用前面推荐的Typora进行记录）</li>
+</ol>
+
+        <h3 id="接下来呢？">
+          <a href="#接下来呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#接下来呢？" class="headerlink" title="接下来呢？"></a>接下来呢？</h3>
+      <p>在完成这些之后你应该也已经大一上学期结束了，该迎来寒假了；这也是你将会有质的飞跃的时刻。这个时候呢你就需要进行一个系统性的刷题</p>
+
+        <h4 id="NSSCTF">
+          <a href="#NSSCTF" class="heading-link"><i class="fas fa-link"></i></a><a href="#NSSCTF" class="headerlink" title="NSSCTF"></a>NSSCTF</h4>
+      <p>平台地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://nssctf.cn/problem/explore%EF%BC%9B%E5%8F%AF%E4%BB%A5%E5%85%88%E4%BB%8E%E6%98%9F%E8%BE%B0%E5%A4%A7%E6%B5%B7%E7%9A%84Web%E6%A8%A1%E5%9D%97%E5%BC%80%E5%A7%8B">https://nssctf.cn/problem/explore；可以先从星辰大海的Web模块开始</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/12.png"></p>
+
+        <h4 id="ctfshow">
+          <a href="#ctfshow" class="heading-link"><i class="fas fa-link"></i></a><a href="#ctfshow" class="headerlink" title="ctfshow"></a>ctfshow</h4>
+      <p>平台地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://ctf.show/challenges#%EF%BC%9B%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%83%B3%E6%9B%B4%E4%B8%BA%E7%B3%BB%E7%BB%9F%E6%88%96%E8%80%85%E6%98%AF%E6%9B%B4%E5%8A%A0%E5%96%9C%E6%AC%A2%E5%88%86%E6%A8%A1%E5%9D%97%E7%9A%84%E5%88%B7%E9%A2%98%E7%9A%84%E8%AF%9D%E5%8F%AF%E4%BB%A5%E8%AF%95%E8%AF%95ctfshow">https://ctf.show/challenges#；如果你想更为系统或者是更加喜欢分模块的刷题的话可以试试ctfshow</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/14.png"></p>
+
+        <h4 id="Buu">
+          <a href="#Buu" class="heading-link"><i class="fas fa-link"></i></a><a href="#Buu" class="headerlink" title="Buu"></a>Buu</h4>
+      <p>平台地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://buuoj.cn/challenges%EF%BC%9B%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%BC%80%E5%A7%8B%E5%A4%A7%E9%87%8F%E7%9A%84%E5%88%B7%E9%A2%98%E4%BA%86">https://buuoj.cn/challenges；接下来就可以开始大量的刷题了</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/13.png"></p>
+
+        <h5 id="Tips">
+          <a href="#Tips" class="heading-link"><i class="fas fa-link"></i></a><a href="#Tips" class="headerlink" title="Tips:"></a>Tips:</h5>
+      <p>​	前期刷题的时候肯定会遇到⼀些不会的知识点, 这里的建议是先在网上搜索相关题目的 Writeup 并学习里面涉及到的相关知识, 然后再去题目中复现，在积累了⼀定的经验之后可以尝试不去看 Writeup 独自做题, 拓宽思路当你能够独自解出⼀定数量的题目之后, 说明你就已经入门了。</p>
+<p>​	比如此时我们遇到了BUU中的第一题，刚开始的你肯定什么都不懂，什么也不知道；那么此时我们就可以去搜索对应的 题目名 + Writeup （此时就要使用到上面讲过的搜索引擎的语法了，此时我还加了一个 -csdn来排除掉csdn论坛的文章）</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/15.png"></p>
+<p>都说好记性不如烂笔头，刷题期间可以用Typora来<strong>写一写笔记和心得，记录一下每道题目的解题思路。</strong>其实这个也是我最想强调的一个点：<strong>记录记录再记录</strong></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/16.png"></p>
+
+        <h3 id="再接下来你会遇到什么呢？">
+          <a href="#再接下来你会遇到什么呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#再接下来你会遇到什么呢？" class="headerlink" title="再接下来你会遇到什么呢？"></a>再接下来你会遇到什么呢？</h3>
+      <p>​	接下来你会遇到大量再靶场中没有出现的知识点，比如php的反序列化、php’s tricks、CVE、ssti、pickle等等一系列的新题型；比如下面的这个<code>[极客大挑战 2019]PHP</code> </p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/17.png"></p>
+<p>​	此时这是一道反序列化题目，此时光看 Writeup 肯定是看不懂的，这个时候你可以<strong>善用搜索引擎</strong>：<code>site: site:xz.aliyun.com &quot;php反序列化&quot; -csdn</code></p>
+<p>此时的site关键词可以换成我在上面推荐的那些安全网站；又或者你可以直接：<code>&quot;php反序列化&quot; -csdn</code></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/18.png"></p>
+<p>当然你如果想阅读一些师傅的blog的话，你也可以：<code>&quot;php反序列化&quot; blog -csdn</code></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/19.png"></p>
+<p>这个时候的搜索结果就是一些网安师傅自己的学习php反序列化的记录。</p>
+
+        <h4 id="注意">
+          <a href="#注意" class="heading-link"><i class="fas fa-link"></i></a><a href="#注意" class="headerlink" title="注意"></a>注意</h4>
+      <p>​	讲了这么多，我还是要继续强调：<strong>当你遇到新的知识点的时候一定要把它记录下来，自己学会总结</strong></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/20.png"></p>
+<p>​	初期遇见的东西绝大多数都是没听说过的，只有不停的搜索，不停的学习，有智慧和礼貌的提问才能成长。然后再你们大一寒假的这个阶段会有一个新生赛叫做<strong>hgame</strong>；大家可以用这个比赛来检验自己近阶段刷题的成果。</p>
+
+        <h3 id="后续还要学些什么呢？">
+          <a href="#后续还要学些什么呢？" class="heading-link"><i class="fas fa-link"></i></a><a href="#后续还要学些什么呢？" class="headerlink" title="后续还要学些什么呢？"></a>后续还要学些什么呢？</h3>
+      
+        <h4 id="Python安全">
+          <a href="#Python安全" class="heading-link"><i class="fas fa-link"></i></a><a href="#Python安全" class="headerlink" title="Python安全"></a>Python安全</h4>
+      <p>​	我想现在这会儿你们经过上述的步骤后已经到了大一下的时候了，这个时候你需要学习什么呢（其实在你刷题的时候就会开始逐渐的遇到别的语言的安全问题）？已经学了一个学期的php安全了；我想你也应该开始接触另外的编程语言的安全问题了，这个时候你就应该开始了解Python安全，Python在Ctf中较为常考的点是ssti、pickle反序列化、Python内存马、flask框架、Bottle框架等等。那么这个时候接触的又是新的知识点；整个的学习流程还是：</p>
+<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">遇到这个考点的题目 --&gt; 发现不会做 --&gt; 经过查看 Writeup --&gt; 发现这个是一个新的知识点 --&gt; 善用搜索引擎进行自学 --&gt; 记录学习笔记 --&gt; 再次尝试刚遇到的题目</span><br></pre></td></tr></table></div></figure>
+
+<p>​	并且在你大一下的时候，你可以多去尝试一些网安类的比赛，有比赛就打；因为此时你的知识储备还不够多；所以此时可能会遇见大量不会做的题目，这个是很正常的事情，在座的每一位学长在大一下的时候也是这样子；那么此时你就需要<strong>复盘复盘再复盘</strong>；一般在赛后官方都会放出 Writeup ；你需要对你不会做的题目参照Writeup 来进行复现并记录知识点。在大量的比赛的积累下你也会逐渐的形成一套属于自己的做题心得和知识体系。</p>
+<p>这是几篇关于ssti的学习文章，我不是很想推荐文章的原因是希望大家善用搜索引擎去寻找一些自学的材料。</p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://tttang.com/archive/1698/">https://tttang.com/archive/1698/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://tttang.com/archive/1412/">https://tttang.com/archive/1412/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="Ctf战队">
+          <a href="#Ctf战队" class="heading-link"><i class="fas fa-link"></i></a><a href="#Ctf战队" class="headerlink" title="Ctf战队"></a>Ctf战队</h4>
+      <p>​	这里我还想给大伙们一个建议，大一下刚好也会有一些战队的招新赛；这个时候大家可以去参与，尽力的去打；我们学校战队的师傅也有一些属于自己的校外战队，你们就可以通过比赛成绩或者学长的内推去加入一些Ctf战队。加入战队意味着你可以获取更加成熟的知识体系并且可以和队内的师傅一起交流学习；相互促进相互成长。</p>
+
+        <h4 id="Tips-1">
+          <a href="#Tips-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h4>
+      <p>​	此时你经过了大一一整年的学习，我想你也开始知道自己需要去学一些什么；你感兴趣的知识点亦或是你想深入学习的知识点。学长在这里也有个小小的建议，这个时候你可以<strong>往回看</strong>，看看我们学过的php安全；你可以去审一审php中的ThinkPhp框架，了解一下框架安全；也可也去阅读一下Sqlmap的源代码，来帮助你对Sql注入有着更深的了解；然后去复现一些CVE，这对你后续进行漏洞挖掘和代码审计都会有着相当大的帮助；你也可以尝试的去了解一些渗透测试，这里推荐的渗透测试的靶场有htb、hackthebox、春秋云境（多为域渗透难度偏高）。</p>
+<p>​	当然你也会被学长们拉去参与一些攻防演习，在整个福建省内，我校的攻防水平实战还是很可观的；我们可能会接到政府、医疗、金融、教育、企业等行业的邀请；让我们对其进行授权下的渗透，此时你就应该了解一下什么是信息收集，并且在前期你需要做的就是和学长们对靶标进行仔细的信息收集；并准备大量的攻防实战工具（也可也遇到在下载，但是在你参加攻防演习之前你必须要准备一些基础工具）：</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/21.png"></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/22.png"></p>
+<p>​	在我大二下2024年正值攻防演习最混乱的时期，政企都在紧赶慢赶的准备应对提前到来的国家护网，那个学期我也基本是一整个学期都不在学校里面（基本一周有一场的攻防，印象最深的就是马原课递了9张的假条哈哈哈哈）；福建省内跑来跑去的哈哈哈哈哈哈也是非常的疲惫，这也导致了我Java安全的学习一直被影响。但是今年2025年中央下发文件后各个地级市和各个行业已经没有权力可以擅自举办攻防演习了；现在更多的是政企内部的演习；所以能给到咱们学校的机会也变少了，但是未尝不是一件好事情，大家可以更加专注的学习竞赛的内容，不用被攻防实战演习所分心和压力。</p>
+
+        <h4 id="Java安全">
+          <a href="#Java安全" class="heading-link"><i class="fas fa-link"></i></a><a href="#Java安全" class="headerlink" title="Java安全"></a>Java安全</h4>
+      <p>​	如果大伙们已经把上述的那些知识点过完了，那么我想你已经是一个优秀的Ctfer了，那么我想你是时候去了解一下Java安全了。</p>
+<p>​	这里的Java安全我想提一嘴，如果大家在大二年要准备开始学习Java安全，那么你一定要先去了解Java的开发和Java的框架！！！一定要先花一个月的时间去了解一下Java的开发和Java框架；Java考题大部分会围绕框架安全来进行出题。<strong>一定要先去学习Java开发</strong>，这也是老学长之前走过的坑，在没有了解Java开发的前提下直接开始学习cc链子，这会使你非常的吃力并且Java安全知识点太过于繁杂，如果没有开发来作为基础的话会导致你越来越没有信心。所以要学<strong>Java安全</strong>就一定要先去了解Java开发！！！这里推荐几个我认为非常不错的博主：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/Y4tacker/JavaSec%E3%80%81https://su18.org/%E3%80%81https://github.com/Drun1baby/JavaSecurityLearning%E3%80%81https://github.com/phith0n/JavaThings%EF%BC%88p%E7%A5%9E%E7%9A%84%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83%EF%BC%89%E3%80%81%E8%BF%98%E6%9C%89b%E7%AB%99%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6%E7%BB%84%E9%95%BF%E3%80%82">https://github.com/Y4tacker/JavaSec、https://su18.org/、https://github.com/Drun1baby/JavaSecurityLearning、https://github.com/phith0n/JavaThings（p神的知识星球）、还有b站的白日梦组长。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="聊一聊">
+          <a href="#聊一聊" class="heading-link"><i class="fas fa-link"></i></a><a href="#聊一聊" class="headerlink" title="聊一聊"></a>聊一聊</h2>
+      <p>​	当你能看到这里的时候我想你已经对整个Web的学习路线有了一定的认知和了解；我想当学到后面的时候你也会有自己想学习的知识，也不会跟着学长对你的安排来循规蹈矩的学习。我还想说初期遇见的东西绝大多数都是没听说过的，只有不停的搜索，不停的学习，有智慧和礼貌的提问才能成长。天赋、兴趣、毅力；得二便可一往无前！在大学这个美好的阶段；我想你们也可以在阳光灿烂的日子里去公园散散步赏赏花拍拍照，生活不止眼前的竞赛，仍然还有诗和远方。也希望你们可以拓宽一下自身的交际，当你学习到感觉疲劳时可以约上三五好友出去走一走散散步吃吃好吃的；当你还在问学长们什么时候开始学习竞赛时，我想在你你问了千千万万遍之后我依旧还是会告诉你当下就是最好的时间；前方的风景很好，希望你也加油。</p>
+
+        <h1 id="Forensics">
+          <a href="#Forensics" class="heading-link"><i class="fas fa-link"></i></a><a href="#Forensics" class="headerlink" title="Forensics"></a>Forensics</h1>
+      <p>学弟说还想了解一下电子数据取证的考点，那也就顺便写写吧。</p>
+
+        <h2 id="What-is-Forensics">
+          <a href="#What-is-Forensics" class="heading-link"><i class="fas fa-link"></i></a><a href="#What-is-Forensics" class="headerlink" title="What is Forensics"></a>What is Forensics</h2>
+      <p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/24.png"></p>
+<p>​	电子取证是指利用计算机软硬件技术，以符合法律规范的方式对计算机入侵、破坏、欺诈、攻击等犯罪行为进行证据获取、保存、分析和出示的过程。从技术方面看，计算机犯罪取证是一个对受侵计算机系统进行扫描和破解，对入侵事件进行重建的过程。具体而言，是指把计算机看作犯罪现场，运用先进的辨析技术，对计算机犯罪行为进行解剖，搜寻罪犯及其犯罪证据。电子证据问题是由于技术发展引起的，因为计算机和电信技术的发展非常迅猛，所以取证步骤和程序也必须不断调整以适应技术的进步。并且电子数据取证发生于案后，你需要对涉案人员的手机、Pc、服务器、U盘、云等一系列介质进行调查取证；并且通过这些涉案介质来捋出一整条案情线索以及涉案人员的犯罪证据。</p>
+
+        <h2 id="取证基础">
+          <a href="#取证基础" class="heading-link"><i class="fas fa-link"></i></a><a href="#取证基础" class="headerlink" title="取证基础"></a>取证基础</h2>
+      
+        <h3 id="VeraCrypt的使用：">
+          <a href="#VeraCrypt的使用：" class="heading-link"><i class="fas fa-link"></i></a><a href="#VeraCrypt的使用：" class="headerlink" title="VeraCrypt的使用："></a>VeraCrypt的使用：</h3>
+      <p>​	要涉足于取证领域之前，你必须要先了解一下VeraCrypt和TrueCrypt。TrueCrypt 允许你创建一个加密的文件“保险库”，在那里你可以存储任何类型的敏感信息（文本、音频、视频、图像、PDF 等）。只要你有正确的口令，TrueCrypt 就可以解密保险库，并在任何运行 TrueCrypt 的电脑上提供读写权限。这是一项有用的技术，它基本上提供了一个虚拟的、可移动的、完全加密的驱动器（除了文件以外），你可以在其中安全地存储你的数据。VeraCrypt 基于 TrueCrypt 7.1a，比原来的版本有许多改进（包括标准加密卷和引导卷的算法的重大变化）。在 VeraCrypt 1.12 及以后的版本中，你可以使用自定义迭代来提高加密安全性。更好的是，VeraCrypt 可以加载旧的 TrueCrypt 卷。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/25.png"></p>
+
+        <h3 id="证据文件格式：">
+          <a href="#证据文件格式：" class="heading-link"><i class="fas fa-link"></i></a><a href="#证据文件格式：" class="headerlink" title="证据文件格式："></a>证据文件格式：</h3>
+      <p><strong>全盘或分区镜像文件</strong>：E01、Ex01、DD&#x2F;Raw Image(原始数据镜像)、AFF、Smart；<strong>逻辑证据文件</strong>：L01、Lx01、AD1；<strong>虚拟磁盘</strong>：VMDK、VHD、VHDX、VDI</p>
+
+        <h3 id="镜像的处理：">
+          <a href="#镜像的处理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#镜像的处理：" class="headerlink" title="镜像的处理："></a>镜像的处理：</h3>
+      <p>​	接下来很重要的就是如何对镜像进行下一步的处理；我们在没有商用软件授权的情况下，我们可以使用FTK Imager挂载镜像，然后使用VMware新建虚拟机来进行一个镜像的仿真。又或者我们可以使用qemu-img；qemu-img能将RAW、qcow2、VMDK、VDI、VHD（vpc）、VHDX、qcow1或QED格式的镜像转换成VHD格式，也可以实现RAW和VHD格式的互相转换。使用 qemu-img 将 QCOW2、RAW、VMDK 或 VDI 镜像转换为 vmdk后再用VMware新建虚拟机来进行仿真也可以。</p>
+
+        <h3 id="一系列开源工具的使用：">
+          <a href="#一系列开源工具的使用：" class="heading-link"><i class="fas fa-link"></i></a><a href="#一系列开源工具的使用：" class="headerlink" title="一系列开源工具的使用："></a>一系列开源工具的使用：</h3>
+      <p><strong>Volatility</strong>：</p>
+<p>2007年，Volatility的第一个版本在黑帽DC公开发布。该软件基于多年来对高级内存分析和取证的公开学术研究。在此之前，数字调查主要集中在硬盘图像中发现违禁品。Volatility向人们介绍了使用易失性存储（RAM）中的数据分析系统运行时状态的力量。它还提供了一个跨平台、模块化和可扩展的平台，以鼓励在这一激动人心的研究领域开展进一步的工作。该项目的另一个主要目标是鼓励协作、创新和对攻击性软件社区中常见知识的可访问性。从那时起，记忆分析已经成为数字调查未来最重要的课题之一，Volatility已经成为世界上使用最广泛的记忆取证平台。该项目得到取证行业最大、最活跃的社区之一的支持。Volatility还提供了一个独特的平台，使尖端研究能够立即转移到数字调查人员手中。因此，建立在<code>Volatility</code>之上的研究出现在顶级学术会议上，Volatility已经被用于过去十年中一些最关键的调查。它已经成为全世界执法、军事、学术界和商业调查人员所依赖的不可或缺的数字调查工具。</p>
+<p>Volatility是非常优秀的一个内存取证开源软件，在后续的内存取证也会讲到。项目地址：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/volatilityfoundation/volatility">https://github.com/volatilityfoundation/volatility</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>使用教程：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.forensics-wiki.com/volatility/install/">https://www.forensics-wiki.com/volatility/install/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/30.png"></p>
+<p><strong>X-Ways Forensics</strong>：</p>
+<p>X-Ways Forensics 是一款功能强大的法证工具，提供了各种用于磁盘、文件、网络及其他数据分析的功能。在执行法证分析时，它能够高效地处理大量数据、提供深入的报告和详细的时间线，为数字法证工作提供全面的支持。由 Stefan Fleischmann 开发。它最初发布于2001年，旨在为数字取证专业人士提供强大而灵活的工具，用于分析和重建计算机系统中的数据。该软件设计初衷是解决传统取证工具在效率和功能上的局限性，使得用户能够更深入、更快速地进行取证工作。（我希望你们可以先将X-Ways Forensics用到熟悉之后再去尝试一些商业的取证软件）</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/27.png"></p>
+<p>X-Ways Forensics使用指南：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.x-ways.net/winhex/manual.pdf%EF%BC%9B%E5%BC%BA%E7%83%88%E5%BB%BA%E8%AE%AE%E5%A4%A7%E5%AE%B6%E5%85%88%E5%A5%BD%E5%A5%BD%E7%9A%84**%E5%AD%A6%E4%B8%80%E5%AD%A6X-Ways">https://www.x-ways.net/winhex/manual.pdf；强烈建议大家先好好的**学一学X-Ways</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> Forensics 的使用。</p>
+<p><strong>FTK Imager</strong>：</p>
+<p>FTK Imager 是 AccessData Group, Inc. 公司开发的 FTK 系列取证工具中的磁盘镜像工具，为免费软件，可在官网免费下载并安装使用，但是该系列其他软件需要购买授权才能使用。FTK Imager 软件体积 50MiB 左右，安装后体积 128MiB 左右，可以在安装后拷出来以便携版的方式使用，以便于现场调证工作。FTK Imager 的主要功能是磁盘镜像、内存镜像、磁盘镜像查看、磁盘挂载和数据恢复，在关键词过滤、文本搜索等方面并不是特别突出，毕竟软件名称里面就把功能写出来了，主要是进行采集，而不是分析。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/28.png"></p>
+<p><strong>R-Studio</strong>：</p>
+<p>R-Studio 是一套全功能的数据恢复应用程序，适用于 Windows、Mac OS 以及 Linux 。它可以从硬盘 (HDD)、固态硬盘 (SSD)、闪存及其他内部或外部的数据存储设备启动以恢复数据。R-Studio 内核的应用程序 R-Undelete 专为非专业用户开发，它只能在 Windows 下工作，拥有简化的界面和十六进制编辑器，但不支持 RAID 和网络数据恢复功能。R-Undelete 面向家庭用户，帮助这些用户从 FAT32&#x2F;NTFS、FAT&#x2F;exFAT等文件系统中恢复文件，前两种主要是Windows下的机械硬盘和固态硬盘（SSD），后两种文件系统主要用于USB以及数字相机中的 SD卡。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/33.png"></p>
+<p><strong>Ufs-explorer-pro</strong>：</p>
+<p>是一款强大的、综合的、但是易用的数据恢复软件，可以帮助用户进行快速和全面的数据恢复和反删除程序文件。支持各种Windows损坏的RAID阵列恢复 支持系统，UFS的资源管理与专业恢复可以帮助您从不同的操作系统的文件系统的中恢复损坏或者丢失的文件。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/34.png"></p>
+<p><strong>Autopsy</strong>：</p>
+<p>开源的电子数据取证软件。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/26.png"></p>
+<p><strong>Arsenal Imager Mounter</strong>：</p>
+<p>Arsenal Image Mounter是一款非常优秀的磁盘挂载工具，在Microsoft Windows中可以将磁盘映像的内容作为“真实磁盘”挂载到系统中。Arsenal Image Mounter包含了一个<strong>虚拟SCSI适配器</strong>（通过独特的Storport miniport驱动程序），使用户可以从Windows中对挂载的镜像启动虚拟机（然后绕过Windows身份验证）、管理BitLocker -受保护的卷、安装&#x2F;访问“<strong>卷影副本</strong>”、“<strong>磁盘管理器</strong>”等功能。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/29.png"></p>
+<p>如果是在平常的练习中我还是希望大家更加的侧重于使用X-Ways Forensics、FTK Imager进行做题；如果是要参加取证比武的话那么我们就需要一些商用软件对我们进行帮助，下面是几家国内权威性较高的取证厂商：美亚柏科、奇安信盘古石系列取证分析产品、上海弘连、杭州平航、四川效率源。这些商用软件的申请，你们可以通过联系纪老师，然他跟厂家的销售对接申请。当然大家也可也关注一些被流出的破解取证软件比如Oxygen Forensic Detective、Cellebrite…</p>
+
+        <h2 id="内存取证">
+          <a href="#内存取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#内存取证" class="headerlink" title="内存取证"></a>内存取证</h2>
+      <p>​	从你按下计算机电源的那一刻起，内存就开始工作了，当然其他硬件也在工作，但是内存会加载很多的重要数据，如操作系统的加载、预启动程序的加载、正常运行时程序程序的加载等等。内存取证的一个特点就是它提供了一种清晰的途径来让人们对计算机实时的状态进行取证，如当时的进程情况、网络连接情况、执行过的命令等等，这对提取一些木马程序等恶意程序是有很大帮助的，除此之外，你甚至可以从内存中取出一些密码信息，如mimikatz就是这么干的。</p>
+<p>​	内存取证可以说是最有成果、最有趣、最具争议的领域数字取证。操作系统或应用程序执行的每个功能导致对计算机内存（RAM）进行特定修改，这通常可以在行动之后持续很长时间，本质上是保存它们。此外,内存取证为系统的运行时状态提供了前所未有的可见性，例如哪些进程正在运行、打开的网络连接和最近执行的com-近日。您可以以完全独立于组件的方式提取这些工件您正在调查的系统，减少恶意软件或rootkit可以干扰的机会你的结果。关键数据通常只存在于内存中，例如磁盘加密移动键，内存驻留注入代码片段，不记录的聊天信息，加密的电子邮件消息，以及不可缓存的互联网历史记录。 </p>
+<p>​	此时在Ctf中我们遇到大部分的取证都会是内存取证分析；学习资料：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://xdforensics-wiki.github.io/XDforensics-wiki/ram2/%EF%BC%9B%E6%AD%A4%E6%97%B6%E5%A4%A7%E5%AE%B6%E9%9C%80%E8%A6%81%E7%86%9F%E7%BB%83%E4%BD%BF%E7%94%A8Volatility%E3%80%82%E8%AF%A6%E7%BB%86%E7%9A%84%E9%A2%98%E7%9B%AE%E5%8F%AF%E8%A7%812025GHCTF-mymem%EF%BC%9Ahttps://blog.csdn.net/qq_63923205/article/details/146015873">https://xdforensics-wiki.github.io/XDforensics-wiki/ram2/；此时大家需要熟练使用Volatility。详细的题目可见2025GHCTF-mymem：https://blog.csdn.net/qq_63923205/article/details/146015873</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h2 id="Windows取证">
+          <a href="#Windows取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#Windows取证" class="headerlink" title="Windows取证"></a>Windows取证</h2>
+      <p>​	与挖掘Linux服务器镜像中的网络行为信息不同，取证比赛中对于Windows镜像的考查主要体现在使用痕迹与文件上，比如软件使用记录，浏览器历史记录，病毒样本文件，以及爬取的表单话单等。因此取证工作者要熟练地掌握文件提取、数据恢复、系统仿真、详单分析、编程与逆向工程等知识与技术手段。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/31.png"></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/32.png"></p>
+
+        <h2 id="Linux-amp-服务器取证">
+          <a href="#Linux-amp-服务器取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#Linux-amp-服务器取证" class="headerlink" title="Linux&amp;服务器取证"></a>Linux&amp;服务器取证</h2>
+      <p>Linux主要作为网络服务器，在Linux取证中我们一般会挖掘Linux服务器镜像中的网络行为信息。并且涉及到涉案网站的重构或者集群的构建。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/36.png"></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/35.png"></p>
+
+        <h2 id="手机取证">
+          <a href="#手机取证" class="heading-link"><i class="fas fa-link"></i></a><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h2>
+      <p>​	手机取证最大的关键点在于你是否了解Android和IOS的文件系统和文件目录，因为我们普通的手机是没有root权限的；所以大多人对我们的手机目录并没有很深得的了解；不知道你平时的微信消息存储在哪一个目录，也不知道你的手机型号信息在哪个文件中可以观察；所以我认为入门者应该去了解一下Android和IOS的目录结构和存储结构。</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/37.png"></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/38.png"></p>
+
+        <h2 id="How-to-Learning">
+          <a href="#How-to-Learning" class="heading-link"><i class="fas fa-link"></i></a><a href="#How-to-Learning" class="headerlink" title="How to Learning"></a>How to Learning</h2>
+      <p>​	初期遇见的东西绝大多数都是没听说过的，只有不停的搜索，不停的学习，有智慧和礼貌的提问才能成长。刚开始的学习还是和Web的学习方法一样，但是这个时候我们可以直接从刷题开始；依旧还是原来的搜索语法：<code>2024FIC初赛 Writeup -csdn</code></p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/39.png"></p>
+<p>然后记得把做题记录在自己的blog上面</p>
+<p><img src="/2025/03/22/%E6%80%BB%E7%BB%93/40.png"></p>
+<p>这里推荐几个取证学习的网站：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.forensics-wiki.com/%E3%80%81https://forensics.xidian.edu.cn/%E3%80%81https://www.cnblogs.com/WXjzc">https://www.forensics-wiki.com/、https://forensics.xidian.edu.cn/、https://www.cnblogs.com/WXjzc</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+<p>靶场：<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://forensics.didctf.com/">https://forensics.didctf.com/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h1 id="声明">
+          <a href="#声明" class="heading-link"><i class="fas fa-link"></i></a><a href="#声明" class="headerlink" title="声明"></a>声明</h1>
+      <p>​	笔者于2025.3.25已不再参与任何形式和级别的网络攻防实战演习和相关的社工情报工作，后续与笔者id相关的攻击行为均与本人无关。请蓝队师傅重新进行研判分析。书上说了：天下没有不散的宴席，书上还说了：人生何处不相逢。山高水远我们江湖再见！</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://hyggevv.github.io">hey</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/">https://hyggevv.github.io/2025/03/22/%E6%80%BB%E7%BB%93/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2025/03/13/Hospital/"><span class="paginator-prev__text">Hospital Writeup</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Guide"><span class="toc-number">1.</span> <span class="toc-text">
+          Guide</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flag-Welcome-to-Cybersecurity"><span class="toc-number">2.</span> <span class="toc-text">
+          flag{Welcome_to_Cybersecurity}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Cyberspace"><span class="toc-number">2.1.</span> <span class="toc-text">
+          What is Cyberspace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Cybersecurity"><span class="toc-number">2.2.</span> <span class="toc-text">
+          What is Cybersecurity</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#flag-Welcome-to-Ctf"><span class="toc-number">3.</span> <span class="toc-text">
+          flag{Welcome_to_Ctf}</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Competition-format"><span class="toc-number">3.1.</span> <span class="toc-text">
+          Competition format</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CTF-Web%E5%85%A5%E9%97%A8"><span class="toc-number">4.</span> <span class="toc-text">
+          CTF Web入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A6%96%E5%85%88"><span class="toc-number">4.1.</span> <span class="toc-text">
+          一、首先</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AD%A6%E4%BC%9A%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E"><span class="toc-number">4.1.1.</span> <span class="toc-text">
+          1.学会使用搜索引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">
+          2.提问的智慧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%87%86%E5%A4%87%E7%9B%B8%E5%85%B3%E7%9A%84%E5%B7%A5%E5%85%B7%E5%92%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">4.1.3.</span> <span class="toc-text">
+          3.准备相关的工具和环境</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">4.1.3.1.</span> <span class="toc-text">
+          环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7"><span class="toc-number">4.1.3.2.</span> <span class="toc-text">
+          基础工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">4.1.3.3.</span> <span class="toc-text">
+          安全工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%BA%9B%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80"><span class="toc-number">4.1.4.</span> <span class="toc-text">
+          4.学习一些编程语言</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%A0%E8%AF%A5%E4%BB%8E%E5%93%AA%E4%BA%9B%E6%BC%8F%E6%B4%9E%E5%BC%80%E5%A7%8B%EF%BC%9F"><span class="toc-number">4.2.</span> <span class="toc-text">
+          二、你该从哪些漏洞开始？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sqli-labs"><span class="toc-number">4.2.1.</span> <span class="toc-text">
+          Sqli labs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Upload-Labs"><span class="toc-number">4.2.2.</span> <span class="toc-text">
+          Upload Labs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DVWA"><span class="toc-number">4.2.3.</span> <span class="toc-text">
+          DVWA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E5%91%A2%EF%BC%9F"><span class="toc-number">4.2.4.</span> <span class="toc-text">
+          接下来呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NSSCTF"><span class="toc-number">4.2.4.1.</span> <span class="toc-text">
+          NSSCTF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctfshow"><span class="toc-number">4.2.4.2.</span> <span class="toc-text">
+          ctfshow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Buu"><span class="toc-number">4.2.4.3.</span> <span class="toc-text">
+          Buu</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Tips"><span class="toc-number">4.2.4.3.1.</span> <span class="toc-text">
+          Tips:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%8D%E6%8E%A5%E4%B8%8B%E6%9D%A5%E4%BD%A0%E4%BC%9A%E9%81%87%E5%88%B0%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-number">4.2.5.</span> <span class="toc-text">
+          再接下来你会遇到什么呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">4.2.5.1.</span> <span class="toc-text">
+          注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E8%BF%98%E8%A6%81%E5%AD%A6%E4%BA%9B%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="toc-number">4.2.6.</span> <span class="toc-text">
+          后续还要学些什么呢？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Python%E5%AE%89%E5%85%A8"><span class="toc-number">4.2.6.1.</span> <span class="toc-text">
+          Python安全</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ctf%E6%88%98%E9%98%9F"><span class="toc-number">4.2.6.2.</span> <span class="toc-text">
+          Ctf战队</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tips-1"><span class="toc-number">4.2.6.3.</span> <span class="toc-text">
+          Tips</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java%E5%AE%89%E5%85%A8"><span class="toc-number">4.2.6.4.</span> <span class="toc-text">
+          Java安全</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%8A%E4%B8%80%E8%81%8A"><span class="toc-number">4.3.</span> <span class="toc-text">
+          聊一聊</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Forensics"><span class="toc-number">5.</span> <span class="toc-text">
+          Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Forensics"><span class="toc-number">5.1.</span> <span class="toc-text">
+          What is Forensics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E8%AF%81%E5%9F%BA%E7%A1%80"><span class="toc-number">5.2.</span> <span class="toc-text">
+          取证基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#VeraCrypt%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">5.2.1.</span> <span class="toc-text">
+          VeraCrypt的使用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%8D%AE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="toc-number">5.2.2.</span> <span class="toc-text">
+          证据文件格式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E5%A4%84%E7%90%86%EF%BC%9A"><span class="toc-number">5.2.3.</span> <span class="toc-text">
+          镜像的处理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%B3%BB%E5%88%97%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9A"><span class="toc-number">5.2.4.</span> <span class="toc-text">
+          一系列开源工具的使用：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%8F%96%E8%AF%81"><span class="toc-number">5.3.</span> <span class="toc-text">
+          内存取证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E5%8F%96%E8%AF%81"><span class="toc-number">5.4.</span> <span class="toc-text">
+          Windows取证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux-amp-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%96%E8%AF%81"><span class="toc-number">5.5.</span> <span class="toc-text">
+          Linux&amp;服务器取证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="toc-number">5.6.</span> <span class="toc-text">
+          手机取证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-Learning"><span class="toc-number">5.7.</span> <span class="toc-text">
+          How to Learning</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E"><span class="toc-number">6.</span> <span class="toc-text">
+          声明</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/usually.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">hey</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">120</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Categories</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">Tags</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2025</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>hey</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.2</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.7.0</span></div><div class="busuanzi"><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.7.0"></script><script src="/js/stun-boot.js?v=2.7.0"></script><script src="/js/scroll.js?v=2.7.0"></script><script src="/js/header.js?v=2.7.0"></script><script src="/js/sidebar.js?v=2.7.0"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":180,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
